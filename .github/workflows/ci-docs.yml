@@ -27,7 +27,7 @@ jobs:
         run: npm run build -w docs
 
       - name: List docs/dist contents
-        run: ls -la docs/dist || echo "docs/dist directory not found"
+        run: ls -la docs/.vitepress/dist || echo "docs/dist directory not found"
 
   deploy-docs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
@@ -52,4 +52,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/dist
+          publish_dir: docs/.vitepress/dist
