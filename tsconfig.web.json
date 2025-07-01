@@ -1,16 +1,23 @@
 {
-  "extends": "./tsconfig.base.json",
+  "extends": "@vue/tsconfig/tsconfig.web.json",
   "compilerOptions": {
-    "composite": true,
-    "jsx": "preserve",
-    "lib": ["ES2018", "DOM", "DOM.Iterable"],
-    "types": ["unplugin-vue-macros/macros-global"],
-    "skipLibCheck": true
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./packages/*"]
+    },
+    "ignoreDeprecations": "5.0",  // 新增
+    "verbatimModuleSyntax": true  // 替代弃用选项
   },
-  "include": ["packages", "typings/env.d.ts"],
+  "include": [
+    "packages/**/*.ts",
+    "packages/**/*.d.ts",
+    "packages/**/*.tsx",
+    "packages/**/*.vue",
+    "typings/env.d.ts"
+  ],
   "exclude": [
     "node_modules",
-    "**/dist",
+    "**/dist/**",
     "**/__tests__/**/*",
     "**/gulpfile.ts",
     "**/test-helper",
