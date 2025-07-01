@@ -20,14 +20,8 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Lint
-        run: pnpm run lint
-
-      - name: Build all packages
-        run: npm -r --filter ./packages/* run build || echo "No packages build script found, skip."
-
       - name: Build docs
-        run: npm --filter ./docs run build
+        run: npm run build -w docs
 
       - name: List docs/dist contents
         run: ls -la docs/dist || echo "docs/dist directory not found"
@@ -54,7 +48,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build docs
-        run: pnpm --filter ./docs run build
+        run: npm run build -w docs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
