@@ -39,11 +39,6 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Setup npm
-        uses: npm/action-setup@v3
-        with:
-          node-version: '18'
-
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
