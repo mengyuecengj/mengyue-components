@@ -112,7 +112,8 @@
     "overrides": {
       "typescript": "$typescript",
       "jwa": "^1.4.2",
-      "vue-tsc": "^2.2.8"
+      "vue-tsc": "^2.2.8",
+      "wrench": "npm:wrench-js@^1.5.0"
     }
   },
   "lint-staged": {

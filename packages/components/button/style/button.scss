@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use 'sass:string';
-@use './common/var.scss' as *;
+@use '../../../theme-chalk/src/common/var.scss' as *;
 
 /* 基础 */
 .my-btn {

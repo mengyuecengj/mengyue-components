@@ -1,7 +1,7 @@
 {
   "name": "play",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,8 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "mengyue-plus": "^0.0.24",
-    "vue": "^3.5.13"
+    "mengyue-plus": "^0.0.28",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.4",

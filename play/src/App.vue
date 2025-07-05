@@ -1,3 +1,4 @@
 <template>
-  <MYButton type="primary" plain round circle colorBg="#E91E63" size="superbig" colorBorder="#000000">点我</MYButton>
+    <router-view />
 </template>
+<style scoped lang="scss"></style>

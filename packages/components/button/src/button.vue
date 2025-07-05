@@ -15,9 +15,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineOptions } from 'vue'
 import { buttonProps } from './button'
-import '../../../theme-chalk/src/button.scss'
+import '../style/button.scss'
 import { useButtonStyle } from './computedStyle'
 
 // **给组件取个名字，供 withInstall 注册使用**

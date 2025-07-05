@@ -1,6 +1,6 @@
 {
   "name": "mengyue-plus",
-  "version": "0.0.24",
+  "version": "0.0.28",
   "type": "module",
   "files": [
     "dist"
@@ -24,7 +24,6 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "build": "^0.1.4",
     "vite-plugin-css": "^1.0.4",
     "vite-plugin-libcss": "^1.1.2"
   },
