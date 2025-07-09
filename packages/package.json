@@ -1,0 +1,37 @@
+{
+  "name": "mengyue-plus",
+  "version": "0.0.30",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/mengyue-plus.cjs.js",
+  "module": "dist/mengyue-plus.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/mengyue-plus.es.js",
+      "require": "./dist/mengyue-plus.cjs.js"
+    },
+    "./style.css": "./dist/mengyue-plus.css"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "scripts": {
+    "build": "vite build",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "vite-plugin-css": "^1.0.4",
+    "vite-plugin-libcss": "^1.1.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.4",
+    "sass": "^1.89.2",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.8",
+    "vite-plugin-dts": "^4.5.4"
+  }
+}

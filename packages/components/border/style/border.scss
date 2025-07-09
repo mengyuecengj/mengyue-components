@@ -1,0 +1,37 @@
+@use 'sass:map';
+@use 'sass:string';
+@use '../../../theme-chalk/src//common/var.scss' as *;
+
+.my-border {
+   display: inline-block;
+   align-items: center;
+   justify-content: center;
+   // border: 1px solid #ff0000 !important;
+   box-sizing: border-box;
+   width: 100%;
+   height: auto;
+   white-space: nowrap;
+   transition: background-color var(--btn-transition), filter var(--btn-transition);
+}
+
+.my-border--dotted {
+   border-style: dotted !important;
+}
+
+.my-border--round {
+   border-radius: 9999px;
+}
+
+.my-border--circle {
+   border-radius: var(--btn-radius-circle);
+}
+
+.my-border--center {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.my-border--Top {
+   border-top: 10px solid #8000ff !important;
+}

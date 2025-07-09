@@ -1,0 +1,69 @@
+$scrollbar-track-color: #2C2C2C !default;
+$scrollbar-thumb-color: #9F9F9F !default;
+$scrollbar-thumb-hover-color: #D1D1D1 !default;
+$scrollbar-default-size: 12px !default;
+$container-max-width: 70vw !default;
+
+.scrollbar-container {
+  // 变量定义
+  --scrollbar-container-track-color: #{$scrollbar-track-color};
+  --scrollbar-container-thumb-color: #{$scrollbar-thumb-color};
+  --scrollbar-container-thumb-hover-color: #{$scrollbar-thumb-hover-color};
+  
+  // 布局属性
+  overflow: hidden;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  
+  // 高度管理
+  height: 50vh;
+  max-height: 100%;
+  
+  // 滚动行为
+  overflow-y: auto;
+  
+  // 滚动条基础样式
+  &::-webkit-scrollbar {
+    width: var(--scrollbar-container-scrollbar-width, $scrollbar-default-size);
+    height: var(--scrollbar-container-scrollbar-height, $scrollbar-default-size);
+  }
+  
+  &::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-container-track-color);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-container-thumb-color);
+    border-radius: 10px;
+    
+    &:hover {
+      background-color: var(--scrollbar-container-thumb-hover-color);
+    }
+  }
+  
+  // 修饰符样式
+  &--Maxheight {
+    height: unset;
+    max-height: var(--max-height);
+  }
+  
+  &--widthX {
+    overflow: auto; // 合并写法
+  }
+  
+  &--disabledHeight {
+    overflow-y: hidden;
+  }
+  
+  &--disabledWidth {
+    overflow-x: hidden;
+  }
+  
+  &--disabledScroll {
+    overflow: hidden;
+  }
+  
+  &--corner::-webkit-scrollbar-corner {
+    background-color: var(--scrollbar-container-track-color);
+  }
+}

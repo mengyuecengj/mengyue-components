@@ -1,0 +1,60 @@
+@use 'sass:map';
+@use 'sass:string';
+
+.my-text {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 1;  // 全局设置
+}
+
+.my-text--omit {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* 当omit为true时使用默认max-width */
+    &:not([style*="max-width"]) {
+        max-width: 100px;
+    }
+}
+
+.my-text--default {
+    color: #fff
+}
+
+.my-text--primary {
+    color: #409EFF
+}
+
+.my-text--success {
+    color: #67C23A
+}
+
+.my-text--warning {
+    color: #E6A23A
+}
+
+.my-text--danger {
+    color: #F56C6C
+}
+
+.my-text--info {
+    color: #909399
+}
+
+.my-text--small {
+    font-size: 12px;
+}
+
+.my-text--medium {
+    font-size: 14px;
+}
+
+.my-text--large {
+    font-size: 20px;
+}
+
+.my-text .my-text-- .my-text--omit {
+    vertical-align: bottom !important;
+}

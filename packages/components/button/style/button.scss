@@ -1,0 +1,134 @@
+@use 'sass:map';
+@use 'sass:string';
+@use '../../../theme-chalk/src/common/var.scss' as *;
+
+/* 基础 */
+.my-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color var(--btn-transition), filter var(--btn-transition);
+}
+
+/* ---------- ① 普通模式 base/hover/active ---------- */
+@each $type, $map in $btn-colors {
+  $key: string.unquote("#{$type}");
+
+  .my-btn--#{$key}:not(.my-btn--plain) {
+    background-color: map.get($map, base);
+    color: if($key =='default', inherit, #fff);
+    border: if($key =='default', 2px solid var(--btn-color-primary), none);
+
+    &:hover {
+      background-color: map.get($map, hover);
+    }
+
+    &:active {
+      background-color: map.get($map, active);
+    }
+  }
+}
+
+/* ---------- ② Plain 模式 base/hover/active ---------- */
+@each $type, $map in $btn-colors {
+  $key: string.unquote("#{$type}");
+  $hex: map.get($btn-hex-colors, $key);
+
+  .my-btn--#{$key}.my-btn--plain {
+    /* plain 颜色全部交由内联样式处理 */
+    background-color: rgba($hex, 0.2);
+    color: $hex;
+    border: 1px solid $hex;
+
+    &:hover {
+      background-color: $hex;
+      color: #fff;
+      border-color: $hex;
+    }
+  }
+
+  // .my-btn--#{$key}.my-btn--plain:hover,
+  // .my-btn--#{$key}.my-btn--plain:active {
+    /* hover/active 颜色也交由内联样式处理 */
+    // background-color: unset;
+    // color: unset;
+    // border-color: $hex;
+  // }
+}
+
+/* ---------- ③ default 非 plain 的白边白字交互 (放最后) ---------- */
+.my-btn--default:not(.my-btn--plain) {
+  $c: var(--btn-color-primary);
+
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+
+  &:hover {
+    background-color: rgba(64, 158, 255, 0.2);
+    color: var(--btn-color-primary);
+    border-color: var(--btn-color-primary);
+  }
+
+  // &:active {
+  //   background-color: rgba(64, 158, 255, 0.25);
+  //   color: var(--btn-color-primary);
+  //   border-color: var(--btn-color-primary);
+  // }
+}
+
+/* ② default + plain：透明背景 + 主色文字/边框（保持 ghost 效果） */
+.my-btn--default.my-btn--plain {
+  background-color: unset;
+  color: unset;
+  border: 1px solid #fff;
+
+  &:hover {
+    background-color: unset;
+    color: unset;
+    border-color: var(--btn-color-primary);
+  }
+}
+
+/* ---------- 尺寸、修饰、禁用 ---------- */
+.my-btn--supersmall {
+  padding: var(--btn-padding-supersmall);
+  font-size: var(--btn-font-supersmall);
+}
+
+.my-btn--small {
+  padding: var(--btn-padding-small);
+  font-size: var(--btn-font-small);
+}
+
+.my-btn--medium {
+  padding: var(--btn-padding-medium);
+  font-size: var(--btn-font-medium);
+}
+
+.my-btn--large {
+  padding: var(--btn-padding-large);
+  font-size: var(--btn-font-large);
+}
+
+.my-btn--superbig {
+  padding: var(--btn-padding-superbig);
+  font-size: var(--btn-font-superbig);
+}
+
+.my-btn--round {
+  border-radius: 9999px;
+}
+
+.my-btn--circle {
+  border-radius: var(--btn-radius-circle);
+}
+
+.my-btn--disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}

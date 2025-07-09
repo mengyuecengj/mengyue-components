@@ -1,0 +1,32 @@
+{
+  // "extends": "@vue/tsconfig/tsconfig.web.json",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "module": "ESNext",
+    "target": "ESNext",
+    "paths": {
+      "@/*": [
+        "./packages/*"
+      ]
+    },
+    "ignoreDeprecations": "5.0", // 新增
+    "verbatimModuleSyntax": true,
+  },
+  "include": [
+    "packages/**/*.ts",
+    "packages/**/*.d.ts",
+    "packages/**/*.tsx",
+    "packages/**/*.vue",
+    "typings/env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/dist/**",
+    "**/__tests__/**/*",
+    "**/gulpfile.ts",
+    "**/test-helper",
+    "packages/test-utils",
+    "**/*.md"
+  ]
+}
