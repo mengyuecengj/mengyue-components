@@ -28,6 +28,7 @@ import MYText from './text/src/text.vue'
 import MYa from './a/src/a.vue'
 import { MYScroll } from './scroll'
 import { MYScrollbar } from './scrollbar'
+import { MYContainer } from './container'
 
 // 所有组件
 const components = [
@@ -36,7 +37,8 @@ const components = [
   MYText, 
   MYa,
   MYScroll,
-  MYScrollbar
+  MYScrollbar,
+  MYContainer,
 ]
 
 // install 方法
@@ -58,5 +60,6 @@ export {
   MYText, 
   MYa,
   MYScroll,
-  MYScrollbar
+  MYScrollbar,
+  MYContainer
 }

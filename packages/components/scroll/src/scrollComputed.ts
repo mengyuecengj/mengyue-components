@@ -1,4 +1,3 @@
-// scrollComputed.ts
 import { computed } from "vue";
 
 export function useScrollComputed(props: any) {

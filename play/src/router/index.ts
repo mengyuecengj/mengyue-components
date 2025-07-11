@@ -33,6 +33,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/test/scrollbar',
     component: () => import('../views/scrollbar.vue')
+  },
+  {
+    path: '/test/container',
+    component: () => import('../views/container.vue')
   }
 ]
 

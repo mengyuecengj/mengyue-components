@@ -2,7 +2,7 @@ import { PropType } from "vue"
 export const textProps = {
     type: {
         type: String as PropType<'' | 'primary' | 'success' | 'warning' | 'danger' | 'info'>,
-        default: '' as const
+        default: '',
     },
     size: {
         type: [String, Number] as PropType<'small' | 'medium' | 'large' | string | number>,
