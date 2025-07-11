@@ -1,4 +1,45 @@
 .my-container {
-    height: 100vh;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    
+
+    .my-header {
+        height: 60px;
+        background: #409EFF;
+        top: auto;
+        z-index: auto;
+        flex-shrink: 0;
+    }
+
+    .my-body {
+        display: flex;
+        width: 100%;
+        overflow: visible;
+    }
+
+    .my-aside {
+        width: 200px;
+        margin-left: auto;
+        flex-shrink: 0;
+        background: #000;
+        padding: 16px;
+        box-sizing: border-box;
+    }
+
+    .my-main {
+        flex: 1;
+        min-width: 0;
+        padding: 16px;
+        box-sizing: border-box;
+    }
+
+    .my-footer {
+        height: 200px;
+        background: #f5f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
 }
