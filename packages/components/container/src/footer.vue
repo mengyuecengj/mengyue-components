@@ -1,5 +1,5 @@
 <template>
-    <component :is="props.tag" :class="classFooter">
+    <component :is="props.tag" :class="classFooter" :style="styleContainer">
         <slot />
     </component>
 </template>
@@ -9,5 +9,5 @@ import { useContainerComputed } from './containerComputed'
 import '../style/container.scss'
 defineOptions({ name: 'MYFooter' })
 const props = defineProps(footerProps)
-const { footer: classFooter } = useContainerComputed(props)
+const { footer: classFooter, styleContainer } = useContainerComputed(props)
 </script>

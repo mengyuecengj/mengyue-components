@@ -1,5 +1,5 @@
 <template>
-    <component :is="props.tag" :class="classAside">
+    <component :is="props.tag" :class="classAside" :style="styleContainer">
         <slot />
     </component>
 </template>
@@ -9,5 +9,5 @@ import { useContainerComputed } from './containerComputed'
 import '../style/container.scss'
 defineOptions({ name: 'MYAside' })
 const props = defineProps(asideProps)
-const { aside: classAside } = useContainerComputed(props)
+const { aside: classAside, styleContainer } = useContainerComputed(props);
 </script>

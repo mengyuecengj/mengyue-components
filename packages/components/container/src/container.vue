@@ -1,49 +1,53 @@
 <template>
-  <component :is="props.tag" :class="classContainer">
-    <template v-for="(vnode) in processedChildren" :key="index">
+  <component :is="props.tag" :class="containerClass" :style="styleContainer">
+    <template v-for="vnode in processedChildren" :key="vnode.id">
       <component :is="vnode" />
     </template>
   </component>
 </template>
 
 <script setup lang="ts">
-import { computed, h, useSlots, VNode, VNodeTypes } from 'vue'
-import { containerProps } from './container'
-import { useContainerComputed } from './containerComputed'
-import '../style/container.scss'
+import { computed, h, useSlots, VNode, VNodeTypes } from 'vue';
+import { containerProps } from './container';
+import { useContainerComputed } from './containerComputed';
+import '../style/container.scss';
 
-defineOptions({ name: 'MYContainer' })
+defineOptions({ name: 'MYContainer' });
 
 interface ProcessedVNode extends VNode {
-  type: VNodeTypes;  // 使用 VNodeTypes 而不是 Component | string
+  type: VNodeTypes;
 }
 
-const props = defineProps(containerProps)
-const { container: classContainer } = useContainerComputed(props)
-const slots = useSlots()
+const props = defineProps(containerProps);
+const { container: containerClass, styleContainer } = useContainerComputed(props);
+const slots = useSlots();
 
-// 将 MYAside 和 MYMain 包裹进 my-body，其他元素原样输出
 const processedChildren = computed(() => {
   const children = slots.default?.() || [] as ProcessedVNode[];
-  const header: ProcessedVNode[] = [];
-  const footer: ProcessedVNode[] = [];
-  const aside: ProcessedVNode[] = [];
-  const main: ProcessedVNode[] = [];
+  const headers: ProcessedVNode[] = [];
+  const footers: ProcessedVNode[] = [];
+  const leftAsides: ProcessedVNode[] = [];
+  const rightAsides: ProcessedVNode[] = [];
+  const mains: ProcessedVNode[] = [];
   const others: ProcessedVNode[] = [];
 
   children.forEach((vnode) => {
     const name = (vnode.type as any)?.name || '';
-    if (name.includes('Header')) header.push(vnode);
-    else if (name.includes('Footer')) footer.push(vnode);
-    else if (name.includes('Aside')) aside.push(vnode);
-    else if (name.includes('Main')) main.push(vnode);
+    if (name.includes('Header')) headers.push(vnode);
+    else if (name.includes('Footer')) footers.push(vnode);
+    else if (name.includes('Aside')) {
+      const position = vnode.props?.position || 'left';
+      if (position === 'right') rightAsides.push(vnode);
+      else leftAsides.push(vnode);
+    }
+    else if (name.includes('Main')) mains.push(vnode);
     else others.push(vnode);
   });
 
-  const body = (aside.length || main.length)
-    ? h('div', { class: 'my-body' }, [ ...aside, ...main ])
+  const body = (leftAsides.length || mains.length || rightAsides.length)
+    ? h('div', { class: 'my-body' }, [...leftAsides, ...mains, ...rightAsides])
     : null;
 
-  return [...header, body, ...footer, ...others].filter(Boolean);
+  return [...headers, body, ...footers, ...others].filter(Boolean);
 });
 </script>
