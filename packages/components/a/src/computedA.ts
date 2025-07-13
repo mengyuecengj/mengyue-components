@@ -1,29 +1,36 @@
-import { computed } from "vue"
-export function useAComputed(props: any) {
-    const aClass = computed(() => {
-        const cls = [
-            'my-a',
-            `my-a--${props.type}`,
-            `my-a--${props.size}`,
-        ]
-        if(props.disabled) cls.push(`my-a--disabled`)
-        if(props.underline) cls.push(`my-a--underline`)
-        return cls
-    })
-    const aStyle = computed(() => {
-        const s: Record<string, string> = {}
+import type { ComputedRef, CSSProperties } from 'vue';
+import { useClassComputed } from '../../../hooks/useClassComputed';
+import { useStyleComputed } from '../../../hooks/useStyleComputed';
+interface AProps {
+    type?: string;
+    size?: string | number;
+    disabled?: boolean;
+    color?: string;
+    underline?: boolean;
+}
 
-        if (props.color) {
-            s.color = props.color
-            s.textDecorationColor = props.color
+export function useAComputed(props: AProps): {
+    aClass: ComputedRef<string[]>;
+    aStyle: ComputedRef<CSSProperties>;
+} {
+    const aClass = useClassComputed<AProps>({
+        baseClass: 'my-a',
+        propClasses: {
+            type: props.type,
+            size: props.size && ['large', 'medium', 'small', 'mini'].includes(String(props.size)) ? String(props.size) : undefined,
+        },
+        flagClasses: {
+            disabled: props.disabled,
+            underline: props.underline
         }
+    });
 
-        if (props.size && !['large', 'medium', 'small', 'mini'].includes(props.size)) {
-            s.fontSize = typeof props.size === 'number'
-                ? `${props.size}px`
-                : props.size
-        }
-        return s
+    const aStyle = useStyleComputed<AProps>(props, {
+        propToStyleMap: {
+            color: 'color',
+        },
+        fontSizeProp: 'size',
     })
-    return { aClass, aStyle }
+
+    return {aClass, aStyle}
 }
