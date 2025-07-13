@@ -1,0 +1,18 @@
+.my-col {
+    position: relative;
+    box-sizing: border-box;
+}
+
+@for $i from 1 through 24 {
+    .my-col--span-#{$i} {
+        width: calc($i / 24 * 100%);
+    }
+
+    .my-col--offsetLeft-#{$i} {
+        margin-right: calc($i / 24 * 100%);
+    }
+
+    .my-col--offsetRight-#{$i} {
+        margin-left: calc($i / 24 * 100%);
+    }
+}

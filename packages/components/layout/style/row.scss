@@ -1,0 +1,36 @@
+.my-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 10px;
+
+    &--between {
+        justify-content: space-between;
+    }
+
+    &--aligns {
+        flex-direction: column;
+    }
+
+    &--alignCenter {
+        flex-direction: column;
+        align-items: center
+    }
+}
+
+/* 当存在 data-direction 属性时反转 */
+.my-row[data-direction] {
+    flex-direction: row-reverse;
+}
+
+/* 修正 gutter 实现 */
+@for $i from 1 through 24 {
+    .my-row--gutter-#{$i} {
+        margin-left: -#{$i / 2}px;
+        margin-right: -#{$i / 2}px;
+        
+        & > .my-col {
+            padding-left: #{$i / 2}px;
+            padding-right: #{$i / 2}px;
+        }
+    }
+}

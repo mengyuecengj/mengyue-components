@@ -13,12 +13,12 @@ import {
   MYFooter,
   MYAside
 } from './container'
+import { MYRow, MYCol } from './layout'
 
 interface ComponentWithName {
   name?: string;
   __name?: string;
 }
-
 
 // 所有组件
 const components = [
@@ -32,7 +32,9 @@ const components = [
   MYHeader,
   MYMain,
   MYFooter,
-  MYAside
+  MYAside,
+  MYRow,
+  MYCol
 ]
 
 // install 方法
@@ -59,5 +61,7 @@ export {
   MYHeader,
   MYMain,
   MYFooter,
-  MYAside
+  MYAside,
+  MYRow,
+  MYCol
 }

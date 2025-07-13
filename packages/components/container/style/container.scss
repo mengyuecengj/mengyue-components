@@ -3,14 +3,32 @@
     flex-direction: column;
     overflow-x: hidden;
 
+    &--fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }
+
 
     .my-header {
         height: 60px;
         background: #409EFF;
-        top: auto;
-        z-index: auto;
         flex-shrink: 0;
+        transition: all 0.3s ease;
+
+        &--fixed {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        &--scrolled {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
     }
+
 
     .my-body {
         display: flex;
@@ -61,6 +79,5 @@
                 margin-right: auto;
             }
         }
-
     }
 }

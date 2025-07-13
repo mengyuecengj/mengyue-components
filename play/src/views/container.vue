@@ -1,7 +1,9 @@
 <template>
+  <MYHeader class="header" fixed>头部</MYHeader>
+  <MYButton type="success" @click="navigateTo('/')">返回/首页</MYButton>
   <div class="test-container">
     <h2>MYContainer 组件测试</h2>
-    
+
     <div class="test-case">
       <h3>基础容器</h3>
       <MYContainer class="basic-container">
@@ -11,12 +13,7 @@
 
     <div class="test-case">
       <h3>带自定义样式的容器</h3>
-      <MYContainer 
-        height="300px" 
-        width="80%" 
-        background="#f0f0f0"
-        class="styled-container"
-      >
+      <MYContainer height="300px" width="80%" background="#f0f0f0" class="styled-container">
         <p>自定义高度、宽度和背景色的容器</p>
       </MYContainer>
     </div>
@@ -24,7 +21,7 @@
     <div class="test-case">
       <h3>完整布局</h3>
       <MYContainer height="400px" class="full-layout">
-        <MYHeader fixed class="header">固定头部</MYHeader>
+        <!-- <MYHeader fixed class="header">固定头部</MYHeader> -->
         <MYAside class="left-aside">左侧边栏</MYAside>
         <MYMain class="main-content">
           <p>主内容区域</p>
@@ -46,6 +43,15 @@
     </div>
   </div>
 </template>
+<script lang="ts" setup>
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const navigateTo = (path: any) => {
+  router.push(path)
+}
+</script>
 <style scoped>
 .test-container {
   padding: 20px;

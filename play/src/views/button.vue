@@ -1,5 +1,4 @@
 <template>
-
     <MYButton type="success" @click="navigateTo('/')">返回/首页</MYButton>
     <div style="margin-top: 10px; border: 5px solid #000;"></div>
     <div style="margin-top: 10px;"></div>

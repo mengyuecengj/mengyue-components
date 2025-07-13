@@ -1,5 +1,6 @@
 <template>
-    <component :is="props.tag" :class="[headerClass, { 'my-container--fixed': isFixed }]" :style="styleContainer">
+    <component :is="props.tag" :class="[headerClass, { 'my-container--fixed': isFixed, 'is-scrolled': isScrolled }]"
+        :style="styleContainer">
         <slot />
     </component>
 </template>
@@ -14,30 +15,29 @@ defineOptions({ name: 'MYHeader' });
 const props = defineProps(headerProps);
 const { header: headerClass, styleContainer } = useContainerComputed(props);
 
-const isFixed = ref(props.fixed);
-const handerScroll = () => {
-    const scrollTreadshould = 100;
-    isFixed.value = window.scrollY > scrollTreadshould;
-}
+const isFixed = ref(false);
+const isScrolled = ref(false);
 
+const handleScroll = () => {
+    const scrollThreshold = 100;
+    if (props.fixed) {
+        const currentScroll = window.scrollY;
+        isFixed.value = currentScroll > scrollThreshold;
+        isScrolled.value = currentScroll > 0;
+    }
+}
 onMounted(() => {
     if (props.fixed) {
-        window.addEventListener('scroll', handerScroll);
+        window.addEventListener('scroll', handleScroll);
     }
 })
 
 onUnmounted(() => {
     if (props.fixed) {
-        window.removeEventListener('scroll', handerScroll);
+        window.removeEventListener('scroll', handleScroll);
     }
 })
 </script>
 <style scoped lang="scss">
-.my-container--fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-}
+
 </style>
