@@ -1,56 +1,96 @@
-// 标签
-// MYRow
-// | -- gutter     // number/string 间隔，最大24间隔，默认或者gutter为空，默认0
-// | -- jusctiy    // string 水平排列, start(从左到右排列), end(从右到左排列), center(居中), space-around(平均分布), space-between(两端对齐)
-// | -- align      // boolean 从上到下排列并居中对齐
+import { PropType } from 'vue';
+
+export interface LayoutProps {
+  tag?: string;
+  gutter?: number | string;
+  justify?: 'start' | 'end' | 'center' | 'space-around' | 'space-between';
+  align?: boolean;
+  alignCenter?: boolean;
+  direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
+}
+
+export interface ColProps {
+  tag?: string;
+  span?: number;
+  offsetLeft?: number | string;
+  offsetRight?: number | string;
+  pull?: number | string;
+  push?: number | string;
+}
 
 export const layoutProps = {
-    gutter: {
-        type: [Number, String],
-        default: 0
+  tag: {
+    type: String,
+    default: 'div',
+  },
+  gutter: {
+    type: [Number, String] as PropType<number | string>,
+    default: 0,
+    validator: (value: any) => {
+      const num = parseFloat(value);
+      return (typeof value === 'string' || typeof value === 'number') && !isNaN(num) && num >= 0 && num <= 24;
     },
-    between: {
-        type: Boolean,
-        default: false
-    },
-    direction: {
-        type: Boolean,
-        default: false
-    },
-    aligns: {
-        type: Boolean,
-        default: false
-    },
-    alignCenter: {
-        type: Boolean,
-        default: false
-    },
-    tag: {
-        type: String,
-        default: 'div'
-    }
-}
+  },
+  justify: {
+    type: String as PropType<'start' | 'end' | 'center' | 'space-around' | 'space-between'>,
+    default: undefined,
+    validator: (value: any) => !value || ['start', 'end', 'center', 'space-around', 'space-between'].includes(value),
+  },
+  align: {
+    type: Boolean,
+    default: false,
+  },
+  alignCenter: {
+    type: Boolean,
+    default: false,
+  },
+  direction: {
+    type: String as PropType<'row' | 'column' | 'row-reverse' | 'column-reverse'>,
+    default: 'row',
+    validator: (value: any) => ['row', 'column', 'row-reverse', 'column-reverse'].includes(value),
+  },
+} as const;
 
-// MYCol
-// | -- span       // number/string 1-24， 占用的宽度，1 - 24
-// | -- offset     // number/string 1-24， 偏移量，1 - 24
-// | -- pull       // number/string 1-24， 向左偏移量，1 - 24
-// | -- push       // number/string 1-24， 向右偏移量，1 - 24
 export const colProps = {
-    span: {
-        type: Number,
-        default: 24
+  tag: {
+    type: String,
+    default: 'div',
+  },
+  span: {
+    type: Number,
+    default: 24,
+    validator: (value: any) => Number.isInteger(value) && value >= 1 && value <= 24,
+  },
+  offsetLeft: {
+    type: [Number, String] as PropType<number | string>,
+    default: 0,
+    validator: (value: any) => {
+      const num = parseFloat(value);
+      return (typeof value === 'string' || typeof value === 'number') && !isNaN(num) && num >= 0 && num <= 24;
     },
-    offsetLeft: {
-        type: [Number, String],
-        default: 0
+  },
+  offsetRight: {
+    type: [Number, String] as PropType<number | string>,
+    default: 0,
+    validator: (value: any) => {
+      const num = parseFloat(value);
+      return (typeof value === 'string' || typeof value === 'number') && !isNaN(num) && num >= 0 && num <= 24;
     },
-    offsetRight: {
-        type: [Number, String],
-        default: 0
+  },
+  pull: {
+    type: [Number, String] as PropType<number | string>,
+    default: 0,
+    validator: (value: any) => {
+      const num = parseFloat(value);
+      return (typeof value === 'string' || typeof value === 'number') && !isNaN(num) && num >= 0 && num <= 24;
     },
-    tag: {
-        type: String,
-        default: 'div'
-    }
-}
+  },
+  push: {
+    type: [Number, String] as PropType<number | string>,
+    default: 0,
+    validator: (value: any) => {
+      const num = parseFloat(value);
+      return (typeof value === 'string' || typeof value === 'number') && !isNaN(num) && num >= 0 && num <= 24;
+    },
+  },
+} as const;

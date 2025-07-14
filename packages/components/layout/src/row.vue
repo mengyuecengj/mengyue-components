@@ -1,16 +1,19 @@
 <template>
-    <component :is="props.tag" :class="classRow" v-bind="rowAttrs">
-        <slot />
-    </component>
+  <component :is="props.tag" :class="classRow" :style="styleRow">
+    <slot />
+  </component>
 </template>
 
 <script setup lang="ts">
 import { layoutProps } from './layout';
 import { useComputedLayout } from './computedLayout';
-import '../style/row.scss'
+import '../style/row.scss';
+
 defineOptions({
-    name: 'MYRow'
-})
+  name: 'MYRow',
+  inheritAttrs: false,
+});
+
 const props = defineProps(layoutProps);
-const { classRow, rowAttrs } = useComputedLayout(props)
+const { classRow, styleRow } = useComputedLayout(props);
 </script>

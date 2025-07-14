@@ -14,7 +14,7 @@ export const scrollProps = {
     width: {
         type: String,
         default: ''
-    },
+    },  
     tag: {
         type: String,
         default: 'div'

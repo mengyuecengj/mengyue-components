@@ -1,6 +1,9 @@
-import { computed, type CSSProperties } from "vue";
+import { ComputedRef, CSSProperties } from 'vue';
+import { useClassComputed } from '../../../hooks/useClassComputed';
+import { useStyleComputed } from '../../../hooks/useStyleComputed';
 
 interface ScrollbarProps {
+  tag?: string;
   Maxheight?: string | number;
   widthX?: boolean;
   disabledHeight?: boolean;
@@ -14,58 +17,44 @@ interface ScrollbarProps {
   height?: string | number;
 }
 
-export function useScrollbarComputed(props: ScrollbarProps) {
-  const scrollbarClass = computed(() => [
-    'scrollbar-container',
-    ...Object.entries({
-      'scrollbar-container--Maxheight': !!props.Maxheight,
-      'scrollbar-container--widthX': props.widthX,
-      'scrollbar-container--disabledHeight': props.disabledHeight,
-      'scrollbar-container--disabledWidth': props.disabledWidth,
-      'scrollbar-container--disabledScroll': props.disabledScroll,
-      'scrollbar-container--thumbColor': props.thumbColor,
-      'scrollbar-container--corner': props.corner
-    })
-    .filter(([_, shouldInclude]) => shouldInclude)
-    .map(([className]) => className)
-  ]);
+export function useScrollbarComputed(props: ScrollbarProps): {
+  scrollbarClass: ComputedRef<string[]>;
+  scrollbarStyle: ComputedRef<CSSProperties>;
+} {
 
-  const scrollbarStyle = computed<CSSProperties>(() => {
-    const style: Record<string, string> = {};
-    
-    // 颜色相关属性
-    const colorProps = {
+  const scrollbarClass = useClassComputed<ScrollbarProps>({
+    baseClass: 'scrollbar-container',
+    flagClasses: {
+      Maxheight: !!props.Maxheight,
+      widthX: props.widthX,
+      disabledHeight: props.disabledHeight,
+      disabledWidth: props.disabledWidth,
+      disabledScroll: props.disabledScroll,
+      corner: props.corner,
+    },
+  });
+
+  const scrollbarStyle = useStyleComputed<ScrollbarProps>(props, {
+    propToStyleMap: {
+      height: 'height',
+      Maxheight: 'maxHeight',
+      ScrollWidth: 'scrollWidth',
+    },
+    cssVariables: {
       '--scrollbar-container-thumb-color': props.thumbColor,
       '--scrollbar-container-thumb-hover-color': props.thumbHoverColor,
-      '--scrollbar-container-track-color': props.trackColor
-    };
-    
-    Object.entries(colorProps).forEach(([key, value]) => {
-      if (value) style[key] = value;
-    });
-
-    // 尺寸相关属性
-    if (props.ScrollWidth) {
-      const scrollWidth = typeof props.ScrollWidth === 'number' 
-        ? `${props.ScrollWidth}px` 
-        : props.ScrollWidth;
-      
-      style['--scrollbar-container-scrollbar-width'] = scrollWidth;
-      style['--scrollbar-container-scrollbar-height'] = scrollWidth;
-    }
-
-    // 高度处理
-    if (props.Maxheight) {
-      style['--max-height'] = typeof props.Maxheight === 'number'
-        ? `${props.Maxheight}px`
-        : props.Maxheight;
-    } else if (props.height) {
-      style.height = typeof props.height === 'number'
-        ? `${props.height}px`
-        : props.height;
-    }
-
-    return style;
+      '--scrollbar-container-track-color': props.trackColor,
+      '--scrollbar-container-scrollbar-width': props.ScrollWidth != null
+        ? typeof props.ScrollWidth === 'number'
+          ? `${props.ScrollWidth}px`
+          : props.ScrollWidth
+        : undefined,
+      '--scrollbar-container-scrollbar-height': props.ScrollWidth != null
+        ? typeof props.ScrollWidth === 'number'
+          ? `${props.ScrollWidth}px`
+          : props.ScrollWidth
+        : undefined,
+    },
   });
 
   return { scrollbarClass, scrollbarStyle };

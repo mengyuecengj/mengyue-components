@@ -1,36 +1,92 @@
+@use 'sass:math';
+
 .my-row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  /* 调试：检查 MYRow 范围 */
+  // 使用负 margin 抵消 padding 的额外空间
+  margin-left: calc(var(--row-gutter, 0px) / -2);
+  margin-right: calc(var(--row-gutter, 0px) / -2);
 
-    &--between {
-        justify-content: space-between;
+  &>.my-col {
+    padding-left: calc(var(--row-gutter, 0px) / 2);
+    padding-right: calc(var(--row-gutter, 0px) / 2);
+    box-sizing: border-box;
+  }
+
+  &--justify-start {
+    justify-content: flex-start;
+  }
+
+  // &--gutter-0 {
+  //   gap: 0;
+  // }
+
+  @for $i from 1 through 24 {
+    --gutter-#{$i} {
+      gap: #{$i}px !important;
+      border: 1px dashed green;
+
+      /* 调试：确认 gutter 应用 */
+      &>.my-col {
+        box-sizing: border-box;
+      }
     }
+  }
 
-    &--aligns {
-        flex-direction: column;
+  &--justify-start {
+    justify-content: flex-start;
+  }
+
+  &--justify-end {
+    justify-content: flex-end;
+  }
+
+  &--justify-center {
+    justify-content: center;
+  }
+
+  &--justify-space-around {
+    justify-content: space-around;
+  }
+
+  &--justify-space-between {
+    justify-content: space-between !important;
+  }
+
+  &--align {
+    align-items: center;
+
+    &>.my-col {
+      margin-bottom: 16px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
+  }
 
-    &--alignCenter {
-        flex-direction: column;
-        align-items: center
+  &--alignCenter {
+    justify-content: center;
+    align-items: center;
+
+    &>.my-col {
+      margin-bottom: 16px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
-}
+  }
 
-/* 当存在 data-direction 属性时反转 */
-.my-row[data-direction] {
-    flex-direction: row-reverse;
-}
+  &--direction-reverse {
+    flex-direction: row-reverse !important;
+  }
 
-/* 修正 gutter 实现 */
-@for $i from 1 through 24 {
-    .my-row--gutter-#{$i} {
-        margin-left: -#{$i / 2}px;
-        margin-right: -#{$i / 2}px;
-        
-        & > .my-col {
-            padding-left: #{$i / 2}px;
-            padding-right: #{$i / 2}px;
-        }
-    }
+  /* Fallback for CSS variables */
+  justify-content: var(--row-justify, flex-start);
+  flex-direction: var(--row-direction, row);
 }

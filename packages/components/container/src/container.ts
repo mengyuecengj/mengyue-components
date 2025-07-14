@@ -1,23 +1,43 @@
-import { PropType } from "vue"
+import { PropType } from 'vue';
+
+export interface ContainerProps {
+  tag?: string;
+  height?: string | number;
+  width?: string | number;
+  background?: string;
+  fixed?: boolean;
+  position?: 'left' | 'right';
+}
 
 export const containerProps = {
-    height: {
-        type: String,
-        default: ''
-    },
-    width: {
-        type: String,
-        default: ''
-    },
-    tag: {
-        type: String,
-        default: 'div'
-    },
-    background: {
-        type: String,
-        default: ''
-    }
-}
+  tag: {
+    type: String,
+    default: 'div',
+  },
+  height: {
+    type: [String, Number] as PropType<string | number>,
+    default: '',
+    validator: (value: any) => typeof value === 'string' || (typeof value === 'number' && !isNaN(value)),
+  },
+  width: {
+    type: [String, Number] as PropType<string | number>,
+    default: '',
+    validator: (value: any) => typeof value === 'string' || (typeof value === 'number' && !isNaN(value)),
+  },
+  background: {
+    type: String,
+    default: '',
+  },
+  fixed: {
+    type: Boolean,
+    default: false,
+  },
+  position: {
+    type: String as PropType<'left' | 'right'>,
+    default: 'left',
+    validator: (value: any) => ['left', 'right'].includes(value),
+  },
+} as const;
 
 export const headerProps = {
     ...containerProps,

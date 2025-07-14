@@ -1,25 +1,36 @@
-import { computed } from "vue"
+import { ComputedRef, CSSProperties } from 'vue';
+import { useClassComputed } from '../../../hooks/useClassComputed';
+import { useStyleComputed } from '../../../hooks/useStyleComputed';
 
-export function useTextComputed(props: any) {
-    const textClass = computed(() => [
-        'my-text',
-        `my-text--${props.type}`,
-        ['small', 'medium', 'large'].includes(props.size) && `my-text--${props.size}`
-    ])
-    const textStyle = computed(() => {
-        const style: Record<string, string> = {}
-        if (props.Tecolor) style.color = props.Tecolor
+interface TextProps {
+  type?: '' | 'primary' | 'success' | 'warning' | 'danger' | 'info';
+  size?: string | number;
+  Tecolor?: string;
+  disabled?: boolean;
+}
 
-        // 自定义size处理
-        if (props.size && !['small', 'medium', 'large'].includes(props.size)) {
-            style.fontSize = typeof props.size === 'number'
-                ? `${props.size}px`
-                : props.size
-        }
-        return style
-    })
-    return {
-        textClass,
-        textStyle
-    }
+export function useTextComputed(props: TextProps): {
+  textClass: ComputedRef<string[]>;
+  textStyle: ComputedRef<CSSProperties>;
+} {
+  const textClass = useClassComputed<TextProps>({
+    baseClass: 'my-text',
+    propClasses: {
+      type: props.type && props.type ? props.type : undefined,
+      size: props.size && ['small', 'medium', 'large'].includes(String(props.size)) ? String(props.size) : undefined,
+    },
+    flagClasses: {
+      disabled: props.disabled,
+    },
+  });
+
+  const textStyle = useStyleComputed<TextProps>(props, {
+    propToStyleMap: {
+      Tecolor: 'color',
+      size: 'fontSize', // 添加 size 映射
+    },
+    fontSizeProp: 'size',
+  });
+
+  return { textClass, textStyle };
 }

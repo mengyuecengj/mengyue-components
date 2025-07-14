@@ -7,7 +7,7 @@
             这是一段测试横向滚动的内容，宽度超过容器
         </div>
     </MYScrollbar>
-    <MYScrollbar widthX ScrollWidth="12px" corner>
+    <MYScrollbar widthX ScrollWidth="20px" corner>
         <MYText size="30rem">11111111111111111111111111111</MYText>
     </MYScrollbar>
     <MYScrollbar height="500px" thumbColor="#ff0000" thumbHoverColor="#2c2" trackColor="#797">
@@ -21,6 +21,10 @@
     <MYScrollbar height="500px" Maxheight="800px">
         <MYText size="30rem">333</MYText>
         <MYText size="30rem">333</MYText>
+    </MYScrollbar>
+    <MYScrollbar height="600px" Maxheight="1000px" thumbColor="#fff" thumbHoverColor="#191919" trackColor="#2c2" >
+        <MYText size="30rem">444</MYText>
+        <MYText size="30rem">444</MYText>
     </MYScrollbar>
 </template>
 

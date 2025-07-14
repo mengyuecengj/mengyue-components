@@ -5,6 +5,7 @@ interface ClassConfig<T extends Record<string, any>> {
     baseClass: string;
     propClasses?: Partial<Record<keyof T, string | undefined>>;
     flagClasses?: Partial<Record<string, boolean | undefined>>;
+    classNameFormatter?: (base: string, key: string, value: any) => string
 }
 
 // T hook, accpet props type
@@ -18,7 +19,11 @@ export function useClassComputed<T extends Record<string, any>> (
         if(config.propClasses) {
             Object.entries(config.propClasses).forEach(([key, value]) => {
                 if (value) {
-                    classes.push(`${config.baseClass}--${value}`);
+                    // classes.push(`${config.baseClass}--${value}`);
+                    const className = config.classNameFormatter
+                        ? config.classNameFormatter(config.baseClass, key, value)
+                        : `${config.baseClass}--${value}`;
+                    classes.push(className);
                 }
             });
         }
@@ -26,7 +31,11 @@ export function useClassComputed<T extends Record<string, any>> (
         if(config.flagClasses) {
             Object.entries(config.flagClasses).forEach(([key, value]) => {
                 if (value) {
-                    classes.push(`${config.baseClass}--${key}`);
+                    // classes.push(`${config.baseClass}--${key}`);
+                    const className = config.classNameFormatter
+                        ? config.classNameFormatter(config.baseClass, key, value)
+                        : `${config.baseClass}--${key}`;
+                    classes.push(className);
                 }
             });
         }
