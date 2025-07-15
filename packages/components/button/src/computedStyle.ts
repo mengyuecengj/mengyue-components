@@ -44,6 +44,9 @@ export function useButtonStyle(props: ButtonProps): {
   });
 
   const customStyle = computed<CSSProperties>(() => {
+    /**
+     * A record object mapping string keys to string values for storing style properties.
+     */
     const s: Record<string, string> = {};
     const baseColor = props.colorBorder ?? props.colorBg;
 

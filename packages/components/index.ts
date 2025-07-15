@@ -13,6 +13,7 @@ import {
   MYAside,
 } from './container';
 import { MYRow, MYCol } from './layout';
+import { MYInput } from './input';
 
 // 组件映射，显式定义 name
 const components = {
@@ -29,6 +30,7 @@ const components = {
   MYAside: { component: MYAside, name: 'MYAside' },
   MYRow: { component: MYRow, name: 'MYRow' },
   MYCol: { component: MYCol, name: 'MYCol' },
+  MYInput: { component: MYInput, name: 'MYInput' },
 };
 
 // interface ComponentWithName {
@@ -74,4 +76,5 @@ export {
   MYAside,
   MYRow,
   MYCol,
+  MYInput
 };

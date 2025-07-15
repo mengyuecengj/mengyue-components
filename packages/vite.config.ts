@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
 import libCss from 'vite-plugin-libcss';
 import path from 'path';
+import svgLoader from 'vite-svg-loader';
 
 export default defineConfig({
   plugins: [
@@ -15,6 +16,7 @@ export default defineConfig({
       rollupTypes: true,
     }),
     libCss(),
+    svgLoader()
   ],
   build: {
     lib: {
