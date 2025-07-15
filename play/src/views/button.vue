@@ -50,4 +50,5 @@ const navigateTo = (path: any) => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

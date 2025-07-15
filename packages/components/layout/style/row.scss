@@ -11,36 +11,17 @@
   margin-left: calc(var(--row-gutter, 0px) / -2);
   margin-right: calc(var(--row-gutter, 0px) / -2);
 
+  /* Fallback for CSS variables - 移动到嵌套规则之前 */
+  justify-content: var(--row-justify, flex-start);
+  flex-direction: var(--row-direction, row);
+
   &>.my-col {
     padding-left: calc(var(--row-gutter, 0px) / 2);
     padding-right: calc(var(--row-gutter, 0px) / 2);
     box-sizing: border-box;
   }
 
-  &--justify-start {
-    justify-content: flex-start;
-  }
-
-  // &--gutter-0 {
-  //   gap: 0;
-  // }
-
-  @for $i from 1 through 24 {
-    --gutter-#{$i} {
-      gap: #{$i}px !important;
-      border: 1px dashed green;
-
-      /* 调试：确认 gutter 应用 */
-      &>.my-col {
-        box-sizing: border-box;
-      }
-    }
-  }
-
-  &--justify-start {
-    justify-content: flex-start;
-  }
-
+  // 删除重复的 &--justify-start 规则
   &--justify-end {
     justify-content: flex-end;
   }
@@ -86,7 +67,15 @@
     flex-direction: row-reverse !important;
   }
 
-  /* Fallback for CSS variables */
-  justify-content: var(--row-justify, flex-start);
-  flex-direction: var(--row-direction, row);
+  @for $i from 1 through 24 {
+    --gutter-#{$i} {
+      gap: #{$i}px !important;
+      border: 1px dashed green;
+
+      /* 调试：确认 gutter 应用 */
+      &>.my-col {
+        box-sizing: border-box;
+      }
+    }
+  }
 }
