@@ -9,5 +9,5 @@ import { useContainerComputed } from './containerComputed'
 import '../style/container.scss'
 defineOptions({ name: 'MYFooter' })
 const props = defineProps(footerProps)
-const { footer: classFooter, styleContainer } = useContainerComputed(props)
+const { footerClass: classFooter, styleContainer } = useContainerComputed(props)
 </script>

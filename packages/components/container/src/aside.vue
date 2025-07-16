@@ -9,5 +9,5 @@ import { useContainerComputed } from './containerComputed'
 import '../style/container.scss'
 defineOptions({ name: 'MYAside' })
 const props = defineProps(asideProps)
-const { aside: classAside, styleContainer } = useContainerComputed(props);
+const { asideClass: classAside, styleContainer } = useContainerComputed(props);
 </script>

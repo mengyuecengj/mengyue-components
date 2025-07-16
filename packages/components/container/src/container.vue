@@ -19,11 +19,12 @@ interface ProcessedVNode extends VNode {
 }
 
 const props = defineProps(containerProps);
-const { container: containerClass, styleContainer } = useContainerComputed(props);
+const { containerClass: containerClass, styleContainer } = useContainerComputed(props);
 const slots = useSlots();
 
 const processedChildren = computed(() => {
-  const children = slots.default?.() || [] as ProcessedVNode[];
+  // const children = slots.default?.() || [] as ProcessedVNode[];
+  const children = (slots as { default?: () => VNode[] }).default?.() || [];
   const headers: ProcessedVNode[] = [];
   const footers: ProcessedVNode[] = [];
   const leftAsides: ProcessedVNode[] = [];
@@ -31,7 +32,7 @@ const processedChildren = computed(() => {
   const mains: ProcessedVNode[] = [];
   const others: ProcessedVNode[] = [];
 
-  children.forEach((vnode) => {
+  children.forEach((vnode: VNode) => {
     const name = (vnode.type as any)?.name || '';
     if (name.includes('Header')) headers.push(vnode);
     else if (name.includes('Footer')) footers.push(vnode);

@@ -13,7 +13,7 @@ import '../style/container.scss';
 
 defineOptions({ name: 'MYHeader' });
 const props = defineProps(headerProps);
-const { header: headerClass, styleContainer } = useContainerComputed(props);
+const { headerClass: headerClass, styleContainer } = useContainerComputed(props);
 
 const isFixed = ref(false);
 const isScrolled = ref(false);

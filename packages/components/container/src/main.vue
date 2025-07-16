@@ -9,5 +9,5 @@ import { useContainerComputed } from './containerComputed'
 import '../style/container.scss'
 defineOptions({ name: 'MYMain' })
 const props = defineProps(mainProps)
-const { main: classMain, styleContainer } = useContainerComputed(props)
+const { mainClass: classMain, styleContainer } = useContainerComputed(props)
 </script>

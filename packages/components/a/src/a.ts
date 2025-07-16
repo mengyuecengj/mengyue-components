@@ -6,8 +6,8 @@ export const aProps = {
         default: '' as const
     },
     size: {
-        type: [ String, Number ] as PropType<'large' | 'medium' | 'small' | 'mini' | string | boolean | number>,
-        default: '' as const
+        type: [String, Number],
+        default: undefined
     },
     color: {
         type: String,
