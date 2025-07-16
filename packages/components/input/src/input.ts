@@ -1,5 +1,9 @@
 import { PropType, Component } from "vue"
 export const inputProps = {
+    type: {
+        type: String as PropType<string | Component>,
+        default: 'text',
+    },
     width: {
         type: [String, Number] as PropType<string | Component>,
         default: '100%'
@@ -17,6 +21,26 @@ export const inputProps = {
         default: false
     },
     placeholder: {
+        type: String,
+        default: ''
+    },
+    showPassword: {
+        type: Boolean,
+        default: false
+    },
+    minlength: {
+        type: Number,
+        default: undefined
+    },
+    maxlength: {
+        type: [Number, String],
+        default: undefined
+    },
+    wordLimit: {
+        type: Boolean,
+        default: false
+    },
+    modelValue: {
         type: String,
         default: ''
     },

@@ -48,6 +48,20 @@
         }
     }
 
+    .my-input__password {
+        position: absolute;
+        top: 50%;
+        right: 8px;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: #c0c4cc;
+        cursor: pointer;
+        user-select: none;
+        margin-top: 2px;
+        margin-right: 20px;
+    }
+
+
     .my-input--disabled {
         background-color: #f5f7fa;
         border-color: #e4e7ed;
@@ -62,5 +76,17 @@
         &:focus {
             border-color: #e4e7ed;
         }
+    }
+
+    .my-input--showPassword {
+        -webkit-text-security: disc;
+    }
+
+    .my-input__word-limit {
+        position: absolute;
+        right: 25px;
+        bottom: 8px;
+        font-size: 12px;
+        color: #999;
     }
 }
