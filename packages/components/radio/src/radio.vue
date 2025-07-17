@@ -1,0 +1,85 @@
+<template>
+    <label :class="radioClass">
+        <span class="my-radio__input">
+            <!-- 只把原生属性 v-bind 到 input 上 -->
+            <input 
+                v-bind="attrs" 
+                type="radio" 
+                class="my-radio__original" 
+                :value="props.value" 
+                :checked="ischecked"
+                :disabled="isDisabled" 
+                @change="handleChange" 
+            />
+            <span class="my-radio__inner" :style="radioStyle"></span>
+        </span>
+        <span class="my-radio__label" :style="radioStyle">
+            <slot />
+        </span>
+    </label>
+</template>
+
+<script setup lang="ts">
+import { computed, inject, useAttrs } from 'vue'
+import { radioProps } from './radio'
+import '../style/radio.scss'
+
+defineOptions({
+    name: 'MYRadio',
+})
+
+const props = defineProps(radioProps)
+const emit = defineEmits(['update:modelValue', 'change'])
+const attrs = useAttrs()
+
+// 从 radio-group 注入的上下文
+const radioGroup: any = inject('radioGroup', null)
+
+// 计算是否禁用：优先使用自身的 disabled，如果没有则使用 group 的 disabled
+const isDisabled = computed(() => {
+    return props.disabled || (radioGroup?.disabled ?? false)
+})
+
+// 计算是否选中
+const ischecked = computed(() => {
+    if (radioGroup) {
+        return String(radioGroup.modelValue.value) === String(props.value)
+    }
+    return String(props.modelValue) === String(props.value)
+})
+
+// 处理变更事件
+const handleChange = (e: Event) => {
+    if (isDisabled.value) return
+    const target = e.target as HTMLInputElement
+
+    if (radioGroup) {
+        radioGroup.change(props.value)
+    } else {
+        emit('update:modelValue', props.value)
+    }
+    emit('change', target.checked)
+}
+
+// 计算 radio 的 class
+const radioClass = computed(() => {
+    const cls: string[] = ['my-radio']
+    if (isDisabled.value) cls.push('my-radio--disabled')
+    if (ischecked.value) cls.push('my-radio--checked')
+    // if (props.border) cls.push('my-radio--border')
+    return cls
+})
+
+// 计算 radio 的样式
+const radioStyle = computed(() => {
+    const style: Record<string, string> = {}
+    // size
+    if (props.size) {
+        style.fontSize = props.size
+        style.lineHeight = props.size
+        style.width = props.size
+        style.height = props.size
+    }
+    return style
+})
+</script>

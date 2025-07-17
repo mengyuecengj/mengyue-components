@@ -45,7 +45,11 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/test/input',
     component: () => import('../views/input.vue')
-  }
+  },
+    {
+    path: '/test/radio',
+    component: () => import('../views/radio.vue')
+  },
 ]
 
 export const router = createRouter({

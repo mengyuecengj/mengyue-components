@@ -14,6 +14,7 @@ import {
 } from './container';
 import { MYRow, MYCol } from './layout';
 import { MYInput } from './input';
+import { MYRadio, MYRadioGroup } from './radio'
 
 // 组件映射，显式定义 name
 const components = {
@@ -31,6 +32,8 @@ const components = {
   MYRow: { component: MYRow, name: 'MYRow' },
   MYCol: { component: MYCol, name: 'MYCol' },
   MYInput: { component: MYInput, name: 'MYInput' },
+  MYRadio: { component: MYRadio, name: 'MYRadio'},
+  MYRadioGroup: { component: MYRadioGroup, name: 'MYRadio-group' }
 };
 
 // interface ComponentWithName {
@@ -76,5 +79,7 @@ export {
   MYAside,
   MYRow,
   MYCol,
-  MYInput
+  MYInput,
+  MYRadio,
+  MYRadioGroup
 };

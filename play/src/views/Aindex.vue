@@ -27,6 +27,9 @@
         <MYButton type="success" @click="navigateTo('/test/input')">
             input components
         </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/radio')">
+            radio components
+        </MYButton>
     </div>
     <!-- <a href="https://cn.bing.com">测试</a> -->
     <!-- <MYa type="success" disabled size="30px" href="https://cn.bing.com" target="_blank">测试</MYa> -->
@@ -46,11 +49,6 @@ const navigateTo = (path) => {
 .test {
     display: flex;
     gap: 20px;
-}
-
-.a {
-    display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
 }
 </style>
