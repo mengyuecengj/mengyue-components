@@ -15,6 +15,7 @@ import {
 import { MYRow, MYCol } from './layout';
 import { MYInput } from './input';
 import { MYRadio, MYRadioGroup } from './radio'
+import { MYCheckbox, MYCheckboxGroup } from './checkbox';
 
 // 组件映射，显式定义 name
 const components = {
@@ -33,7 +34,9 @@ const components = {
   MYCol: { component: MYCol, name: 'MYCol' },
   MYInput: { component: MYInput, name: 'MYInput' },
   MYRadio: { component: MYRadio, name: 'MYRadio'},
-  MYRadioGroup: { component: MYRadioGroup, name: 'MYRadio-group' }
+  MYRadioGroup: { component: MYRadioGroup, name: 'MYRadio-group' },
+  MYCheckbox: { component: MYCheckbox, name: 'MYCheckbox' },
+  MYCheckboxGroup: { component: MYCheckboxGroup, name: 'MYCheckbox-group'}
 };
 
 // interface ComponentWithName {
@@ -81,5 +84,7 @@ export {
   MYCol,
   MYInput,
   MYRadio,
-  MYRadioGroup
+  MYRadioGroup,
+  MYCheckbox,
+  MYCheckboxGroup
 };

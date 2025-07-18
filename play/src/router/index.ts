@@ -1,7 +1,7 @@
-import { 
-  createRouter, 
-  createWebHashHistory, 
-  type RouteRecordRaw 
+import {
+  createRouter,
+  createWebHashHistory,
+  type RouteRecordRaw
 } from 'vue-router'
 
 // 1. 显式声明 routes 的类型
@@ -46,10 +46,14 @@ const routes: RouteRecordRaw[] = [
     path: '/test/input',
     component: () => import('../views/input.vue')
   },
-    {
+  {
     path: '/test/radio',
     component: () => import('../views/radio.vue')
   },
+  {
+    path: '/test/checkbox',
+    component: () => import('../views/checkbox.vue')
+  }
 ]
 
 export const router = createRouter({
