@@ -6,7 +6,7 @@
                 v-bind="attrs" 
                 type="radio" 
                 class="my-radio__original" 
-                :value="props.value" 
+                :value="props.value"
                 :checked="ischecked"
                 :disabled="isDisabled" 
                 @change="handleChange" 

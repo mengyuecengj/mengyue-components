@@ -33,6 +33,12 @@
         <MYButton type="success" @click="navigateTo('/test/checkbox')">
             checkbox components
         </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/switch')">
+            switch components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/rate')">
+            rate components
+        </MYButton>
     </div>
     <!-- <a href="https://cn.bing.com">测试</a> -->
     <!-- <MYa type="success" disabled size="30px" href="https://cn.bing.com" target="_blank">测试</MYa> -->

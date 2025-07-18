@@ -14,6 +14,10 @@ container
 // 表单组件
 input
 radio单选框
+多选框
+评分rate
+switch开关
+
 
 
 
@@ -26,14 +30,12 @@ color颜色取色器
 // 表单组件
 选择器
 级联选择器
-多选框
-color picker取色器
 日期选择器
 日期时间选择器
 Time Picker/select时间选择器
-form表单
+color picker取色器
 slider滑块
-开关
+form表单
 穿梭框
 
 // 数据展示
@@ -61,3 +63,6 @@ steps步骤条
 message消息提示
 messagebox消息弹出
 notification通知
+
+
+31个未完成

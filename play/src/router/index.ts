@@ -53,6 +53,14 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/test/checkbox',
     component: () => import('../views/checkbox.vue')
+  },
+  {
+    path: '/test/switch',
+    component: () => import('../views/switch.vue')
+  },
+  {
+    path: '/test/rate',
+    component: () => import('../views/rate.vue')
   }
 ]
 
