@@ -1,0 +1,52 @@
+$bg-color: #2a2a2e;
+$border-color: #4a4a4e;
+$hover-bg: #3a3a3e;
+$hover-border: #6a6a6e;
+$focus-border: #5e81ac;
+$focus-shadow: rgba(94, 129, 172, 0.3);
+$text-color: #ffffff;
+$placeholder-color: #d0d0d0;
+
+.my-selectDate {
+  // Base styling
+  background-color: $bg-color;
+  color: $text-color;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  width: 180px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  // Hover state
+  &:hover {
+    background-color: $hover-bg;
+    border-color: $hover-border;
+  }
+
+  // Focus state
+  &:focus {
+    outline: none;
+    border-color: $focus-border;
+    box-shadow: 0 0 0 3px $focus-shadow;
+  }
+
+  // Calendar icon customization (webkit browsers)
+  &::-webkit-calendar-picker-indicator {
+    filter: invert(80%);
+    cursor: pointer;
+  }
+
+  // Placeholder text
+  &::-webkit-datetime-edit {
+    color: $placeholder-color;
+  }
+
+  // Remove default browser styling
+  &::-webkit-inner-spin-button,
+  &::-webkit-clear-button {
+    display: none;
+  }
+}

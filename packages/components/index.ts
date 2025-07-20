@@ -5,19 +5,15 @@ import MYText from './text/src/text.vue';
 import MYa from './a/src/a.vue';
 import { MYScroll } from './scroll';
 import { MYScrollbar } from './scrollbar';
-import {
-  MYContainer,
-  MYHeader,
-  MYMain,
-  MYFooter,
-  MYAside,
-} from './container';
+import { MYContainer, MYHeader, MYMain, MYFooter, MYAside } from './container';
 import { MYRow, MYCol } from './layout';
 import { MYInput } from './input';
 import { MYRadio, MYRadioGroup } from './radio'
 import { MYCheckbox, MYCheckboxGroup } from './checkbox';
 import { MYSwitch } from './switch';
 import { MYRate } from './rate'
+import { MYPickColor } from './pickColor';
+import { selectDate } from './selectDate'
 
 // 组件映射，显式定义 name
 const components = {
@@ -40,7 +36,9 @@ const components = {
   MYCheckbox: { component: MYCheckbox, name: 'MYCheckbox' },
   MYCheckboxGroup: { component: MYCheckboxGroup, name: 'MYCheckbox-group'},
   MYSwitch: { component: MYSwitch, name: 'MYSwitch' },
-  MYRate: { component: MYRate, name: 'MYRate' }
+  MYRate: { component: MYRate, name: 'MYRate' },
+  MYPickColor: { component: MYPickColor, name: 'MYSelect-color' },
+  selectDate: { component: selectDate, name: 'MYSelect-date' }
 };
 
 // interface ComponentWithName {
@@ -92,5 +90,7 @@ export {
   MYCheckbox,
   MYCheckboxGroup,
   MYSwitch,
-  MYRate
+  MYRate,
+  MYPickColor,
+  selectDate
 };

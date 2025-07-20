@@ -22,8 +22,6 @@ defineOptions({
 const props = defineProps(switchProps)
 const emit = defineEmits(['update:modelValue'])
 
-console.log('Received value:', props.modelValue) // 调试用
-
 const ischecked = computed(() => Boolean(props.modelValue))
 const isDisabled = computed(() => Boolean(props.disabled))
 const handleChange = () => {

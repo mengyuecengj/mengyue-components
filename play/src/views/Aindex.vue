@@ -39,10 +39,13 @@
         <MYButton type="success" @click="navigateTo('/test/rate')">
             rate components
         </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/pickColor')">
+            pickColor components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/selectDate')">
+            selectDate components
+        </MYButton>
     </div>
-    <!-- <a href="https://cn.bing.com">测试</a> -->
-    <!-- <MYa type="success" disabled size="30px" href="https://cn.bing.com" target="_blank">测试</MYa> -->
-    <!-- 自定义所有颜色 -->
 </template>
 <script setup>
 import { useRouter } from 'vue-router'

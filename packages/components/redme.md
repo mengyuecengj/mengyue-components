@@ -1,4 +1,4 @@
-当前已完成，待更新更多功能api
+当前已完成13个已完成，待更新更多功能api
 // 基础组件
 a
 border
@@ -17,15 +17,16 @@ radio单选框
 多选框
 评分rate
 switch开关
+color picker取色器
 
 
 
 
 
-当前未完成
+当前未完成31个未完成
 // 基础组件
-icon图标svg
-color颜色取色器
+icon图标svg(将会在另一个项目构建，不纳入该项目中)
+color颜色取色器(将在静态站点中完成编写，不纳入该项目中)
 
 // 表单组件
 选择器
@@ -33,7 +34,6 @@ color颜色取色器
 日期选择器
 日期时间选择器
 Time Picker/select时间选择器
-color picker取色器
 slider滑块
 form表单
 穿梭框
@@ -63,6 +63,3 @@ steps步骤条
 message消息提示
 messagebox消息弹出
 notification通知
-
-
-31个未完成
