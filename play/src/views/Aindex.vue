@@ -45,6 +45,9 @@
         <MYButton type="success" @click="navigateTo('/test/selectDate')">
             selectDate components
         </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/selectTime')">
+            selecTime components
+        </MYButton>
     </div>
 </template>
 <script setup>

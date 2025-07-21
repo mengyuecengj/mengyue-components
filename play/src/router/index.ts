@@ -66,9 +66,13 @@ const routes: RouteRecordRaw[] = [
     path: '/test/pickColor',
     component: () => import('../views/pickerColor.vue')
   },
-    {
+  {
     path: '/test/selectDate',
     component: () => import('../views/selectDate.vue')
+  },
+  {
+    path: '/test/selectTime',
+    component: () => import('../views/selectTime.vue')
   }
 ]
 

@@ -14,6 +14,7 @@ import { MYSwitch } from './switch';
 import { MYRate } from './rate'
 import { MYPickColor } from './pickColor';
 import { selectDate } from './selectDate'
+import { selectTime } from './selectTime'
 
 // 组件映射，显式定义 name
 const components = {
@@ -38,7 +39,8 @@ const components = {
   MYSwitch: { component: MYSwitch, name: 'MYSwitch' },
   MYRate: { component: MYRate, name: 'MYRate' },
   MYPickColor: { component: MYPickColor, name: 'MYSelect-color' },
-  selectDate: { component: selectDate, name: 'MYSelect-date' }
+  selectDate: { component: selectDate, name: 'MYSelect-date' },
+  selectTime: { component: selectTime, name: 'MYSelect-time' }
 };
 
 // interface ComponentWithName {
@@ -92,5 +94,6 @@ export {
   MYSwitch,
   MYRate,
   MYPickColor,
-  selectDate
+  selectDate,
+  selectTime
 };
