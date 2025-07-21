@@ -1,32 +1,97 @@
 <template>
   <div class="date-picker-container">
     <div class="input-container">
-      <input
-        :value="formattedDate"
-        class="my-selectDate"
-        placeholder="请选择日期"
-        readonly
-        @click="toggleDropdown"
-      />
-      <dateRange class="date-range-icon" />
+      <input :value="formattedDate" class="my-selectDate" :placeholder="placeholderText" readonly
+        @click="toggleDropdown" />
+      <date-range-icon class="date-range-icon" />
     </div>
+
     <div v-if="showDropdown" class="date-picker-dropdown">
-      <div class="date-picker-header">
-        <button @click="changeMonth(-1)" class="nav-button">◄</button>
-        <span>{{ currentYear }}年 {{ currentMonth + 1 }}月</span>
-        <button @click="changeMonth(1)" class="nav-button">►</button>
+      <!-- Range Picker -->
+      <div v-if="mode.startsWith('range')" class="range-container">
+        <div class="picker-header">
+          <button @click="onPrev" class="nav-button">◄</button>
+          <span>{{ headerLabel }}</span>
+          <button @click="onNext" class="nav-button">►</button>
+        </div>
+        <div class="range-grid" :class="{
+          'grid-date': mode === 'range-date',
+          'grid-month': mode === 'range-month',
+          'grid-year': mode === 'range-year'
+        }">
+          <!-- 日期范围 -->
+          <template v-if="mode === 'range-date'">
+            <div class="day-header" v-for="d in daysOfWeek" :key="d">{{ d }}</div>
+            <div v-for="cell in calendarCells" :key="cell.key" class="day-cell">
+              <button v-if="cell.date" :class="{ 'in-range': isInRange(cell.date) }"
+                @click="selectRangeDate(cell.date)">
+                {{ cell.date.getDate() }}
+              </button>
+            </div>
+          </template>
+
+          <!-- 月份范围 -->
+          <template v-else-if="mode === 'range-month'">
+            <div v-for="(m, idx) in months" :key="idx" class="month-cell">
+              <button :class="{ 'in-range': isInRangeMonth(idx) }" @click="selectRangeMonth(idx)">
+                {{ m }}
+              </button>
+            </div>
+          </template>
+
+          <!-- 年份范围 -->
+          <template v-else>
+            <div v-for="y in fullYearRange" :key="y" class="year-cell">
+              <button :class="{ 'in-range': isInRangeYear(y) }" @click="selectRangeYear(y)">
+                {{ y }}
+              </button>
+            </div>
+          </template>
+        </div>
       </div>
-      <div class="date-picker-grid">
-        <div v-for="day in daysOfWeek" :key="day" class="day-header">{{ day }}</div>
-        <div v-for="day in calendarDays" :key="day.key" class="day-cell">
-          <button
-            v-if="day.date"
-            :class="{ selected: isSelected(day.date), disabled: !day.isCurrentMonth }"
-            :disabled="!day.isCurrentMonth"
-            @click="selectDate(day.date)"
-          >
-            {{ day.date.getDate() }}
+
+      <!-- Single Pickers -->
+      <div v-else-if="mode === 'year'" class="year-picker">
+        <div class="picker-header">
+          <button @click="changeYear(-1)" class="nav-button">◄</button>
+          <span>{{ currentYear }}年</span>
+          <button @click="changeYear(1)" class="nav-button">►</button>
+        </div>
+        <div class="year-grid grid-year month-cell">
+          <button v-for="y in fullYearRange" :key="y" :class="{ selected: y === selectedYear }" @click="selectYear(y)">
+            {{ y }}
           </button>
+        </div>
+      </div>
+
+      <div v-else-if="mode === 'month'" class="month-picker">
+        <div class="picker-header">
+          <button @click="changeYear(-1)" class="nav-button">◄</button>
+          <span>{{ currentYear }}年</span>
+          <button @click="changeYear(1)" class="nav-button">►</button>
+        </div>
+        <div class="month-grid grid-month month-cell">
+          <button v-for="(m, idx) in months" :key="idx" :class="{ selected: idx === selectedMonth }"
+            @click="selectMonth(idx)">
+            {{ m }}
+          </button>
+        </div>
+      </div>
+
+      <div v-else class="date-picker-default">
+        <div class="picker-header">
+          <button @click="changeMonth(-1)" class="nav-button">◄</button>
+          <span>{{ currentYear }}年 {{ currentMonth + 1 }}月</span>
+          <button @click="changeMonth(1)" class="nav-button">►</button>
+        </div>
+        <div class="date-grid grid-date">
+          <div v-for="d in daysOfWeek" :key="d" class="day-header">{{ d }}</div>
+          <div v-for="cell in calendarCells" :key="cell.key" class="day-cell">
+            <button v-if="cell.date" :class="{ selected: isSelected(cell.date), disabled: !cell.isCurrentMonth }"
+              @click="selectDate(cell.date)" :disabled="!cell.isCurrentMonth">
+              {{ cell.date.getDate() }}
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -34,263 +99,334 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted, PropType } from 'vue';
 import { selectDateProps } from './selectDate';
-import DateRange from './dateRange.vue';
+import DateRangeIcon from './dateRange.vue';
+import '../style/selectDate.scss'
 
-defineOptions({
-  name: 'MYSelect-date'
-})
-
-// 定义 Emits 类型
-interface Emits {
-  (e: 'update:modelValue', value: string): void;
-}
-
-// Props 和 Emits
-const props = defineProps(selectDateProps);
+defineOptions({ name: 'MYSelectDate' });
+interface Emits { (e: 'update:modelValue', val: string | string[]): void; }
+const props = defineProps({ ...selectDateProps, modelValue: [String, Array] as PropType<string | string[]> });
 const emit = defineEmits<Emits>();
 
-// 状态
+// State
 const showDropdown = ref(false);
-const currentDate = ref(new Date(props.modelValue || new Date()));
-const currentYear = ref(currentDate.value.getFullYear());
-const currentMonth = ref(currentDate.value.getMonth());
+const currentYear = ref(new Date().getFullYear());
+const currentMonth = ref(new Date().getMonth());
+const selectedYear = ref(new Date().getFullYear());
+const selectedMonth = ref(new Date().getMonth()); // 初始化为当前月份(0-11)
+const startDate = ref<Date | null>(null);
+const endDate = ref<Date | null>(null);
+const isSelectingStart = ref(true);
 
-// 星期标题
+// Data
 const daysOfWeek = ['日', '一', '二', '三', '四', '五', '六'];
+const months = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
 
-// 计算日历天数
-const calendarDays = computed(() => {
-  const days: { key: string; date: Date | null; isCurrentMonth: boolean }[] = [];
-  const firstDayOfMonth = new Date(currentYear.value, currentMonth.value, 1);
-  const lastDayOfMonth = new Date(currentYear.value, currentMonth.value + 1, 0);
-  const firstDayOfWeek = firstDayOfMonth.getDay();
-  const totalDays = lastDayOfMonth.getDate();
+const fullYearRange = computed(() => {
+  const arr: number[] = [];
+  const span = 15; // 5行x3列=15个年份
+  let start = currentYear.value - Math.floor(span / 2);
 
-  // 添加上个月的占位天
-  for (let i = 0; i < firstDayOfWeek; i++) {
-    days.push({ key: `prev-${i}`, date: null, isCurrentMonth: false });
+  // 如果当前选中的结束年份接近边界，调整显示范围
+  if (endDate.value && endDate.value.getFullYear() > start + span - 1) {
+    start = endDate.value.getFullYear() - span + 1;
   }
 
-  // 添加当前月的天
-  for (let day = 1; day <= totalDays; day++) {
-    const date = new Date(currentYear.value, currentMonth.value, day);
-    days.push({ key: `day-${day}`, date, isCurrentMonth: true });
+  for (let i = 0; i < span; i++) {
+    arr.push(start + i);
   }
-
-  // 填充剩余格子
-  const remainingDays = 42 - days.length; // 6行7列
-  for (let i = 1; i <= remainingDays; i++) {
-    days.push({ key: `next-${i}`, date: null, isCurrentMonth: false });
-  }
-
-  return days;
+  return arr;
 });
 
-// 格式化显示日期为中文格式（YYYY年MM月DD日）
+
+// Mode
+const mode = computed(() => {
+  if (props.range && props.year) return 'range-year';
+  if (props.range && props.month) return 'range-month';
+  if (props.range) return 'range-date';
+  if (props.year) return 'year';
+  if (props.month) return 'month';
+  return 'date';
+});
+
+// Texts
+const placeholderText = computed(() => ({
+  date: '请选择日期',
+  year: '请选择年份',
+  month: '请选择月份',
+  'range-date': '请选择日期范围',
+  'range-month': '请选择月份范围',
+  'range-year': '请选择年份范围'
+})[mode.value]);
+const headerLabel = computed(() => mode.value === 'date' ? `${currentYear.value}年 ${currentMonth.value + 1}月` : `${currentYear.value}年`);
+
+// Formatted
 const formattedDate = computed(() => {
-  if (!props.modelValue) return '';
-  const date = new Date(props.modelValue);
-  if (isNaN(date.getTime())) return ''; // 处理无效日期
-  return `${date.getFullYear()}年${(date.getMonth() + 1).toString().padStart(2, '0')}月${date.getDate().toString().padStart(2, '0')}日`;
+  if (mode.value === 'date') {
+    if (typeof props.modelValue !== 'string' || !props.modelValue) return '';
+    const parts = (props.modelValue as string).split('-').map(n => parseInt(n, 10));
+    const [y, m, d] = parts;
+    if (!y || !m || !d) return '';
+    return `${y}年${m}月${d}日`;
+  }
+  if (mode.value === 'year') {
+    if (typeof props.modelValue !== 'string' || !props.modelValue) return '';
+    const y = parseInt((props.modelValue as string).split('-')[0], 10);
+    return isNaN(y) ? '' : `${y}年`;
+  }
+  if (mode.value === 'month') {
+    if (typeof props.modelValue !== 'string' || !props.modelValue) return '';
+    const parts = (props.modelValue as string).split('-').map(n => parseInt(n, 10));
+    const [y, m] = parts;
+    if (!y || !m) return '';
+    return `${y}年${m}月`;
+  }
+  // range modes
+  if (startDate.value && endDate.value) {
+    if (mode.value === 'range-date') {
+      const startStr = formatDate(startDate.value);
+      const endStr = formatDate(endDate.value);
+      return `${startStr} 至 ${endStr}`;
+    }
+    if (mode.value === 'range-month') {
+      return `${startDate.value.getFullYear()}年${startDate.value.getMonth() + 1}月 至 ${endDate.value.getFullYear()}年${endDate.value.getMonth() + 1}月`;
+    }
+    if (mode.value === 'range-year') {
+      // 修复年份范围显示问题
+      return `${startDate.value.getFullYear()}年 至 ${endDate.value.getFullYear()}年`;
+    }
+  }
+
+  // 当没有选择完整范围时（只选择了开始日期/月份/年份）
+  if (startDate.value && !endDate.value) {
+    if (mode.value === 'range-date') {
+      return `${formatDate(startDate.value)}`;
+    }
+    if (mode.value === 'range-month') {
+      return `${startDate.value.getFullYear()}年${startDate.value.getMonth() + 1}月`;
+    }
+    if (mode.value === 'range-year') {
+      return `${startDate.value.getFullYear()}年`;
+    }
+  }
+
+  return '';
 });
 
-// 切换月份
-const changeMonth = (delta: number) => {
-  currentMonth.value += delta;
-  if (currentMonth.value < 0) {
-    currentMonth.value = 11;
-    currentYear.value--;
-  } else if (currentMonth.value > 11) {
-    currentMonth.value = 0;
-    currentYear.value++;
+
+// Calendar
+const calendarCells = computed(() => {
+  if (mode.value !== 'date' && mode.value !== 'range-date') return [];
+  const cells: { key: string; date: Date | null; isCurrentMonth: boolean }[] = [];
+  const first = new Date(currentYear.value, currentMonth.value, 1);
+  first.setHours(0, 0, 0, 0);
+  const last = new Date(currentYear.value, currentMonth.value + 1, 0);
+  last.setHours(0, 0, 0, 0);
+
+  // Previous month fill
+  for (let i = 0; i < first.getDay(); i++) {
+    cells.push({ key: `p${i}`, date: null, isCurrentMonth: false });
   }
-};
 
-// 选择日期
-const selectDate = (date: Date) => {
-  console.log('Selected date:', date);
-  const formatted = date.toISOString().split('T')[0];
-  emit('update:modelValue', formatted);
-  showDropdown.value = false;
-  currentDate.value = date;
-};
+  // Current month days
+  for (let d = 1; d <= last.getDate(); d++) {
+    const date = new Date(currentYear.value, currentMonth.value, d);
+    date.setHours(0, 0, 0, 0);
+    cells.push({ key: `d${d}`, date, isCurrentMonth: true });
+  }
 
-// 判断是否选中
-const isSelected = (date: Date) => {
-  if (!props.modelValue) return false;
-  const selected = new Date(props.modelValue);
-  if (isNaN(selected.getTime())) return false; // 处理无效日期
-  return (
-    date.getFullYear() === selected.getFullYear() &&
-    date.getMonth() === selected.getMonth() &&
-    date.getDate() === selected.getDate()
-  );
-};
+  // Next month fill
+  while (cells.length < 42) {
+    const idx = cells.length;
+    cells.push({ key: `n${idx}`, date: null, isCurrentMonth: false });
+  }
+  return cells;
+});
 
-// 切换下拉框显示
-const toggleDropdown = () => {
+
+// Actions
+function toggleDropdown() {
   showDropdown.value = !showDropdown.value;
-};
 
-// 点击外部关闭下拉框
-const handleOutsideClick = (event: MouseEvent) => {
-  const target = event.target as HTMLElement;
-  if (!target.closest('.date-picker-container')) {
+  if (showDropdown.value && (props.year || props.range)) {
+    if (typeof props.modelValue === 'string' && props.modelValue) {
+      const year = parseInt(props.modelValue.split('-')[0], 10);
+      if (!isNaN(year)) {
+        selectedYear.value = year;
+        currentYear.value = year;
+        ensureYearVisible(year);
+      }
+    } else if (Array.isArray(props.modelValue) && props.modelValue.length > 0) {
+      const startYear = parseInt(props.modelValue[0].split('-')[0], 10);
+      const endYear = props.modelValue.length > 1 ?
+        parseInt(props.modelValue[1].split('-')[0], 10) : startYear;
+
+      if (!isNaN(startYear)) {
+        selectedYear.value = startYear;
+        currentYear.value = startYear;
+        ensureYearVisible(endYear || startYear);
+      }
+    }
+  }
+}
+
+
+function onPrev() {
+  if (mode.value.includes('range')) {
+    // 范围选择模式下，根据当前视图类型切换
+    if (mode.value === 'range-year') {
+      currentYear.value -= 15; // 年份范围每次切换15年
+    } else if (mode.value === 'range-month') {
+      currentYear.value -= 1; // 月份范围每次切换1年
+    } else {
+      changeMonth(-1); // 日期范围每次切换1个月
+    }
+  } else {
+    // 非范围选择模式
+    mode.value === 'date' ? changeMonth(-1) : changeYear(-1);
+  }
+}
+
+function onNext() {
+  if (mode.value.includes('range')) {
+    // 范围选择模式下，根据当前视图类型切换
+    if (mode.value === 'range-year') {
+      currentYear.value += 15; // 年份范围每次切换15年
+    } else if (mode.value === 'range-month') {
+      currentYear.value += 1; // 月份范围每次切换1年
+    } else {
+      changeMonth(1); // 日期范围每次切换1个月
+    }
+  } else {
+    // 非范围选择模式
+    mode.value === 'date' ? changeMonth(1) : changeYear(1);
+  }
+}
+
+function selectDate(d: Date) {
+  emit('update:modelValue', formatDate(d));
+  currentYear.value = d.getFullYear();
+  currentMonth.value = d.getMonth();
+  showDropdown.value = false;
+}
+
+
+// 添加一个辅助函数
+function formatDate(d: Date): string {
+  const year = d.getFullYear();
+  const month = (d.getMonth() + 1).toString().padStart(2, '0');
+  const day = d.getDate().toString().padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function selectRangeDate(d: Date) {
+  if (isSelectingStart.value) {
+    startDate.value = d;
+    isSelectingStart.value = false;
+    // 更新显示部分选择
+    emit('update:modelValue', [formatDate(d)]);
+  } else {
+    endDate.value = d;
+    emit('update:modelValue', [formatDate(startDate.value!), formatDate(d)]);
     showDropdown.value = false;
   }
-};
+}
+function selectMonth(idx: number) {
+  selectedMonth.value = idx; // 更新选中的月份索引
+  emit('update:modelValue', `${currentYear.value}-${(idx + 1).toString().padStart(2, '0')}-01`);
+  showDropdown.value = false;
+}
+function selectRangeMonth(idx: number) {
+  const selectedDate = new Date(currentYear.value, idx, 1);
+  selectedDate.setHours(0, 0, 0, 0);
 
-// 初始化和清理
-onMounted(() => {
-  document.addEventListener('click', handleOutsideClick);
-});
+  if (isSelectingStart.value) {
+    startDate.value = selectedDate;
+    isSelectingStart.value = false;
+    // 更新显示部分选择
+    emit('update:modelValue', [formatDate(selectedDate)]);
+  } else {
+    endDate.value = selectedDate;
+    emit('update:modelValue', [formatDate(startDate.value!), formatDate(selectedDate)]);
+    showDropdown.value = false;
+  }
+}
+function selectYear(y: number) {
+  selectedYear.value = y; // 更新选中的年份
+  emit('update:modelValue', `${y}-01-01`);
+  showDropdown.value = false;
+}
 
-onUnmounted(() => {
-  document.removeEventListener('click', handleOutsideClick);
-});
+function ensureYearVisible(year: number) {
+  const visibleYears = fullYearRange.value;
+  if (year < visibleYears[0] || year > visibleYears[visibleYears.length - 1]) {
+    currentYear.value = year - Math.floor(visibleYears.length / 2);
+  }
+}
+
+
+function selectRangeYear(y: number) {
+  const selectedDate = new Date(y, 0, 1);
+  selectedDate.setHours(0, 0, 0, 0);
+
+  if (isSelectingStart.value) {
+    startDate.value = selectedDate;
+    isSelectingStart.value = false;
+    ensureYearVisible(y); // 确保开始年份可见
+    emit('update:modelValue', [formatDate(selectedDate)]);
+  } else {
+    endDate.value = selectedDate;
+    ensureYearVisible(y); // 确保结束年份可见
+    emit('update:modelValue', [
+      formatDate(startDate.value!),
+      formatDate(selectedDate)
+    ]);
+    showDropdown.value = false;
+  }
+}
+
+
+function changeMonth(delta: number) {
+  // 处理跨年情况
+  let newMonth = currentMonth.value + delta;
+  let newYear = currentYear.value;
+
+  if (newMonth < 0) {
+    newMonth = 11;
+    newYear--;
+  } else if (newMonth > 11) {
+    newMonth = 0;
+    newYear++;
+  }
+
+  currentMonth.value = newMonth;
+  currentYear.value = newYear;
+}
+function changeYear(delta: number) {
+  currentYear.value += delta;
+}
+function isSelected(d: Date) {
+  if (typeof props.modelValue !== 'string') return false;
+
+  const parts = (props.modelValue as string).split('-').map(n => parseInt(n, 10));
+  const [y, m, day] = parts;
+
+  return d.getFullYear() === y &&
+    (d.getMonth() + 1) === m &&
+    d.getDate() === day;
+}
+
+function isInRange(d: Date) { if (!startDate.value || !endDate.value) return false; const t = d.getTime(); return t >= startDate.value.getTime() && t <= endDate.value.getTime(); }
+function isInRangeMonth(idx: number) { return isInRange(new Date(currentYear.value, idx, 1)); }
+function isInRangeYear(y: number) {
+  if (!startDate.value || !endDate.value) return false;
+  return y >= startDate.value.getFullYear() && y <= endDate.value.getFullYear();
+}
+function handleOutsideClick(e: MouseEvent) { if (!(e.target as HTMLElement).closest('.date-picker-container')) showDropdown.value = false; }
+
+onMounted(() => document.addEventListener('click', handleOutsideClick));
+onUnmounted(() => document.removeEventListener('click', handleOutsideClick));
 </script>
 
-<style lang="scss" scoped>
-$bg-color: #2a2a2e;
-$border-color: #4a4a4e;
-$hover-bg: #3a3a3e;
-$hover-border: #6a6a6e;
-$focus-border: #5e81ac;
-$focus-shadow: rgba(94, 129, 172, 0.3);
-$text-color: #ffffff;
-$placeholder-color: #d0d0d0;
-$dropdown-bg: #2a2a2e;
-$dropdown-text: #ffffff;
-$selected-bg: #5e81ac;
-$date-icon-bg: #3a3a3e; // 为 dateRange 添加背景颜色
-$date-icon-hover: #4a4a4e; // 悬停时的背景颜色
-
-.date-picker-container {
-  position: relative;
-}
-
-.input-container {
-  position: relative;
-  display: inline-block;
-}
-
-.my-selectDate {
-  background-color: $bg-color;
-  color: $text-color;
-  border: 1px solid $border-color;
-  border-radius: 6px;
-  padding: 8px 32px 8px 12px; /* 为 dateRange 留出右边空间 */
-  font-size: 16px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  width: 180px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: $hover-bg;
-    border-color: $hover-border;
-  }
-
-  &:focus {
-    outline: none;
-    border-color: $focus-border;
-    box-shadow: 0 0 0 3px $focus-shadow;
-  }
-
-  &::placeholder {
-    color: $placeholder-color;
-  }
-}
-
-.date-range-icon {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  border-radius: 4px; // 添加圆角
-  padding: 4px; // 增加内边距
-  width: 24px; // 固定宽度
-  height: 24px; // 固定高度
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease; // 添加过渡效果
-}
-
-.date-picker-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: $dropdown-bg;
-  color: $dropdown-text;
-  border: 1px solid $border-color;
-  border-radius: 6px;
-  padding: 10px;
-  width: 220px;
-  z-index: 1000;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.date-picker-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.nav-button {
-  background: none;
-  border: none;
-  color: $dropdown-text;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 5px 10px;
-
-  &:hover {
-    color: $focus-border;
-  }
-}
-
-.date-picker-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-}
-
-.day-header {
-  text-align: center;
-  font-size: 14px;
-  color: $dropdown-text;
-}
-
-.day-cell {
-  text-align: center;
-}
-
-.day-cell button {
-  background: none;
-  border: none;
-  color: $dropdown-text;
-  width: 20px;
-  height: 30px;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &.selected {
-    background: $selected-bg;
-    color: $text-color;
-  }
-
-  &.disabled {
-    color: $placeholder-color;
-    cursor: not-allowed;
-  }
-
-  &:hover:not(.disabled) {
-    background: $hover-bg;
-  }
-}
-</style>
+<style scoped lang="scss"></style>

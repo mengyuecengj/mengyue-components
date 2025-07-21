@@ -7,4 +7,16 @@ export const selectDateProps = {
         type: String,
         default: 'date'
     },
+    year: {
+        type: Boolean,
+        default: false
+    },
+    month: {
+        type: Boolean,
+        default: false
+    },
+    range: {
+        type: Boolean,
+        default: false
+    }
 }

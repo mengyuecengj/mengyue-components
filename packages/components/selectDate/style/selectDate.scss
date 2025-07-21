@@ -1,52 +1,154 @@
-$bg-color: #2a2a2e;
-$border-color: #4a4a4e;
-$hover-bg: #3a3a3e;
-$hover-border: #6a6a6e;
-$focus-border: #5e81ac;
-$focus-shadow: rgba(94, 129, 172, 0.3);
-$text-color: #ffffff;
-$placeholder-color: #d0d0d0;
+$bg: #2a2a2e;
+$border: #4a4a4e;
+$text: #fff;
+$hover: #3a3a3e;
+$sel: #5e81ac;
+
+.date-picker-container {
+  position: relative;
+}
+
+.input-container {
+  position: relative;
+  display: inline-block;
+}
 
 .my-selectDate {
-  // Base styling
-  background-color: $bg-color;
-  color: $text-color;
-  border: 1px solid $border-color;
+  width: 200px;
+  height: 30px;
+  padding: 8px 32px 8px 12px;
+  border: 1px solid $border;
   border-radius: 6px;
-  padding: 8px 12px;
-  font-size: 16px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  width: 180px;
+  background: $bg;
+  color: $text;
   cursor: pointer;
-  transition: all 0.3s ease;
 
-  // Hover state
   &:hover {
-    background-color: $hover-bg;
-    border-color: $hover-border;
+    background: $hover;
   }
+}
 
-  // Focus state
-  &:focus {
-    outline: none;
-    border-color: $focus-border;
-    box-shadow: 0 0 0 3px $focus-shadow;
-  }
+.date-range-icon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
 
-  // Calendar icon customization (webkit browsers)
-  &::-webkit-calendar-picker-indicator {
-    filter: invert(80%);
-    cursor: pointer;
-  }
+.date-picker-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: $bg;
+  border: 1px solid $border;
+  border-radius: 6px;
+  padding: 10px;
+  width: 420px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
 
-  // Placeholder text
-  &::-webkit-datetime-edit {
-    color: $placeholder-color;
-  }
+.picker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 15px;
+  color: $text;
+}
 
-  // Remove default browser styling
-  &::-webkit-inner-spin-button,
-  &::-webkit-clear-button {
-    display: none;
+.nav-button {
+  background: none;
+  border: none;
+  color: $text;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 16px;
+
+  &:hover {
+    color: $sel;
   }
+}
+
+// grid layouts
+.range-grid.grid-date,
+.date-grid.grid-date {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.month-grid.grid-month,
+.range-grid.grid-month {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.year-grid.grid-year,
+.range-grid.grid-year {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 32px;
+  gap: 5px;
+}
+
+// 星期头部
+.day-header {
+  text-align: center;
+  color: $text;
+  font-weight: 500;
+}
+
+// 所有按钮样式（日期/月/年）
+.day-cell button,
+.month-cell button,
+.year-cell button {
+  width: 100%;
+  height: 32px;
+  background: none;
+  border: none;
+  color: $text;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.2s;
+
+  &:hover {
+    background: $hover;
+  }
+}
+
+// 选中态和范围态
+.day-cell button.in-range,
+.month-cell button.in-range,
+.year-cell button.in-range,
+button.selected {
+  background: $sel;
+  color: $text;
+}
+
+// 范围选择输入框（仅当使用）
+.range-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.range-input {
+  flex: 1;
+  padding: 5px 10px;
+  border: 1px solid $border;
+  border-radius: 4px;
+  background: $bg;
+  color: $text;
+  cursor: pointer;
 }
