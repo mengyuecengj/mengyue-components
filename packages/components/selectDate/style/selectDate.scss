@@ -1,154 +1,383 @@
 $bg: #2a2a2e;
+$bg-light: #3a3a3e;
 $border: #4a4a4e;
-$text: #fff;
+$border-light: #5a5a5e;
+$text: #ffffff;
+$text-secondary: #b0b0b0;
 $hover: #3a3a3e;
 $sel: #5e81ac;
+$sel-light: #7a9cc6;
+$today: #8fbcbb;
+$disabled: #4a4a4e;
 
 .date-picker-container {
   position: relative;
-}
-
-.input-container {
-  position: relative;
   display: inline-block;
-}
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
-.my-selectDate {
-  width: 200px;
-  height: 30px;
-  padding: 8px 32px 8px 12px;
-  border: 1px solid $border;
-  border-radius: 6px;
-  background: $bg;
-  color: $text;
-  cursor: pointer;
+  .input-container {
+    position: relative;
 
-  &:hover {
-    background: $hover;
+    .my-selectDate {
+      padding: 8px 32px 8px 12px;
+      border: 1px solid $border;
+      border-radius: 6px;
+      background: $bg;
+      color: $text;
+      font-size: 14px;
+      width: 300px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: $hover;
+        border-color: $border-light;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $sel;
+        box-shadow: 0 0 0 2px rgba($sel, 0.2);
+      }
+
+      &::placeholder {
+        color: $text-secondary;
+      }
+    }
+
+    .date-range-icon {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $text-secondary;
+      width: 20px;
+      height: 20px;
+      transition: color 0.2s;
+
+      &:hover {
+        color: $text;
+      }
+    }
   }
-}
 
-.date-range-icon {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  width: 30px;
-  height: 30px;
-}
+  .date-picker-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    padding: 12px;
+    background: $bg;
+    border: 1px solid $border;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    width: 420px;
+    animation: fadeIn 0.2s ease-out;
 
-.date-picker-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: $bg;
-  border: 1px solid $border;
-  border-radius: 6px;
-  padding: 10px;
-  width: 420px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-}
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
 
-.picker-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  font-weight: 500;
-  font-size: 15px;
-  color: $text;
-}
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.nav-button {
-  background: none;
-  border: none;
-  color: $text;
-  cursor: pointer;
-  padding: 5px;
-  font-size: 16px;
+    .time-picker-container {
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid $border;
 
-  &:hover {
-    color: $sel;
+      .time-input-group {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        label {
+          font-size: 14px;
+          color: $text;
+          font-weight: 500;
+        }
+
+        // 针对原生时间输入框的深色样式
+        .time-input {
+          flex: 1;
+          padding: 8px 12px;
+          border: 1px solid $border;
+          border-radius: 6px;
+          background: $bg-light;
+          color: $text;
+          font-size: 14px;
+          transition: all 0.2s;
+
+          // 针对Webkit浏览器的时间选择器样式
+          &::-webkit-datetime-edit {
+            color: $text;
+          }
+
+          &::-webkit-datetime-edit-fields-wrapper {
+            background: $bg-light;
+          }
+
+          &::-webkit-datetime-edit-text {
+            color: $text;
+            padding: 0 2px;
+          }
+
+          &::-webkit-datetime-edit-hour-field,
+          &::-webkit-datetime-edit-minute-field,
+          &::-webkit-datetime-edit-ampm-field {
+            color: $text;
+            background: $bg-light;
+          }
+
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            display: none;
+          }
+
+          &::-webkit-calendar-picker-indicator {
+            filter: invert(0.8);
+            cursor: pointer;
+            padding: 4px;
+            background-size: 16px;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+
+            &:hover {
+              opacity: 1;
+            }
+          }
+
+          &:hover {
+            border-color: $border-light;
+          }
+
+          &:focus {
+            outline: none;
+            border-color: $sel;
+            box-shadow: 0 0 0 2px rgba($sel, 0.2);
+
+            &::-webkit-calendar-picker-indicator {
+              opacity: 1;
+            }
+          }
+        }
+
+        // 针对Firefox的样式
+        @-moz-document url-prefix() {
+          .time-input {
+            // Firefox需要特殊处理
+            appearance: none;
+            text-indent: 1px;
+            text-overflow: '';
+
+            &::-moz-focus-inner {
+              border: 0;
+              padding: 0;
+            }
+          }
+        }
+      }
+
+      .selected-time-display {
+        margin-top: 8px;
+        font-size: 13px;
+        color: $text-secondary;
+        text-align: center;
+      }
+
+      // 强制背景色
+      background-color: $bg-light !important;
+      color: $text !important;
+
+      // 针对不同浏览器的伪元素
+      &::-webkit-datetime-edit,
+      &::-webkit-datetime-edit-fields-wrapper,
+      &::-webkit-datetime-edit-text,
+      &::-webkit-datetime-edit-hour-field,
+      &::-webkit-datetime-edit-minute-field,
+      &::-webkit-datetime-edit-ampm-field {
+        background-color: $bg-light !important;
+        color: $text !important;
+      }
+
+      // 时间选择弹窗（无法完全自定义）
+      &::-webkit-calendar-picker-indicator {
+        background-color: $bg-light;
+        filter: invert(1);
+      }
+    }
+
+    .picker-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 4px;
+      margin-bottom: 12px;
+
+      span {
+        font-size: 15px;
+        font-weight: 500;
+        color: $text;
+      }
+
+      .nav-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        color: $text;
+        padding: 4px 8px;
+        border-radius: 4px;
+        transition: all 0.2s;
+
+        &:hover {
+          color: $sel;
+          background: rgba($sel, 0.1);
+        }
+
+        &:active {
+          transform: scale(0.9);
+        }
+      }
+    }
+
+    .range-grid,
+    .year-grid,
+    .month-grid,
+    .date-grid {
+      display: grid;
+      gap: 6px;
+
+      &.grid-date {
+        grid-template-columns: repeat(7, 1fr);
+      }
+
+      &.grid-month {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      &.grid-year {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .day-header {
+      font-size: 13px;
+      color: $text-secondary;
+      text-align: center;
+      height: 32px;
+      line-height: 32px;
+      font-weight: 500;
+    }
+
+    .day-cell,
+    .month-cell,
+    .year-cell {
+      text-align: center;
+
+      button {
+        width: 100%;
+        height: 32px;
+        line-height: 32px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 13px;
+        color: $text;
+        border-radius: 6px;
+        position: relative;
+        transition: all 0.2s;
+
+        &:hover {
+          background: $hover;
+        }
+
+        &.selected {
+          color: $text;
+          background: $sel;
+          font-weight: 500;
+
+          &:hover {
+            background: $sel-light;
+          }
+        }
+
+        &.in-range {
+          background: rgba($sel, 0.3);
+          color: $text;
+
+          &:hover {
+            background: rgba($sel, 0.4);
+          }
+        }
+
+        &.disabled {
+          color: $disabled;
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+
+        &.today {
+          color: $today;
+          font-weight: bold;
+
+          .today-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            font-size: 10px;
+            background: $today;
+            color: $bg;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            line-height: 16px;
+            font-weight: bold;
+          }
+        }
+
+        &.current {
+          color: $sel;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .range-inputs {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid $border;
+
+      .range-input {
+        flex: 1;
+        padding: 8px 12px;
+        border: 1px solid $border;
+        border-radius: 6px;
+        background: $bg-light;
+        color: $text;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          border-color: $border-light;
+        }
+
+        &:focus {
+          outline: none;
+          border-color: $sel;
+          box-shadow: 0 0 0 2px rgba($sel, 0.2);
+        }
+      }
+    }
   }
-}
-
-// grid layouts
-.range-grid.grid-date,
-.date-grid.grid-date {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-}
-
-.month-grid.grid-month,
-.range-grid.grid-month {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-}
-
-.year-grid.grid-year,
-.range-grid.grid-year {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 32px;
-  gap: 5px;
-}
-
-// 星期头部
-.day-header {
-  text-align: center;
-  color: $text;
-  font-weight: 500;
-}
-
-// 所有按钮样式（日期/月/年）
-.day-cell button,
-.month-cell button,
-.year-cell button {
-  width: 100%;
-  height: 32px;
-  background: none;
-  border: none;
-  color: $text;
-  border-radius: 4px;
-  cursor: pointer;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background 0.2s;
-
-  &:hover {
-    background: $hover;
-  }
-}
-
-// 选中态和范围态
-.day-cell button.in-range,
-.month-cell button.in-range,
-.year-cell button.in-range,
-button.selected {
-  background: $sel;
-  color: $text;
-}
-
-// 范围选择输入框（仅当使用）
-.range-inputs {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.range-input {
-  flex: 1;
-  padding: 5px 10px;
-  border: 1px solid $border;
-  border-radius: 4px;
-  background: $bg;
-  color: $text;
-  cursor: pointer;
 }

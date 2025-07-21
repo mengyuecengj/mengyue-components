@@ -18,5 +18,9 @@ export const selectDateProps = {
     range: {
         type: Boolean,
         default: false
+    },
+    time: {
+        type: Number,
+        default: ''
     }
 }

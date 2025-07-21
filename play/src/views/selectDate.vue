@@ -6,38 +6,38 @@
     <!-- 单日期选择测试 -->
     <div class="test-case">
       <h3>单日期选择</h3>
-      <MYSelect-date v-model="singleDate" />
+      <MYSelect-date v-model="singleDate" time />
       <p>当前值: {{ singleDate || '未选择' }}</p>
     </div>
 
     <!-- 日期范围测试 -->
     <div class="test-case">
       <h3>日期范围选择</h3>
-      <MYSelect-date v-model="dateRange" range />
+      <MYSelect-date v-model="dateRange" range time  />
       <p>当前值: {{ dateRange[0] }} 至 {{ dateRange[1] }}</p>
     </div>
 
     <div class="test-case">
       <h3>单月份选择</h3>
-      <MYSelect-date v-model="singleDate" month />
+      <MYSelect-date v-model="singleDate" month time />
       <p>当前值: {{ singleDate || '未选择' }}</p>
     </div>
 
     <!-- 月份范围测试 -->
     <div class="test-case">
       <h3>月份范围选择</h3>
-      <MYSelect-date v-model="monthRange" range month />
+      <MYSelect-date v-model="monthRange" range month time />
       <p>当前值: {{ monthRange[0] }} 至 {{ monthRange[1] }}</p>
     </div>
     <div class="test-case">
       <h3>单年份选择</h3>
-      <MYSelect-date v-model="singleDate" year />
+      <MYSelect-date v-model="singleDate" year time />
       <p>当前值: {{ singleDate || '未选择' }}</p>
     </div>
 
     <div class="test-case">
       <h3>范围年份选择</h3>
-      <MYSelect-date v-model="singleDate" year range />
+      <MYSelect-date v-model="singleDate" year range time />
       <p>当前值: {{ singleDate || '未选择' }}</p>
     </div>
   </div>
