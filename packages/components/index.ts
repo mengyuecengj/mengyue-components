@@ -16,6 +16,7 @@ import { MYPickColor } from './pickColor';
 import { MYSelectDate } from './selectDate';
 import { MYSelectTime } from './selectTime';
 import { MYSelect, MYOption } from './select';
+import { MYSelectCascader } from './selectCascader';
 
 // 组件映射，显式定义 name
 const components = {
@@ -43,7 +44,8 @@ const components = {
   selectDate: { component: MYSelectDate, name: 'MYSelect-date' },
   selectTime: { component: MYSelectTime, name: 'MYSelect-time' },
   select: { component: MYSelect, name: 'MYSelect' },
-  option: { component: MYOption, name: 'MYOption' }
+  option: { component: MYOption, name: 'MYOption' },
+  selectCascader: { component: MYSelectCascader, name: 'MYSelect-cascader' }
 };
 
 // interface ComponentWithName {
@@ -100,5 +102,6 @@ export {
   MYSelectDate,
   MYSelectTime,
   MYSelect,
-  MYOption
+  MYOption,
+  MYSelectCascader
 };
