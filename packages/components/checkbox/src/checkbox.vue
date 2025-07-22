@@ -76,7 +76,6 @@ const handleChange = (e: Event) => {
   if (isDisabled.value) return
   const target = e.target as HTMLInputElement
 
-  // ✅ group 模式
   if (checkboxGroup) {
     const model: any[] = [...checkboxGroup.modelValue.value]
     const index = model.indexOf(props.value)
@@ -87,12 +86,11 @@ const handleChange = (e: Event) => {
       model.splice(index, 1)
     }
 
-    checkboxGroup.change(model) // ✅ 传完整的数组
-    emit('change', target.checked) // ✅ 可保留，表示“是否勾选”
+    checkboxGroup.change(model)
+    emit('change', target.checked)
     return
   }
 
-  // ✅ 非 group 模式
   let newValue: any
 
   if (Array.isArray(props.modelValue)) {
@@ -106,7 +104,7 @@ const handleChange = (e: Event) => {
     }
     newValue = model
   } else {
-    newValue = target.checked  // ✅ 非 group 模式才允许 boolean
+    newValue = target.checked
   }
 
   emit('update:modelValue', newValue)

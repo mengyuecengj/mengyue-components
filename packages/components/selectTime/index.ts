@@ -8,5 +8,5 @@ const MselectTime: Plugin = {
     }
 }
 
-export const MYSelect = withInstall(selectTime)
+export const MYSelectTime = withInstall(selectTime)
 export { MselectTime, selectTime }

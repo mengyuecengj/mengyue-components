@@ -8,5 +8,5 @@ const MselectDate: Plugin = {
     }
 }
 
-export const MYSelect = withInstall(selectDate)
+export const MYSelectDate = withInstall(selectDate)
 export { MselectDate, selectDate }

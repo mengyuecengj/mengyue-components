@@ -193,8 +193,10 @@ $disabled: #4a4a4e;
       }
 
       // 强制背景色
-      background-color: $bg-light !important;
-      color: $text !important;
+      & {
+        background-color: $bg-light !important;
+        color: $text !important;
+      }
 
       // 针对不同浏览器的伪元素
       &::-webkit-datetime-edit,
