@@ -1,7 +1,7 @@
 <template>
     <div class="my-input-wrapper" @mouseenter="hovering = true" @mouseleave="hovering = false">
         <component ref="inputRef" :is="props.tag" v-bind="componentArrts" :class="inputClass" :style="inputStyle"
-            :value="props.modelValue" @input="handleInput">
+            :value="props.modelValue" @input="handleInput" @blur="handleBlur">
             <template v-if="props.tag !== 'input' && props.tag !== 'textarea'">
                 <slot />
             </template>
@@ -32,6 +32,9 @@ import close from './close.vue'
 import viewsvgrepo from './viewsvgrepo.vue'
 import viewhide from './viewhide.vue'
 import '../style/input.scss'
+import { inject, watch } from 'vue'
+
+const formItemContext = inject<any>('myFormItemContext', null)
 
 defineOptions({ name: 'MYInput' })
 
@@ -54,7 +57,15 @@ const showClear = computed(() => {
 const handleInput = (e: Event) => {
     const value = (e.target as HTMLInputElement).value
     emit('update:modelValue', value)
+
+    // 在输入时触发 FormItem 的校验（如果存在）
+    formItemContext?.validate?.('change')
 }
+
+const handleBlur = () => {
+  formItemContext?.validate?.('blur')
+}
+
 
 const clearText = () => {
     emit('update:modelValue', '')
@@ -112,4 +123,10 @@ function useInputComputed(props: ExtractPropTypes<typeof inputProps>): {
     })
     return { inputClass, inputStyle }
 }
+
+watch(() => props.modelValue, () => {
+  if (formItemContext?.clearValidate) {
+    formItemContext.clearValidate()
+  }
+})
 </script>

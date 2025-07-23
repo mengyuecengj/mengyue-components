@@ -1,6 +1,7 @@
 <template>
-    <div class="select-e" :class="{ 'is-focused': isFocused }" tabindex="0" @focus="handleFocus" @blur="handleBlur">
-        <div class="select-trigger" @click="toggleDropdown">
+    <div class="select-e" :class="{ 'is-focused': isFocused, 'is-disabled': disabled }" tabindex="0"
+        @focus="handleFocus" @blur="handleBlur" :style="selectStyle">
+        <div class="select-trigger" @click="toggleDropdown" :class="{ 'is-disabled': disabled }">
             <span class="selected-value">{{ selectedLabel || placeholder }}</span>
             <span class="arrow-icon" :class="{ 'is-open': dropdownVisible }">
                 <svg viewBox="0 0 24 24" width="16" height="16">
@@ -11,13 +12,16 @@
         <div class="dropdown-container" ref="dropdownContainer" @mouseleave="handleContainerMouseleave">
             <Transition name="slide-fade">
                 <div v-show="dropdownVisible" class="select-dropdown" :style="dropdownPosition" ref="selectDropdown">
-                    <div class="select-option" v-for="item in options" :key="item.value"
-                        @mouseenter="() => handleMouseenter(item)">
-                        <div class="label" @click="() => handleClick(item)">
-                            {{ item.label }}
-                            <span v-if="item.children" class="arrow-icon">▶</span>
+                    <MYScrollbar height="200px" thumbColor="#4C4D4F" thumbHoverColor="#2a2a2e"
+                        trackColor="#2a2a2e">
+                        <div class="select-option" v-for="item in options" :key="item.value"
+                            @mouseenter="() => handleMouseenter(item)" :class="{ 'is-disabled': (item as any).disabled || disabled }">
+                            <div class="label" @click="() => handleClick(item)">
+                                {{ item.label }}
+                                <span v-if="item.children" class="arrow-icon">▶</span>
+                            </div>
                         </div>
-                    </div>
+                    </MYScrollbar>
                 </div>
             </Transition>
             <!-- 二级菜单 -->
@@ -25,7 +29,7 @@
                 <div v-if="activeSubMenu" class="sub-menu" :style="subMenuPosition"
                     @mouseenter="handleSubMenuMouseenter">
                     <div class="select-option" v-for="child in activeSubMenuItems" :key="child.value"
-                        @click.stop="handleClick(child)" @mouseenter="() => handleSecondLevelEnter(child)">
+                        @click.stop="handleClick(child)" @mouseenter="() => handleSecondLevelEnter(child)" :class="{ 'is-disabled': (child as any).disabled || disabled }">
                         <div class="label">
                             {{ child.label }}
                             <span v-if="child.children" class="arrow-icon">▶</span>
@@ -35,10 +39,9 @@
             </Transition>
             <!-- 三级菜单 -->
             <Transition name="slide-fade">
-                <div v-if="activeThirdMenu" class="third-menu" :style="thirdMenuPosition"
-                    @mouseenter="handleThirdMenuMouseenter">
+                <div v-if="activeThirdMenu" class="third-menu" :style="thirdMenuPosition">
                     <div class="select-option" v-for="third in activeThirdMenuItems" :key="third.value"
-                        @click.stop="handleClick(third)">
+                        @click.stop="handleClick(third)" :class="{ 'is-disabled': (third as any).disabled || disabled }">
                         <div class="label">{{ third.label }}</div>
                     </div>
                 </div>
@@ -48,8 +51,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, nextTick, watch } from 'vue'
-
+import { ref, computed, nextTick, watch, PropType } from 'vue'
+import { useStyleComputed } from '../../../hooks/useStyleComputed'
 defineOptions({
     name: 'MYSelect-cascader'
 })
@@ -57,18 +60,39 @@ defineOptions({
 interface Option {
     value: string | number;
     label: string;
+    disabled?: boolean;
     children?: Option[];
 }
 
-interface Props {
-    modelValue?: string | number;
-    options: Option[];
-    placeholder?: string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-    modelValue: '',
-    placeholder: '请选择'
+const props = defineProps({
+    modelValue: {
+        type: [String, Number] as PropType<string | number>,
+        default: ''
+    },
+    placeholder: {
+        type: String,
+        default: '请选择'
+    },
+    disabled: {
+        type: Boolean,
+        default: false
+    },
+    width: {
+        type: [String, Number] as PropType<string | number>,
+        default: '260px'
+    },
+    height: {
+        type: [String, Number] as PropType<string | number>,
+        default: '40px'
+    },
+    options: {  // 添加 options 属性
+        type: Array as PropType<Array<{
+            value: string | number
+            label: string
+            children?: any[]
+        }>>,
+        required: true
+    }
 })
 
 const emit = defineEmits<{
@@ -109,6 +133,11 @@ const findOption = (options: Option[], value: string | number): Option | undefin
     return undefined
 }
 
+const selectStyle = useStyleComputed(props, {
+    propToStyleMap: { width: 'width', height: 'height' }
+})  
+
+
 // 监听 modelValue 变化，更新 selectedLabel
 watch(() => props.modelValue, (newValue) => {
     if (newValue) {
@@ -120,6 +149,7 @@ watch(() => props.modelValue, (newValue) => {
 }, { immediate: true })
 
 const toggleDropdown = () => {
+    if (props.disabled) return;
     dropdownVisible.value = !dropdownVisible.value
     if (!dropdownVisible.value) {
         activeSubMenu.value = ''
@@ -133,6 +163,7 @@ const toggleDropdown = () => {
 }
 
 const handleMouseenter = (item: Option) => {
+    if (props.disabled || item.disabled) return
     if (item.children) {
         activeSubMenu.value = item.value.toString()
         activeOption.value = item
@@ -149,6 +180,7 @@ const handleSubMenuMouseenter = () => {
 }
 
 const handleSecondLevelEnter = (item: Option) => {
+    if (props.disabled || item.disabled) return
     if (item.children) {
         activeThirdMenu.value = item.value.toString()
         activeSecondLevelOption.value = item
@@ -159,9 +191,9 @@ const handleSecondLevelEnter = (item: Option) => {
     }
 }
 
-const handleThirdMenuMouseenter = () => {
-    // 保持三级菜单显示
-}
+// const handleThirdMenuMouseenter = () => {
+//     // 保持三级菜单显示
+// }
 
 const handleContainerMouseleave = () => {
     activeSubMenu.value = ''
@@ -171,6 +203,7 @@ const handleContainerMouseleave = () => {
 }
 
 const handleClick = (item: Option) => {
+    if (props.disabled || item.disabled) return
     selectedLabel.value = item.label
     dropdownVisible.value = false
     activeSubMenu.value = ''
@@ -230,6 +263,10 @@ const updateThirdMenuPosition = () => {
     &.is-focused {
         border-color: #409eff;
     }
+
+    &.is-disabled {
+        border-color: transparent
+    }
 }
 
 .select-trigger {
@@ -237,9 +274,9 @@ const updateThirdMenuPosition = () => {
     align-items: center;
     justify-content: space-between;
     padding: 0 12px;
-    height: 40px;
     cursor: pointer;
     user-select: none;
+    height: 100%;
 
     &:hover {
         background-color: #2a2a2e;
@@ -265,6 +302,38 @@ const updateThirdMenuPosition = () => {
             transform: rotate(180deg);
         }
     }
+
+    // /* 悬停效果 */
+    // &:hover:not(.is-disabled) {
+    //     border: 1px solid #303333;
+    // }
+
+    // /* 聚焦/点击保持效果 */
+    // &.is-focused,
+    // &:focus:not(.is-disabled) {
+    //     border: 1px solid #409Eff;
+    // }
+
+    &.is-disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+
+        .select-trigger {
+            cursor: not-allowed;
+            pointer-events: none;
+
+            /* 禁用悬停效果 */
+            &:hover {
+                border: 1px solid 1f1f21;
+                background: inherit;
+
+                &.is-focused,
+                &:focus:not(.is-disabled) {
+                    border: 1px solid 1f1f21;
+                }
+            }
+        }
+    }
 }
 
 .select-dropdown {
@@ -277,8 +346,28 @@ const updateThirdMenuPosition = () => {
     border-radius: 4px;
     z-index: 10;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-    height: 40vh;
     overflow: auto;
+
+    &.is-disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+
+        .select-trigger {
+            cursor: not-allowed;
+            pointer-events: none;
+
+            /* 禁用悬停效果 */
+            &:hover {
+                border: 1px solid 1f1f21;
+                background: inherit;
+
+                &.is-focused,
+                &:focus:not(.is-disabled) {
+                    border: 1px solid 1f1f21;
+                }
+            }
+        }
+    }
 }
 
 .select-option {
@@ -317,6 +406,23 @@ const updateThirdMenuPosition = () => {
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+
+    &.is-disabled {
+        cursor: not-allowed !important; // 强制设置禁用光标
+        opacity: 0.6; // 添加透明度变化增强视觉效果
+
+        // 确保子元素也继承禁用状态
+        * {
+            cursor: not-allowed !important;
+            pointer-events: none !important;
+        }
+
+        // 禁用状态下的悬停效果
+        &:hover {
+            background-color: inherit !important;
+            color: inherit !important;
+        }
     }
 }
 

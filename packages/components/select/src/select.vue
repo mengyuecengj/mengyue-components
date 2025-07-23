@@ -99,7 +99,7 @@ const toggleDropdown = () => {
 
 const selectStyle = useStyleComputed(props, {
     propToStyleMap: { width: 'width', height: 'height' }
-})
+})  
 
 watch(() => props.modelValue, (newVal) => {
     if (!newVal) {

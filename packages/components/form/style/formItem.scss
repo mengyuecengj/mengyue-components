@@ -1,0 +1,79 @@
+/* formItem.scss */
+.my-form-item {
+  display: flex;
+  align-items: flex-start;
+
+  &.inline {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  &.disabled {
+    opacity: 0.6;
+  }
+
+  /* 出现校验错误时高亮边框 */
+  &.error {
+    .my-form-item__control > * {
+      border-color: #f56c6c !important;
+    }
+  }
+
+  &__label {
+    flex: 0 0 var(--label-width);
+    margin-right: 12px;
+    color: #303133;
+    line-height: 32px;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  &__control {
+    flex: 1;
+    position: relative;
+
+    /* 输入控件统一样式重置 */
+    input,
+    select,
+    textarea,
+    .my-input {
+      width: 100%;
+      padding: 6px 12px;
+      border: 1px solid #dcdfe6;
+      border-radius: 4px;
+      line-height: 1.5;
+      font-size: inherit;
+      transition: border-color .2s;
+
+      &:focus {
+        border-color: #409eff;
+        outline: none;
+      }
+
+      &:disabled {
+        background-color: #f5f7fa;
+        cursor: not-allowed;
+      }
+    }
+
+    /* 错误信息 */
+    .my-form-item__error {
+      position: absolute;
+      bottom: -20px;
+      left: var(--label-width);
+      color: #f56c6c;
+      font-size: 12px;
+    }
+  }
+
+  /* 尺寸变体 */
+  &.large &__control > * {
+    padding: 10px 16px;
+  }
+  &.small &__control > * {
+    padding: 4px 8px;
+  }
+  &.mini &__control > * {
+    padding: 2px 6px;
+  }
+}

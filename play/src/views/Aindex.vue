@@ -54,6 +54,12 @@
         <MYButton type="success" @click="navigateTo('/test/selectCascader')">
             selectCascader components
         </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/slidebar')">
+            slidebar components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/form')">
+            form components
+        </MYButton>
     </div>
 </template>
 <script setup>

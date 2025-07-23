@@ -81,6 +81,14 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/test/selectCascader',
     component: () => import('../views/selectCascader.vue')
+  },
+  {
+    path: '/test/slidebar',
+    component: () => import('../views/slidebar.vue')
+  },
+  {
+    path: '/test/form',
+    component: () => import('../views/form.vue')
   }
 ]
 

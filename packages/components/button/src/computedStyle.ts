@@ -11,6 +11,7 @@ interface ButtonProps {
   colorBg?: string;
   colorText?: string;
   colorBorder?: string;
+  nativeType?: 'button' | 'submit' | 'reset';
 }
 
 export function useButtonStyle(props: ButtonProps): {

@@ -37,6 +37,10 @@ export const buttonProps = {
     type: String,
     default: ''
   },
+  nativeType: {
+    type: String as PropType<'button' | 'submit' | 'reset'>,
+    default: 'button',
+  },
   tag: {
     type: [String, Object] as PropType<string | Component>,
     default: 'button',

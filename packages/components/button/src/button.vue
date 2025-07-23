@@ -9,12 +9,14 @@
     @mousedown="onMouseDown"
     @mouseup="onMouseUp"
     :disabled="props.disabled || undefined"
+    :type="props.nativeType || 'button'"
   >
     <slot />
   </component>
 </template>
 
 <script setup lang="ts">
+import { inject } from 'vue'
 import { buttonProps } from './button'
 import '../style/button.scss'
 import { useButtonStyle } from './computedStyle'
@@ -27,8 +29,18 @@ defineOptions({
 const props = defineProps(buttonProps)
 const emit = defineEmits<{ (e: 'click', ev: MouseEvent): void }>()
 
+const formContext = inject<any>('myFormContext', null)
 function handleClick(e: MouseEvent) {
-  if (!props.disabled) emit('click', e)
+  if (props.disabled) return
+
+  // 表单相关操作
+  if (props.nativeType === 'submit') {
+    formContext?.submit?.()
+  } else if (props.nativeType === 'reset') {
+    formContext?.resetFields?.()
+  }
+
+  emit('click', e)
 }
 
 const {

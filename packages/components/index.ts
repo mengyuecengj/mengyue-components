@@ -17,6 +17,8 @@ import { MYSelectDate } from './selectDate';
 import { MYSelectTime } from './selectTime';
 import { MYSelect, MYOption } from './select';
 import { MYSelectCascader } from './selectCascader';
+import { MYSlidebar } from './sliderbar';
+import { MYForm, MYFormItem } from './form';
 
 // 组件映射，显式定义 name
 const components = {
@@ -45,7 +47,10 @@ const components = {
   selectTime: { component: MYSelectTime, name: 'MYSelect-time' },
   select: { component: MYSelect, name: 'MYSelect' },
   option: { component: MYOption, name: 'MYOption' },
-  selectCascader: { component: MYSelectCascader, name: 'MYSelect-cascader' }
+  selectCascader: { component: MYSelectCascader, name: 'MYSelect-cascader' },
+  MYSlidebar: { component: MYSlidebar, name: 'MYSlidebar' },
+  MYForm: { component: MYForm, name: 'MYForm' },
+  MYFormItem: { component: MYFormItem, name: 'MYFormItem'}
 };
 
 // interface ComponentWithName {
@@ -103,5 +108,8 @@ export {
   MYSelectTime,
   MYSelect,
   MYOption,
-  MYSelectCascader
+  MYSelectCascader,
+  MYSlidebar,
+  MYForm,
+  MYFormItem
 };
