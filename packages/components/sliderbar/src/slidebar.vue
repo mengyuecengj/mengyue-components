@@ -77,6 +77,7 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
+@use "sass:math";
 $track-height: 6px;
 $thumb-size: 18px;
 $primary-color: #2c3e50;
@@ -106,7 +107,7 @@ $thumb-bg: #ffffff;
   position: relative;
   height: $track-height;
   background: v-bind('props.trackColor || defaultTrackBg');
-  border-radius: $track-height / 2;
+  border-radius: math.div($track-height, 2);
   cursor: pointer;
   margin-top: 8px;
 
@@ -119,7 +120,7 @@ $thumb-bg: #ffffff;
   position: absolute;
   height: 100%;
   background: v-bind('props.thumbColor || defaultProgressColor');
-  border-radius: $track-height / 2;
+  border-radius: math.div($track-height, 2);
   transition: width 0.2s ease-out;
 }
 

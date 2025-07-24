@@ -1,6 +1,6 @@
 {
   "name": "mengyue-plus",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "type": "module",
   "files": [
     "dist"
@@ -31,7 +31,7 @@
     "@vitejs/plugin-vue": "^5.1.4",
     "sass": "^1.89.2",
     "typescript": "^5.6.3",
-    "vite": "^5.4.8",
+    "vite": "^5.4.19",
     "vite-plugin-dts": "^4.5.4",
     "vite-svg-loader": "^5.1.0"
   }

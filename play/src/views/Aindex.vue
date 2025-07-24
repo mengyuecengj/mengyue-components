@@ -60,6 +60,9 @@
         <MYButton type="success" @click="navigateTo('/test/form')">
             form components
         </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/badge')">
+            badge components
+        </MYButton>
     </div>
 </template>
 <script setup>

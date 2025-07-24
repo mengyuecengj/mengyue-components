@@ -19,6 +19,7 @@ import { MYSelect, MYOption } from './select';
 import { MYSelectCascader } from './selectCascader';
 import { MYSlidebar } from './sliderbar';
 import { MYForm, MYFormItem } from './form';
+import { MYBadge } from './badge'
 
 // 组件映射，显式定义 name
 const components = {
@@ -50,7 +51,8 @@ const components = {
   selectCascader: { component: MYSelectCascader, name: 'MYSelect-cascader' },
   MYSlidebar: { component: MYSlidebar, name: 'MYSlidebar' },
   MYForm: { component: MYForm, name: 'MYForm' },
-  MYFormItem: { component: MYFormItem, name: 'MYFormItem'}
+  MYFormItem: { component: MYFormItem, name: 'MYFormItem'},
+  MYBadge: { component: MYBadge, name: 'MYBadge'}
 };
 
 // interface ComponentWithName {
@@ -111,5 +113,6 @@ export {
   MYSelectCascader,
   MYSlidebar,
   MYForm,
-  MYFormItem
+  MYFormItem,
+  MYBadge
 };
