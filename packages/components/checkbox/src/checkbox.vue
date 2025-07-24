@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, useAttrs } from 'vue'
+import { computed, inject, useAttrs, ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { checkboxProps } from './checkbox'
 import '../style/checkbox.scss'
 
@@ -25,6 +25,8 @@ const emit = defineEmits(['update:modelValue', 'change'])
 const attrs = useAttrs()
 
 const checkboxGroup: any = inject('checkboxGroup', null)
+const formItemContext = inject<any>('myFormItemContext', null)
+const initalValue = ref(props.modelValue)
 
 const isDisabled = computed(() => {
   return props.disabled || (checkboxGroup?.disabled ?? false)
@@ -117,5 +119,35 @@ const checkboxClass = computed(() => {
     if (ischecked.value) cls.push('my-checkbox--checked')
     if (props.disabled) cls.push('my-checkbox--disabled')
     return cls
+})
+
+const resetField = () => {
+  if (checkboxGroup) {
+    checkboxGroup.change(initalValue.value)
+  } else {
+    emit('update:modelValue', initalValue.value)
+  }
+  formItemContext?.clearValidate?.()
+}
+const fieldProp = formItemContext?.prop
+
+
+onMounted(() => {
+    formItemContext?.addField?.({
+        prop: fieldProp, // 表单字段名，用于收集
+        resetField,
+        validate: () => Promise.resolve(), // 简单通过校验，可扩展为复杂校验
+        clearValidate: () => formItemContext?.clearValidate?.()
+    })
+})
+
+onBeforeUnmount(() => {
+  const prop = formItemContext?.prop
+  if (!prop) return
+  formItemContext?.removeField?.(prop)
+})
+
+watch(() => props.modelValue, () => {
+    formItemContext?.clearValidate?.()
 })
 </script>

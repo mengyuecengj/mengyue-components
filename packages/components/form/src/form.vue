@@ -1,27 +1,28 @@
 <template>
-    <form ref="formRef" :class="formClass" :style="{ '--label-width': labelWidth }">
-        <slot />
-    </form>
+  <form ref="formRef" :class="formClass" :style="{ '--label-width': labelWidth }">
+    <slot />
+  </form>
 </template>
 
 <script setup lang="ts">
 import { ref, provide, toRefs, reactive, computed } from 'vue'
+import mitt from 'mitt'
 import { formProps } from './form'
 import type { FormRule } from './form'
 import { useClassComputed } from '../../../hooks/useClassComputed'
 import '../style/form.scss'
 
 defineOptions({
-    name: 'MYForm'
+  name: 'MYForm'
 })
 
 const props = defineProps(formProps)
 const emit = defineEmits([
-    'update:modelValue',
-    'validate',
-    'validate-field',
-    'reset-fields',
-    'clear-validate'
+  'update:modelValue',
+  'validate',
+  'validate-field',
+  'reset-fields',
+  'clear-validate'
 ])
 
 const formRef = ref<HTMLElement>()
@@ -75,14 +76,19 @@ async function validate() {
 // Reset fields to initial state
 function resetFields() {
   const model = props.modelValue as unknown as Record<string, any>
-  Object.keys(model).forEach(key => {
-    model[key] = ''
+  const newModel = { ...model } // 浅拷贝即可，如果字段是基本类型
+  Object.keys(newModel).forEach(key => {
+    newModel[key] = ''
   })
-  emit('update:modelValue', model)
+  emit('update:modelValue', newModel)
+  clearValidate()
   emit('reset-fields')
 }
 
+const emitter = mitt();
+
 function clearValidate(field?: string) {
+  emitter.emit('clear-validate', field) 
   emit('clear-validate', field)
 }
 
@@ -108,6 +114,7 @@ provide('form', reactive({
   validateField,
   resetFields,
   clearValidate,
+  emitter,
   formClass
 }))
 </script>

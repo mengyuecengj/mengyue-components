@@ -2,15 +2,8 @@
     <label :class="radioClass">
         <span class="my-radio__input">
             <!-- 只把原生属性 v-bind 到 input 上 -->
-            <input 
-                v-bind="attrs" 
-                type="radio" 
-                class="my-radio__original" 
-                :value="props.value"
-                :checked="ischecked"
-                :disabled="isDisabled" 
-                @change="handleChange" 
-            />
+            <input v-bind="attrs" type="radio" class="my-radio__original" :value="props.value" :checked="ischecked"
+                :disabled="isDisabled" @change="handleChange" />
             <span class="my-radio__inner" :style="radioStyle"></span>
         </span>
         <span class="my-radio__label" :style="radioStyle">
@@ -20,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, useAttrs } from 'vue'
+import { ref, computed, inject, useAttrs, onMounted, onBeforeUnmount, watch } from 'vue'
 import { radioProps } from './radio'
 import '../style/radio.scss'
 
@@ -34,6 +27,10 @@ const attrs = useAttrs()
 
 // 从 radio-group 注入的上下文
 const radioGroup: any = inject('radioGroup', null)
+// 正确注入 MYFormItem 提供的上下文
+const formItemContext = inject<any>('myFormItemContext', null)
+const initialValue = ref(props.modelValue)
+const effectiveName = computed(() => props.name || radioGroup?.name)
 
 // 计算是否禁用：优先使用自身的 disabled，如果没有则使用 group 的 disabled
 const isDisabled = computed(() => {
@@ -58,6 +55,7 @@ const handleChange = (e: Event) => {
     } else {
         emit('update:modelValue', props.value)
     }
+
     emit('change', target.checked)
 }
 
@@ -81,5 +79,33 @@ const radioStyle = computed(() => {
         style.height = props.size
     }
     return style
+})
+
+const resetField = () => {
+  if (radioGroup) {
+    radioGroup.change(initialValue.value)
+  } else {
+    emit('update:modelValue', initialValue.value)
+  }
+  formItemContext?.clearValidate?.()
+}
+const fieldProp = formItemContext?.prop || props.name
+onMounted(() => {
+    formItemContext?.addField?.({
+        prop: fieldProp, // 表单字段名，用于收集
+        resetField,
+        validate: () => Promise.resolve(), // 简单通过校验，可扩展为复杂校验
+        clearValidate: () => formItemContext?.clearValidate?.()
+    })
+})
+
+onBeforeUnmount(() => {
+  const prop = formItemContext?.prop || effectiveName.value
+  if (!prop) return
+  formItemContext?.removeField?.(prop)
+})
+
+watch(() => props.modelValue, () => {
+    formItemContext?.clearValidate?.()
 })
 </script>

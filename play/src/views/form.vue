@@ -1,126 +1,96 @@
 <template>
-  <div class="form-test-container">
-    <h2>表单功能测试</h2>
-    <MYForm
-      ref="formRef"
-      v-model="formData"
-      :rules="rules"
-      label-width="120"
-      :inline="false"
-      size="medium"
-    >
-      <MYFormItem label="用户名" prop="username">
+  <div class="form-test">
+    <MYForm ref="formRef" v-model="formData" :rules="rules" @validate="onValidate">
+      <!-- Input -->
+      <MYForm-item label="用户名" prop="username" :validateTrigger="'blur'">
         <MYInput v-model="formData.username" placeholder="请输入用户名" />
-      </MYFormItem>
+      </MYForm-item>
 
-      <MYFormItem label="年龄" prop="age">
-        <MYInput
-          v-model="formData.age"
-          type="number"
-          placeholder="请输入年龄"
-        />
-      </MYFormItem>
+      <MYButton @click="handleReset" type="info">重置</MYButton>
+      <MYButton type="button" @click="handleSubmit">提交</MYButton>
 
-      <MYFormItem label="备注" prop="remark">
-        <MYInput
-          v-model="formData.remark"
-          type="textarea"
-          placeholder="请输入备注"
-        />
-      </MYFormItem>
+      <!-- Switch -->
+      <MYForm-item label="是否启用" prop="enabled">
+        <MYSwitch v-model="formData.enabled" />
+      </MYForm-item>
 
-      <MYFormItem>
-        <div class="button-group">
-          <MYButton type="primary" @click="onValidate">校验表单</MYButton>
-          <MYButton @click="onReset" type="info">重置表单</MYButton>
-          <MYButton @click="onClear" type="warning">清除校验</MYButton>
-        </div>
-      </MYFormItem>
+      <!-- 单选框 -->
+      <MYForm-item label="性别" prop="gender">
+        <MYRadio-group v-model="formData.gender">
+          <MYRadio value="male">男</MYRadio>
+          <MYRadio value="female">女</MYRadio>
+        </MYRadio-group>
+      </MYForm-item>
+
+      <!-- 多选框 -->
+      <MYForm-item label="兴趣爱好" prop="hobbies">
+        <MYCheckbox-group v-model="formData.hobbies">
+          <MYCheckbox value="reading">阅读</MYCheckbox>
+          <MYCheckbox value="gaming">游戏</MYCheckbox>
+          <MYCheckbox value="coding">编程</MYCheckbox>
+        </MYCheckbox-group>
+      </MYForm-item>
+
+      <!-- 展示当前数据 -->
+      <pre>{{ formData }}</pre>
     </MYForm>
-
-    <pre class="output">
-{{ resultMessage }}
-    </pre>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 
-defineOptions({ name: 'FormTest' })
-
 const formRef = ref()
+
 const formData = reactive({
   username: '',
-  age: '',
-  remark: ''
+  enabled: false,
+  gender: '',
+  hobbies: [] as string[]
 })
 
 const rules = {
   username: [
-    { required: true, message: '用户名不能为空' }
+    { required: true, message: '用户名不能为空' },
   ],
-  age: [
-    { required: true, message: '年龄不能为空' },
-    { validator: async (_: any, value: any) => {
-        const v = Number(value)
-        return v > 0 && v < 150
-      }, message: '请输入 1-149 的年龄'
-    }
+  gender: [
+    { required: true, message: '请选择性别' }
+  ],
+  hobbies: [
+    { required: true, message: '请选择至少一个兴趣爱好' }
   ]
 }
 
-const resultMessage = ref('')
+function handleReset() {
+  formData.username = ''
+  formData.enabled = false
+  formData.gender = ''
+  formData.hobbies = []
+  formRef.value?.clearValidate()
+}
 
-// 校验整个表单
-async function onValidate() {
-  try {
-    await formRef.value.validate()
-    resultMessage.value = '验证通过 🎉'
-  } catch (err) {
-    resultMessage.value = `验证失败: ${(err as Error).message}`
+function onValidate(valid: boolean) {
+  if (valid) {
+    alert('验证通过，可以提交！')
+  } else {
+    alert('验证失败，请检查表单！')
   }
 }
 
-// 重置表单
-function onReset() {
-  formRef.value.resetFields()
-  resultMessage.value = '表单已重置'
-}
-
-// 清除所有校验状态
-function onClear() {
-  formRef.value.clearValidate()
-  resultMessage.value = '校验信息已清除'
+function handleSubmit() {
+  formRef.value.validate()
+    .then(() => {
+      alert('提交成功！\n' + JSON.stringify(formData, null, 2))
+    })
+    .catch(() => {
+      alert('提交失败，请检查输入项！')
+    })
 }
 </script>
 
 <style scoped>
-.form-test-container {
-  max-width: 600px;
+.form-test {
+  max-width: 400px;
   margin: 20px auto;
-  background: #fafafa;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-h2 {
-  margin-bottom: 16px;
-  font-size: 20px;
-}
-
-.button-group {
-  display: flex;
-  gap: 12px;
-}
-
-.output {
-  margin-top: 16px;
-  background: #fff;
-  padding: 12px;
-  border: 1px solid #ebeef5;
-  border-radius: 4px;
-  font-family: monospace;
-  white-space: pre-wrap;
 }
 </style>
