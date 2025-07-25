@@ -129,7 +129,55 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/test/tree',
     component: () => import('../views/tree.vue')
-  }
+  },
+  {
+    path: '/test/backtop',
+    component: () => import('../views/backtop.vue')
+  },
+  {
+    path: '/test/breadcrumb',
+    component: () => import('../views/breadcrumb.vue')
+  },
+  {
+    path: '/test/dropdown',
+    component: () => import('../views/dropdown.vue')
+  },
+  {
+    path: '/test/menu',
+    component: () => import('../views/menu.vue')
+  },
+  {
+    path: '/test/step',
+    component: () => import('../views/step.vue')
+  },
+  {
+    path: '/test/carousel',
+    component: () => import('../views/carousel.vue')
+  },
+  {
+    path: '/test/transfer',
+    component: () => import('../views/transfer.vue')
+  },
+  {
+    path: '/test/alert',
+    component: () => import('../views/alert.vue')
+  },
+  // {
+  //   path: '/test/loading',
+  //   component: () => import('../views/loading.vue')
+  // },
+  //   {
+  //   path: '/test/message',
+  //   component: () => import('../views/message.vue')
+  // },
+  //   {
+  //   path: '/test/messagebox',
+  //   component: () => import('../views/messagebox.vue')
+  // },
+  //   {
+  //   path: '/test/notification',
+  //   component: () => import('../views/notification.vue')
+  // },
 ]
 
 export const router = createRouter({

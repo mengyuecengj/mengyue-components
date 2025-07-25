@@ -27,7 +27,15 @@ import { MYSkeleton, MYSkeletonItem } from './skeleton';
 import { MYPagination } from './pagination';
 import { MYTable, MYTableColumn } from './table';
 import { MYTimeline, MYTimelineItem } from './timeline';
-import { MYTree, MYTreeNode } from './tree'
+import { MYTree, MYTreeNode } from './tree';
+import { MYBacktop } from './backtop';
+import { MYBreadcrumb, MYBreadcrumbItem } from './breadcrumb';
+import { MYDropdown, MYDropdownMenu, MYDropdownItem } from './dropdown';
+import { MYMenu, MYMenuSubMenu, MYMenuItem } from './menu';
+import { MYStep, MYSteps } from './step';
+import { MYCarousel, MYCarouselItem } from './carousel';
+import { MYTransfer, MYTransferPanel } from './transfer';
+import { MYAlert } from './alert'
 
 // 组件映射，显式定义 name
 const components = {
@@ -73,7 +81,27 @@ const components = {
   MYTimeline: { component: MYTimeline, name: 'MYTimeline' },
   MYTimelineItem: { component: MYTimelineItem, name: 'MYTimeline-item' },
   MYTree: { component: MYTree, name: 'MYTree' },
-  MYTreeNode: { component: MYTreeNode, name: 'MYTree-node' }
+  MYTreeNode: { component: MYTreeNode, name: 'MYTree-node' },
+  MYBacktop: { component: MYBacktop, name: 'MYBacktop' },
+  MYBreadcrumb: { component: MYBreadcrumb, name: 'MYBreadcrumb'},
+  MYBreadcrumbItem: { component: MYBreadcrumbItem, name: 'MYBreadcrumb-item' },
+  MYDropdown: { component: MYDropdown, name: 'MYDropdown' },
+  MYDropdownMenu: { component: MYDropdownMenu, name: 'MYDropdown-menu' },
+  MYDropdownItem: { component: MYDropdownItem, name: 'MYDropdown-item' },
+  MYMenu: { component: MYMenu, name: 'MYMenu' },
+  MYMenuSubMenu: { component: MYMenuSubMenu, name: 'MYMenu-submenu' },
+  MYMenuItem: { component: MYMenuItem, name: 'MYMenu-item'},
+  MYStep: { component: MYStep, name: 'MYStep' },
+  MYSteps: { component: MYSteps, name: 'MYSteps' },
+  MYCarousel: { component: MYCarousel, name: 'MYCarousel' },
+  MYCarouselItem: { component: MYCarouselItem, name: 'MYCarousel-item' },
+  MYTransfer: { component: MYTransfer, name: 'MYTransfer' },
+  MYTransferPanel: { component: MYTransferPanel, name: 'MYTransferPanel' },
+  MYAlert: { component: MYAlert, name: 'MYAlert' },
+  // MYLoading: { component: MYLoading, name: 'MYLoading' },
+  // MYMessage: { component: MYMessage, name: 'MYMessage' },
+  // MYMessageBox: { component: MYMessageBox, name: 'MYMessageBox' },
+  // MYNotification: { component: MYNotification, name: 'MYNotification' }
 };
 
 // interface ComponentWithName {
@@ -148,5 +176,25 @@ export {
   MYTimeline,
   MYTimelineItem,
   MYTree,
-  MYTreeNode
+  MYTreeNode,
+  MYBacktop,
+  MYBreadcrumb,
+  MYBreadcrumbItem,
+  MYDropdown,
+  MYDropdownMenu,
+  MYDropdownItem,
+  MYMenu,
+  MYMenuSubMenu,
+  MYMenuItem,
+  MYStep,
+  MYSteps,
+  MYCarousel,
+  MYCarouselItem,
+  MYTransfer,
+  MYTransferPanel,
+  MYAlert,
+  // MYLoading,
+  // MYMessage,
+  // MYMessageBox,
+  // MYNotification
 };

@@ -87,6 +87,42 @@
         <MYButton type="success" @click="navigateTo('/test/tree')">
             tree components
         </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/backtop')">
+            backtop components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/breadcrumb')">
+            breadcrumb components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/dropdown')">
+            dropdown components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/menu')">
+            menu components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/step')">
+            step components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/carousel')">
+            carousel components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/transfer')">
+            transfer components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/alert')">
+            alert components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/loading')">
+            loading components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/message')">
+            message components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/messagebox')">
+            messagebox components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/notification')">
+            notification components
+        </MYButton>
     </div>
 </template>
 <script setup>
