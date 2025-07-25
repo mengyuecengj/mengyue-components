@@ -98,9 +98,37 @@ const routes: RouteRecordRaw[] = [
     path: '/test/collapse',
     component: () => import('../views/collapse.vue')
   },
-    {
+  {
     path: '/test/progress',
     component: () => import('../views/progress.vue')
+  },
+  {
+    path: '/test/result',
+    component: () => import('../views/result.vue')
+  },
+  {
+    path: '/test/skeleton',
+    component: () => import('../views/skeleton.vue')
+  },
+  {
+    path: '/test/pagination',
+    component: () => import('../views/pagination.vue')
+  },
+  {
+    path: '/test/table',
+    component: () => import('../views/table.vue')
+  },
+  {
+    path: '/test/timeline',
+    component: () => import('../views/timeline.vue')
+  },
+  {
+    path: '/test/tree',
+    component: () => import('../views/tree.vue')
+  },
+  {
+    path: '/test/tree',
+    component: () => import('../views/tree.vue')
   }
 ]
 

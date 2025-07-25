@@ -21,7 +21,13 @@ import { MYSlidebar } from './sliderbar';
 import { MYForm, MYFormItem } from './form';
 import { MYBadge } from './badge';
 import { MYCollapse, MYCollapseItem } from './collapse';
-import { MYProgress } from './progress'
+import { MYProgress } from './progress';
+import { MYResult } from './result';
+import { MYSkeleton, MYSkeletonItem } from './skeleton';
+import { MYPagination } from './pagination';
+import { MYTable, MYTableColumn } from './table';
+import { MYTimeline, MYTimelineItem } from './timeline';
+import { MYTree, MYTreeNode } from './tree'
 
 // 组件映射，显式定义 name
 const components = {
@@ -57,7 +63,17 @@ const components = {
   MYBadge: { component: MYBadge, name: 'MYBadge'},
   MYCollapse: { component: MYCollapse, name: 'MYCollapse'},
   MYCollapseItem: { component: MYCollapseItem, name: 'MYCollapse-item' },
-  MYProgress: { component: MYProgress, name: 'MYProgress'}
+  MYProgress: { component: MYProgress, name: 'MYProgress' },
+  MYResult: { component: MYResult, name: 'MYResult' },
+  MYSkeleton: { component: MYSkeleton, name: 'MYSkeleton' },
+  MYSkeletonItem: { component: MYSkeletonItem, name: 'MYSkeleton-item' },
+  MYPagination: { component: MYPagination, name: 'MYPagination' },
+  MYTable: { component: MYTable, name: 'MYTable' },
+  MYTableColumn: { component: MYTableColumn, name: 'MYTableColumn' },
+  MYTimeline: { component: MYTimeline, name: 'MYTimeline' },
+  MYTimelineItem: { component: MYTimelineItem, name: 'MYTimeline-item' },
+  MYTree: { component: MYTree, name: 'MYTree' },
+  MYTreeNode: { component: MYTreeNode, name: 'MYTree-node' }
 };
 
 // interface ComponentWithName {
@@ -122,5 +138,15 @@ export {
   MYBadge,
   MYCollapse,
   MYCollapseItem,
-  MYProgress
+  MYProgress,
+  MYResult,
+  MYSkeleton,
+  MYSkeletonItem,
+  MYPagination,
+  MYTable,
+  MYTableColumn,
+  MYTimeline,
+  MYTimelineItem,
+  MYTree,
+  MYTreeNode
 };

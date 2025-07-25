@@ -69,6 +69,24 @@
          <MYButton type="success" @click="navigateTo('/test/progress')">
             progress components
         </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/result')">
+            result components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/skeleton')">
+            skeleton components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/pagination')">
+            pagination components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/table')">
+            table components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/timeline')">
+            timeline components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/tree')">
+            tree components
+        </MYButton>
     </div>
 </template>
 <script setup>

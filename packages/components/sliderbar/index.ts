@@ -10,3 +10,4 @@ const MSlidebar: Plugin = {
 
 export const MYSlidebar = withInstall(slidebar)
 export { slidebar, MSlidebar }
+
