@@ -1,4 +1,6 @@
 <template>
+  <MYButton type="success" @click="navigateTo('/')">返回/首页</MYButton>
+
   <div class="form-test">
     <MYForm ref="formRef" v-model="formData" :rules="rules" @validate="onValidate">
       <!-- Input -->
@@ -39,7 +41,13 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+
+const navigateTo = (path: string) => {
+  router.push(path);
+};
 const formRef = ref()
 
 const formData = reactive({

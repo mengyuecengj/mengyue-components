@@ -19,7 +19,9 @@ import { MYSelect, MYOption } from './select';
 import { MYSelectCascader } from './selectCascader';
 import { MYSlidebar } from './sliderbar';
 import { MYForm, MYFormItem } from './form';
-import { MYBadge } from './badge'
+import { MYBadge } from './badge';
+import { MYCollapse, MYCollapseItem } from './collapse';
+import { MYProgress } from './progress'
 
 // 组件映射，显式定义 name
 const components = {
@@ -52,7 +54,10 @@ const components = {
   MYSlidebar: { component: MYSlidebar, name: 'MYSlidebar' },
   MYForm: { component: MYForm, name: 'MYForm' },
   MYFormItem: { component: MYFormItem, name: 'MYFormItem'},
-  MYBadge: { component: MYBadge, name: 'MYBadge'}
+  MYBadge: { component: MYBadge, name: 'MYBadge'},
+  MYCollapse: { component: MYCollapse, name: 'MYCollapse'},
+  MYCollapseItem: { component: MYCollapseItem, name: 'MYCollapse-item' },
+  MYProgress: { component: MYProgress, name: 'MYProgress'}
 };
 
 // interface ComponentWithName {
@@ -114,5 +119,8 @@ export {
   MYSlidebar,
   MYForm,
   MYFormItem,
-  MYBadge
+  MYBadge,
+  MYCollapse,
+  MYCollapseItem,
+  MYProgress
 };

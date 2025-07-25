@@ -1,4 +1,6 @@
 <template>
+  <MYButton type="success" @click="navigateTo('/')">返回/首页</MYButton>
+
   <div>
     <h3>徽章组件测试</h3>
     <div class="test-section">
@@ -60,6 +62,13 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const navigateTo = (path: any) => {
+    router.push(path)
+}
 </script>
 
 <style scoped>

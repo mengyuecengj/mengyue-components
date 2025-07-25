@@ -63,6 +63,12 @@
         <MYButton type="success" @click="navigateTo('/test/badge')">
             badge components
         </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/collapse')">
+            collapse components
+        </MYButton>
+         <MYButton type="success" @click="navigateTo('/test/progress')">
+            progress components
+        </MYButton>
     </div>
 </template>
 <script setup>

@@ -93,6 +93,14 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/test/badge',
     component: () => import('../views/badge.vue')
+  },
+  {
+    path: '/test/collapse',
+    component: () => import('../views/collapse.vue')
+  },
+    {
+    path: '/test/progress',
+    component: () => import('../views/progress.vue')
   }
 ]
 
