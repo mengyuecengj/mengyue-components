@@ -35,7 +35,8 @@ import { MYMenu, MYMenuSubMenu, MYMenuItem } from './menu';
 import { MYStep, MYSteps } from './step';
 import { MYCarousel, MYCarouselItem } from './carousel';
 import { MYTransfer, MYTransferPanel } from './transfer';
-import { MYAlert } from './alert'
+import { MYAlert } from './alert';
+
 
 // 组件映射，显式定义 name
 const components = {
@@ -98,10 +99,6 @@ const components = {
   MYTransfer: { component: MYTransfer, name: 'MYTransfer' },
   MYTransferPanel: { component: MYTransferPanel, name: 'MYTransferPanel' },
   MYAlert: { component: MYAlert, name: 'MYAlert' },
-  // MYLoading: { component: MYLoading, name: 'MYLoading' },
-  // MYMessage: { component: MYMessage, name: 'MYMessage' },
-  // MYMessageBox: { component: MYMessageBox, name: 'MYMessageBox' },
-  // MYNotification: { component: MYNotification, name: 'MYNotification' }
 };
 
 // interface ComponentWithName {
@@ -123,7 +120,7 @@ const install: Plugin['install'] = (app: App) => {
       return;
     }
     // 使用组件自身的 name 作为备用
-    const finalName = component.name || component.__name || name;
+    const finalName = name;
     app.component(finalName, component);
   });
 };
@@ -192,9 +189,5 @@ export {
   MYCarouselItem,
   MYTransfer,
   MYTransferPanel,
-  MYAlert,
-  // MYLoading,
-  // MYMessage,
-  // MYMessageBox,
-  // MYNotification
+  MYAlert
 };

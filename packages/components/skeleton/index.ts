@@ -17,4 +17,4 @@ const MSkeletonItem: Plugin = {
 
 export const MYSkeleton = withInstall(skeleton)
 export const MYSkeletonItem = withInstall(skeletonItem)
-export { skeleton, MSkeleton, skeletonItem, MskeletonItem}
+export { skeleton, MSkeleton, skeletonItem, MSkeletonItem }

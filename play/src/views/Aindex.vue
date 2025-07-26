@@ -111,18 +111,6 @@
         <MYButton type="success" @click="navigateTo('/test/alert')">
             alert components
         </MYButton>
-        <MYButton type="success" @click="navigateTo('/test/loading')">
-            loading components
-        </MYButton>
-        <MYButton type="success" @click="navigateTo('/test/message')">
-            message components
-        </MYButton>
-        <MYButton type="success" @click="navigateTo('/test/messagebox')">
-            messagebox components
-        </MYButton>
-        <MYButton type="success" @click="navigateTo('/test/notification')">
-            notification components
-        </MYButton>
     </div>
 </template>
 <script setup>

@@ -17,7 +17,7 @@ defineOptions({
 type Variant = 'text' | 'rect' | 'circle' | 'image'
 
 // 定义 props
-interface Props {
+export interface Props {
   variant?: Variant // 骨架屏类型
   width?: string // 宽度
   height?: string // 高度

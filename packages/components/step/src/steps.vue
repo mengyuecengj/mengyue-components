@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { provide, computed, useSlots } from 'vue'
+import { provide, computed, useSlots, VNode } from 'vue'
 
 defineOptions({
   name: 'MYSteps'
@@ -27,8 +27,8 @@ const props = defineProps({
 // 计算子步骤数量
 const slots = useSlots()
 const stepCount = computed(() => {
-  const children = slots.default?.() || []
-  return children.filter(child => {
+  const children = slots.default?.({}) || []
+  return children.filter((child: VNode) => {
     if (typeof child.type === 'object' && child.type !== null) {
       return 'name' in child.type && child.type.name === 'MYStep'
     }

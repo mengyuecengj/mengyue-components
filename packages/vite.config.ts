@@ -1,13 +1,16 @@
+// vite.config.ts
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
-import libCss from 'vite-plugin-libcss';
+import sass from 'sass';
 import path from 'path';
 import svgLoader from 'vite-svg-loader';
 
 export default defineConfig({
   plugins: [
     vue(),
+
+    // 生成 .d.ts
     dts({
       outDir: 'dist',
       insertTypesEntry: true,
@@ -15,22 +18,20 @@ export default defineConfig({
       include: ['components/**/*'],
       rollupTypes: true,
     }),
-    libCss(),
-    svgLoader()
+
+    svgLoader(),
   ],
+
   build: {
     lib: {
-      // entry: './components/button/index.ts', true
       entry: path.resolve(__dirname, 'components/index.ts'),
-      name: 'MengyuePlusButton',
+      name:  'MengyuePlusButton',
       fileName: (format) => `mengyue-plus.${format}.js`,
     },
     rollupOptions: {
       external: ['vue'],
       output: {
-        globals: {
-          vue: 'Vue',
-        },
+        globals: { vue: 'Vue' },
         exports: 'named',
         assetFileNames: (assetInfo) => {
           if (assetInfo.name?.endsWith('.css')) {
@@ -40,11 +41,21 @@ export default defineConfig({
         },
       },
     },
+
+    // 用 esbuild 做 JS+CSS 的压缩
+    minify: 'esbuild',
+    cssMinify: 'esbuild',
   },
+
   css: {
-    preprocessorOption: {
+    preprocessorOptions: {
       scss: {
-        quietDeps: true
+        // 确保 Vite 处理 <style lang="scss"> 时用 Dart‑Sass 新 API
+        implementation: sass,
+        // 静默所有来自依赖的 deprecation 警告
+        sassOptions: {
+          quietDeps: true
+        }
       }
     }
   }

@@ -16,7 +16,6 @@
 </template>
 
 <script lang="ts" setup>
-import {  defineEmits } from 'vue'
 
 defineOptions({
   name: 'MYTransferPanel'

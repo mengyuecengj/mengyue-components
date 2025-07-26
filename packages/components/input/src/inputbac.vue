@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div 
         class="my-input-wrapper" 
         @mouseenter="hovering = true" 
@@ -46,7 +46,7 @@ import { useStyleComputed } from '../../../hooks/useStyleComputed'
 import type { ExtractPropTypes } from 'vue'
 import close from './close.vue'
 import viewsvgrepo from './viewsvgrepo.vue'
-import viewhide from './viewhide.vue'
+import viewhide from './viewHide.vue'
 import '../style/input.scss'
 
 defineOptions({ name: 'MYInput' })
@@ -174,4 +174,4 @@ const componentArrts = computed(() => {
 
     return attrs
 })
-</script>
+</script> -->

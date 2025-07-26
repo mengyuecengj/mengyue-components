@@ -162,22 +162,6 @@ const routes: RouteRecordRaw[] = [
     path: '/test/alert',
     component: () => import('../views/alert.vue')
   },
-  // {
-  //   path: '/test/loading',
-  //   component: () => import('../views/loading.vue')
-  // },
-  //   {
-  //   path: '/test/message',
-  //   component: () => import('../views/message.vue')
-  // },
-  //   {
-  //   path: '/test/messagebox',
-  //   component: () => import('../views/messagebox.vue')
-  // },
-  //   {
-  //   path: '/test/notification',
-  //   component: () => import('../views/notification.vue')
-  // },
 ]
 
 export const router = createRouter({

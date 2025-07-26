@@ -1,6 +1,6 @@
 {
   "name": "mengyue-plus",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "type": "module",
   "files": [
     "dist"
@@ -20,16 +20,13 @@
     "vue": "^3.0.0"
   },
   "scripts": {
-    "build": "vite build",
+    "build": "cross-env SASS_QUIET_DEPRECATION=1 vite build",
     "prepublishOnly": "npm run build"
-  },
-  "dependencies": {
-    "vite-plugin-css": "^1.0.4",
-    "vite-plugin-libcss": "^1.1.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",
     "sass": "^1.89.2",
+    "sass-loader": "^13.0.0",
     "typescript": "^5.6.3",
     "vite": "^5.4.19",
     "vite-plugin-dts": "^4.5.4",

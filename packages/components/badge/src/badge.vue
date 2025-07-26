@@ -18,7 +18,7 @@ defineOptions({
 })
 
 // 定义 Props 类型
-interface Props {
+export interface Props {
   content?: string | number; // 徽章内容（数字或文本）
   dot?: boolean; // 是否显示为小红点
   color?: string; // 徽章背景颜色

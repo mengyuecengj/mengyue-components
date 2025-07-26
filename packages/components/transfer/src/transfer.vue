@@ -65,7 +65,7 @@ const removeFromRight = () => {
   display: flex;
   align-items: center;
 
-  &__buttons {
+  :is(__buttons) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -85,12 +85,12 @@ const removeFromRight = () => {
   padding: 8px;
   background-color: #fff;
 
-  &__title {
+  :is(__title) {
     font-weight: bold;
     margin-bottom: 8px;
   }
 
-  &__list {
+  :is(__list) {
     max-height: 200px;
     overflow-y: auto;
     list-style: none;
@@ -98,7 +98,7 @@ const removeFromRight = () => {
     margin: 0;
   }
 
-  &__item {
+  :is(__item) {
     padding: 4px;
     display: flex;
     align-items: center;

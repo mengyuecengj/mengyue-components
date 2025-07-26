@@ -205,7 +205,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, PropType } from 'vue';
-import DateRangeIcon from './dateRange.vue';
+import DateRangeIcon from './CalendarIcon.vue';
 import '../style/selectDate.scss';
 
 defineOptions({

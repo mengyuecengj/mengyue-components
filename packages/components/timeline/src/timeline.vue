@@ -12,7 +12,7 @@ defineOptions({
 defineProps<{
   direction?: 'vertical' | 'horizontal';
   theme?: string;
-  style?: string | object; // Support style prop for inline styles
+  style?: import('vue').StyleValue; // Support style prop for inline styles
 }>();
 </script>
 

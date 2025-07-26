@@ -27,8 +27,7 @@
             <input :type="selection === 'single' ? 'radio' : 'checkbox'" v-model="selectedRows" :value="row" />
           </td>
           <td
-            v-for="column in leafColumns"
-            :key="column.prop"
+            v-for="column in leafColumns" :key="column.prop"
             :class="{ 'fixed-left': column.fixed === 'left', 'fixed-right': column.fixed === 'right' }"
             v-tooltip="column.prop ? row[column.prop] : ''"
           >
@@ -63,7 +62,7 @@ defineOptions({
 })
 
 // Define Props Interface
-interface Props {
+export interface Props {
   data: Array<Record<string, any>>;
   border?: boolean;
   stripe?: boolean;
@@ -81,7 +80,7 @@ const props = defineProps<Props>();
 const emit = defineEmits(['selection-change', 'sort-change', 'filter-change']);
 
 // Column Interface
-interface Column {
+export interface Column {
   prop?: string;
   label: string;
   width?: string;
@@ -98,7 +97,7 @@ interface Column {
 // Parse Columns from Slots
 const slots = useSlots();
 const columns = computed<Column[]>(() => {
-  const slotVNodes = slots.default?.() || [];
+  const slotVNodes: VNode[] = slots.default?.({ row: {}, column: {} as Column, index: 0 }) || [];
   return slotVNodes
     .filter((vnode: VNode) => (vnode.type as any)?.name === 'MYTableColumn')
     .map((vnode: VNode) => {
@@ -117,7 +116,7 @@ const columns = computed<Column[]>(() => {
 });
 
 // Get Leaf Columns
-const leafColumns = computed(() => {
+const leafColumns = computed<Column[]>(() => {
   const flattenColumns = (cols: Column[], result: Column[] = []): Column[] => {
     cols.forEach((col) => {
       if (col.children) {
@@ -169,7 +168,7 @@ const filters = ref<Record<string, any[]>>({});
 const currentFilterProp = ref<string | null>(null);
 const filterPosition = ref({ top: 30, left: 0 });
 const currentFilters = computed(() => {
-  const col = leafColumns.value.find((c) => c.prop === currentFilterProp.value);
+  const col = leafColumns.value.find((c: Column) => c.prop === currentFilterProp.value);
   return col?.filters || [];
 });
 const showFilter = (prop: string | undefined) => {

@@ -6,7 +6,7 @@
 
     <div class="my-carousel__indicators">
       <span
-        v-for="(item, index) in itemCount"
+        v-for="index in itemCount"
         :key="index"
         class="dot"
         :class="{ active: index === activeIndex }"

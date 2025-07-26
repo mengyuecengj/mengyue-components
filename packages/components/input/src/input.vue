@@ -30,7 +30,7 @@ import { useStyleComputed } from '../../../hooks/useStyleComputed'
 import type { ExtractPropTypes } from 'vue'
 import close from './close.vue'
 import viewsvgrepo from './viewsvgrepo.vue'
-import viewhide from './viewhide.vue'
+import viewhide from './viewHide.vue'
 import '../style/input.scss'
 import { inject, watch } from 'vue'
 

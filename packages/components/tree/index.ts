@@ -15,6 +15,6 @@ const MTreeNode: Plugin = {
     }
 }
 
-export const MYTree = withInstall(tree)
-export const MYTreeNode = withInstall(treeNode)
+export const MYTree: Plugin = withInstall(tree)
+export const MYTreeNode: Plugin = withInstall(treeNode)
 export { tree, MTree, treeNode, MTreeNode }

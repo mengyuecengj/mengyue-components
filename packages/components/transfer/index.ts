@@ -15,6 +15,6 @@ const MTransferPanel: Plugin = {
     }
 }
 
-export const MYTransfer = withInstall(transfer)
-export const MYTransferPanel = withInstall(transferPanel)
+export const MYTransfer: Plugin = withInstall(transfer)
+export const MYTransferPanel: Plugin = withInstall(transferPanel)
 export { transfer, transferPanel, MTransfer, MTransferPanel }

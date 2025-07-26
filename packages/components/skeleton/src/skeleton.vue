@@ -32,7 +32,7 @@ defineOptions({
 })
 
 // 定义 props
-interface Props {
+export interface Props {
   loading?: boolean // 是否显示骨架屏
   animated?: boolean // 是否启用动画
   count?: number // 默认骨架屏行数

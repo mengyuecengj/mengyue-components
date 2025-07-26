@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, defineEmits, computed, ref } from 'vue'
+import { computed, ref } from 'vue'
 
 interface TreeProps {
   children: string
