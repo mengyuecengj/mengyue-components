@@ -2,7 +2,7 @@
     <div class="select-e" :class="{
         'is-disabled': disabled,
         'is-focused': isFocused
-    }" tabindex="0" @focus="handleFocus" @blur="handleBlur" :style="selectStyle">
+    }" tabindex="0" :style="selectStyle" @focus="handleFocus" @blur="handleBlur">
         <div class="select-trigger" @click="toggleDropdown">
             <span class="selected-value">{{ selectedLabel || placeholder }}</span>
             <span class="arrow-icon" :class="{ 'is-open': dropdownVisible }">
@@ -12,7 +12,7 @@
             </span>
         </div>
         <Transition name="slide-fade">
-            <div v-show="dropdownVisible" class="select-dropdown" ref="dropdownRef">
+            <div v-show="dropdownVisible" ref="dropdownRef" class="select-dropdown">
                 <MYScrollbar v-if="showScrollbar" height="200px" thumbColor="#4C4D4F" thumbHoverColor="#2a2a2e"
                     trackColor="#2a2a2e">
                     <slot></slot>

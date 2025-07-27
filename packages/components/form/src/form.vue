@@ -47,7 +47,7 @@ const labelWidth = computed(() => {
 async function validateField(prop: string) {
   // 获取当前字段的规则，确保类型为数组对象
   const rules = (props.rules?.[prop] as FormRule[] | undefined) || []
-  const model = props.modelValue as unknown as Record<string, any>
+  const model = props.modelValue as unknown as Record<string, string>
   const value = model[prop]
   for (const rule of rules) {
     // 仅对对象规则进行校验，忽略字符串或其他类型
@@ -75,7 +75,7 @@ async function validate() {
 
 // Reset fields to initial state
 function resetFields() {
-  const model = props.modelValue as unknown as Record<string, any>
+  const model = props.modelValue as unknown as Record<string, string>
   const newModel = { ...model } // 浅拷贝即可，如果字段是基本类型
   Object.keys(newModel).forEach(key => {
     newModel[key] = ''

@@ -23,7 +23,7 @@
             <MYSelect-color v-model="color3" :rgba="opacity" />
             <div class="opacity-control">
                 <span>透明度: </span>
-                <input type="range" v-model="opacity" min="0" max="1" step="0.1">
+                <input v-model="opacity" type="range" min="0" max="1" step="0.1">
                 <span>{{ opacity }}</span>
             </div>
             <p>当前颜色值: {{ color3 }}</p>

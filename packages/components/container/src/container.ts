@@ -17,12 +17,12 @@ export const containerProps = {
   height: {
     type: [String, Number] as PropType<string | number>,
     default: '',
-    validator: (value: any) => typeof value === 'string' || (typeof value === 'number' && !isNaN(value)),
+    validator: (value: string | number) => typeof value === 'string' || (typeof value === 'number' && !isNaN(value)),
   },
   width: {
     type: [String, Number] as PropType<string | number>,
     default: '',
-    validator: (value: any) => typeof value === 'string' || (typeof value === 'number' && !isNaN(value)),
+    validator: (value: string | number) => typeof value === 'string' || (typeof value === 'number' && !isNaN(value)),
   },
   background: {
     type: String,
@@ -35,7 +35,7 @@ export const containerProps = {
   position: {
     type: String as PropType<'left' | 'right'>,
     default: 'left',
-    validator: (value: any) => ['left', 'right'].includes(value),
+    validator: (value: 'left' | 'right') => ['left', 'right'].includes(value),
   },
 } as const;
 

@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, inject, useAttrs, onMounted, onBeforeUnmount, watch } from 'vue'
+import { ref, computed, inject, useAttrs, onMounted, onBeforeUnmount, watch, Ref } from 'vue'
 import { radioProps } from './radio'
 import '../style/radio.scss'
 
@@ -26,9 +26,9 @@ const emit = defineEmits(['update:modelValue', 'change'])
 const attrs = useAttrs()
 
 // 从 radio-group 注入的上下文
-const radioGroup: any = inject('radioGroup', null)
+const radioGroup = inject<{ name?: string; disabled?: boolean; modelValue: Ref<string | number | boolean>; change: (value: string | number | boolean) => void } | null>('radioGroup', null)
 // 正确注入 MYFormItem 提供的上下文
-const formItemContext = inject<any>('myFormItemContext', null)
+const formItemContext = inject<{ prop?: string; clearValidate?: () => void; addField?: (field: { prop: string; resetField: () => void; validate: () => Promise<void>; clearValidate: () => void }) => void; removeField?: (prop: string) => void } | null>('myFormItemContext', null)
 const initialValue = ref(props.modelValue)
 const effectiveName = computed(() => props.name || radioGroup?.name)
 
@@ -51,9 +51,9 @@ const handleChange = (e: Event) => {
     const target = e.target as HTMLInputElement
 
     if (radioGroup) {
-        radioGroup.change(props.value)
+        radioGroup.change(props.value as string | number | boolean)
     } else {
-        emit('update:modelValue', props.value)
+        emit('update:modelValue', props.value as string | number | boolean)
     }
 
     emit('change', target.checked)
@@ -83,13 +83,13 @@ const radioStyle = computed(() => {
 
 const resetField = () => {
   if (radioGroup) {
-    radioGroup.change(initialValue.value)
+    radioGroup.change(initialValue.value as string | number | boolean)
   } else {
     emit('update:modelValue', initialValue.value)
   }
   formItemContext?.clearValidate?.()
 }
-const fieldProp = formItemContext?.prop || props.name
+const fieldProp = (formItemContext?.prop || props.name || '') as string
 onMounted(() => {
     formItemContext?.addField?.({
         prop: fieldProp, // 表单字段名，用于收集
@@ -100,7 +100,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  const prop = formItemContext?.prop || effectiveName.value
+  const prop = (formItemContext?.prop || effectiveName.value || '') as string
   if (!prop) return
   formItemContext?.removeField?.(prop)
 })

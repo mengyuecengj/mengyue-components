@@ -1,117 +1,94 @@
-<template>
-  <div class="tree-node">
-    <div class="node-label" @click="onNodeClick">
-      <!-- 折叠图标 -->
-      <span
-        v-if="hasChildren"
-        class="toggle-icon"
-        @click.stop="toggle"
-        :title="isExpanded ? '折叠' : '展开'"
-      >
-        {{ isExpanded ? '−' : '+' }}
-      </span>
-      <span class="node-text">
-        {{ node[treeProps.label] }}
-      </span>
-    </div>
-
-    <!-- 子节点 -->
-    <div v-if="hasChildren && isExpanded" class="node-children">
-      <TreeNode
-        v-for="child in node[treeProps.children]"
-        :key="child[treeProps.label] || child.id || Math.random()"
-        :node="child"
-        :treeProps="treeProps"
-        @node-click="$emit('node-click', $event)"
-      />
-    </div>
-  </div>
-</template>
-
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { defineProps, ref, computed } from 'vue'
+import TreeNode from './treeNode.vue'
 
-interface TreeProps {
-  children: string
-  label: string
-}
-
+// 定义 TreeNode 接口
 interface TreeNode {
-  [key: string]: any
-  label: string
-  children?: TreeNode[]
+  [key: string]: unknown
   id?: string | number
 }
 
 const props = defineProps<{
   node: TreeNode
-  treeProps: TreeProps
+  treeProps: {
+    label: string
+    children: string
+  }
 }>()
 
-const emits = defineEmits<{
-  (e: 'node-click', node: TreeNode): void
-}>()
-
-const isExpanded = ref(true)
-
+const expanded = ref(false)
 const toggle = () => {
-  isExpanded.value = !isExpanded.value
+  if (!isLeaf.value) expanded.value = !expanded.value
 }
-
-const hasChildren = computed(() => {
-  return (
-    props.node &&
-    props.node[props.treeProps.children] &&
-    Array.isArray(props.node[props.treeProps.children]) &&
-    props.node[props.treeProps.children].length > 0
-  )
+const isLeaf = computed(() => {
+  const children = props.node[props.treeProps.children]
+  return !children || (Array.isArray(children) && children.length === 0)
 })
-
-const onNodeClick = () => {
-  emits('node-click', props.node)
-}
 </script>
 
+<template>
+  <div class="my-tree-node">
+    <div
+      class="my-tree-node__content"
+      :class="{ expanded, leaf: isLeaf }"
+      @click="toggle"
+    >
+      <span v-if="!isLeaf" class="arrow">{{ expanded ? '▼' : '▶' }}</span>
+      <span class="label">{{ node[treeProps.label] }}</span>
+    </div>
+    <div v-if="expanded && !isLeaf" class="my-tree-node__children">
+      <TreeNode
+        v-for="child in (node[treeProps.children] as TreeNode[])"
+        :key="(child[treeProps.label] as string | number) || child.id || Math.random().toString()"
+        :node="child"
+        :treeProps="treeProps"
+      />
+    </div>
+  </div>
+</template>
+
 <style scoped>
-.tree-node {
-  margin-left: 18px;
-  font-size: 14px;
-  color: #ddd;
+.my-tree-node {
+  margin-left: 14px;
 }
 
-.node-label {
+.my-tree-node__content {
   display: flex;
   align-items: center;
-  padding: 6px 8px;
+  padding: 4px 8px;
+  cursor: pointer;
   border-radius: 4px;
-  background-color: #2f2f2f;
-  transition: background-color 0.2s;
-  cursor: pointer;
+  transition: background 0.2s;
 }
 
-.node-label:hover {
-  background-color: #3d3d3d;
+.my-tree-node__content:hover {
+  background-color: #2c2c2c;
 }
 
-.toggle-icon {
-  display: inline-block;
-  width: 18px;
-  font-weight: bold;
-  color: #aaa;
-  text-align: center;
-  cursor: pointer;
+.my-tree-node__content.expanded {
+  background-color: #3a3a3a;
+}
+
+.my-tree-node__content.leaf:hover {
+  background-color: #333;
+}
+
+.arrow {
   margin-right: 6px;
-  user-select: none;
+  color: #bbb;
+  font-size: 12px;
+  width: 16px;
+  display: inline-block;
+  text-align: center;
 }
 
-.node-text {
-  flex: 1;
-  color: #f0f0f0;
+.label {
+  color: #eaeaea;
 }
 
-.node-children {
-  margin-top: 4px;
-  border-left: 1px dashed #444;
-  padding-left: 10px;
+.my-tree-node__children {
+  margin-left: 12px;
+  border-left: 1px dashed #555;
+  padding-left: 8px;
 }
 </style>

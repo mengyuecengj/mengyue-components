@@ -21,7 +21,7 @@ const modelValue = toRefs(props).modelValue
 provide('radioGroup', {
     modelValue,  // 直接传递 ref
     disabled: props.disabled,
-    change: (value: any) => {
+    change: (value: string | number | boolean) => {
         emit('update:modelValue', value)
     }
 })

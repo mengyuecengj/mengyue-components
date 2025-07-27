@@ -1,5 +1,5 @@
 <template>
-  <MYButton type="info" @click="navigateTo('/')" style="margin-top: 20px">返回/首页</MYButton>
+  <MYButton type="info" style="margin-top: 20px" @click="navigateTo('/')">返回/首页</MYButton>
 
   <div>
     <!-- 基础用法：默认多行文本骨架屏 -->

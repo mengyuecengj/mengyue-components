@@ -1,13 +1,13 @@
 <template>
-  <div class="my-dropdown" ref="triggerRef" @click="handleTriggerClick" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
+  <div ref="triggerRef" class="my-dropdown" @click="handleTriggerClick" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
     <slot />
     <teleport to="body">
       <transition name="fade">
         <div
           v-if="visible"
+          ref="menuRef"
           class="my-dropdown-menu-wrapper"
           :style="menuStyles"
-          ref="menuRef"
           @mouseenter="handleMenuMouseEnter"
           @mouseleave="handleMenuMouseLeave"
         >

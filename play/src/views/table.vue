@@ -1,4 +1,3 @@
-<!-- TestTable.vue -->
 <template>
   <MYButton type="success" @click="navigateTo('/')">返回/首页</MYButton>
 
@@ -44,11 +43,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
-const navigateTo = (path: any) => {
+const navigateTo = (path: string) => {
     router.push(path)
 }
 // Sample Data
@@ -66,15 +65,15 @@ const dateFilters = [
 ];
 
 // Row Class Name
-const rowClassName = ({ row }: { row: any }) => {
+const rowClassName = ({ row }: { row: { status: string } }) => {
   return row.status === 'success' ? 'success-row' : 'error-row';
 };
 
 // Selected Rows and Event Logs
-const selectedRows = ref<any[]>([]);
+const selectedRows = ref<{ date: string; name: string; address: string; status: string }[]>([]);
 const eventLogs = ref<string[]>([]);
 
-const handleSelectionChange = (rows: any[]) => {
+const handleSelectionChange = (rows: { date: string; name: string; address: string; status: string }[]) => {
   selectedRows.value = rows;
   eventLogs.value.push(`Selection changed at ${new Date().toLocaleTimeString()}: ${rows.length} rows selected`);
 };
@@ -83,12 +82,11 @@ const handleSortChange = ({ prop, order }: { prop: string; order: 'asc' | 'desc'
   eventLogs.value.push(`Sort changed at ${new Date().toLocaleTimeString()}: ${prop} ${order}`);
 };
 
-const handleFilterChange = (filters: Record<string, any[]>) => {
+const handleFilterChange = (filters: Record<string, { text: string; value: string }[]>) => {
   eventLogs.value.push(`Filter changed at ${new Date().toLocaleTimeString()}: ${JSON.stringify(filters)}`);
 };
 
 // Computed to limit event logs (optional)
-const limitedEventLogs = computed(() => eventLogs.value.slice(-5));
 </script>
 
 <style scoped>

@@ -1,15 +1,15 @@
 <template>
   <div
+    v-show="visible"
     class="my-carousel-item"
     :style="{ width: '100%', flexShrink: 0 }"
-    v-show="visible"
   >
     <slot />
   </div>
 </template>
 
 <script setup lang="ts">
-import { inject, computed, onMounted } from 'vue'
+import { inject, computed, onMounted, Ref } from 'vue'
 
 defineOptions({
     name: 'MYCarousel-item'
@@ -20,7 +20,7 @@ const props = defineProps({
 })
 
 const context = inject<{
-  activeIndex: any
+  activeIndex: number
   registerItem: () => void
 }>('carouselContext')
 
@@ -29,6 +29,6 @@ onMounted(() => {
 })
 
 const visible = computed(() => {
-  return props.index === context?.activeIndex.value
+  return props.index === (context?.activeIndex as unknown as Ref<number>)?.value
 })
 </script>

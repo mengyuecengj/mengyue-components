@@ -1,13 +1,13 @@
 import { computed, type ComputedRef, type CSSProperties } from 'vue';
 
-interface StyleConfig<T extends Record<string, any>> {
+interface StyleConfig<T extends Record<string, unknown>> {
   propToStyleMap?: Partial<Record<keyof T, string>>;
   cssVariables?: Record<string, string | undefined>;
   fontSizeProp?: keyof T;
   customStyleLogic?: (props: T, style: Record<string, string>) => void;
 }
 
-export function useStyleComputed<T extends Record<string, any>>(
+export function useStyleComputed<T extends Record<string, unknown>>(
   props: T,
   config: StyleConfig<T>
 ): ComputedRef<CSSProperties> {

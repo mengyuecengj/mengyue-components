@@ -19,13 +19,13 @@
             <label>开始时间:</label>
             <div class="custom-time-picker">
               <select v-model="selectedHourStart" class="time-select" @change="timeSelectedStart = true">
-                <option v-for="h in 24" :value="h-1" :key="'hour-start-'+h">
+                <option v-for="h in 24" :key="'hour-start-'+h" :value="h-1">
                   {{ String(h-1).padStart(2, '0') }}
                 </option>
               </select>
               <span class="time-separator">:</span>
               <select v-model="selectedMinuteStart" class="time-select" @change="timeSelectedStart = true">
-                <option v-for="m in 60" :value="m-1" :key="'min-start-'+m">
+                <option v-for="m in 60" :key="'min-start-'+m" :value="m-1">
                   {{ String(m-1).padStart(2, '0') }}
                 </option>
               </select>
@@ -35,13 +35,13 @@
             <label>结束时间:</label>
             <div class="custom-time-picker">
               <select v-model="selectedHourEnd" class="time-select" @change="timeSelectedEnd = true">
-                <option v-for="h in 24" :value="h-1" :key="'hour-end-'+h">
+                <option v-for="h in 24" :key="'hour-end-'+h" :value="h-1">
                   {{ String(h-1).padStart(2, '0') }}
                 </option>
               </select>
               <span class="time-separator">:</span>
               <select v-model="selectedMinuteEnd" class="time-select" @change="timeSelectedEnd = true">
-                <option v-for="m in 60" :value="m-1" :key="'min-end-'+m">
+                <option v-for="m in 60" :key="'min-end-'+m" :value="m-1">
                   {{ String(m-1).padStart(2, '0') }}
                 </option>
               </select>
@@ -52,19 +52,19 @@
           <label>选择时间:</label>
           <div class="custom-time-picker">
             <select v-model="selectedHour" class="time-select" @change="timeSelected = true">
-              <option v-for="h in 24" :value="h-1" :key="'hour-'+h">
+              <option v-for="h in 24" :key="'hour-'+h" :value="h-1">
                 {{ String(h-1).padStart(2, '0') }}
               </option>
             </select>
             <span class="time-separator">:</span>
             <select v-model="selectedMinute" class="time-select" @change="timeSelected = true">
-              <option v-for="m in 60" :value="m-1" :key="'min-'+m">
+              <option v-for="m in 60" :key="'min-'+m" :value="m-1">
                 {{ String(m-1).padStart(2, '0') }}
               </option>
             </select>
           </div>
         </div>
-        <div class="selected-time-display" v-if="selectedTime && (props.range ? timeSelectedStart && timeSelectedEnd : timeSelected)">
+        <div v-if="selectedTime && (props.range ? timeSelectedStart && timeSelectedEnd : timeSelected)" class="selected-time-display">
           已选择: {{ selectedTime }}
         </div>
       </div>
@@ -72,9 +72,9 @@
       <!-- Range Picker -->
       <div v-if="mode.startsWith('range')" class="range-container">
         <div class="picker-header">
-          <button @click="onPrev" class="nav-button">◄</button>
+          <button class="nav-button" @click="onPrev">◄</button>
           <span>{{ headerLabel }}</span>
-          <button @click="onNext" class="nav-button">►</button>
+          <button class="nav-button" @click="onNext">►</button>
         </div>
         <div class="range-grid" :class="{
           'grid-date': mode === 'range-date',
@@ -83,7 +83,7 @@
         }">
           <!-- 日期范围 -->
           <template v-if="mode === 'range-date'">
-            <div class="day-header" v-for="d in daysOfWeek" :key="d">{{ d }}</div>
+            <div v-for="d in daysOfWeek" :key="d" class="day-header">{{ d }}</div>
             <div v-for="cell in calendarCells" :key="cell.key" class="day-cell">
               <button 
                 v-if="cell.date" 
@@ -134,9 +134,9 @@
       <!-- Single Pickers -->
       <div v-else-if="mode === 'year'" class="year-picker">
         <div class="picker-header">
-          <button @click="changeYear(-1)" class="nav-button">◄</button>
+          <button class="nav-button" @click="changeYear(-1)">◄</button>
           <span>{{ currentYear }}年</span>
-          <button @click="changeYear(1)" class="nav-button">►</button>
+          <button class="nav-button" @click="changeYear(1)">►</button>
         </div>
         <div class="year-grid grid-year month-cell">
           <button 
@@ -155,9 +155,9 @@
 
       <div v-else-if="mode === 'month'" class="month-picker">
         <div class="picker-header">
-          <button @click="changeYear(-1)" class="nav-button">◄</button>
+          <button class="nav-button" @click="changeYear(-1)">◄</button>
           <span>{{ currentYear }}年</span>
-          <button @click="changeYear(1)" class="nav-button">►</button>
+          <button class="nav-button" @click="changeYear(1)">►</button>
         </div>
         <div class="month-grid grid-month month-cell">
           <button 
@@ -176,12 +176,12 @@
 
       <div v-else class="date-picker-default">
         <div class="picker-header">
-          <button @click="changeMonth(-1)" class="nav-button">◄</button>
+          <button class="nav-button" @click="changeMonth(-1)">◄</button>
           <span>{{ currentYear }}年 {{ currentMonth + 1 }}月</span>
-          <button @click="changeMonth(1)" class="nav-button">►</button>
+          <button class="nav-button" @click="changeMonth(1)">►</button>
         </div>
         <div class="date-grid grid-date">
-          <div class="day-header" v-for="d in daysOfWeek" :key="d">{{ d }}</div>
+          <div v-for="d in daysOfWeek" :key="d" class="day-header">{{ d }}</div>
           <div v-for="cell in calendarCells" :key="cell.key" class="day-cell">
             <button 
               v-if="cell.date" 
@@ -190,8 +190,8 @@
                 disabled: !cell.isCurrentMonth,
                 today: isToday(cell.date)
               }" 
-              @click="selectDate(cell.date)" 
-              :disabled="!cell.isCurrentMonth"
+              :disabled="!cell.isCurrentMonth" 
+              @click="selectDate(cell.date)"
             >
               {{ cell.date.getDate() }}
               <span v-if="isToday(cell.date)" class="today-badge">今</span>
@@ -409,7 +409,7 @@ function initFromModelValue() {
     if (props.range && Array.isArray(props.modelValue)) {
       const [start, end] = props.modelValue;
       if (start && start.includes(' ')) {
-        const [_, startTime] = start.split(' ');
+        const [startTime] = start.split(' ');
         const [hours, minutes] = startTime.split(':');
         selectedHourStart.value = parseInt(hours);
         selectedMinuteStart.value = parseInt(minutes);
@@ -420,7 +420,7 @@ function initFromModelValue() {
         timeSelectedStart.value = false;
       }
       if (end && end.includes(' ')) {
-        const [_, endTime] = end.split(' ');
+        const [endTime] = end.split(' ');
         const [hours, minutes] = endTime.split(':');
         selectedHourEnd.value = parseInt(hours);
         selectedMinuteEnd.value = parseInt(minutes);
@@ -431,7 +431,7 @@ function initFromModelValue() {
         timeSelectedEnd.value = false;
       }
     } else if (typeof props.modelValue === 'string' && props.modelValue.includes(' ')) {
-      const [_, time] = props.modelValue.split(' ');
+      const [time] = props.modelValue.split(' ');
       const [hours, minutes] = time.split(':');
       selectedHour.value = parseInt(hours);
       selectedMinute.value = parseInt(minutes);

@@ -1,10 +1,10 @@
 <template>
     <div class="select-option" 
-        @click="handleClick" 
         :class="{
             'is-selected': isSelected,
             'is-disabled': disabled
-        }"
+        }" 
+        @click="handleClick"
     >
         <slot>{{ label }}</slot>
     </div>

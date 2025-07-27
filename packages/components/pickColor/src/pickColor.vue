@@ -1,7 +1,7 @@
 <template>
     <div class="color-picker">
-        <input type="color" :value="hexValue" @input="handleColorChange" class="color-input" :style="inputStyle"
-            :class="{ 'no-border': noBorder, 'circle': circle }">
+        <input type="color" :value="hexValue" class="color-input" :style="inputStyle" :class="{ 'no-border': noBorder, 'circle': circle }"
+            @input="handleColorChange">
     </div>
 </template>
 

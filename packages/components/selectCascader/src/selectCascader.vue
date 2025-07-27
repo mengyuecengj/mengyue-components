@@ -1,7 +1,7 @@
 <template>
     <div class="select-e" :class="{ 'is-focused': isFocused, 'is-disabled': disabled }" tabindex="0"
-        @focus="handleFocus" @blur="handleBlur" :style="selectStyle">
-        <div class="select-trigger" @click="toggleDropdown" :class="{ 'is-disabled': disabled }">
+        :style="selectStyle" @focus="handleFocus" @blur="handleBlur">
+        <div class="select-trigger" :class="{ 'is-disabled': disabled }" @click="toggleDropdown">
             <span class="selected-value">{{ selectedLabel || placeholder }}</span>
             <span class="arrow-icon" :class="{ 'is-open': dropdownVisible }">
                 <svg viewBox="0 0 24 24" width="16" height="16">
@@ -9,13 +9,13 @@
                 </svg>
             </span>
         </div>
-        <div class="dropdown-container" ref="dropdownContainer" @mouseleave="handleContainerMouseleave">
+        <div ref="dropdownContainer" class="dropdown-container" @mouseleave="handleContainerMouseleave">
             <Transition name="slide-fade">
-                <div v-show="dropdownVisible" class="select-dropdown" :style="dropdownPosition" ref="selectDropdown">
+                <div v-show="dropdownVisible" ref="selectDropdown" class="select-dropdown" :style="dropdownPosition">
                     <MYScrollbar height="200px" thumbColor="#4C4D4F" thumbHoverColor="#2a2a2e"
                         trackColor="#2a2a2e">
-                        <div class="select-option" v-for="item in options" :key="item.value"
-                            @mouseenter="() => handleMouseenter(item)" :class="{ 'is-disabled': (item as any).disabled || disabled }">
+                        <div v-for="item in options" :key="item.value" class="select-option"
+                            :class="{ 'is-disabled': item.disabled || disabled }" @mouseenter="() => handleMouseenter(item)">
                             <div class="label" @click="() => handleClick(item)">
                                 {{ item.label }}
                                 <span v-if="item.children" class="arrow-icon">▶</span>
@@ -28,8 +28,8 @@
             <Transition name="slide-fade">
                 <div v-if="activeSubMenu" class="sub-menu" :style="subMenuPosition"
                     @mouseenter="handleSubMenuMouseenter">
-                    <div class="select-option" v-for="child in activeSubMenuItems" :key="child.value"
-                        @click.stop="handleClick(child)" @mouseenter="() => handleSecondLevelEnter(child)" :class="{ 'is-disabled': (child as any).disabled || disabled }">
+                    <div v-for="child in activeSubMenuItems" :key="child.value" class="select-option"
+                        :class="{ 'is-disabled': child.disabled || disabled }" @click.stop="handleClick(child)" @mouseenter="() => handleSecondLevelEnter(child)">
                         <div class="label">
                             {{ child.label }}
                             <span v-if="child.children" class="arrow-icon">▶</span>
@@ -40,8 +40,8 @@
             <!-- 三级菜单 -->
             <Transition name="slide-fade">
                 <div v-if="activeThirdMenu" class="third-menu" :style="thirdMenuPosition">
-                    <div class="select-option" v-for="third in activeThirdMenuItems" :key="third.value"
-                        @click.stop="handleClick(third)" :class="{ 'is-disabled': (third as any).disabled || disabled }">
+                    <div v-for="third in activeThirdMenuItems" :key="third.value" class="select-option"
+                        :class="{ 'is-disabled': (third as any).disabled || disabled }" @click.stop="handleClick(third)">
                         <div class="label">{{ third.label }}</div>
                     </div>
                 </div>
@@ -86,11 +86,7 @@ const props = defineProps({
         default: '40px'
     },
     options: {  // 添加 options 属性
-        type: Array as PropType<Array<{
-            value: string | number
-            label: string
-            children?: any[]
-        }>>,
+        type: Array as PropType<Option[]>,
         required: true
     }
 })

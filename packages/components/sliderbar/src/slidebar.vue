@@ -1,6 +1,6 @@
 <template>
   <div class="slider-container" :style="containerStyle" :class="{ disabled: disabled }">
-    <div class="slider-track" ref="track" @mousedown="startDrag">
+    <div ref="track" class="slider-track" @mousedown="startDrag">
       <div class="slider-progress" :style="{ width: progressWidth + '%' }"></div>
       <div 
         class="slider-thumb" 

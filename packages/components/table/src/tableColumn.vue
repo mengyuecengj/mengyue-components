@@ -16,7 +16,7 @@ defineProps<{
   fixed?: 'left' | 'right';
   sortable?: boolean;
   filterable?: boolean;
-  filters?: Array<{ text: string; value: any }>;
+  filters?: Array<{ text: string; value: string | number }>;
   scopedSlot?: string;
 }>();
 </script>

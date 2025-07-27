@@ -1,15 +1,15 @@
 import { computed, type ComputedRef } from 'vue'
 
 // configure interface
-interface ClassConfig<T extends Record<string, any>> {
+interface ClassConfig<T extends Record<string, unknown>> {
     baseClass: string;
     propClasses?: Partial<Record<keyof T, string | undefined>>;
     flagClasses?: Partial<Record<string, boolean | undefined>>;
-    classNameFormatter?: (base: string, key: string, value: any) => string
+    classNameFormatter?: (base: string, key: string, value: unknown) => string
 }
 
 // T hook, accpet props type
-export function useClassComputed<T extends Record<string, any>> (
+export function useClassComputed<T extends Record<string, unknown>> (
     config: ClassConfig<T>
 ): ComputedRef<string[]> {
     return computed(() => {

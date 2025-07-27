@@ -3,7 +3,7 @@
     <!-- 当 loading 为 true 时显示骨架屏 -->
     <div v-if="loading" class="my-skeleton__wrapper">
       <!-- 默认骨架屏结构 -->
-      <slot name="template" v-if="$slots.template">
+      <slot v-if="$slots.template" name="template">
         <slot name="template"></slot>
       </slot>
       <div v-else class="my-skeleton__default">

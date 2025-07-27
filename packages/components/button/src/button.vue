@@ -3,13 +3,13 @@
     :is="props.tag"
     :class="btnClass"
     :style="customStyle"
+    :disabled="props.disabled || undefined"
+    :type="props.nativeType || 'button'"
     @click="handleClick"
     @mouseover="onMouseOver"
     @mouseleave="onMouseOut"
     @mousedown="onMouseDown"
     @mouseup="onMouseUp"
-    :disabled="props.disabled || undefined"
-    :type="props.nativeType || 'button'"
   >
     <slot />
   </component>

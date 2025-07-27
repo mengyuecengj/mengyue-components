@@ -20,13 +20,13 @@ const props = defineProps({
   disabled: Boolean,
 })
 
-const menuContext = inject<any>('menuContext')
+const menuContext = inject<{ activeIndex?: { value: string }; handleSelect: (index: string, indexPath: string[]) => void }>('menuContext')
 
 const isActive = computed(() => menuContext?.activeIndex?.value === props.index)
 
 function handleClick() {
   if (props.disabled) return
-  menuContext?.handleSelect(props.index, [props.index])
+  menuContext?.handleSelect(props.index as string, [props.index as string])
 }
 </script>
 

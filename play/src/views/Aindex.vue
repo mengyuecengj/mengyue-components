@@ -115,7 +115,6 @@
 </template>
 <script setup>
 import { useRouter } from 'vue-router'
-import { MYButton, MYText } from '../../../packages/components'
 
 const router = useRouter()
 

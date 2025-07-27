@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { useSlots, defineAsyncComponent } from 'vue';
+import { useSlots, defineAsyncComponent, type Component } from 'vue';
 
 defineOptions({
   name: "MYResult"
@@ -42,7 +42,7 @@ export interface Props {
 // });
 
 // 图标映射表，使用 defineAsyncComponent 按需加载
-const iconMap: Record<IconType, any> = {
+const iconMap: Record<IconType, Component> = {
   primary: defineAsyncComponent(() => import('./primary.vue')),
   success: defineAsyncComponent(() => import('./success.vue')),
   warning: defineAsyncComponent(() => import('./warning.vue')),

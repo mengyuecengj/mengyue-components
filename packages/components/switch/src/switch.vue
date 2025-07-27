@@ -1,6 +1,6 @@
 <template>
     <label class="my-switch" :class="classSwitch" :style="styleSwitch">
-        <input type="checkbox" hidden :checked="ischecked" @input="handleChange" :disabled="isDisabled">
+        <input type="checkbox" hidden :checked="ischecked" :disabled="isDisabled" @input="handleChange">
         <span class="slider">
             <span v-if="props.text" class="slider-text">{{ props.text }}</span>
         </span>
@@ -22,7 +22,14 @@ defineOptions({
 const props = defineProps(switchProps)
 const emit = defineEmits(['update:modelValue'])
 // 正确注入 MYFormItem 提供的上下文
-const formItemContext = inject<any>('myFormItemContext', null)
+interface FormItemContext {
+  prop?: string;
+  addField?: (field: { prop?: string; resetField: () => void; validate: () => Promise<void>; clearValidate: () => void }) => void;
+  removeField?: (prop: string) => void;
+  clearValidate?: () => void;
+}
+
+const formItemContext = inject<Partial<FormItemContext> | null>('myFormItemContext', null)
 const initialValue = ref(props.modelValue)
 
 const ischecked = computed(() => Boolean(props.modelValue))

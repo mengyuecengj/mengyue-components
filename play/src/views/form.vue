@@ -8,7 +8,7 @@
         <MYInput v-model="formData.username" placeholder="请输入用户名" />
       </MYForm-item>
 
-      <MYButton @click="handleReset" type="info">重置</MYButton>
+      <MYButton type="info" @click="handleReset">重置</MYButton>
       <MYButton type="button" @click="handleSubmit">提交</MYButton>
 
       <!-- Switch -->

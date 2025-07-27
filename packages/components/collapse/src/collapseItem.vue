@@ -1,10 +1,10 @@
 <!-- MYCollapseItem.vue -->
 <template>
   <div class="my-collapse-item">
-    <div class="my-collapse-item__header" @click="toggle" :aria-expanded="isActive">
+    <div class="my-collapse-item__header" :aria-expanded="isActive" @click="toggle">
       {{ title }}
     </div>
-    <div class="my-collapse-item__content" v-show="isActive">
+    <div v-show="isActive" class="my-collapse-item__content">
       <slot></slot>
     </div>
   </div>

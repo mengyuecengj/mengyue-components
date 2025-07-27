@@ -7,14 +7,14 @@ export interface FormRule {
   /** 校验失败的提示信息 */
   message?: string
   /** 自定义校验函数，返回 true/false 或 Promise */
-  validator?: (rule: FormRule, value: any) => boolean | Promise<boolean>
+  validator?: (rule: FormRule, value: string) => boolean | Promise<boolean>
 }
 
 // el-formProps 等同于 MyForm 的 Props 定义
 export const formProps = {
   /** 表单绑定数据 */
   modelValue: {
-    type: Object as PropType<Record<string, any>>,
+    type: Object as PropType<Record<string, string>>,
     default: () => ({}),
   },
   /** 校验规则 */

@@ -1,18 +1,18 @@
 <template>
   <div class="my-transfer">
     <TransferPanel
+      v-model:selected="leftSelected"
       title="源数据"
       :data="leftData"
-      v-model:selected="leftSelected"
     />
     <div class="my-transfer__buttons">
-      <button @click="addToRight" :disabled="!leftSelected.length">→</button>
-      <button @click="removeFromRight" :disabled="!rightSelected.length">←</button>
+      <button :disabled="!leftSelected.length" @click="addToRight">→</button>
+      <button :disabled="!rightSelected.length" @click="removeFromRight">←</button>
     </div>
     <TransferPanel
+      v-model:selected="rightSelected"
       title="已选中"
       :data="rightData"
-      v-model:selected="rightSelected"
     />
   </div>
 </template>

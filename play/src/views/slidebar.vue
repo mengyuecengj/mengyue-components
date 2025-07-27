@@ -1,5 +1,5 @@
 <template>
-    <MYButton type="info" @click="navigateTo('/')" style="margin-top: 20px">返回/首页</MYButton>
+    <MYButton type="info" style="margin-top: 20px" @click="navigateTo('/')">返回/首页</MYButton>
 
     <div>
         <MYSlidebar ref="slider" :size="size" :thumbColor="thumbColor" :trackColor="trackColor" :disabled="disabled"
@@ -13,7 +13,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const navigateTo = (path: any) => {
+const navigateTo = (path: string) => {
   router.push(path)
 }
 const size = ref('400px')

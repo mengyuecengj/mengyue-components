@@ -52,6 +52,7 @@ export default defineConfig({
       scss: {
         // 确保 Vite 处理 <style lang="scss"> 时用 Dart‑Sass 新 API
         implementation: sass,
+        silenceDeprecations: ['legacy-js-api'],
         // 静默所有来自依赖的 deprecation 警告
         sassOptions: {
           quietDeps: true

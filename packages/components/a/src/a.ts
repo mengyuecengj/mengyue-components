@@ -2,8 +2,8 @@ import {  PropType } from "vue";
 
 export const aProps = {
     type: {
-        type: String as PropType<'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'>,
-        default: '' as const
+        type: <PropType<'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'>>String,
+        default: ''
     },
     size: {
         type: [String, Number],

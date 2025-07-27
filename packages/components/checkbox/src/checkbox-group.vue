@@ -18,16 +18,16 @@ defineOptions({
 const emit = defineEmits(['update:modelValue'])
 const props = defineProps(checkboxGroupProps)
 
-const modelValue = toRefs(props).modelValue
+const { modelValue } = toRefs(props)
 
 const groupStyle = computed(() => ({
     '--checkbox-group-gap': props.gap
 }))
 
 provide('checkboxGroup', {
-    modelValue,
+    modelValue, // 保持为 Ref 对象
     disabled: props.disabled,
-    change: (value: any) => {
+    change: (value: string[]) => {
         emit('update:modelValue', value)
     }
 })

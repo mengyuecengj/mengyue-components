@@ -88,7 +88,7 @@
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
-const navigateTo = (path: any) => {
+const navigateTo = (path: string) => {
   router.push(path)
 }
 </script>

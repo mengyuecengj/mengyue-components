@@ -26,15 +26,15 @@ export const layoutProps = {
   gutter: {
     type: [Number, String] as PropType<number | string>,
     default: 0,
-    validator: (value: any) => {
-      const num = parseFloat(value);
+    validator: (value: number | string) => {
+      const num = parseFloat(value.toString());
       return (typeof value === 'string' || typeof value === 'number') && !isNaN(num) && num >= 0 && num <= 24;
     },
   },
   justify: {
     type: String as PropType<'start' | 'end' | 'center' | 'space-around' | 'space-between'>,
     default: undefined,
-    validator: (value: any) => !value || ['start', 'end', 'center', 'space-around', 'space-between'].includes(value),
+    validator: (value: 'start' | 'end' | 'center' | 'space-around' | 'space-between') => !value || ['start', 'end', 'center', 'space-around', 'space-between'].includes(value),
   },
   align: {
     type: Boolean,
@@ -47,7 +47,7 @@ export const layoutProps = {
   direction: {
     type: String as PropType<'row' | 'column' | 'row-reverse' | 'column-reverse'>,
     default: 'row',
-    validator: (value: any) => ['row', 'column', 'row-reverse', 'column-reverse'].includes(value),
+    validator: (value: 'row' | 'column' | 'row-reverse' | 'column-reverse') => ['row', 'column', 'row-reverse', 'column-reverse'].includes(value),
   },
 } as const;
 
@@ -59,37 +59,37 @@ export const colProps = {
   span: {
     type: Number,
     default: 24,
-    validator: (value: any) => Number.isInteger(value) && value >= 1 && value <= 24,
+    validator: (value: number) => Number.isInteger(value) && value >= 1 && value <= 24,
   },
   offsetLeft: {
     type: [Number, String] as PropType<number | string>,
     default: 0,
-    validator: (value: any) => {
-      const num = parseFloat(value);
+    validator: (value: number | string) => {
+      const num = parseFloat(value.toString());
       return (typeof value === 'string' || typeof value === 'number') && !isNaN(num) && num >= 0 && num <= 24;
     },
   },
   offsetRight: {
     type: [Number, String] as PropType<number | string>,
     default: 0,
-    validator: (value: any) => {
-      const num = parseFloat(value);
+    validator: (value: number | string) => {
+      const num = parseFloat(value.toString());
       return (typeof value === 'string' || typeof value === 'number') && !isNaN(num) && num >= 0 && num <= 24;
     },
   },
   pull: {
     type: [Number, String] as PropType<number | string>,
     default: 0,
-    validator: (value: any) => {
-      const num = parseFloat(value);
+    validator: (value: number | string) => {
+      const num = parseFloat(value.toString());
       return (typeof value === 'string' || typeof value === 'number') && !isNaN(num) && num >= 0 && num <= 24;
     },
   },
   push: {
     type: [Number, String] as PropType<number | string>,
     default: 0,
-    validator: (value: any) => {
-      const num = parseFloat(value);
+    validator: (value: number | string) => {
+      const num = parseFloat(value.toString());
       return (typeof value === 'string' || typeof value === 'number') && !isNaN(num) && num >= 0 && num <= 24;
     },
   },

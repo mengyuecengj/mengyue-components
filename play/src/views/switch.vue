@@ -81,7 +81,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
-const navigateTo = (path: any) => {
+const navigateTo = (path: string) => {
     router.push(path)
 }
 // 基础用法

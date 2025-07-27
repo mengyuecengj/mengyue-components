@@ -2,8 +2,8 @@
   <span class="my-breadcrumb-item">
     <!-- 渲染内容 -->
     <component
-      v-if="to"
       :is="hasRouter ? 'router-link' : 'a'"
+      v-if="to"
       :to="hasRouter ? to : undefined"
       :href="!hasRouter ? (typeof to === 'string' ? to : to.path) : undefined"
       :replace="replace"
@@ -16,8 +16,8 @@
     </span>
 
     <!-- 分隔符 -->
-    <span class="my-breadcrumb-separator" v-if="!isLast">
-      <component v-if="separatorIcon" :is="separatorIcon" />
+    <span v-if="!isLast" class="my-breadcrumb-separator">
+      <component :is="separatorIcon" v-if="separatorIcon" />
       <template v-else>{{ separator }}</template>
     </span>
   </span>
@@ -52,7 +52,7 @@ const hasRouter = !!instance?.appContext.config.globalProperties.$router
 const isLast = computed(() => {
   const parent = instance?.parent?.subTree
   if (!parent) return false
-  const children = Array.isArray(parent.children) ? parent.children.filter((v: any) => v?.type?.name === 'MYBreadcrumbItem') : []
+  const children = Array.isArray(parent.children) ? parent.children.filter((v: import('vue').VNodeChild) => typeof v === 'object' && v !== null && 'type' in v && (v.type as { name?: string })?.name === 'MYBreadcrumbItem') : []
   const lastChild = children?.[children.length - 1]
   return lastChild && typeof lastChild === 'object' && 'props' in lastChild ? lastChild.props?.to === props.to &&
     instance?.vnode === lastChild : false

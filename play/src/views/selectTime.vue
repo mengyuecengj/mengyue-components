@@ -1,5 +1,5 @@
 <template>
-  <MYButton type="info" @click="navigateTo('/')" style="margin-top: 20px">返回/首页</MYButton>
+  <MYButton type="info" style="margin-top: 20px" @click="navigateTo('/')">返回/首页</MYButton>
   <div>
     <h3>时间区间选择：</h3>
     <MYSelect-time v-model="timeRange" range />
@@ -17,7 +17,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const navigateTo = (path: any) => {
+const navigateTo = (path: string) => {
   router.push(path)
 }
 const timeRange = ref<string[]>([]);

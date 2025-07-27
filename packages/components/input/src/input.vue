@@ -1,16 +1,16 @@
 <template>
     <div class="my-input-wrapper" @mouseenter="hovering = true" @mouseleave="hovering = false">
-        <component ref="inputRef" :is="props.tag" v-bind="componentArrts" :class="inputClass" :style="inputStyle"
+        <component :is="props.tag" ref="inputRef" v-bind="componentArrts" :class="inputClass" :style="inputStyle"
             :value="props.modelValue" @input="handleInput" @blur="handleBlur">
             <template v-if="props.tag !== 'input' && props.tag !== 'textarea'">
                 <slot />
             </template>
         </component>
-        <span class="my-input__clear" v-if="props.clearable && showClear" @click="clearText">
+        <span v-if="props.clearable && showClear" class="my-input__clear" @click="clearText">
             <close />
         </span>
-        <span class="my-input__password"
-            v-if="props.showPassword && (props.tag === 'input' || props.tag === 'textarea')" @click="togglePassword">
+        <span v-if="props.showPassword && (props.tag === 'input' || props.tag === 'textarea')"
+            class="my-input__password" @click="togglePassword">
             <viewsvgrepo v-if="showView" />
             <viewhide v-else />
         </span>
@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import { ComponentPublicInstance, computed, ref } from 'vue'
-import type { ComputedRef, CSSProperties } from 'vue'
+import type { Component, ComputedRef, CSSProperties } from 'vue'
 import { inputProps } from './input'
 import { useClassComputed } from '../../../hooks/useClassComputed'
 import { useStyleComputed } from '../../../hooks/useStyleComputed'
@@ -34,7 +34,12 @@ import viewhide from './viewHide.vue'
 import '../style/input.scss'
 import { inject, watch } from 'vue'
 
-const formItemContext = inject<any>('myFormItemContext', null)
+interface FormItemContext {
+  validate?: (trigger?: string) => void;
+  clearValidate?: () => void;
+}
+
+const formItemContext = inject<FormItemContext | null>('myFormItemContext', null)
 
 defineOptions({ name: 'MYInput' })
 
@@ -92,7 +97,7 @@ const componentArrts = computed(() => {
         console.error('Invalid tag type:', props.tag)
         return {}
     }
-    const attrs: Record<string, any> = {
+    const attrs: Record<string, string | number | boolean | undefined | Component> = {
         placeholder: props.placeholder,
         ...(props.maxlength ? { maxlength: props.maxlength } : {}),
         ...(props.minlength ? { minlength: props.minlength } : {}),

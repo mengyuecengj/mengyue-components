@@ -1,11 +1,10 @@
-<!-- MYTable.vue -->
 <template>
   <div class="my-table" :class="{ bordered: !!border, stripe: !!stripe }" :style="{ height: fluidHeight ? '100%' : height ? height + 'px' : 'auto', overflow: 'auto' }">
     <table>
       <thead>
         <tr v-for="(row, rowIndex) in headerRows" :key="rowIndex">
           <th v-if="selection && rowIndex === 0" :rowspan="headerRows.length" :class="{ 'fixed-left': selectionFixed }">
-            <input v-if="selection === 'multiple'" type="checkbox" v-model="selectAll" />
+            <input v-if="selection === 'multiple'" v-model="selectAll" type="checkbox" />
           </th>
           <th
             v-for="col in row"
@@ -24,12 +23,12 @@
       <tbody>
         <tr v-for="(row, index) in sortedAndFilteredData" :key="index" :class="rowClassName?.({ row, index })">
           <td v-if="selection" :class="{ 'fixed-left': selectionFixed }">
-            <input :type="selection === 'single' ? 'radio' : 'checkbox'" v-model="selectedRows" :value="row" />
+            <input v-model="selectedRows" :type="selection === 'single' ? 'radio' : 'checkbox'" :value="row" />
           </td>
           <td
             v-for="column in leafColumns" :key="column.prop"
+            v-tooltip="column.prop ? (typeof row[column.prop] === 'string' ? row[column.prop] : String(row[column.prop])) : ''"
             :class="{ 'fixed-left': column.fixed === 'left', 'fixed-right': column.fixed === 'right' }"
-            v-tooltip="column.prop ? row[column.prop] : ''"
           >
             <slot
               v-if="column.scopedSlot"
@@ -45,7 +44,7 @@
     <div v-if="currentFilterProp" class="filter-dropdown" :style="{ top: filterPosition.top + 'px', left: filterPosition.left + 'px' }">
       <div v-for="filter in currentFilters" :key="filter.value">
         <label>
-          <input type="checkbox" v-model="filters[currentFilterProp]" :value="filter.value" />
+          <input v-model="filters[currentFilterProp]" type="checkbox" :value="filter.value" />
           {{ filter.text }}
         </label>
       </div>
@@ -63,14 +62,14 @@ defineOptions({
 
 // Define Props Interface
 export interface Props {
-  data: Array<Record<string, any>>;
+  data: Array<Record<string, unknown>>;
   border?: boolean;
   stripe?: boolean;
   height?: number;
   fluidHeight?: boolean;
   selection?: 'single' | 'multiple';
   selectionFixed?: boolean;
-  rowClassName?: (params: { row: any; index: number }) => string;
+  rowClassName?: (params: { row: Record<string, unknown>; index: number }) => string;
 }
 
 // Extract Props
@@ -87,7 +86,7 @@ export interface Column {
   fixed?: 'left' | 'right';
   sortable?: boolean;
   filterable?: boolean;
-  filters?: Array<{ text: string; value: any }>;
+  filters?: Array<{ text: string; value: string | number }>;
   scopedSlot?: string;
   children?: Column[];
   colspan?: number;
@@ -97,9 +96,9 @@ export interface Column {
 // Parse Columns from Slots
 const slots = useSlots();
 const columns = computed<Column[]>(() => {
-  const slotVNodes: VNode[] = slots.default?.({ row: {}, column: {} as Column, index: 0 }) || [];
+  const slotVNodes: VNode[] = slots.default?.({ row: {} as Record<string, unknown>, column: {} as Column, index: 0 }) || [];
   return slotVNodes
-    .filter((vnode: VNode) => (vnode.type as any)?.name === 'MYTableColumn')
+    .filter((vnode: VNode) => (vnode.type as { name: string })?.name === 'MYTableColumn')
     .map((vnode: VNode) => {
       const props = vnode.props as Column;
       let children: VNode[] = [];
@@ -109,7 +108,7 @@ const columns = computed<Column[]>(() => {
         children = vnode.children as VNode[];
       }
       const childColumns = children
-        .filter((child: VNode) => (child.type as any)?.name === 'MYTableColumn')
+        .filter((child: VNode) => (child.type as { name: string })?.name === 'MYTableColumn')
         .map((child: VNode) => child.props as Column);
       return { ...props, children: childColumns.length ? childColumns : undefined };
     });
@@ -164,7 +163,7 @@ const handleSort = (prop: string | undefined) => {
 };
 
 // Filtering
-const filters = ref<Record<string, any[]>>({});
+const filters = ref<Record<string, unknown[]>>({});
 const currentFilterProp = ref<string | null>(null);
 const filterPosition = ref({ top: 30, left: 0 });
 const currentFilters = computed(() => {
@@ -195,8 +194,8 @@ const sortedAndFilteredData = computed(() => {
   if (sortKey.value) {
     result.sort((a, b) => {
       if (!sortKey.value) return 0;
-      const valA = a[sortKey.value];
-      const valB = b[sortKey.value];
+      const valA = a[sortKey.value] as string | number;
+      const valB = b[sortKey.value] as string | number;
       return sortOrder.value === 'asc' ? (valA > valB ? 1 : -1) : (valA < valB ? 1 : -1);
     });
   }
@@ -205,7 +204,7 @@ const sortedAndFilteredData = computed(() => {
 });
 
 // Selection
-const selectedRows = ref<any[]>([]);
+const selectedRows = ref<unknown[]>([]);
 const selectAll = ref(false);
 watch(selectAll, (val) => {
   selectedRows.value = val ? [...props.data] : [];
@@ -216,9 +215,9 @@ watch(selectedRows, (val) => {
 
 // Tooltip Directive
 const vTooltip = {
-  mounted(el: HTMLElement, binding: any) {
+  mounted(el: HTMLElement, binding: { value: unknown }) {
     if (el.scrollWidth > el.offsetWidth) {
-      el.title = binding.value || el.textContent || '';
+      el.title = typeof binding.value === 'string' ? binding.value : (el.textContent || '');
     }
   },
 };

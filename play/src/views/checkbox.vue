@@ -1,5 +1,5 @@
 <template>
-  <MYButton type="success" @click="navigateTo('/')" style="margin-top: 20px">返回/首页</MYButton>
+  <MYButton type="success" style="margin-top: 20px" @click="navigateTo('/')">返回/首页</MYButton>
   <div class="checkbox-demo-container">
     <h2>Checkbox 组件测试</h2>
     <!-- 基础用法 -->
@@ -85,7 +85,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const navigateTo = (path: any) => {
+const navigateTo = (path: string) => {
   router.push(path)
 }
 // 基础用法

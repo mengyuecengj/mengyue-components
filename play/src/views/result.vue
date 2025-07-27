@@ -1,6 +1,6 @@
 <template>
   <div style="background: #1a1a1a; padding: 20px;">
-    <MYButton type="info" @click="navigateTo('/')" style="margin-top: 20px">返回/首页</MYButton>
+    <MYButton type="info" style="margin-top: 20px" @click="navigateTo('/')">返回/首页</MYButton>
     <MYResult icon="primary" title="Primary Tip" sub-title="Please follow the instructions">
       <template #extra>
         <MYButton type="primary">Back</MYButton>
@@ -37,7 +37,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const navigateTo = (path: any) => {
+const navigateTo = (path: string) => {
   router.push(path)
 }
 </script>

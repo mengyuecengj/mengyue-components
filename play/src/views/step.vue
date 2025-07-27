@@ -27,7 +27,7 @@
     </MYSteps>
 
     <div style="margin-top: 20px; text-align: center;">
-      <MYButton @click="prev" style="margin-right: 12px;">Previous Step</MYButton>
+      <MYButton style="margin-right: 12px;" @click="prev">Previous Step</MYButton>
       <MYButton @click="next">Next Step</MYButton>
     </div>
   </div>

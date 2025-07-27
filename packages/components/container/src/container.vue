@@ -33,7 +33,7 @@ const processedChildren = computed(() => {
   const others: ProcessedVNode[] = [];
 
   children.forEach((vnode: VNode) => {
-    const name = (vnode.type as any)?.name || '';
+    const name = (vnode.type as { name?: string })?.name || '';
     if (name.includes('Header')) headers.push(vnode);
     else if (name.includes('Footer')) footers.push(vnode);
     else if (name.includes('Aside')) {

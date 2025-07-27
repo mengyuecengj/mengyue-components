@@ -3,14 +3,14 @@
     <div v-if="range" class="time-range-picker">
       <div class="time-input-group">
         <div class="custom-time-picker">
-          <select v-model="selectedHourStart" @change="handleTimeChange" class="time-select">
+          <select v-model="selectedHourStart" class="time-select" @change="handleTimeChange">
             <option value="" disabled hidden>时</option>
             <option v-for="h in 24" :key="`hour-start-${h}`" :value="h - 1">
               {{ String(h - 1).padStart(2, '0') }}
             </option>
           </select>
           <span class="time-separator">:</span>
-          <select v-model="selectedMinuteStart" @change="handleTimeChange" class="time-select">
+          <select v-model="selectedMinuteStart" class="time-select" @change="handleTimeChange">
             <option value="" disabled hidden>分</option>
             <option v-for="m in 60" :key="`min-start-${m}`" :value="m - 1">
               {{ String(m - 1).padStart(2, '0') }}
@@ -23,14 +23,14 @@
 
       <div class="time-input-group">
         <div class="custom-time-picker">
-          <select v-model="selectedHourEnd" @change="handleTimeChange" class="time-select">
+          <select v-model="selectedHourEnd" class="time-select" @change="handleTimeChange">
             <option value="" disabled hidden>时</option>
             <option v-for="h in 24" :key="`hour-end-${h}`" :value="h - 1">
               {{ String(h - 1).padStart(2, '0') }}
             </option>
           </select>
           <span class="time-separator">:</span>
-          <select v-model="selectedMinuteEnd" @change="handleTimeChange" class="time-select">
+          <select v-model="selectedMinuteEnd" class="time-select" @change="handleTimeChange">
             <option value="" disabled hidden>分</option>
             <option v-for="m in 60" :key="`min-end-${m}`" :value="m - 1">
               {{ String(m - 1).padStart(2, '0') }}
@@ -42,14 +42,14 @@
 
     <div v-else class="time-input-group single">
       <div class="custom-time-picker single-picker">
-        <select v-model="selectedHour" @change="handleTimeChange" class="time-select">
+        <select v-model="selectedHour" class="time-select" @change="handleTimeChange">
           <option value="" disabled hidden>时</option>
           <option v-for="h in 24" :key="`hour-${h}`" :value="h - 1">
             {{ String(h - 1).padStart(2, '0') }}
           </option>
         </select>
         <span class="time-separator">:</span>
-        <select v-model="selectedMinute" @change="handleTimeChange" class="time-select">
+        <select v-model="selectedMinute" class="time-select" @change="handleTimeChange">
           <option value="" disabled hidden>分</option>
           <option v-for="m in 60" :key="`min-${m}`" :value="m - 1">
             {{ String(m - 1).padStart(2, '0') }}

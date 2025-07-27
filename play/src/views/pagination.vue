@@ -3,18 +3,18 @@
 
   <div class="example-pagination-block">
     <div class="example-demonstration">Basic Pagination</div>
-    <MYPagination layout="prev, pager, next" :total="50" v-model:current-page="currentPage" v-model:page-size="pageSize"
+    <MYPagination v-model:current-page="currentPage" v-model:page-size="pageSize" layout="prev, pager, next" :total="50"
       @change="handleChange" />
   </div>
   <div class="example-pagination-block">
     <div class="example-demonstration">With Background and Sizes</div>
-    <MYPagination layout="sizes, prev, pager, next, jumper, total" :total="1000" :page-sizes="[10, 20, 50, 100]"
-      background v-model:current-page="currentPage" v-model:page-size="pageSize" @change="handleChange" />
+    <MYPagination v-model:current-page="currentPage" v-model:page-size="pageSize" layout="sizes, prev, pager, next, jumper, total"
+      :total="1000" :page-sizes="[10, 20, 50, 100]" background @change="handleChange" />
   </div>
   <div class="example-pagination-block">
     <div class="example-demonstration">Small Pagination, Hide on Single Page</div>
-    <MYPagination layout="prev, pager, next" :total="10" small hide-on-single-page v-model:current-page="currentPage"
-      v-model:page-size="pageSize" />
+    <MYPagination v-model:current-page="currentPage" v-model:page-size="pageSize" layout="prev, pager, next" :total="10" small
+      hide-on-single-page />
   </div>
 </template>
 
@@ -30,7 +30,7 @@ const navigateTo = (path: string) => {
 const currentPage = ref(1);
 const pageSize = ref(10);
 
-const handleChange = (page: any, size: any) => {
+const handleChange = (page: string, size: string) => {
   console.log(`Current page: ${page}, Page size: ${size}`);
 };
 </script>

@@ -18,7 +18,7 @@
       </svg>
     </div>
     <transition name="fade">
-      <ul class="submenu-list" v-show="open">
+      <ul v-show="open" class="submenu-list">
         <slot />
       </ul>
     </transition>

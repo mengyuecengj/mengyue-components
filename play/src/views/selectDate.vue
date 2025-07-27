@@ -1,5 +1,5 @@
 <template>
-  <MYButton type="info" @click="navigateTo('/')" style="margin-top: 20px">返回/首页</MYButton>
+  <MYButton type="info" style="margin-top: 20px" @click="navigateTo('/')">返回/首页</MYButton>
   <div class="test-container">
     <h2>SelectDate 组件测试</h2>
 
@@ -50,7 +50,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const navigateTo = (path: any) => {
+const navigateTo = (path: string) => {
   router.push(path)
 }
 // 测试数据
