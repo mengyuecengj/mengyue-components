@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineProps, ref, computed } from 'vue'
+import { ref, computed } from 'vue'
 import TreeNode from './treeNode.vue'
 
 // 定义 TreeNode 接口

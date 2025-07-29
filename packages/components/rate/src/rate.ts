@@ -1,4 +1,4 @@
-import { defineProps } from "vue"
+
 export const props = defineProps({
     modelValue: {
         type: Number,

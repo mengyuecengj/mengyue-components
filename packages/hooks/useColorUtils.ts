@@ -30,5 +30,5 @@ export function useColorUtils() {
     return color;
   }
 
-  return { toRGBA };
+  return { parseHexOrRgb, toRGBA };
 }

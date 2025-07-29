@@ -30,6 +30,7 @@ interface BorderProps {
   leftColor?: string;
   rightColor?: string;
   tag?: string | Component;
+  [key: string]: unknown;
 }
 
 const propToStyleMap: Partial<Record<keyof BorderProps, string>> = {
@@ -48,7 +49,6 @@ const propToStyleMap: Partial<Record<keyof BorderProps, string>> = {
     textColor: 'color',
     boxShadow: 'boxShadow',
 }
-
 export function useBorderComputed(props: BorderProps) {
     // use useClassComputed generate className
     const borderClass = useClassComputed<BorderProps>({

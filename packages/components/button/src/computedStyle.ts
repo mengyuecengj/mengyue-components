@@ -1,5 +1,6 @@
 import { computed, ref, type ComputedRef, type CSSProperties } from 'vue';
 import { useColorUtils } from '../../../hooks/useColorUtils';
+import { useClassComputed } from '../../../hooks/useClassComputed';
 
 interface ButtonProps {
   type?: string;
@@ -12,6 +13,7 @@ interface ButtonProps {
   colorText?: string;
   colorBorder?: string;
   nativeType?: 'button' | 'submit' | 'reset';
+  [key: string]: unknown;
 }
 
 export function useButtonStyle(props: ButtonProps): {
@@ -31,18 +33,31 @@ export function useButtonStyle(props: ButtonProps): {
   const onMouseDown = () => { isActive.value = true; };
   const onMouseUp = () => { isActive.value = false; };
 
-  const btnClass = computed(() => {
-    const cls = [
-      'my-btn',
-      `my-btn--${props.type ?? 'default'}`,
-      `my-btn--${props.size ?? 'medium'}`,
-    ];
-    if (props.round) cls.push('my-btn--round');
-    if (props.circle) cls.push('my-btn--circle');
-    if (props.disabled) cls.push('my-btn--disabled');
-    if (props.plain) cls.push('my-btn--plain');
-    return cls;
-  });
+  // const btnClass = computed(() => {
+  //   const cls = [
+  //     'my-btn',
+  //     `my-btn--${props.type ?? 'default'}`,
+  //     `my-btn--${props.size ?? 'medium'}`,
+  //   ];
+  //   if (props.round) cls.push('my-btn--round');
+  //   if (props.circle) cls.push('my-btn--circle');
+  //   if (props.disabled) cls.push('my-btn--disabled');
+  //   if (props.plain) cls.push('my-btn--plain');
+  //   return cls;
+  // });
+  const btnClass = useClassComputed<ButtonProps>({
+    baseClass: 'my-btn',
+    propClasses: {
+      type: props.type ?? 'default',
+      size: props.size ?? 'medium'
+    },
+    flagClasses: {
+      round: props.round,
+      circle: props.circle,
+      disabled: props.disabled,
+      plain: props.plain
+    }
+  })
 
   const customStyle = computed<CSSProperties>(() => {
     /**
