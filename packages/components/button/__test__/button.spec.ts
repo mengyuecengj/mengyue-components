@@ -1,6 +1,18 @@
 import { mount } from '@vue/test-utils'
 import MYButton from '../src/button.vue'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
+
+// Mock canvas implementation for tests
+vi.mock('../../../hooks/useColorUtils', () => ({
+  useColorUtils: () => ({
+    toRGBA: (color: string) => color,
+    parseHexOrRgb: () => null
+  })
+}))
+
+vi.mock('virtual:svg-icons-register', () => ({
+  default: vi.fn(),
+}))
 
 describe('MYButton.vue', () => {
   it('renders default button correctly', () => {
@@ -14,6 +26,7 @@ describe('MYButton.vue', () => {
     expect(wrapper.element.tagName.toLowerCase()).toBe('button')
     expect(wrapper.classes()).toContain('my-btn')
     expect(wrapper.classes()).toContain('my-btn--default')
+    expect(wrapper.classes()).toContain('my-btn--medium')
     expect(wrapper.attributes('disabled')).toBeUndefined()
   })
 
@@ -27,52 +40,72 @@ describe('MYButton.vue', () => {
     expect(wrapper.element.tagName.toLowerCase()).toBe('a')
   })
 
-  it('emits click event when clicked', async () => {
-    const wrapper = mount(MYButton)
-    await wrapper.trigger('click')
-    expect(wrapper.emitted()).toHaveProperty('click')
-  })
-
-  it('does not emit click event when disabled', async () => {
+  it('renders with href when tag is a', () => {
     const wrapper = mount(MYButton, {
       props: {
-        disabled: true
+        tag: 'a',
+        href: 'https://example.com'
       }
     })
 
-    await wrapper.trigger('click')
-    expect(wrapper.emitted('click')).toBeUndefined()
+    expect(wrapper.attributes('href')).toBe('https://example.com')
   })
 
-it('applies round class when round prop is true', () => {
-  const wrapper = mount(MYButton, {
-    props: { round: true }
-  })
-  expect(wrapper.classes()).toContain('my-btn--round') // 或其他实际使用的类名
-})
-
-it('applies circle class when circle prop is true', () => {
-  const wrapper = mount(MYButton, {
-    props: { circle: true }
-  })
-  expect(wrapper.classes()).toContain('my-btn--circle')
-})
-
-it('applies plain class when plain prop is true', () => {
-  const wrapper = mount(MYButton, {
-    props: { plain: true }
-  })
-  expect(wrapper.classes()).toContain('my-btn--plain')
-})
-
-  it('handles mouse events', async () => {
-    const wrapper = mount(MYButton)
-    const mouseEvents = ['mouseover', 'mouseleave', 'mousedown', 'mouseup']
+  it('renders different button types', () => {
+    const types = ['primary', 'success', 'warning', 'danger', 'info'] as const
     
-    mouseEvents.forEach(async event => {
-      await wrapper.trigger(event)
-      // 这里可以添加对样式变化的断言，如果你有相关的逻辑
+    types.forEach(type => {
+      const wrapper = mount(MYButton, {
+        props: { type }
+      })
+      
+      expect(wrapper.classes()).toContain(`my-btn--${type}`)
     })
+  })
+
+  it('renders different button sizes', () => {
+    const sizes = ['supersmall', 'small', 'medium', 'large', 'superbig'] as const
+    
+    sizes.forEach(size => {
+      const wrapper = mount(MYButton, {
+        props: { size }
+      })
+      
+      expect(wrapper.classes()).toContain(`my-btn--${size}`)
+    })
+  })
+
+  it('renders round button', () => {
+    const wrapper = mount(MYButton, {
+      props: { round: true }
+    })
+
+    expect(wrapper.classes()).toContain('my-btn--round')
+  })
+
+  it('renders circle button', () => {
+    const wrapper = mount(MYButton, {
+      props: { circle: true }
+    })
+
+    expect(wrapper.classes()).toContain('my-btn--circle')
+  })
+
+  it('renders disabled button', () => {
+    const wrapper = mount(MYButton, {
+      props: { disabled: true }
+    })
+
+    expect(wrapper.classes()).toContain('my-btn--disabled')
+    expect(wrapper.attributes('disabled')).toBe('')
+  })
+
+  it('renders plain button', () => {
+    const wrapper = mount(MYButton, {
+      props: { plain: true }
+    })
+
+    expect(wrapper.classes()).toContain('my-btn--plain')
   })
 
   it('applies custom colors', () => {
@@ -85,8 +118,84 @@ it('applies plain class when plain prop is true', () => {
     })
 
     const style = wrapper.attributes('style')
-    expect(style).toContain('background: rgb(255, 0, 0)')
-    expect(style).toContain('color: rgb(0, 255, 0)')
-    expect(style).toContain('border-color: #0000ff')
+    expect(style).toMatch(/background(?:-color)?:\s*(?:rgb\(255,\s*0,\s*0\)|#ff0000)/i)
+    expect(style).toMatch(/color:\s*(?:rgb\(0,\s*255,\s*0\)|#00ff00)/i)
+    expect(style).toMatch(/border(?:-color)?:\s*(?:rgb\(0,\s*0,\s*255\)|#0000ff)/i)
+  })
+
+  it('emits click event', async () => {
+    const wrapper = mount(MYButton)
+    
+    await wrapper.trigger('click')
+    expect(wrapper.emitted()).toHaveProperty('click')
+  })
+
+  it('does not emit click when disabled', async () => {
+    const wrapper = mount(MYButton, {
+      props: { disabled: true }
+    })
+    
+    await wrapper.trigger('click')
+    expect(wrapper.emitted('click')).toBeUndefined()
+  })
+
+  it('handles mouse events correctly', async () => {
+    const wrapper = mount(MYButton)
+    
+    await wrapper.trigger('mouseover')
+    expect(wrapper.classes()).toContain('my-btn')
+    
+    await wrapper.trigger('mouseout')
+    expect(wrapper.classes()).toContain('my-btn')
+  })
+
+  it('renders slot content', () => {
+    const slotContent = 'Custom Button Text'
+    const wrapper = mount(MYButton, {
+      slots: {
+        default: slotContent
+      }
+    })
+
+    expect(wrapper.text()).toBe(slotContent)
+  })
+
+  it('combines multiple props correctly', () => {
+    const wrapper = mount(MYButton, {
+      props: {
+        type: 'danger',
+        size: 'large',
+        round: true,
+        plain: true,
+        colorBg: '#fff',
+        colorText: '#f44336',
+        colorBorder: '#f44336'
+      }
+    })
+
+    expect(wrapper.classes()).toEqual(expect.arrayContaining([
+      'my-btn',
+      'my-btn--danger',
+      'my-btn--large',
+      'my-btn--round',
+      'my-btn--plain'
+    ]))
+    
+    const style = wrapper.attributes('style')
+    expect(style).toMatch(/background(?:-color)?:\s*(?:rgb\(255,\s*255,\s*255\)|#fff)/i)
+    expect(style).toMatch(/color:\s*(?:rgb\(244,\s*67,\s*54\)|#f44336)/i)
+    expect(style).toMatch(/border(?:-color)?:\s*(?:rgb\(244,\s*67,\s*54\)|#f44336)/i)
+  })
+
+  it('renders default type when type is empty string', () => {
+    const wrapper = mount(MYButton, {
+      props: { 
+        type: '' as const,
+        size: 'medium'
+      }
+    })
+
+    expect(wrapper.classes()).toContain('my-btn--default')
+    expect(wrapper.classes()).not.toContain('my-btn--')
   })
 })

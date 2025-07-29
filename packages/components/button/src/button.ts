@@ -45,6 +45,10 @@ export const buttonProps = {
     type: [String, Object] as PropType<string | Component>,
     default: 'button',
   },
+
 } as const
 
-export type ButtonProps = ExtractPropTypes<typeof buttonProps>
+type ButtonPropsWithDynamic = ExtractPropTypes<typeof buttonProps> & {
+  [key: string]: string | number | boolean | undefined
+}
+export type ButtonProps = ButtonPropsWithDynamic

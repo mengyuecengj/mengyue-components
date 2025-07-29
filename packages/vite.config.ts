@@ -2,7 +2,7 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
-import sass from 'sass';
+// import sass from 'sass';
 import path from 'path';
 import svgLoader from 'vite-svg-loader';
 
@@ -21,7 +21,13 @@ export default defineConfig({
 
     svgLoader(),
   ],
-
+  test: {
+    environment: 'happy-dom', // 或 'jsdom'
+    // 模拟虚拟模块
+    alias: {
+      'virtual:svg-icons-register': path.resolve(__dirname, './src/mocks/svg-icons-register.ts'),
+    },
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, 'components/index.ts'),
@@ -51,12 +57,12 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         // 确保 Vite 处理 <style lang="scss"> 时用 Dart‑Sass 新 API
-        implementation: sass,
+        // implementation: sass,
         silenceDeprecations: ['legacy-js-api'],
         // 静默所有来自依赖的 deprecation 警告
-        sassOptions: {
-          quietDeps: true
-        }
+        // sassOptions: {
+        //   quietDeps: true
+        // }
       }
     }
   }

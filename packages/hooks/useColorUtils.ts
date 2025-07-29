@@ -19,15 +19,33 @@ export function useColorUtils() {
 
   function toRGBA(color: string, alpha = 0.2): string {
     if (!color) return '';
+
+    // 如果是 CSS 变量（如 var(--color)），尝试解析实际值
+    if (color.startsWith('var(')) {
+      const dummyElement = document.createElement('div');
+      dummyElement.style.color = color;
+      document.body.appendChild(dummyElement);
+      const resolvedColor = getComputedStyle(dummyElement).color;
+      document.body.removeChild(dummyElement);
+
+      // 解析计算后的颜色（可能是 rgb(...)）
+      const rgb = parseHexOrRgb(resolvedColor);
+      if (rgb) return `rgba(${rgb.join(',')},${alpha})`;
+    }
+
+    // 原始逻辑（处理 #RRGGBB 或 rgb(...)）
     const rgb = parseHexOrRgb(color);
     if (rgb) return `rgba(${rgb.join(',')},${alpha})`;
+
+    // Canvas 回退逻辑
     if (_canvasCtx) {
       _canvasCtx.fillStyle = color;
       const resolved = _canvasCtx.fillStyle;
       const fromCanvas = parseHexOrRgb(resolved);
       if (fromCanvas) return `rgba(${fromCanvas.join(',')},${alpha})`;
     }
-    return color;
+
+    return color; // 无法解析时返回原值
   }
 
   return { parseHexOrRgb, toRGBA };

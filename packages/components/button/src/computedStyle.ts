@@ -1,20 +1,7 @@
-import { computed, ref, type ComputedRef, type CSSProperties } from 'vue';
-import { useColorUtils } from '../../../hooks/useColorUtils';
+import { ref, type ComputedRef, type CSSProperties } from 'vue';
 import { useClassComputed } from '../../../hooks/useClassComputed';
-
-interface ButtonProps {
-  type?: string;
-  size?: string;
-  round?: boolean;
-  circle?: boolean;
-  disabled?: boolean;
-  plain?: boolean;
-  colorBg?: string;
-  colorText?: string;
-  colorBorder?: string;
-  nativeType?: 'button' | 'submit' | 'reset';
-  [key: string]: unknown;
-}
+import { useColorComputed } from '../../../hooks/useColorComputed';
+import { ButtonProps } from './type'
 
 export function useButtonStyle(props: ButtonProps): {
   btnClass: ComputedRef<string[]>;
@@ -24,7 +11,6 @@ export function useButtonStyle(props: ButtonProps): {
   onMouseDown: () => void;
   onMouseUp: () => void;
 } {
-  const { toRGBA } = useColorUtils();
   const isHovered = ref(false);
   const isActive = ref(false);
 
@@ -33,22 +19,10 @@ export function useButtonStyle(props: ButtonProps): {
   const onMouseDown = () => { isActive.value = true; };
   const onMouseUp = () => { isActive.value = false; };
 
-  // const btnClass = computed(() => {
-  //   const cls = [
-  //     'my-btn',
-  //     `my-btn--${props.type ?? 'default'}`,
-  //     `my-btn--${props.size ?? 'medium'}`,
-  //   ];
-  //   if (props.round) cls.push('my-btn--round');
-  //   if (props.circle) cls.push('my-btn--circle');
-  //   if (props.disabled) cls.push('my-btn--disabled');
-  //   if (props.plain) cls.push('my-btn--plain');
-  //   return cls;
-  // });
   const btnClass = useClassComputed<ButtonProps>({
     baseClass: 'my-btn',
     propClasses: {
-      type: props.type ?? 'default',
+      type: props.type === '' ? 'default' : props.type ?? 'default', // 显式处理空字符串
       size: props.size ?? 'medium'
     },
     flagClasses: {
@@ -59,30 +33,16 @@ export function useButtonStyle(props: ButtonProps): {
     }
   })
 
-  const customStyle = computed<CSSProperties>(() => {
-    /**
-     * A record object mapping string keys to string values for storing style properties.
-     */
-    const s: Record<string, string> = {};
-    const baseColor = props.colorBorder ?? props.colorBg;
-
-    if (props.colorBg) {
-      if (props.plain) {
-        const active = isHovered.value || isActive.value;
-        s.background = active ? props.colorBg! : toRGBA(props.colorBg, 0.2);
-        s.color = active ? '#fff' : (props.colorText ?? props.colorBg);
-      } else {
-        s.background = props.colorBg;
-        s.color = props.colorText ?? '#fff';
-      }
-      if (baseColor) s.borderColor = baseColor;
-    } else {
-      if (props.colorText) s.color = props.colorText;
-      if (baseColor) s.borderColor = baseColor;
-    }
-
-    return s;
-  });
-
+  const customStyle = useColorComputed({
+    colorBg: props.colorBg,
+    colorText: props.colorText,
+    colorBorder: props.colorBorder,
+    plain: props.plain,
+    isHovered: isHovered,
+    isActive: isActive,
+    disabled: props.disabled,
+    type: props.type
+  })
+  
   return { btnClass, customStyle, onMouseOver, onMouseOut, onMouseDown, onMouseUp };
 }

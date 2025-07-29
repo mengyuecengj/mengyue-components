@@ -14,7 +14,7 @@
   transition: background-color var(--btn-transition), filter var(--btn-transition);
 }
 
-/* ---------- ① 普通模式 base/hover/active ---------- */
+/* 普通模式 base/hover/active */
 @each $type, $map in $btn-colors {
   $key: string.unquote("#{$type}");
 
@@ -33,68 +33,22 @@
   }
 }
 
-/* ---------- ② Plain 模式 base/hover/active ---------- */
-@each $type, $map in $btn-colors {
-  $key: string.unquote("#{$type}");
-  $hex: map.get($btn-hex-colors, $key);
-
-  .my-btn--#{$key}.my-btn--plain {
-    /* plain 颜色全部交由内联样式处理 */
-    background-color: rgba($hex, 0.2);
-    color: $hex;
-    border: 1px solid $hex;
-
-    &:hover {
-      background-color: $hex;
-      color: #fff;
-      border-color: $hex;
-    }
-  }
-
-  // .my-btn--#{$key}.my-btn--plain:hover,
-  // .my-btn--#{$key}.my-btn--plain:active {
-    /* hover/active 颜色也交由内联样式处理 */
-    // background-color: unset;
-    // color: unset;
-    // border-color: $hex;
-  // }
-}
-
-/* ---------- ③ default 非 plain 的白边白字交互 (放最后) ---------- */
+/* default 非 plain 的白边白字交互 */
 .my-btn--default:not(.my-btn--plain) {
-  $c: var(--btn-color-primary);
-
   background-color: transparent;
   color: #fff;
   border: 1px solid #fff;
 
-  &:hover {
-    background-color: rgba(64, 158, 255, 0.2);
-    color: var(--btn-color-primary);
-    border-color: var(--btn-color-primary);
-  }
-
-  // &:active {
-  //   background-color: rgba(64, 158, 255, 0.25);
-  //   color: var(--btn-color-primary);
-  //   border-color: var(--btn-color-primary);
-  // }
-}
-
-/* ② default + plain：透明背景 + 主色文字/边框（保持 ghost 效果） */
-.my-btn--default.my-btn--plain {
-  background-color: unset;
-  color: unset;
-  border: 1px solid #fff;
-
-  &:hover {
-    background-color: unset;
-    color: unset;
-    border-color: var(--btn-color-primary);
+  &:hover,
+  &:active {
+    color: #409EFF;
+    border-color: #409EFF;
+    background-color: rgba(18, 96, 232, 0.2);
+    /* #12888C 0.2透明度 */
   }
 }
 
-/* ---------- 尺寸、修饰、禁用 ---------- */
+/* 尺寸、修饰、禁用 */
 .my-btn--supersmall {
   padding: var(--btn-padding-supersmall);
   font-size: var(--btn-font-supersmall);
@@ -128,7 +82,12 @@
   border-radius: var(--btn-radius-circle);
 }
 
-.my-btn--disabled {
-  opacity: 0.6 !important;
-  cursor: not-allowed !important;
+.my-btn.my-btn--disabled,
+.my-btn.my-btn--disabled:hover,
+.my-btn.my-btn--disabled:active {
+  opacity: 0.6;
+  cursor: not-allowed;
+  border-color: #fff;
+  color: #fff;
+  background-color: transparent;
 }

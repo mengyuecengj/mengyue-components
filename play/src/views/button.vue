@@ -10,6 +10,14 @@
     <MYButton type="danger">Danger</MYButton>
     <MYButton type="info">Info</MYButton>
 
+    <!-- Plain variants -->
+    <MYButton plain>Plain</MYButton>
+    <MYButton plain type="primary">Plain Primary</MYButton>
+    <MYButton plain type="success">Plain Success</MYButton>
+    <MYButton plain type="warning">Plain Warning</MYButton>
+    <MYButton plain type="danger">Plain Danger</MYButton>
+    <MYButton plain type="info">Plain Info</MYButton>
+
     <!-- Size variants -->
     <MYButton size="supersmall">Super Small</MYButton>
     <MYButton size="small">Small</MYButton>
@@ -23,7 +31,6 @@
 
     <!-- State variants -->
     <MYButton disabled>Disabled</MYButton>
-    <MYButton plain>Plain</MYButton>
 
     <!-- Color customization -->
     <MYButton color-bg="#ffeb3b" color-text="#000" color-border="#ffc107">

@@ -24,7 +24,7 @@ export default defineConfig({
     // 确保测试环境也加载 SVG 注册
     setupFiles: [
       './vitest.setup.ts',
-      'virtual:svg-icons-register' // 新增
+      // 'virtual:svg-icons-register' // 新增
     ],
     reporters: ['default'],
     testTransformMode: {

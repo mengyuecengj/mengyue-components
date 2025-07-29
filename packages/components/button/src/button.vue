@@ -3,7 +3,7 @@
     :is="props.tag"
     :class="btnClass"
     :style="customStyle"
-    :disabled="props.disabled || undefined"
+    :disabled="props.disabled"
     :type="props.nativeType || 'button'"
     @click="handleClick"
     @mouseover="onMouseOver"
@@ -16,10 +16,13 @@
 </template>
 
 <script setup lang="ts">
-// import { inject } from 'vue'
 import { buttonProps } from './button'
 import '../style/button.scss'
 import { useButtonStyle } from './computedStyle'
+
+defineSlots<{
+  default?: (props: {}) => string
+}>()
 
 // **给组件取个名字，供 withInstall 注册使用**
 defineOptions({
