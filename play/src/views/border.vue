@@ -1,53 +1,64 @@
 <template>
+    <!-- 返回按钮 -->
     <MYButton type="success" @click="navigateTo('/')">返回/首页</MYButton>
+
+    <!-- 分隔线 -->
     <div style="margin-top: 10px; border: 5px solid #000;"></div>
     <div style="margin-top: 10px;"></div>
-    <!-- 基础边框测试 -->
-    <MYBorder borderColor="#f00" borderWidth="2px" class="test-item">
-        红色边框宽度2px
+
+    <!-- 1. 基础边框测试 -->
+    <div class="test-section">基础边框测试</div>
+    <MYBorder borderStyle="solid" />
+    <MYBorder borderStyle="dashed" />
+    <MYBorder borderStyle="dotted" />
+    <MYBorder borderStyle="double" />
+    <MYBorder borderStyle="double" borderWidth="40px" />
+    <MYBorder borderStyle="double" borderWidth="10px" borderColor="red" />
+
+    <!-- 2. 边框反向测试 -->
+    <div class="test-section">边框反向测试</div>
+    <MYBorder Border="10px solid #000">所有边框为1px黑色实线</MYBorder>
+    <MYBorder topColor="#f00" borderWidth="2px">上边框为红色</MYBorder>
+    <MYBorder bottomColor="#0f0" borderWidth="2px">下边框为绿色</MYBorder>
+    <MYBorder leftColor="#00f" borderWidth="2px">左边框为蓝色</MYBorder>
+    <MYBorder rightColor="#ff0" borderWidth="2px">右边框为黄色</MYBorder>
+    <MYBorder topColor="#f00" rightColor="#0f0" bottomColor="#00f" leftColor="#ff0" borderWidth="2px">
+        四边不同颜色的边框
     </MYBorder>
 
-    <MYBorder borderStyle="dashed" class="test-item">
-        虚线边框
+    <!-- 3. 其他属性测试 -->
+    <div class="test-section">其他属性测试</div>
+    <MYBorder width="200px" height="100px">固定尺寸的边框</MYBorder>
+    <MYBorder round width="100px" height="50px">圆角矩形</MYBorder>
+    <MYBorder circle width="100px" height="100px">圆形边框</MYBorder>
+    <MYBorder paddingText="20px">文字内边距20px</MYBorder>
+    <MYBorder center>居中内容</MYBorder>
+    <MYBorder colorBg="pink">粉色背景</MYBorder>
+    <MYBorder textColor="#f00">红色文字</MYBorder>
+    <MYBorder boxShadow="10px 2px 8px red">带阴影的边框</MYBorder>
+    <MYBorder width="200px" height="100px" round center colorBg="pink" textColor="red" borderColor="pink"
+        boxShadow="0 2px 8px red" paddingText="20px">
+        组合所有属性的边框
     </MYBorder>
-
-    <!-- 单边边框测试 -->
-    <MYBorder topColor="#f00" borderWidth="3px" class="test-item">
-        只有上边框红色
-    </MYBorder>
-
-    <MYBorder topColor="#f00" rightColor="#0f0" bottomColor="#00f" leftColor="#ff0" borderWidth="2px" class="test-item">
-        四边不同颜色
-    </MYBorder>
-
-    <!-- 形状测试 -->
-    <MYBorder round width="100px" height="100px" class="test-item" paddingText="20px">
-        圆角矩形
-    </MYBorder>
-
-    <MYBorder circle width="100px" height="100px" class="test-item">
-        圆形
-    </MYBorder>
-
-    <!-- 组合测试 -->
-    <MYBorder round center width="200px" height="100px" borderColor="#333" borderWidth="2px" colorBg="#f8f8f8"
-        paddingText="20px" boxShadow="0 2px 8px rgba(0, 0, 0, 0.1)" class="test-item">
-        组合所有属性
+    <MYBorder Border="20px dashed #000">
+        带有边框属性的边框
     </MYBorder>
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router';
 
-const router = useRouter()
+const router = useRouter();
 
 const navigateTo = (path: string) => {
-    router.push(path)
-}
+    router.push(path);
+};
 </script>
 
 <style lang="scss" scoped>
-.a {
-    display: block;
+.test-section {
+    margin: 20px 0 10px;
+    font-weight: bold;
+    color: #333;
 }
 </style>
