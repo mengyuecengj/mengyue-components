@@ -11,7 +11,6 @@ export function useComputedLayout(props: CombinedProps): {
     styleRow: ComputedRef<CSSProperties>;
     styleCol: ComputedRef<CSSProperties>;
 } {
-    console.log('useComputedLayout props:', JSON.stringify(props, null, 2));
 
     const classRow = useClassComputed<LayoutProps>({
         baseClass: 'my-row',

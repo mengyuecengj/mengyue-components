@@ -48,7 +48,7 @@ export function useContainerComputed(props: ContainerProps): {
       height: 'height',
       width: 'width',
       background: 'background',
-    },
+    }, 
     cssVariables: {
       '--container-height': props.height != null
         ? typeof props.height === 'number'

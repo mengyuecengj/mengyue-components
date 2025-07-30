@@ -7,6 +7,7 @@ export interface ContainerProps {
   background?: string;
   fixed?: boolean;
   position?: 'left' | 'right';
+  [key: string]: unknown
 }
 
 export const containerProps = {

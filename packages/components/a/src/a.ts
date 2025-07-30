@@ -2,8 +2,10 @@ import { PropType, ExtractPropTypes } from "vue";
 
 // 合并相关属性
 const appearanceProps = {
-    type: <PropType<'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'>>String,
-    default: '',
+    type: {
+        type: String as PropType<'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'>,
+        default: ''
+    },
     color: {
         type: String,
         default: ''
@@ -23,7 +25,7 @@ const behaviorProps = {
 
 const layoutProps = {
     size: {
-        type: [String, Number],
+        type: [String, Number] as PropType<string | number>,
         default: undefined
     },
     tag: {
@@ -37,10 +39,6 @@ export const aProps = {
     ...appearanceProps,
     ...behaviorProps,
     ...layoutProps
-};
+} as const;
 
-type aPropWithDynamic = ExtractPropTypes<typeof aProps> & {
-    [key: string]: string | number | boolean | undefined
-}
-
-export type aProps = aPropWithDynamic
+export type aProps = ExtractPropTypes<typeof aProps>;

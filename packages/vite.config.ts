@@ -21,13 +21,13 @@ export default defineConfig({
 
     svgLoader(),
   ],
-  test: {
-    environment: 'happy-dom', // 或 'jsdom'
-    // 模拟虚拟模块
-    alias: {
-      'virtual:svg-icons-register': path.resolve(__dirname, './src/mocks/svg-icons-register.ts'),
-    },
-  },
+  // test: {
+  //   environment: 'happy-dom', // 或 'jsdom'
+  //   // 模拟虚拟模块
+  //   alias: {
+  //     'virtual:svg-icons-register': path.resolve(__dirname, './src/mocks/svg-icons-register.ts'),
+  //   },
+  // },
   build: {
     lib: {
       entry: path.resolve(__dirname, 'components/index.ts'),
