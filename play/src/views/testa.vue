@@ -57,13 +57,14 @@
         <div class="test-section">
             <h3>7. 组合测试</h3>
             <MYa type="primary" size="large" color="#ff0000" class="b">
-                组合1: primary + large + 红色 + 下划线
+                组合1: primary + large + 红色 + primary下划线
             </MYa>
             <MYa type="danger" size="small" disabled>
                 组合2: danger + small + 禁用
             </MYa>
         </div>
     </div>
+    <MYBorder></MYBorder>
 </template>
 <script setup lang="ts">
 import { useRouter } from 'vue-router'

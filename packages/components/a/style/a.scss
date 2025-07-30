@@ -85,7 +85,10 @@
 .my-a--disabled {
   opacity: 0.6 !important;
   cursor: not-allowed !important;
-  pointer-events: none;
+  
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .my-a--underline {

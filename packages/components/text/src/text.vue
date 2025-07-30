@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import { textProps } from './text';
 import '../style/text.scss'
-import { useTextComputed } from './testComputed';
+import { useTextComputed } from './textComputed';
 defineOptions({
   name: "MYText"
 });

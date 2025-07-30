@@ -1,21 +1,8 @@
 import { ComputedRef, CSSProperties } from 'vue';
 import { useClassComputed } from '../../../hooks/useClassComputed';
 import { useStyleComputed } from '../../../hooks/useStyleComputed';
-
-interface ScrollbarProps {
-  tag?: string;
-  Maxheight?: string | number;
-  widthX?: boolean;
-  disabledHeight?: boolean;
-  disabledWidth?: boolean;
-  disabledScroll?: boolean;
-  thumbColor?: string;
-  corner?: boolean;
-  thumbHoverColor?: string;
-  trackColor?: string;
-  ScrollWidth?: string | number;
-  height?: string | number;
-}
+import { useScrollVariables } from '../../../hooks/useScrollCommon';
+import { ScrollbarProps } from './type'
 
 export function useScrollbarComputed(props: ScrollbarProps): {
   scrollbarClass: ComputedRef<string[]>;
@@ -40,21 +27,13 @@ export function useScrollbarComputed(props: ScrollbarProps): {
       Maxheight: 'maxHeight',
       ScrollWidth: 'scrollWidth',
     },
-    cssVariables: {
-      '--scrollbar-container-thumb-color': props.thumbColor,
-      '--scrollbar-container-thumb-hover-color': props.thumbHoverColor,
-      '--scrollbar-container-track-color': props.trackColor,
-      '--scrollbar-container-scrollbar-width': props.ScrollWidth != null
-        ? typeof props.ScrollWidth === 'number'
-          ? `${props.ScrollWidth}px`
-          : props.ScrollWidth
-        : undefined,
-      '--scrollbar-container-scrollbar-height': props.ScrollWidth != null
-        ? typeof props.ScrollWidth === 'number'
-          ? `${props.ScrollWidth}px`
-          : props.ScrollWidth
-        : undefined,
-    },
+    cssVariables: useScrollVariables({
+      thumbColor: props.thumbColor,
+      thumbHoverColor: props.thumbHoverColor,
+      trackColor: props.trackColor,
+      scrollWidth: props.ScrollWidth,
+      scrollHeight: props.ScrollWidth,
+    }),
   });
 
   return { scrollbarClass, scrollbarStyle };

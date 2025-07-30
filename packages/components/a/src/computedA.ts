@@ -1,13 +1,7 @@
 import type { ComputedRef, CSSProperties } from 'vue';
 import { useClassComputed } from '../../../hooks/useClassComputed';
 import { useStyleComputed } from '../../../hooks/useStyleComputed';
-interface AProps {
-    type?: string;
-    size?: string | number;
-    disabled?: boolean;
-    color?: string;
-    underline?: boolean;
-}
+import { AProps } from './type'
 
 export function useAComputed(props: AProps): {
     aClass: ComputedRef<string[]>;
@@ -28,6 +22,7 @@ export function useAComputed(props: AProps): {
     const aStyle = useStyleComputed<AProps>(props, {
         propToStyleMap: {
             color: 'color',
+            size: 'fontSize',
         },
         fontSizeProp: 'size',
     })

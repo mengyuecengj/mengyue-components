@@ -14,10 +14,4 @@ defineOptions({
 })
 const props = defineProps(scrollProps);
 const { scrollClass, scrollStyle } = useScrollComputed(props);
-
-// onUnmounted(() => {
-//     const html = document.documentElement;
-//     html.style.removeProperty('--global-scroll-thumb-color');
-//     html.style.removeProperty('--global-scroll-thumb-hover-color');
-// });
 </script>

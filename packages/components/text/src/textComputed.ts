@@ -1,14 +1,7 @@
 import { ComputedRef, CSSProperties } from 'vue';
 import { useClassComputed } from '../../../hooks/useClassComputed';
 import { useStyleComputed } from '../../../hooks/useStyleComputed';
-
-interface TextProps {
-  [key: string]: unknown;
-  type?: '' | 'primary' | 'success' | 'warning' | 'danger' | 'info';
-  size?: string | number;
-  Tecolor?: string;
-  disabled?: boolean;
-}
+import { TextProps } from './type';
 
 export function useTextComputed(props: TextProps): {
   textClass: ComputedRef<string[]>;
@@ -28,7 +21,7 @@ export function useTextComputed(props: TextProps): {
   const textStyle = useStyleComputed<TextProps>(props, {
     propToStyleMap: {
       Tecolor: 'color',
-      size: 'fontSize', // 添加 size 映射
+      size: 'fontSize',
     },
     fontSizeProp: 'size',
   });

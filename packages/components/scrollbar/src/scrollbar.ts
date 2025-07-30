@@ -1,4 +1,7 @@
-export const scrollbarProps = {
+import { ExtractPropTypes } from "vue";
+
+// Dimension-related props
+export const scrollbarDimensionProps = {
     height: {
         type: String,
         default: '' as const
@@ -7,6 +10,18 @@ export const scrollbarProps = {
         type: String,
         default: '' as const
     },
+    ScrollWidth: {
+        type: String,
+        default: ''
+    },
+    widthX: {
+        type: Boolean,
+        default: false
+    }
+};
+
+// Color-related props
+export const scrollbarColorProps = {
     thumbColor: {
         type: String,
         default: ''
@@ -18,15 +33,11 @@ export const scrollbarProps = {
     trackColor: {
         type: String,
         default: ''
-    },
-    ScrollWidth: {
-        type: String,
-        default: ''
-    },
-    widthX: {
-        type: Boolean,
-        default: false
-    },
+    }
+};
+
+// Behavior-related props
+export const scrollbarBehaviorProps = {
     disabledHeight: {
         type: Boolean,
         default: false
@@ -38,7 +49,11 @@ export const scrollbarProps = {
     disabledScroll: {
         type: Boolean,
         default: false
-    },
+    }
+};
+
+// Rendering-related props
+export const scrollbarRenderingProps = {
     corner: {
         type: Boolean,
         default: false
@@ -47,4 +62,17 @@ export const scrollbarProps = {
         type: String,
         default: 'div'
     }
-}
+};
+
+// Combined props with dynamic typing
+export const scrollbarProps = {
+    ...scrollbarDimensionProps,
+    ...scrollbarColorProps,
+    ...scrollbarBehaviorProps,
+    ...scrollbarRenderingProps
+};
+
+type ScrollbarPropsWithDynamic = ExtractPropTypes<typeof scrollbarProps> & {
+    [key: string]: string | number | boolean | undefined
+};
+export type ScrollbarProps = ScrollbarPropsWithDynamic;

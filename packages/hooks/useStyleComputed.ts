@@ -18,9 +18,7 @@ export function useStyleComputed<T extends Record<string, unknown>>(
         const value = props[propKey as keyof T];
         if (value != null) { // 确保值非 null 或 undefined
           if (cssProp === 'fontSize' && config.fontSizeProp && propKey === config.fontSizeProp) {
-            if (!['small', 'medium', 'large', 'mini'].includes(value as string)) {
-              style[cssProp] = typeof value === 'number' ? `${value}px` : value as string;
-            }
+            style[cssProp] = typeof value === 'number' ? `${value}px` : value as string;
           } else if (['width', 'height', 'maxHeight', 'scrollWidth'].includes(cssProp as string)) {
             style[cssProp as string] = typeof value === 'number' ? `${value}px` : value as string;
           } else {

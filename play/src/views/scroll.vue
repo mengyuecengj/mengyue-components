@@ -1,8 +1,8 @@
 <template>
-    <MYButton type="info" style="margin-top: 20px" @click="navigateTo('/')">返回/首页</MYButton>
+    <MYButton type="success" @click="navigateTo('/')">返回/首页</MYButton>
     <div style="margin-top: 10px; border: 5px solid #000;"></div>
     <div style="margin-top: 10px;"></div>
-    <div>
+    <div class="a">
         <MYText size="30rem">1</MYText>
         <MYText size="30rem">1</MYText>
         <MYText size="30rem">1</MYText>
@@ -26,7 +26,8 @@ const navigateTo = (path: string) => {
     router.push(path)
 }
 </script>
-
-
-
-<style lang="scss" scoped></style>
+<style scoped>
+.a {
+    margin-top: 100px;
+}
+</style>

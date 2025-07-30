@@ -1,4 +1,4 @@
-import { PropType } from "vue"
+import type { ExtractPropTypes, PropType } from 'vue'
 export const textProps = {
     type: {
         type: String as PropType<'' | 'primary' | 'success' | 'warning' | 'danger' | 'info'>,
@@ -17,3 +17,8 @@ export const textProps = {
         default: 'span'
     }
 }
+
+type TextPropsWithDynamic = ExtractPropTypes<typeof textProps> & {
+    [key: string]: string | number | boolean | undefined
+}
+export type TextProps = TextPropsWithDynamic
