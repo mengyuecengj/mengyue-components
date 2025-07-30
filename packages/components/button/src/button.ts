@@ -1,6 +1,7 @@
 import type { Component, ExtractPropTypes, PropType } from 'vue'
 
-export const buttonProps = {
+
+const buttonTypeProps = {
   type: {
     type: String as PropType<'' | 'primary' | 'success' | 'warning' | 'danger' | 'info'>,
     default: 'default' as const,
@@ -9,6 +10,9 @@ export const buttonProps = {
     type: String as PropType<'supersmall' | 'small' | 'medium' | 'large' | 'superbig'>,
     default: 'medium',
   },
+} as const
+
+const buttonStyleProps = {
   round: {
     type: Boolean,
     default: false,
@@ -17,14 +21,13 @@ export const buttonProps = {
     type: Boolean,
     default: false
   },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
   plain: {
     type: Boolean,
     default: false,
   },
+} as const
+
+const buttonColorProps = {
   colorBg: {
     type: String,
     default: ''
@@ -37,6 +40,13 @@ export const buttonProps = {
     type: String,
     default: ''
   },
+} as const
+
+const buttonBehaviorProps = {
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
   nativeType: {
     type: String as PropType<'button' | 'submit' | 'reset'>,
     default: 'button',
@@ -45,7 +55,13 @@ export const buttonProps = {
     type: [String, Object] as PropType<string | Component>,
     default: 'button',
   },
+} as const
 
+export const buttonProps = {
+  ...buttonTypeProps,
+  ...buttonStyleProps,
+  ...buttonColorProps,
+  ...buttonBehaviorProps,
 } as const
 
 type ButtonPropsWithDynamic = ExtractPropTypes<typeof buttonProps> & {
