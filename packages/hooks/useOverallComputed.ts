@@ -1,3 +1,9 @@
+/**
+ * @description This file is overall logic hooks
+ * This is a hooks file converted to overall design
+ * contains layout components and container components desgin
+ * more features will be updateed in the future
+ */
 import type { ComputedRef, CSSProperties } from 'vue'
 import { useClassComputed } from './useClassComputed'
 import { useStyleComputed } from './useStyleComputed'

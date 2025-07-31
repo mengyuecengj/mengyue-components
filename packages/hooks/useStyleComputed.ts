@@ -1,3 +1,8 @@
+/**
+ * @description general component style computed logic hooks file
+ * This file is mainly a hooks file for general style logic
+ * can be used for most or even all components great support
+ */
 import { computed, type ComputedRef, type CSSProperties } from 'vue';
 
 interface StyleConfig<T extends Record<string, unknown>> {
@@ -8,7 +13,7 @@ interface StyleConfig<T extends Record<string, unknown>> {
 }
 
 export function useStyleComputed<T extends Record<string, unknown>>(
-  props: T,
+  props: T,P
   config: StyleConfig<T>
 ): ComputedRef<CSSProperties> {
   return computed(() => {

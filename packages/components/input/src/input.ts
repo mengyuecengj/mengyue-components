@@ -1,13 +1,13 @@
-import { PropType, Component, ExtractPropTypes } from 'vue'
+import { PropType, ExtractPropTypes } from 'vue'
 
 // 输入类型与标签
 const typeAndTagProps = {
   type: {
-    type: String as PropType<string | Component>,
+    type: String as PropType<string>,
     default: 'text'
   },
   tag: {
-    type: [String, Object] as PropType<string | Component>,
+    type: String as PropType<string>,
     default: 'input'
   }
 }
@@ -15,11 +15,11 @@ const typeAndTagProps = {
 // 尺寸相关
 const sizeProps = {
   width: {
-    type: [String, Number] as PropType<string | Component>,
+    type: [String, Number] as PropType<string | number>,
     default: '100%'
   },
   height: {
-    type: [String, Number] as PropType<string | Component>,
+    type: [String, Number] as PropType<string | number>,
     default: '30px'
   }
 }
@@ -59,7 +59,7 @@ const inputLimitProps = {
     default: undefined
   },
   maxlength: {
-    type: [Number, String],
+    type: [Number, String] as PropType<number | string>,
     default: undefined
   },
   wordLimit: {
@@ -77,8 +77,4 @@ export const inputProps = {
   ...inputLimitProps
 }
 
-type InputPropsWithDynamic = ExtractPropTypes<typeof inputProps> & {
-    [key: string]: string | number | boolean | undefined
-}
-// export type BorderProps = ExtractPropTypes<typeof borderProps>;
-export type InputProps = InputPropsWithDynamic
+export type InputProps = ExtractPropTypes<typeof inputProps>

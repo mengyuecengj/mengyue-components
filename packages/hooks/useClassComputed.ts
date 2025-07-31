@@ -1,3 +1,11 @@
+/**
+ * @description general component class computed logic hooks file
+ * This hooks file is hooks that can be used by basic components or even any component
+ * This hook is mainly written Class computed logic
+ * for example, logic computed of size and round/circle/disabled and other logic
+ * As the number of components increases, it will continueto strengthen the logic and other feasiblity of the code
+ */
+
 import { computed, type ComputedRef } from 'vue';
 
 // configure interface

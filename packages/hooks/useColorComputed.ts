@@ -1,3 +1,8 @@
+/**
+ * @description color computed logic hooks file
+ * This hooks files is color computed logic hooks file The color calculation logic for the button component has been computeted And great support
+ * Expected to complete more funcions and support more components to achieve excellent color calculation
+ */
 import { computed, Ref } from 'vue';
 import type { CSSProperties } from 'vue';
 import { useColorUtils } from './useColorUtils';

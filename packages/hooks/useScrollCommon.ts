@@ -1,3 +1,8 @@
+/**
+ * @description This file is scroll local and global hooks
+ * This file is specifically designed for scroll components and scrollbar components
+ * contains scss environment file for the design and gloabal scss
+ */
 import { computed, ComputedRef, CSSProperties, onUnmounted } from 'vue';
 
 export const useScrollStyles = (props: {

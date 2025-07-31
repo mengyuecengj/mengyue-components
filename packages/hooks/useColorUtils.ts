@@ -1,3 +1,9 @@
+/**
+ * @description This is a about color set file
+ * It's more like a collection file of tool function color than a hooks
+ * This is also a necessary file in some color hooks files
+ * We will evaluate whether it will be stored as hooks files in this directory in the future
+ */
 const _canvasCtx = (() => {
   const ctx = document.createElement('canvas').getContext('2d');
   return ctx || undefined;

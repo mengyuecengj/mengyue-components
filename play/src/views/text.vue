@@ -59,30 +59,6 @@
       </MYText>
     </div>
   </section>
-  <section class="test-section">
-    <h3>复杂组合</h3>
-    <div class="test-row">
-      <MYText type="danger" size="large" Tecolor="rgba(255,0,0,0.4)" tag="strong">
-        红色半透明大号加粗文本
-      </MYText>
-    </div>
-  </section>
-  <section class="test-section">
-    <h3>复杂组合</h3>
-    <div class="test-row">
-      <MYText type="danger" size="large" Tecolor="rgba(255,0,0,0.4)" tag="strong">
-        红色半透明大号加粗文本
-      </MYText>
-    </div>
-  </section>
-  <section class="test-section">
-    <h3>复杂组合</h3>
-    <div class="test-row">
-      <MYText type="danger" size="large" Tecolor="rgba(255,0,0,0.4)" tag="strong">
-        红色半透明大号加粗文本
-      </MYText>
-    </div>
-  </section>
 </template>
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
