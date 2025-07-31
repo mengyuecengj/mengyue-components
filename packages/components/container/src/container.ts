@@ -1,4 +1,4 @@
-import { PropType } from 'vue';
+import { PropType, ExtractPropTypes } from 'vue';
 
 export interface ContainerProps {
   tag?: string;
@@ -73,10 +73,15 @@ export const mainProps = {
 }
 
 export const footerProps = {
-    // 其他组件通用containerProps功能
     ...containerProps,
     tag: {
         type: String,
         default: 'footer'
     }
 }
+
+type ContainerPropsWithDynamic = ExtractPropTypes<typeof containerProps> & {
+    [key: string]: string | number | boolean | undefined
+}
+// export type BorderProps = ExtractPropTypes<typeof borderProps>;
+export type BorderProps = ContainerPropsWithDynamic

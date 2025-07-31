@@ -21,7 +21,7 @@
     <div class="test-case">
       <h3>完整布局</h3>
       <MYContainer height="400px" class="full-layout">
-        <!-- <MYHeader fixed class="header">固定头部</MYHeader> -->
+        <MYHeader fixed class="header" height="30px">固定头部</MYHeader>
         <MYAside class="left-aside">左侧边栏</MYAside>
         <MYMain class="main-content">
           <p>主内容区域</p>

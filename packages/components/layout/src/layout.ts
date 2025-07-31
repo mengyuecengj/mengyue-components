@@ -1,23 +1,5 @@
 import { PropType } from 'vue';
 
-export interface LayoutProps {
-  tag?: string;
-  gutter?: number | string;
-  justify?: 'start' | 'end' | 'center' | 'space-around' | 'space-between';
-  align?: boolean;
-  alignCenter?: boolean;
-  direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
-}
-
-export interface ColProps {
-  tag?: string;
-  span?: number;
-  offsetLeft?: number | string;
-  offsetRight?: number | string;
-  pull?: number | string;
-  push?: number | string;
-}
-
 export const layoutProps = {
   tag: {
     type: String,

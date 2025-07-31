@@ -41,4 +41,8 @@ export const aProps = {
     ...layoutProps
 } as const;
 
-export type aProps = ExtractPropTypes<typeof aProps>;
+type APropsWithDynamic = ExtractPropTypes<typeof aProps> & {
+    [key: string]: string | number | boolean | undefined
+}
+// export type BorderProps = ExtractPropTypes<typeof borderProps>;
+export type AProps = APropsWithDynamic
