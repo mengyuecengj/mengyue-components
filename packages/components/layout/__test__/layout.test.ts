@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { layoutProps, colProps } from './layout';
+import { layoutProps, colProps } from '../src/layout';
 
 describe('layoutProps', () => {
   it('should have correct default values', () => {
