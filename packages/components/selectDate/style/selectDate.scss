@@ -26,7 +26,7 @@ $disabled: #4a4a4e;
       background: $bg;
       color: $text;
       font-size: 14px;
-      width: 300px;
+      width: 350px;
       cursor: pointer;
       transition: all 0.2s ease;
 
@@ -37,8 +37,8 @@ $disabled: #4a4a4e;
 
       &:focus {
         outline: none;
-        border-color: $sel;
-        box-shadow: 0 0 0 2px rgba($sel, 0.2);
+        border-color: $today;
+        box-shadow: 0 0 0 2px rgba($today, 0.2);
       }
 
       &::placeholder {
@@ -104,84 +104,43 @@ $disabled: #4a4a4e;
           font-weight: 500;
         }
 
-        // 针对原生时间输入框的深色样式
-        .time-input {
+        .custom-time-picker {
+          display: flex;
+          align-items: center;
+          gap: 8px;
           flex: 1;
+        }
+
+        .time-select {
           padding: 8px 12px;
           border: 1px solid $border;
           border-radius: 6px;
           background: $bg-light;
           color: $text;
           font-size: 14px;
+          cursor: pointer;
+          appearance: none;
+          background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b0b0b0'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+          background-repeat: no-repeat;
+          background-position: right 8px center;
+          background-size: 16px;
+          padding-right: 32px;
           transition: all 0.2s;
-
-          // 针对Webkit浏览器的时间选择器样式
-          &::-webkit-datetime-edit {
-            color: $text;
-          }
-
-          &::-webkit-datetime-edit-fields-wrapper {
-            background: $bg-light;
-          }
-
-          &::-webkit-datetime-edit-text {
-            color: $text;
-            padding: 0 2px;
-          }
-
-          &::-webkit-datetime-edit-hour-field,
-          &::-webkit-datetime-edit-minute-field,
-          &::-webkit-datetime-edit-ampm-field {
-            color: $text;
-            background: $bg-light;
-          }
-
-          &::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            display: none;
-          }
-
-          &::-webkit-calendar-picker-indicator {
-            filter: invert(0.8);
-            cursor: pointer;
-            padding: 4px;
-            background-size: 16px;
-            opacity: 0.8;
-            transition: opacity 0.2s;
-
-            &:hover {
-              opacity: 1;
-            }
-          }
-
+          
           &:hover {
             border-color: $border-light;
           }
-
+          
           &:focus {
             outline: none;
-            border-color: $sel;
-            box-shadow: 0 0 0 2px rgba($sel, 0.2);
-
-            &::-webkit-calendar-picker-indicator {
-              opacity: 1;
-            }
+            border-color: $today;
+            box-shadow: 0 0 0 2px rgba($today, 0.2);
           }
         }
 
-        // 针对Firefox的样式
-        @-moz-document url-prefix() {
-          .time-input {
-            // Firefox需要特殊处理
-            appearance: none;
-            text-indent: 1px;
-            text-overflow: '';
-
-            &::-moz-focus-inner {
-              border: 0;
-              padding: 0;
-            }
-          }
+        .time-separator {
+          color: $text;
+          font-weight: bold;
         }
       }
 
@@ -190,29 +149,6 @@ $disabled: #4a4a4e;
         font-size: 13px;
         color: $text-secondary;
         text-align: center;
-      }
-
-      // 强制背景色
-      & {
-        background-color: $bg-light !important;
-        color: $text !important;
-      }
-
-      // 针对不同浏览器的伪元素
-      &::-webkit-datetime-edit,
-      &::-webkit-datetime-edit-fields-wrapper,
-      &::-webkit-datetime-edit-text,
-      &::-webkit-datetime-edit-hour-field,
-      &::-webkit-datetime-edit-minute-field,
-      &::-webkit-datetime-edit-ampm-field {
-        background-color: $bg-light !important;
-        color: $text !important;
-      }
-
-      // 时间选择弹窗（无法完全自定义）
-      &::-webkit-calendar-picker-indicator {
-        background-color: $bg-light;
-        filter: invert(1);
       }
     }
 
@@ -240,8 +176,8 @@ $disabled: #4a4a4e;
         transition: all 0.2s;
 
         &:hover {
-          color: $sel;
-          background: rgba($sel, 0.1);
+          color: $today;
+          background: rgba($today, 0.1);
         }
 
         &:active {
@@ -312,11 +248,11 @@ $disabled: #4a4a4e;
         }
 
         &.in-range {
-          background: rgba($sel, 0.3);
+          background: rgba($today, 0.3);
           color: $text;
 
           &:hover {
-            background: rgba($sel, 0.4);
+            background: rgba($today, 0.4);
           }
         }
 
@@ -346,38 +282,8 @@ $disabled: #4a4a4e;
         }
 
         &.current {
-          color: $sel;
+          color: $today;
           font-weight: bold;
-        }
-      }
-    }
-
-    .range-inputs {
-      display: flex;
-      gap: 12px;
-      margin-top: 16px;
-      padding-top: 12px;
-      border-top: 1px solid $border;
-
-      .range-input {
-        flex: 1;
-        padding: 8px 12px;
-        border: 1px solid $border;
-        border-radius: 6px;
-        background: $bg-light;
-        color: $text;
-        font-size: 13px;
-        cursor: pointer;
-        transition: all 0.2s;
-
-        &:hover {
-          border-color: $border-light;
-        }
-
-        &:focus {
-          outline: none;
-          border-color: $sel;
-          box-shadow: 0 0 0 2px rgba($sel, 0.2);
         }
       }
     }

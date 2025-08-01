@@ -1,0 +1,31 @@
+.select-option {
+    padding: 8px 16px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #1D1E1F;
+    }
+
+    &.is-selected {
+        color: #409eff;
+        background-color: #1D1E1F;
+    }
+
+    &.is-disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        color: #999 !important;
+        background-color: inherit !important;
+
+        /* 禁用状态下的触发器 */
+        .select-trigger {
+            cursor: not-allowed;
+
+            /* 禁用悬停效果 */
+            &:hover {
+                border: none;
+                background: inherit;
+            }
+        }
+    }
+}
