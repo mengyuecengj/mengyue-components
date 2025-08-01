@@ -38,6 +38,8 @@ Imagine your daily dev needs - we probably have it! For example:
 *   **Always Evolving:** Continuously refined based on community insights (contact coming soon!).
 *   **Future-Proof:** Keeping up with frontend trends and expanding components.
 
+We are currently optimizing the volume of each component and have completed most of the optimizations
+
 ## Get Started
 
 ```bash
@@ -73,7 +75,7 @@ Hey！👋
     *   **跑得快 🚀：** 性能优化？必须的！
     *   **玩得转 🧩：** 灵活配置，适应你那千奇百怪的需求。
     *   **看得懂 📖：** 后续更新静态站点组件库使用文档？尽量写得不催眠！（欢迎来挑刺）
-    *   **长得俊 🎨：** 默认设计就挺顺眼，当然，随你怎么打扮（自由主题定制？）。
+    *   **长得俊 🎨：** 默认设计就挺顺眼，当然，随你怎么打扮。
 
 ## 里面都有啥好货？
 
@@ -96,6 +98,8 @@ Hey！👋
 *   代码干净，设计实用，文档尽力说人话。
 *   组件库正在不断地重构优化，后续会提供联系方式，参考所有意见或者建议等。
 *   根据和前端潮流，不断添加新组件和优化现有组件。
+
+当前正在优化各个组件的体积，目前以完成了大部分的优化
 
 ## 上手
 *   **动手试试：** 安装超简单！复制粘贴走起：
