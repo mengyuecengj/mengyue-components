@@ -1,113 +1,28 @@
-// 定义所有需要的变量
-$--color-primary: #409EFF !default;
-$--color-text-placeholder: #C0C4CC !default;
-$--color-text-regular: #606266 !default;
-$--color-white: #FFFFFF !default;
-$--rate-active-color: $--color-primary !default;
-$--rate-inactive-color: $--color-text-placeholder !default;
-$--rate-disabled-color: $--color-text-placeholder !default;
-$--rate-text-color: $--color-text-regular !default;
-$--rate-icon-size: 20px !default;
-$--rate-star-margin: 6px !default;
-$--rate-text-margin: 10px !default;
-$--rate-text-font-size: 14px !default;
-
-// 评分组件样式
 .MYRate {
   display: inline-flex;
   align-items: center;
   font-size: 0;
-
-  &__star {
-    position: relative;
-    display: inline-block;
-    margin-right: $--rate-star-margin;
-    cursor: pointer;
-    font-size: $--rate-icon-size;
-    color: $--rate-inactive-color;
-    transition: color 0.2s;
-
-    &:last-child {
-      margin-right: 0;
-    }
-
-    &.is-active {
-      color: $--rate-active-color;
-    }
-
-    &.is-half {
-      .MYRate__star-inner {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 50%;
-        overflow: hidden;
-      }
-    }
-
-    &.is-disabled {
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
-  }
-
-  &__star-inner {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    transition: color 0.2s;
-
-    &::before {
-      content: "★";
-      display: block;
-      width: 100%;
-      height: 120%;
-    }
-  }
-
-  &__text {
-    margin-left: $--rate-text-margin;
-    font-size: $--rate-text-font-size;
-    vertical-align: middle;
-    color: $--rate-text-color;
-  }
 }
-
-// 星星图标的基础样式
-@mixin star-icon {
-  display: inline-block;
+.MYRate__star {
   position: relative;
-  width: 1em;
-  height: 1em;
-  font-size: inherit;
-
-//   &::before {
-//     content: "★";
-//     position: absolute;
-//     left: 0;
-//     top: 0;
-//     width: 100%;
-//     height: 100%;
-//     color: currentColor;
-//   }
+  display: inline-block;
+  margin-right: 6px;
+  cursor: pointer;
+  font-size: 20px;
 }
-
-// 确保星星图标使用正确的样式
+.MYRate__star.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
 .MYRate__star-inner {
-  @include star-icon;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  transition: color 0.2s;
+  height: 2.0rem;
 }
-
-// 半星效果
-.MYRate__star.is-half {
-  .MYRate__star-inner::after {
-    content: "★";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    color: $--rate-inactive-color;
-    overflow: hidden;
-  }
+.MYRate__text {
+  margin-left: 10px;
+  font-size: 14px;
+  vertical-align: middle;
 }
