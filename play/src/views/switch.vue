@@ -7,7 +7,7 @@
         <div class="demo-section">
             <h2>基础用法</h2>
             <div class="demo-row">
-                <MYSwitch v-model="values1" />
+                <MYSwitch v-model="value1" />
                 <span class="demo-label">当前状态: {{ value1 }}</span>
             </div>
         </div>
@@ -85,7 +85,6 @@ const navigateTo = (path: string) => {
     router.push(path)
 }
 // 基础用法
-const values1 = ref(true)
 const value1 = ref(true)
 const value2 = ref(true)
 

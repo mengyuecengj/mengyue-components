@@ -13,7 +13,7 @@ interface StyleConfig<T extends Record<string, unknown>> {
 }
 
 export function useStyleComputed<T extends Record<string, unknown>>(
-  props: T,P
+  props: T,
   config: StyleConfig<T>
 ): ComputedRef<CSSProperties> {
   return computed(() => {

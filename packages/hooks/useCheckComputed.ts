@@ -12,7 +12,8 @@ import {
   onBeforeUnmount,
   watch,
   ref,
-  Ref
+  Ref,
+  UnwrapRef
 } from 'vue'
 
 /**
@@ -47,9 +48,9 @@ export function useFormField<T>(
   prop: string | undefined,
   modelValue: T,
   resetHandler: () => void
-) {
+): { initialValue: Ref<UnwrapRef<T>> } {
   const formItemContext = inject<FormItemContext | null>('myFormItemContext', null)
-  const initialValue = ref(modelValue)
+  const initialValue = ref(modelValue) as Ref<UnwrapRef<T>>
 
   const resetField = () => {
     resetHandler()
