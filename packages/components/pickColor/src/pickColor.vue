@@ -8,7 +8,8 @@
 <script setup lang="ts">
 import { computed, toRefs } from 'vue'
 import { pickColorProps } from './pickColor'
-
+import { useColorUtils } from '../../../hooks/useColorUtils'
+import { useInputStyle } from './pickColorComputed'
 defineOptions({
     name: 'MYSelect-color'
 })
@@ -17,42 +18,25 @@ const props = defineProps(pickColorProps)
 const emit = defineEmits(['update:modelValue'])
 
 const { modelValue, size, rgba, noBorder, circle } = toRefs(props)
+const { parseHexOrRgb } = useColorUtils()
 
 // 转换 modelValue 为 hex
 const hexValue = computed(() => {
     if (modelValue.value.startsWith('rgba')) {
-        return rgbaToHex(modelValue.value)
+        const rgb = parseHexOrRgb(modelValue.value)
+        if (rgb) {
+            const [r, g, b] = rgb
+            return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`
+        }
     }
     return modelValue.value
 })
 
 // 计算 input 的样式，包括大小和透明度
-const inputStyle = computed(() => {
-    const sizeMatch = size.value.match(/^(\d+)([a-zA-Z]*)$/)
-    const sizeValue = sizeMatch ? sizeMatch[1] : '50'
-    const unit = sizeMatch ? sizeMatch[2] || 'px' : 'px'
-    const opacityValue = Math.min(Math.max(parseFloat(rgba.value.toString()) || 1, 0), 1)
-    return {
-        width: `${sizeValue}${unit}`,
-        height: `${sizeValue}${unit}`,
-        opacity: opacityValue
-    }
-})
+const inputStyle = useInputStyle(size.value, String(rgba.value))
 
 const handleColorChange = (e: Event) => {
     emit('update:modelValue', (e.target as HTMLInputElement).value)
-}
-
-// rgba 转 hex
-function rgbaToHex(rgba: string): string {
-    const match = rgba.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/)
-    if (!match) return '#000000'
-
-    const r = parseInt(match[1]).toString(16).padStart(2, '0')
-    const g = parseInt(match[2]).toString(16).padStart(2, '0')
-    const b = parseInt(match[3]).toString(16).padStart(2, '0')
-
-    return `#${r}${g}${b}`
 }
 </script>
 
