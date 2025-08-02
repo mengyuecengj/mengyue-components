@@ -6,24 +6,19 @@
 </template>
 
 <script lang="ts" setup>
+import '../style/timeline.scss'
 defineOptions({
   name: 'MYTimeline'
 })
-defineProps<{
+withDefaults(defineProps<{
   direction?: 'vertical' | 'horizontal';
   theme?: string;
-  style?: import('vue').StyleValue; // Support style prop for inline styles
-}>();
+  style?: import('vue').StyleValue;
+}>(), {
+  direction: 'vertical'
+});
 </script>
 
 <style scoped>
-.my-timeline {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
 
-.my-timeline.horizontal {
-  flex-direction: row;
-}
 </style>

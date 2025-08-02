@@ -13,29 +13,20 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import TreeNode from './treeNode.vue'
-
-interface TreeProps {
-  children: string
-  label: string
-}
-
-interface TreeNode {
-  [key: string]: unknown
-  id?: string | number
-}
+import { TreeProps, TreeNodes } from './type'
 
 const props = defineProps<{
-  data: TreeNode[]
+  data: TreeNodes[]
   props: TreeProps
 }>()
 
 const emits = defineEmits<{
-  (e: 'node-click', node: TreeNode): void
+  (e: 'node-click', node: TreeNodes): void
 }>()
 
 const internalProps = computed(() => props.props)
 
-const handleNodeClick = (node: TreeNode) => {
+const handleNodeClick = (node: TreeNodes) => {
   emits('node-click', node)
 }
 </script>

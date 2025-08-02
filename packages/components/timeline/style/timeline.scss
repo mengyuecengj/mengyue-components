@@ -1,0 +1,9 @@
+.my-timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.my-timeline.horizontal {
+  flex-direction: row;
+}
