@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
-import MYBadge from './badge.vue';
+import MYBadge from '../src/badge.vue';
 
 describe('MYBadge', () => {
   it('renders correctly with default props', () => {

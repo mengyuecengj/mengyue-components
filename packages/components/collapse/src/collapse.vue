@@ -1,4 +1,3 @@
-<!-- MYCollapse.vue -->
 <template>
   <div class="my-collapse">
     <slot></slot>
@@ -7,6 +6,7 @@
 
 <script lang="ts" setup>
 import { provide, computed } from 'vue'
+import '../style/collapse.scss'
 
 defineOptions({
   name: 'MYCollapse'
@@ -53,10 +53,3 @@ provide('collapse', {
   }
 })
 </script>
-
-<style scoped>
-.my-collapse {
-  border: 1px solid #ebeef5;
-  border-radius: 4px;
-}
-</style>

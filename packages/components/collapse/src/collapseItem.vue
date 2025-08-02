@@ -1,4 +1,3 @@
-<!-- MYCollapseItem.vue -->
 <template>
   <div class="my-collapse-item">
     <div class="my-collapse-item__header" :aria-expanded="isActive" @click="toggle">
@@ -12,6 +11,7 @@
 
 <script lang="ts" setup>
 import { inject, computed } from 'vue'
+import '../style/collapse.scss'
 
 defineOptions({
   name: "MYCollapse-item"
@@ -39,24 +39,3 @@ const toggle = () => {
   collapse.toggleItem(props.name)
 }
 </script>
-
-<style scoped>
-.my-collapse-item {
-  border-bottom: 1px solid #ebeef5;
-}
-
-.my-collapse-item__header {
-  padding: 10px 15px;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.my-collapse-item__header:hover {
-  background-color: #f5f7fa;
-}
-
-.my-collapse-item__content {
-  padding: 0 15px 10px;
-  transition: height 0.3s ease;
-}
-</style>
