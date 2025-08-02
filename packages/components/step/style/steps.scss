@@ -1,0 +1,27 @@
+.my-steps {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+  justify-content: space-between; /* 确保步骤均匀分布 */
+}
+
+.my-steps--horizontal {
+  flex-direction: row;
+}
+
+.my-steps--align-left {
+  justify-content: flex-start;
+}
+.my-steps--align-center {
+  justify-content: center;
+}
+.my-steps--align-right {
+  justify-content: flex-end;
+}
+
+/* 确保步骤之间的间距 */
+.my-steps > :deep(.my-step) {
+  flex: 1;
+  position: relative;
+}

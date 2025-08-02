@@ -5,14 +5,10 @@
     </div>
 
     <div class="my-carousel__indicators">
-      <span
-        v-for="index in itemCount"
-        :key="index"
-        class="dot"
-        :class="{ active: index === activeIndex }"
-        @click="trigger === 'click' && setActive(index)"
-        @mouseenter="trigger === 'hover' && setActive(index)"
-      ></span>
+      <span v-for="index in itemCount" :key="index - 1" :class="['dot', { active: (index - 1) === activeIndex }]"
+        @click="trigger === 'click' && setActive(index - 1)"
+        @mouseenter="trigger === 'hover' && setActive(index - 1)"></span>
+
     </div>
 
     <button class="nav prev" @click="prev">‹</button>
@@ -22,9 +18,10 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount, provide } from 'vue'
+import '../style/cartousel.scss'
 
 defineOptions({
-    name: 'MYCarousel'
+  name: 'MYCarousel'
 })
 
 const props = defineProps({
@@ -83,50 +80,4 @@ const containerStyle = computed(() => ({
 }))
 </script>
 
-<style scoped>
-.my-carousel {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-.my-carousel__container {
-  display: flex;
-  width: 100%;
-}
-.my-carousel__indicators {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background: #c0c4cc;
-  border-radius: 50%;
-  margin: 0 5px;
-  cursor: pointer;
-}
-.dot.active {
-  background: #409eff;
-}
-.nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.25);
-  color: white;
-  border: none;
-  font-size: 24px;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
-.nav.prev {
-  left: 10px;
-}
-.nav.next {
-  right: 10px;
-}
-</style>
+<style scoped></style>

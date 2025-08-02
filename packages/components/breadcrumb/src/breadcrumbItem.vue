@@ -9,10 +9,10 @@
       :replace="replace"
       class="my-breadcrumb-link"
     >
-      <slot />
+      <slot v-if="$slots.default" />
     </component>
     <span v-else class="my-breadcrumb-link">
-      <slot />
+      <slot v-if="$slots.default" />
     </span>
 
     <!-- 分隔符 -->
@@ -58,22 +58,3 @@ const isLast = computed(() => {
     instance?.vnode === lastChild : false
 })
 </script>
-
-<style scoped>
-.my-breadcrumb-item {
-  display: inline-flex;
-  align-items: center;
-}
-
-.my-breadcrumb-link {
-  color: var(--el-color-primary, #409EFF);
-  text-decoration: none;
-}
-
-.my-breadcrumb-separator {
-  margin: 0 8px;
-  color: var(--el-text-color-secondary, #c0c4cc);
-  display: flex;
-  align-items: center;
-}
-</style>

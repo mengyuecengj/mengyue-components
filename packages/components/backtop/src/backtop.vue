@@ -18,25 +18,14 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { backTopProps } from './backtop'
+import '../style/backtop.scss'
 
 defineOptions({
     name: 'MYBacktop'
 })
 
-export interface Props {
-  visibilityHeight?: number
-  right?: number
-  bottom?: number
-  target?: string
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  visibilityHeight: 200,
-  right: 40,
-  bottom: 40,
-  target: ''
-})
-
+const props = defineProps(backTopProps)
 const visible = ref(false)
 let scrollEl: HTMLElement | Window = window
 
@@ -77,33 +66,3 @@ onBeforeUnmount(() => {
   scrollEl?.removeEventListener('scroll', handleScroll)
 })
 </script>
-
-<style scoped>
-.my-backtop {
-  position: fixed;
-  z-index: 1000;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  border-radius: 4px;
-  background-color: rgba(64, 158, 255, 0.7);
-  color: #fff;
-  text-align: center;
-  line-height: 40px;
-  transition: opacity 0.3s;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-}
-
-.default-content {
-  font-size: 18px;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>

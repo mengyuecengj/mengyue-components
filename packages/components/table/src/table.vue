@@ -55,6 +55,7 @@ defineOptions({
 
 const props = defineProps<Props>();
 const emit = defineEmits<{
+  (event: 'selection-change', rows: any[]): void;
   (event: string, ...args: unknown[]): void;
 }>();
 

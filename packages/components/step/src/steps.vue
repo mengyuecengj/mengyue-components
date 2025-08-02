@@ -12,6 +12,7 @@
 
 <script setup lang="ts">
 import { provide, computed, useSlots, VNode } from 'vue'
+import '../style/step.scss'
 
 defineOptions({
   name: 'MYSteps'
@@ -27,49 +28,34 @@ const props = defineProps({
 // 计算子步骤数量
 const slots = useSlots()
 const stepCount = computed(() => {
-  const children = slots.default?.({}) || []
+  const children = slots.default?.() || []
   return children.filter((child: VNode) => {
     if (typeof child.type === 'object' && child.type !== null) {
       return 'name' in child.type && child.type.name === 'MYStep'
     }
     return false
   }).length
-})  
+})
 
-provide('stepsContext', {
+import { reactive, watchEffect } from 'vue'
+
+const stepsContext = reactive({
   active: props.active,
   finishStatus: props.finishStatus,
   direction: props.direction,
   stepCount: stepCount.value
 })
+
+watchEffect(() => {
+  stepsContext.active = props.active
+  stepsContext.finishStatus = props.finishStatus
+  stepsContext.direction = props.direction
+  stepsContext.stepCount = stepCount.value
+})
+
+provide('stepsContext', stepsContext)
+
+defineExpose({
+  stepCount
+})
 </script>
-
-<style scoped>
-.my-steps {
-  display: flex;
-  align-items: flex-start;
-  width: 100%;
-  position: relative;
-  justify-content: space-between; /* 确保步骤均匀分布 */
-}
-
-.my-steps--horizontal {
-  flex-direction: row;
-}
-
-.my-steps--align-left {
-  justify-content: flex-start;
-}
-.my-steps--align-center {
-  justify-content: center;
-}
-.my-steps--align-right {
-  justify-content: flex-end;
-}
-
-/* 确保步骤之间的间距 */
-.my-steps > :deep(.my-step) {
-  flex: 1;
-  position: relative;
-}
-</style>

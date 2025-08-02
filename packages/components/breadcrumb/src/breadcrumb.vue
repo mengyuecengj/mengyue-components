@@ -1,11 +1,12 @@
 <template>
   <nav class="my-breadcrumb" aria-label="Breadcrumb">
-    <slot />
+    <slot v-if="$slots.default" />
   </nav>
 </template>
 
 <script setup lang="ts">
-import { provide, computed } from 'vue'
+import { provide, computed, useSlots } from 'vue'
+import '../style/breadcrumb.scss'
 
 defineOptions({
     name: 'MYBreadcrumb'
@@ -22,15 +23,16 @@ const props = defineProps({
   },
 })
 
+const slots = useSlots()
+const children = slots.default?.() || []
+
 provide('breadcrumbSeparator', computed(() => props.separator))
 provide('breadcrumbSeparatorIcon', computed(() => props.separatorIcon))
-</script>
 
-<style scoped>
-.my-breadcrumb {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  color: var(--el-text-color-regular, #606266);
-}
-</style>
+// 为每个子组件提供 isLast 属性
+children.forEach((child, index) => {
+  if (child.props) {
+    child.props.isLast = index === children.length - 1
+  }
+})
+</script>

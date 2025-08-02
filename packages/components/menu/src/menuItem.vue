@@ -10,6 +10,7 @@
 
 <script setup lang="ts">
 import { inject, computed } from 'vue'
+import '../style/menuItem.scss'
 
 defineOptions({
   name: 'MYMenu-item',
@@ -30,28 +31,3 @@ function handleClick() {
 }
 </script>
 
-<style scoped lang="scss">
-.my-menu-item {
-  padding: 12px 20px;
-  cursor: pointer;
-  transition: background 0.3s, color 0.3s;
-  color: var(--menu-text, #fff);
-  user-select: none;
-
-  &:hover {
-    background-color: #409eff22;
-  }
-}
-
-.my-menu-item.active {
-  color: var(--menu-active-text, #ffd04b);
-  font-weight: bold;
-  background-color: #409eff44;
-}
-
-.my-menu-item.disabled {
-  color: #999;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-</style>

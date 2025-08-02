@@ -1,0 +1,45 @@
+.my-carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.my-carousel__container {
+  display: flex;
+  width: 100%;
+}
+.my-carousel__indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #c0c4cc;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.dot.active {
+  background: #409eff;
+}
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.25);
+  color: white;
+  border: none;
+  font-size: 24px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.nav.prev {
+  left: 10px;
+}
+.nav.next {
+  right: 10px;
+}

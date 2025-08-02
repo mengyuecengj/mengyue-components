@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-
+import '../style/dropdownItem.scss'
 defineOptions({
     name: 'MYDropdown-item'
 })
@@ -35,26 +35,3 @@ function handleClick(event: MouseEvent) {
   emit('click', event)
 }
 </script>
-
-<style scoped>
-.my-dropdown-item {
-  padding: 8px 20px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background-color 0.2s;
-  user-select: none;
-}
-
-.my-dropdown-item:hover {
-  background-color: #f5f7fa;
-}
-
-.my-dropdown-item.disabled {
-  color: #c0c4cc;
-  cursor: not-allowed;
-}
-
-.my-dropdown-item.divided {
-  border-top: 1px solid #ebeef5;
-}
-</style>

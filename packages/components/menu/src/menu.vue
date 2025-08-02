@@ -20,6 +20,7 @@
 <script setup lang="ts">
 import { ref, provide, reactive, toRefs } from 'vue'
 import MYDropdownMenu from '../../dropdown/src/dropdownMenu.vue'
+import '../style/menu.scss'
 
 defineOptions({
   name: 'MYMenu'
@@ -61,37 +62,3 @@ provide('menuContext', {
 })
 </script>
 
-<style scoped lang="scss">
-.my-dropdown {
-  position: relative;
-  display: inline-block;
-  color: #fff;
-    list-style: none; /* 去掉子菜单的ul默认原点 */
-  margin: 0;
-  padding: 4px 0;
-
-  &__trigger {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    padding: 8px 12px;
-    background-color: #2c2c2c;
-    border-radius: 6px;
-    transition: background-color 0.2s;
-    user-select: none;
-
-    &:hover {
-      background-color: #3c3c3c;
-    }
-  }
-
-  &__arrow {
-    margin-left: 6px;
-    transition: transform 0.2s ease;
-
-    &.open {
-      transform: rotate(180deg); // 向上
-    }
-  }
-}
-</style>

@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import '../style/alert.scss'
 defineOptions({
   name: 'MYAlert'
 })
@@ -16,15 +17,5 @@ defineProps<{
 </script>
 
 <style scoped>
-.my-alert {
-  padding: 12px 16px;
-  border-radius: 4px;
-  margin: 8px 0;
-  font-size: 14px;
-  color: #fff;
-}
-.my-alert--success { background: #67c23a; }
-.my-alert--info    { background: #909399; }
-.my-alert--warning { background: #e6a23c; }
-.my-alert--error   { background: #f56c6c; }
+
 </style>

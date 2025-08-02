@@ -1,0 +1,24 @@
+.my-dropdown {
+  display: inline-block;
+  position: relative;
+  user-select: none;
+}
+
+.my-dropdown-menu-wrapper {
+  width: 300px;
+  background: white;
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  padding: 4px 0;
+  z-index: 9999;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
