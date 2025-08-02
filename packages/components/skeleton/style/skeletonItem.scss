@@ -1,0 +1,15 @@
+.my-skeleton-item {
+  background: var(--skeleton-bg);
+}
+.my-skeleton-item--text {
+  margin: 4px 0;
+}
+
+.my-skeleton-item--rect,
+.my-skeleton-item--image {
+  border-radius: 4px;
+}
+
+.my-skeleton-item--circle {
+  border-radius: 50%;
+}

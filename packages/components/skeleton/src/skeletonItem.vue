@@ -7,65 +7,33 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { useStyleComputed } from '../../../hooks/useStyleComputed'
+import { skeletonItemProps } from './skeletonItem'
+import '../style/skeletonItem.scss'
 
 defineOptions({
     name: 'MYSkeleton-item'
 })
 
-// 定义变体类型
-type Variant = 'text' | 'rect' | 'circle' | 'image'
-
-// 定义 props
-export interface Props {
-  variant?: Variant // 骨架屏类型
-  width?: string // 宽度
-  height?: string // 高度
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  variant: 'text',
-  width: '100%',
-  height: 'auto',
-})
+const props = defineProps(skeletonItemProps)
 
 // 计算样式
-const itemStyles = computed(() => {
-  const styles: Record<string, string> = {
-    width: props.width,
-    height: props.height,
-  }
-
-  if (props.variant === 'text') {
-    styles.height = styles.height === 'auto' ? '1.2em' : styles.height
-  } else if (props.variant === 'circle') {
-    styles.borderRadius = '50%'
-    styles.height = styles.width // 确保圆形
-  } else if (props.variant === 'image') {
-    styles.aspectRatio = '1 / 1'
-  } else if (props.variant === 'rect') {
-    styles.borderRadius = '4px'
-  }
-
-  return styles
+const itemStyles = useStyleComputed(props, {
+  propToStyleMap: {
+    width: 'width',
+    height: 'height',
+  },
+  customStyleLogic: (props, style) => {
+    if (props.variant === 'text') {
+      style.height = style.height === 'auto' ? '1.2em' : style.height
+    } else if (props.variant === 'circle') {
+      style.borderRadius = '50%'
+      style.height = style.width // 确保圆形
+    } else if (props.variant === 'image') {
+      style.aspectRatio = '1 / 1'
+    } else if (props.variant === 'rect') {
+      style.borderRadius = '4px'
+    }
+  },
 })
 </script>
-
-<style scoped>
-.my-skeleton-item {
-  background: var(--skeleton-bg);
-}
-
-.my-skeleton-item--text {
-  margin: 4px 0;
-}
-
-.my-skeleton-item--rect,
-.my-skeleton-item--image {
-  border-radius: 4px;
-}
-
-.my-skeleton-item--circle {
-  border-radius: 50%;
-}
-</style>

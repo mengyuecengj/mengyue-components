@@ -1,0 +1,46 @@
+.my-skeleton {
+  width: 100%;
+  box-sizing: border-box;
+  
+  .my-skeleton__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+
+.my-skeleton--animated .my-skeleton-item {
+  background: var(--skeleton-bg);
+  position: relative;
+  overflow: hidden;
+  
+  .my-skeleton__content {
+    width: 100%;
+  }
+}
+
+.my-skeleton--animated .my-skeleton-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--skeleton-animation-bg),
+    transparent
+  );
+  animation: shimmer var(--skeleton-animation-speed) infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
