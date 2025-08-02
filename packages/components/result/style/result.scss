@@ -1,0 +1,24 @@
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  
+  .result-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .result-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #E5EAF3;
+  }
+  .result-subtitle {
+    font-size: 16px;
+    color: #E5EAF3;
+  }
+  .result-extra {
+    margin-top: 20px;
+  }
+}
