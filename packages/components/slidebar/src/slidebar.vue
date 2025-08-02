@@ -23,9 +23,9 @@
 
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue'
-import { silderbarProps } from './sliderbar'
+import { silderbarProps } from './slidebar'
 import { useSlidebarComputed } from './slidebarComputed'
-import '../style/sidebar.scss'
+import '../style/sildebar.scss'
 
 defineOptions({ name: 'MYSlidebar' })
 

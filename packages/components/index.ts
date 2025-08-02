@@ -17,7 +17,7 @@ import { MYSelectDate } from './selectDate';
 import { MYSelectTime } from './selectTime';
 import { MYSelect, MYOption } from './select';
 import { MYSelectCascader } from './selectCascader';
-import { MYSlidebar } from './sliderbar';
+import { MYSlidebar } from './slidebar';
 import { MYForm, MYFormItem } from './form';
 import { MYBadge } from './badge';
 import { MYCollapse, MYCollapseItem } from './collapse';

@@ -1,5 +1,5 @@
 import { ref, computed } from 'vue'
-import { SlidebarProps } from './sliderbar'
+import { SlidebarProps } from './slidebar'
 export function useSlidebarComputed(props: SlidebarProps) {
     const num = ref(1)
     const progressWidth = ref(0)
@@ -22,7 +22,6 @@ export function useSlidebarComputed(props: SlidebarProps) {
 
     const startDrag = (e: MouseEvent) => {
         if (props.disabled) return
-          console.log('start drag', e.clientX)
         isDragging = true
         updateValue(e.clientX)
     }
