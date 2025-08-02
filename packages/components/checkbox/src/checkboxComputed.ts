@@ -1,39 +1,39 @@
-import { inject, useAttrs } from 'vue'
+import { inject, useAttrs, watch } from 'vue';
 import {
   useFormField,
   useInputState,
-  useInputChange,
   useInputClasses,
+  useInputChange,
   GroupContext,
   FormItemContext
-} from '../../../hooks/useCheckComputed'
+} from '../../../hooks/useCheckComputed';
 
 interface Props {
-  disabled?: boolean
-  value?: string
-  modelValue?: string[]
+  disabled?: boolean;
+  value?: string;
+  modelValue?: string[];
 }
 
 export function useCheckboxLogic(props: Props, emit: any) {
-  const attrs = useAttrs()
-  const checkboxGroup = inject<GroupContext<string[]> | null>('checkboxGroup', null)
-  const formItemContext = inject<FormItemContext | null>('myFormItemContext', null)
+  const attrs = useAttrs();
+  const checkboxGroup = inject<GroupContext<string[]> | null>('checkboxGroup', null);
+  const formItemContext = inject<FormItemContext | null>('myFormItemContext', null);
 
   const { initialValue } = useFormField(
     formItemContext?.prop,
     props.modelValue,
     () => {
       if (checkboxGroup) {
-        checkboxGroup.change(initialValue.value as string[])
+        checkboxGroup.change(initialValue.value as string[]);
       } else {
-        emit('update:modelValue', initialValue.value)
+        emit('update:modelValue', initialValue.value);
       }
     }
-  )
+  );
 
-  const { isDisabled, isChecked } = useInputState(props, checkboxGroup)
-  const checkboxClass = useInputClasses(isChecked.value, isDisabled.value, 'my-checkbox')
-  const { handleChange } = useInputChange(props, emit, checkboxGroup, true)
+  const { isDisabled, isChecked } = useInputState(props, checkboxGroup);
+  const checkboxClass = useInputClasses(isChecked, isDisabled, 'my-checkbox');
+  const { handleChange } = useInputChange(props, emit, checkboxGroup, true);
 
   return {
     attrs,
@@ -41,5 +41,5 @@ export function useCheckboxLogic(props: Props, emit: any) {
     isDisabled,
     checkboxClass,
     handleChange
-  }
+  };
 }

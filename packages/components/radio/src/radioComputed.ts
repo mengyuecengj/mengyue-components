@@ -1,13 +1,14 @@
 import { computed, inject, useAttrs } from 'vue'
 import { RadioProps, RadioGroupContext } from './type'
-import { useFormField, useInputState, useInputClasses, useInputChange, FormItemContext, GroupContext } from '../../../hooks/useCheckComputed'
+import { useFormField, useInputState, useInputClasses, FormItemContext } from '../../../hooks/useCheckComputed'
 
 export function useRadio(props: RadioProps, emit: (event: 'update:modelValue' | 'change', ...args: any[]) => void) {
   const attrs = useAttrs()
-  const radioGroup = inject<RadioGroupContext | null>('radioGroup', null) as GroupContext<string | number | boolean> | null
+  const radioGroup = inject<RadioGroupContext | null>('radioGroup', null)
   const formItemContext = inject<FormItemContext | null>('myFormItemContext', null)
 
   const effectiveName = computed(() => props.name || radioGroup?.name)
+
   const { initialValue } = useFormField(
     formItemContext?.prop || effectiveName.value,
     props.modelValue ?? '',
@@ -23,7 +24,6 @@ export function useRadio(props: RadioProps, emit: (event: 'update:modelValue' | 
 
   const { isDisabled, isChecked } = useInputState(props, radioGroup)
   const radioClass = useInputClasses(isChecked.value, isDisabled.value, 'my-radio')
-  const { handleChange } = useInputChange(props, emit, radioGroup)
 
   const radioStyle = computed(() => {
     const style: Record<string, string> = {}
@@ -36,5 +36,13 @@ export function useRadio(props: RadioProps, emit: (event: 'update:modelValue' | 
     return style
   })
 
-  return { attrs, isDisabled, isChecked, handleChange, radioClass, radioStyle }
+  return {
+    attrs,
+    isDisabled,
+    isChecked,
+    radioClass,
+    radioStyle,
+    radioGroup,
+    effectiveName
+  }
 }

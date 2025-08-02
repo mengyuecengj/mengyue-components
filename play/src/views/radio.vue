@@ -19,7 +19,7 @@
 
         <h3>禁用状态</h3>
         <div class="demo-group">
-            <MYRadio-group v-model="disabledSelected" >
+            <MYRadio-group v-model="disabledSelected">
                 <MYRadio value="1">禁用选项1</MYRadio>
                 <MYRadio value="2" disabled>禁用选项2</MYRadio>
             </MYRadio-group>

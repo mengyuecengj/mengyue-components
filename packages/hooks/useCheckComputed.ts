@@ -92,22 +92,24 @@ export function useInputState<T extends string | number | boolean>(
   const isDisabled = computed(() => props.disabled || (groupContext?.disabled ?? false))
 
   const isChecked = computed(() => {
-    const val = props.value
-    if (val === undefined) return false
+    const val = props.value;
+    if (val === undefined) return false;
 
-    const groupValue = groupContext?.modelValue.value
-
-    if (Array.isArray(groupValue)) {
-      return groupValue.includes(val)
-    } else if (groupValue !== undefined) {
-      return String(groupValue) === String(val)
+    // 优先使用 groupContext 的 modelValue
+    if (groupContext?.modelValue) {
+      const groupValue = groupContext.modelValue.value;
+      if (Array.isArray(groupValue)) {
+        return groupValue.includes(val as T);
+      }
+      return String(groupValue) === String(val);
     }
 
+    // 回退到 props.modelValue
     if (Array.isArray(props.modelValue)) {
-      return props.modelValue.includes(val)
+      return props.modelValue.includes(val as T);
     }
-    return String(props.modelValue) === String(val)
-  })
+    return String(props.modelValue) === String(val);
+  });
 
   return { isDisabled, isChecked }
 }
@@ -115,13 +117,13 @@ export function useInputState<T extends string | number | boolean>(
 /**
  * 样式类名计算
  */
-export function useInputClasses(isChecked: boolean, isDisabled: boolean, prefix: string) {
+export function useInputClasses(isChecked: Ref<boolean>, isDisabled: Ref<boolean>, prefix: string) {
   return computed(() => {
-    const cls: string[] = [prefix]
-    if (isChecked) cls.push(`${prefix}--checked`)
-    if (isDisabled) cls.push(`${prefix}--disabled`)
-    return cls
-  })
+    const cls: string[] = [prefix];
+    if (isChecked.value) cls.push(`${prefix}--checked`);
+    if (isDisabled.value) cls.push(`${prefix}--disabled`);
+    return cls;
+  });
 }
 
 /**
@@ -135,50 +137,42 @@ export function useInputChange<T extends string | number | boolean>(
   isArray: boolean = false
 ) {
   const handleChange = (e: Event) => {
-    if (props.disabled || (groupContext?.disabled ?? false)) return
-    const target = e.target as HTMLInputElement
-    const val = props.value
-    if (val === undefined) return
+    if (props.disabled || (groupContext?.disabled ?? false)) return;
+    const target = e.target as HTMLInputElement;
+    const val = props.value;
+    if (val === undefined) return;
 
-    const groupValue = groupContext?.modelValue.value
-
-    // checkbox group 场景
-    if (Array.isArray(groupValue)) {
-      const model = [...groupValue]
-      const index = model.indexOf(val)
-      if (target.checked && index === -1) {
-        model.push(val)
-      } else if (!target.checked && index !== -1) {
-        model.splice(index, 1)
-      }
-      (groupContext as GroupContext<T[]>).change(model)
-    }
-
-    // radio group 场景
-    else if (groupValue !== undefined) {
-      (groupContext as GroupContext<T>).change(val)
-    }
-
-    // 非 group 情况
-    else {
-      if (isArray) {
-        const model = Array.isArray(props.modelValue)
-          ? [...props.modelValue]
-          : []
-        const index = model.indexOf(val)
+    if (groupContext?.modelValue) {
+      const groupValue = groupContext.modelValue.value;
+      if (Array.isArray(groupValue)) {
+        const model = [...groupValue];
+        const index = model.indexOf(val as T);
         if (target.checked && index === -1) {
-          model.push(val)
+          model.push(val as T);
         } else if (!target.checked && index !== -1) {
-          model.splice(index, 1)
+          model.splice(index, 1);
         }
-        emit('update:modelValue', model)
+        groupContext.change(model as T & T[]);
       } else {
-        emit('update:modelValue', val)
+        groupContext.change(val as T & T[]);
+      }
+    } else {
+      if (isArray) {
+        const model = Array.isArray(props.modelValue) ? [...props.modelValue] : [];
+        const index = model.indexOf(val as T);
+        if (target.checked && index === -1) {
+          model.push(val as T);
+        } else if (!target.checked && index !== -1) {
+          model.splice(index, 1);
+        }
+        emit('update:modelValue', model as T & T[]);
+      } else {
+        emit('update:modelValue', val as T);
       }
     }
 
-    emit('change', target.checked)
-  }
+    emit('change', target.checked);
+  };
 
-  return { handleChange }
+  return { handleChange };
 }

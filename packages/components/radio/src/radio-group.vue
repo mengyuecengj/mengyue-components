@@ -1,28 +1,32 @@
 <template>
-    <div class="my-radio-group" :class="[`is-${direction}`, { 'is-disabled': disabled }]">
-        <slot />
-    </div>
+  <div :class="['my-radio-group', directionClass]" :disabled="disabled">
+    <slot></slot>
+  </div>
 </template>
 
-<script setup lang="ts">
-import { provide, toRefs } from 'vue'
+<script lang="ts" setup>
+import { computed, provide } from 'vue'
 import { radioGroupProps } from './radio-group'
 import '../style/radio-group.scss'
 
-defineOptions({
-    name: 'MYRadio-group'
-})
-const emit = defineEmits(['update:modelValue'])
 const props = defineProps(radioGroupProps)
+const emit = defineEmits(['update:modelValue'])
 
-// 确保使用 toRef 保持响应式
-const modelValue = toRefs(props).modelValue
+const updateValue = (val: string | number) => {
+  emit('update:modelValue', val)
+}
+
+const directionClass = computed(() => {
+  return props.direction === 'vertical' ? 'is-vertical' : ''
+})
 
 provide('radioGroup', {
-    modelValue,  // 直接传递 ref
-    disabled: props.disabled,
-    change: (value: string | number | boolean) => {
-        emit('update:modelValue', value)
-    }
+  modelValue: computed(() => props.modelValue),
+  disabled: computed(() => props.disabled),
+  changeEvent: updateValue
 })
 </script>
+
+<style scoped>
+
+</style>

@@ -77,3 +77,14 @@
     padding: 2px 6px;
   }
 }
+.my-form-item__label {
+  display: inline-block;
+  margin-right: 10px;
+}
+.my-form-item__control {
+  display: inline-block;
+}
+.my-form-item__error {
+  color: red;
+  font-size: 12px;
+}

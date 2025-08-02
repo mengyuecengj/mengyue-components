@@ -1,12 +1,9 @@
 <template>
-    <div 
-        class="my-checkbox-group"
-        :class="[`is-${direction}`, { 'is-disabled': disabled}]"
+    <div class="my-checkbox-group" :class="[`is-${props.direction}`, { 'is-disabled': props.disabled }]"
         :style="groupStyle">
         <slot />
     </div>
 </template>
-
 <script setup lang="ts">
 import { provide, toRefs, computed } from 'vue';
 import { checkboxGroupProps } from './checkbox-group';

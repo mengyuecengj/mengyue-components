@@ -19,8 +19,8 @@
       <!-- 单选框 -->
       <MYForm-item label="性别" prop="gender">
         <MYRadio-group v-model="formData.gender">
-          <MYRadio value="male">男</MYRadio>
-          <MYRadio value="female">女</MYRadio>
+          <MYRadio value="1">男</MYRadio>
+          <MYRadio value="2">女</MYRadio>
         </MYRadio-group>
       </MYForm-item>
 
@@ -53,7 +53,7 @@ const formRef = ref()
 const formData = reactive({
   username: '',
   enabled: false,
-  gender: '',
+  gender: '1',
   hobbies: [] as string[]
 })
 

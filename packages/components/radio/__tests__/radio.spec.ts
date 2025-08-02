@@ -7,9 +7,9 @@ import MYRadioGroup from '../src/radio-group.vue';
 describe('radioProps', () => {
     it('should have correct default values', () => {
         expect(radioProps.modelValue.default).toBe('');
-        expect(radioProps.value.default).toBeUndefined();
-        expect(radioProps.name.default).toBeUndefined();
-        expect(radioProps.size.default).toBeUndefined();
+        expect(radioProps.value.default).toBe('');
+        expect(radioProps.name.default).toBe('');
+        expect(radioProps.size.default).toBe('');
         expect(radioProps.disabled.default).toBe(false);
     });
 
@@ -28,7 +28,7 @@ describe('MYRadio', () => {
             components: { MYRadio },
             template: '<MYRadio v-model="selected" value="1">Option 1</MYRadio>',
             data() {
-                return { selected: false };
+                return { selected: '' };
             }
         });
         await wrapper.find('input').trigger('click');
@@ -40,11 +40,11 @@ describe('MYRadio', () => {
             components: { MYRadio },
             template: '<MYRadio v-model="selected" value="1" disabled>Option 1</MYRadio>',
             data() {
-                return { selected: false };
+                return { selected: '' };
             }
         });
         await wrapper.find('input').trigger('click');
-        expect(wrapper.vm.selected).toBe(false);
+        expect(wrapper.vm.selected).toBe('');
     });
 });
 

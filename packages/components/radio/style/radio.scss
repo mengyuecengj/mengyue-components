@@ -44,27 +44,26 @@
     font-size: 14px;
     user-select: none;
   }
-}
 
-// checked 状态
-.my-radio--checked .my-radio__inner {
-  border-color: #409eff;
-  background-color: #409eff;
+  &--checked {
+    .my-radio__inner {
+      border-color: #409eff;
+      background-color: #409eff;
 
-  &:after {
-    transform: translate(-50%, -50%) scale(1);
+      &:after {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
   }
-}
 
-// disabled 状态
-.my-radio--disabled {
-  opacity: 0.6;
-  cursor: not-allowed !important;
-
-  // 确保所有子元素也显示禁止手势
-  * {
+  &--disabled {
+    opacity: 0.6;
     cursor: not-allowed !important;
-    pointer-events: none;
-    user-select: none;
+
+    * {
+      cursor: not-allowed !important;
+      pointer-events: none;
+      user-select: none;
+    }
   }
 }

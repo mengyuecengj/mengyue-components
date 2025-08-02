@@ -1,21 +1,7 @@
 .my-radio-group {
-    display: inline-flex;
-    flex-wrap: wrap;
-    align-items: center;
-    
-    &.is-horizontal {
-        flex-direction: row;
-        gap: v-bind('props.gap');
-    }
-    
-    &.is-vertical {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: v-bind('props.gap');
-    }
-    
-    &.is-disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
+  display: flex;
+  gap: 10px;
+}
+.my-radio-group.is-vertical {
+  flex-direction: column;
 }

@@ -2,7 +2,7 @@
   <label class="my-checkbox" :class="checkboxClass">
     <span class="my-checkbox__input">
       <input
-        v-bind="attrs"
+        v-bind="{ ...attrs, checked: undefined }"
         type="checkbox"
         class="my-checkbox__original"
         :checked="isChecked"
@@ -18,17 +18,17 @@
 </template>
 
 <script setup lang="ts">
-import { useCheckboxLogic } from './checkboxComputed'
-import '../style/checkbox.scss'
+import { useCheckboxLogic } from './checkboxComputed';
+import '../style/checkbox.scss';
 
-defineOptions({ name: 'MYCheckbox' })
+defineOptions({ name: 'MYCheckbox' });
 
 const props = defineProps<{
-  disabled?: boolean
-  value?: string
-  modelValue?: string[]
-}>()
-const emit = defineEmits(['update:modelValue', 'change'])
+  disabled?: boolean;
+  value?: string;
+  modelValue?: string[];
+}>();
+const emit = defineEmits(['update:modelValue', 'change']);
 
 const {
   attrs,
@@ -36,9 +36,9 @@ const {
   isDisabled,
   checkboxClass,
   handleChange
-} = useCheckboxLogic(props, emit)
+} = useCheckboxLogic(props, emit);
 
 defineExpose({
   isDisabled
-})
+});
 </script>
