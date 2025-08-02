@@ -1,6 +1,17 @@
+# * text=auto eol=lf
+# *.ts linguist-detectable=false
+# *.css linguist-detectable=false
+# *.scss linguist-detectable=false
+# *.js linguist-detectable=true
+# *.vue linguist-detectable=true
+
 * text=auto eol=lf
-*.ts linguist-detectable=false
-*.css linguist-detectable=false
-*.scss linguist-detectable=false
-*.js linguist-detectable=true
-*.vue linguist-detectable=true
+*.vue linguist-detectable=Vue
+*.ts linguist-detectable=TypeScript
+*.js linguist-detectable=JavaScript
+*.css linguist-detectable=CSS
+*.scss linguist-detectable=SCSS
+
+dist/ linguist-vendored
+node_modules/ linguist-vendored
+*.min.css linguist-generated
