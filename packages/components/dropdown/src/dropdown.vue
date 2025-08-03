@@ -19,7 +19,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
 import { useDropdown } from './dropdown'
 import '../style/dropdown.scss'
 

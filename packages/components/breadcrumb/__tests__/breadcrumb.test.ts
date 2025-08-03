@@ -8,7 +8,7 @@ describe('MYBreadcrumb', () => {
   it('renders default separator', () => {
     const wrapper = mount(MYBreadcrumb, {
       slots: {
-        default: () => [h(MYBreadcrumbItem, {}, 'Home')],
+        default: () => [h(MYBreadcrumbItem, {}, { default: () => 'Home' })], // ✅ 插槽为函数
       },
     });
     expect(wrapper.find('.my-breadcrumb-separator').text()).toBe('/');
@@ -20,7 +20,7 @@ describe('MYBreadcrumb', () => {
         separator: '>',
       },
       slots: {
-        default: () => [h(MYBreadcrumbItem, {}, 'Home')],
+        default: () => [h(MYBreadcrumbItem, {}, { default: () => 'Home' })], // ✅ 插槽为函数
       },
     });
     expect(wrapper.find('.my-breadcrumb-separator').text()).toBe('>');
@@ -31,7 +31,7 @@ describe('MYBreadcrumbItem', () => {
   it('renders plain text', () => {
     const wrapper = mount(MYBreadcrumbItem, {
       slots: {
-        default: 'Home',
+        default: () => 'Home', // ✅ 修复为函数
       },
     });
     expect(wrapper.find('.my-breadcrumb-link').text()).toBe('Home');
@@ -43,7 +43,7 @@ describe('MYBreadcrumbItem', () => {
         to: '/home',
       },
       slots: {
-        default: 'Home',
+        default: () => 'Home', // ✅ 修复为函数
       },
     });
     expect(wrapper.find('a').exists()).toBe(true);
@@ -56,7 +56,7 @@ describe('MYBreadcrumbItem', () => {
         isLast: false,
       },
       slots: {
-        default: 'Home',
+        default: () => 'Home', // ✅ 修复为函数
       },
     });
     expect(wrapper.find('.my-breadcrumb-separator').exists()).toBe(true);

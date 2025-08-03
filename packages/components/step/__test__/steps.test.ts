@@ -2,14 +2,15 @@ import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import MYSteps from '../src/steps.vue'
 import MYStep from '../src/step.vue'
+import { h } from 'vue'
 
 describe('MYSteps Component', () => {
   it('renders correctly with default props', () => {
     const wrapper = mount(MYSteps, {
       slots: {
-        default: [
-          mount(MYStep, { props: { title: 'Step 1', index: 0 } }).html(),
-          mount(MYStep, { props: { title: 'Step 2', index: 1 } }).html(),
+        default: () => [
+          h(MYStep, { title: 'Step 1', index: 0 }),
+          h(MYStep, { title: 'Step 2', index: 1 }),
         ],
       },
     })
@@ -23,14 +24,11 @@ describe('MYSteps Component', () => {
     const wrapper = mount(MYSteps, {
       props: { active: 1 },
       slots: {
-        default: [
-          { template: '<MYStep title="Step 1" :index="0" />' },
-          { template: '<MYStep title="Step 2" :index="1" />' },
+        default: () => [
+          h(MYStep, { title: 'Step 1', index: 0 }),
+          h(MYStep, { title: 'Step 2', index: 1 }),
         ],
       },
-      global: {
-        components: { MYStep }
-      }
     })
 
     const steps = wrapper.findAllComponents(MYStep)
@@ -42,8 +40,8 @@ describe('MYSteps Component', () => {
     const wrapper = mount(MYSteps, {
       props: { direction: 'vertical' },
       slots: {
-        default: [
-          mount(MYStep, { props: { title: 'Step 1', index: 0 } }).html(),
+        default: () => [
+          h(MYStep, { title: 'Step 1', index: 0 }),
         ],
       },
     })
@@ -56,6 +54,11 @@ describe('MYStep Component', () => {
   it('renders correctly with title and description', () => {
     const wrapper = mount(MYStep, {
       props: { title: 'Step 1', description: 'Description', index: 0 },
+      global: {
+        provide: {
+          stepsContext: {}, // mock context to silence warning
+        },
+      },
     })
 
     expect(wrapper.find('.my-step__title').text()).toBe('Step 1')
@@ -65,7 +68,14 @@ describe('MYStep Component', () => {
   it('displays custom icon when provided', () => {
     const wrapper = mount(MYStep, {
       props: { title: 'Step 1', index: 0 },
-      slots: { icon: '<span>Custom Icon</span>' },
+      slots: {
+        icon: () => h('span', 'Custom Icon'),
+      },
+      global: {
+        provide: {
+          stepsContext: {},
+        },
+      },
     })
 
     expect(wrapper.find('.my-step__icon').html()).toContain('Custom Icon')
@@ -75,14 +85,11 @@ describe('MYStep Component', () => {
     const wrapper = mount(MYSteps, {
       props: { active: 1 },
       slots: {
-        default: [
-          { template: '<MYStep title="Step 1" :index="0" />' },
-          { template: '<MYStep title="Step 2" :index="1" />' },
+        default: () => [
+          h(MYStep, { title: 'Step 1', index: 0 }),
+          h(MYStep, { title: 'Step 2', index: 1 }),
         ],
       },
-      global: {
-        components: { MYStep }
-      }
     })
 
     const steps = wrapper.findAllComponents(MYStep)
