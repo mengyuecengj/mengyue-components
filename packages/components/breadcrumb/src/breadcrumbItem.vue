@@ -25,6 +25,7 @@
 
 <script setup lang="ts">
 import { inject, computed, getCurrentInstance } from 'vue'
+import '../style/breadcrumbItem.scss'
 
 defineOptions({
     name: 'MYBreadcrumb-item'

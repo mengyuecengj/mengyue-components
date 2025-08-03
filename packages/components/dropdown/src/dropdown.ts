@@ -1,10 +1,29 @@
 import { ref, reactive, onMounted, onBeforeUnmount, nextTick } from 'vue'
-import type { CSSProperties } from 'vue'
+import type { CSSProperties, Ref } from 'vue'
 
-export const useDropdown = (props: any) => {
+export type DropdownTrigger = 'click' | 'hover'
+export type DropdownPlacement = 'bottom-end' | 'bottom-start' | 'bottom'
+
+export interface DropdownProps {
+  trigger: DropdownTrigger
+  placement?: DropdownPlacement
+}
+
+export const useDropdown = (props: DropdownProps): {
+  visible: Ref<boolean>
+  triggerRef: Ref<HTMLElement | null>
+  menuRef: Ref<HTMLElement | null>
+  menuStyles: CSSProperties
+  handleTriggerClick: () => void
+  handleMouseEnter: () => void
+  handleMouseLeave: () => void
+  handleMenuMouseEnter: () => void
+  handleMenuMouseLeave: () => void
+} => {
   const visible = ref(false)
   const triggerRef = ref<HTMLElement | null>(null)
   const menuRef = ref<HTMLElement | null>(null)
+
   const menuStyles = reactive<CSSProperties>({
     position: 'absolute',
     top: '0px',
@@ -36,9 +55,7 @@ export const useDropdown = (props: any) => {
 
   function showMenu() {
     visible.value = true
-    nextTick(() => {
-      updatePosition()
-    })
+    nextTick(() => updatePosition())
   }
 
   function hideMenu() {
@@ -47,16 +64,11 @@ export const useDropdown = (props: any) => {
 
   function toggleMenu() {
     visible.value = !visible.value
-    if (visible.value) {
-      nextTick(() => updatePosition())
-    }
+    if (visible.value) nextTick(() => updatePosition())
   }
 
-  // 触发器事件
   function handleTriggerClick() {
-    if (props.trigger === 'click') {
-      toggleMenu()
-    }
+    if (props.trigger === 'click') toggleMenu()
   }
 
   function handleMouseEnter() {
@@ -68,9 +80,7 @@ export const useDropdown = (props: any) => {
 
   function handleMouseLeave() {
     if (props.trigger === 'hover') {
-      hoverTimeout = window.setTimeout(() => {
-        hideMenu()
-      }, 200)
+      hoverTimeout = window.setTimeout(() => hideMenu(), 200)
     }
   }
 
@@ -80,20 +90,14 @@ export const useDropdown = (props: any) => {
 
   function handleMenuMouseLeave() {
     if (props.trigger === 'hover') {
-      hoverTimeout = window.setTimeout(() => {
-        hideMenu()
-      }, 200)
+      hoverTimeout = window.setTimeout(() => hideMenu(), 200)
     }
   }
 
-  // 点击外部关闭
   function onClickOutside(event: MouseEvent) {
     if (!triggerRef.value || !menuRef.value) return
     const target = event.target as Node
-    if (
-      !triggerRef.value.contains(target) &&
-      !menuRef.value.contains(target)
-    ) {
+    if (!triggerRef.value.contains(target) && !menuRef.value.contains(target)) {
       hideMenu()
     }
   }

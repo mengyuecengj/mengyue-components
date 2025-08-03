@@ -36,4 +36,4 @@ const props = defineProps(formItemProps)
 
 const { formItemRef, errorMessage, labelWidth, formItemClass, attachTrigger } = useFormItemComputed(props, form)
 attachTrigger()
-</script>
+</script> 

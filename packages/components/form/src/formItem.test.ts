@@ -37,7 +37,7 @@ describe('Utility Functions', () => {
 describe('Validation Logic', () => {
   it('should validate rules correctly', () => {
     const validRules = { field: [{ required: true }] }
-    const invalidRules = { field: 'not-an-array' }
+    const invalidRules = { field: [{} as any] }
 
     expect(formItemProps.rules.validator(validRules)).toBe(true)
     expect(formItemProps.rules.validator(invalidRules)).toBe(false)

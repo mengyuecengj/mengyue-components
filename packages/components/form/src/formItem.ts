@@ -6,7 +6,7 @@ import { formProps } from './form'
 /** 表单项绑定数据类型 */
 type FormItemModelValue = Record<string, unknown>
 /** 表单项校验规则类型 */
-type FormItemRules = Record<string, FormRule[] | string>
+type FormItemRules = Record<string, FormRule[]>
 /** 校验触发方式 */
 type ValidateTrigger = 'blur' | 'change'
 /** 表单项大小类型 */

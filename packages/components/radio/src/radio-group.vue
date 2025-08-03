@@ -9,6 +9,8 @@ import { computed, provide } from 'vue'
 import { radioGroupProps } from './radio-group'
 import '../style/radio-group.scss'
 
+defineOptions({ name: 'MYRadio-group' })
+
 const props = defineProps(radioGroupProps)
 const emit = defineEmits(['update:modelValue'])
 
@@ -23,7 +25,7 @@ const directionClass = computed(() => {
 provide('radioGroup', {
   modelValue: computed(() => props.modelValue),
   disabled: computed(() => props.disabled),
-  changeEvent: updateValue
+  change: updateValue  // 这里改成 change，和 MYRadio 里一致
 })
 </script>
 

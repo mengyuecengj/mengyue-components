@@ -21,21 +21,22 @@
 <script setup lang="ts">
 import { useDropdown } from './dropdown'
 import '../style/dropdown.scss'
+import { DropdownProps } from './dropdown';
 
 defineOptions({
     name: 'MYDropdown'
 })
-const props = defineProps({
-  trigger: {
-    type: String,
-    default: 'click', // 'click' | 'hover'
-  },
-  placement: {
-    type: String,
-    default: 'bottom-start', // 目前支持 'bottom-start' | 'bottom-end'
-  }
-})
-
+// const props = defineProps({
+//   trigger: {
+//     type: String,
+//     default: 'click', // 'click' | 'hover'
+//   },
+//   placement: {
+//     type: String,
+//     default: 'bottom-start', // 目前支持 'bottom-start' | 'bottom-end'
+//   }
+// })
+const props = defineProps<DropdownProps>()
 const {
   visible,
   triggerRef,

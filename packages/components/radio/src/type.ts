@@ -1,9 +1,9 @@
 import { Ref } from 'vue'
-
 export interface RadioGroupContext {
-  modelValue: Ref<string | number | boolean>
-  disabled: Ref<boolean>
-  changeEvent: (val: string | number | boolean) => void
+  name?: string | Ref<string>
+  disabled?: boolean | Ref<boolean>
+  modelValue?: any | Ref<any>
+  change?: (value: any) => void
 }
 
 export interface FormItemContext {
