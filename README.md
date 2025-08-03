@@ -50,7 +50,8 @@ npm install mengyue-plus
 # 使用 yarn
 yarn add mengyue-plus
 
-#全局注册, 在项目的main中
+# 全局注册, 在项目的main中
+```js
 import { createApp } from 'vue'
 import MengyuePlus from 'mengyue-plus'
 import 'mengyue-plus/dist/style.css'
@@ -58,17 +59,7 @@ import 'mengyue-plus/dist/style.css'
 const app = createApp(App)
 app.use(MengyuePlus)
 app.mount('#app')
-
-# 组件中使用
-import { MButton, MInput } from 'mengyue-plus'
-
-export default {
-  components: {
-    MButton,
-    MInput
-  }
-}
-
+```
 
 # Mengyue Plus 🛠️✨
 
@@ -123,6 +114,7 @@ npm install mengyue-plus
 yarn add mengyue-plus
 
 #global registry, project in main
+```js
 import { createApp } from 'vue'
 import MengyuePlus from 'mengyue-plus'
 import 'mengyue-plus/dist/style.css'
@@ -130,13 +122,4 @@ import 'mengyue-plus/dist/style.css'
 const app = createApp(App)
 app.use(MengyuePlus)
 app.mount('#app')
-
-# use in components
-import { MButton, MInput } from 'mengyue-plus'
-
-export default {
-  components: {
-    MButton,
-    MInput
-  }
-}
+```
