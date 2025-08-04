@@ -20,10 +20,11 @@
     "typecheck:node": "tsc -p tsconfig.node.json --noEmit",
     "typecheck:vite-config": "vue-tsc -p tsconfig.vite-config.json --composite false --noEmit",
     "typecheck:vitest": "vue-tsc -p tsconfig.vitest.json --composite false --noEmit",
-    "docs:dev": "pnpm run -C docs dev",
-    "docs:build": "pnpm run -C docs build",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
     "docs:serve": "pnpm run -C docs serve",
-    "prepare": "husky"
+    "prepare": "husky",
+    "docs:preview": "vitepress preview docs"
   },
   "peerDependencies": {
     "vue": "^3.2.0"
@@ -42,6 +43,7 @@
     "lodash-es": "^4.17.21",
     "lodash-unified": "^1.0.2",
     "memoize-one": "^6.0.0",
+    "mengyue-plus": "^0.0.37",
     "normalize-wheel-es": "^1.2.0",
     "npm-user-downloads": "^1.2.0",
     "vite-plugin-dts": "^4.5.4",
@@ -94,6 +96,7 @@
     "unplugin-vue-macros": "^2.7.11",
     "vite": "^6.3.5",
     "vite-plugin-svg-icons": "^2.0.1",
+    "vitepress": "1.4.0",
     "vitest": "^2.0.5",
     "vue": "^3.5.17",
     "vue-eslint-parser": "9.4.3",
