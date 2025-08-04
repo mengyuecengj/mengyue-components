@@ -1,1 +1,0 @@
-import{_ as t,c as a,o as n,j as r}from"./chunks/framework.DiSmySXf.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"index.md","filePath":"index.md"}'),s={name:"index.md"};function o(d,e,i,c,p,l){return n(),a("div",null,e[0]||(e[0]=[r("p",null,"组件库静态站点页test",-1)]))}const f=t(s,[["render",o]]);export{_ as __pageData,f as default};
