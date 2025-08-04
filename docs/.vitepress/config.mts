@@ -1,12 +1,12 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  base: '/mengyue-plus/',
+  outDir: 'mengyue-plus',
   title: "Mengyue Components",
   description: "Documentation for mengyue-components",
   themeConfig: {
     nav: [
-      { text: '首页', link: '/' },
+      { text: '首页', link: '/index' },
       { text: '指南', link: '/guide/test' },
       { text: '参考', link: '/reference/test' },
       // { text: '示例', link: '/mengyue-plus/examples/markdown-examples' }

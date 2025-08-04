@@ -20,10 +20,10 @@
     "typecheck:node": "tsc -p tsconfig.node.json --noEmit",
     "typecheck:vite-config": "vue-tsc -p tsconfig.vite-config.json --composite false --noEmit",
     "typecheck:vitest": "vue-tsc -p tsconfig.vitest.json --composite false --noEmit",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
-    "docs:preview": "vitepress preview docs",
+    "docs:dev": "vitepress dev docs/ --base /mengyue-plus/",
+    "docs:build": "vitepress build docs/.vitepress --base /mengyue-plus/",
+    "docs:serve": "vitepress serve docs/.vitepress",
+    "docs:preview": "vitepress preview docs/ --base /mengyue-plus/",
     "prepare": "husky"
   },
   "peerDependencies": {
@@ -47,7 +47,8 @@
     "normalize-wheel-es": "^1.2.0",
     "npm-user-downloads": "^1.2.0",
     "vite-plugin-dts": "^4.5.4",
-    "vite-svg-loader": "^5.1.0"
+    "vite-svg-loader": "^5.1.0",
+    "vitepress": "^1.6.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
@@ -96,7 +97,6 @@
     "unplugin-vue-macros": "^2.7.11",
     "vite": "^6.3.5",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vitepress": "1.4.0",
     "vitest": "^2.0.5",
     "vue": "^3.5.17",
     "vue-eslint-parser": "9.4.3",

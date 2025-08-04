@@ -4,9 +4,9 @@
   "description": "Documentation for mengyue-components",
   "main": ".vitepress/config.ts",
   "scripts": {
-    "docs:dev": "vitepress dev vitepress",
-    "docs:build": "vitepress build",
-    "docs:serve": "vitepress serve ./vitepress",
+    "docs:dev": "vitepress dev .vitepress",
+    "docs:build": "vitepress build vitepress/ --base /mengyue-plus/",
+    "docs:serve": "vitepress serve vitepress/.vitepress",
     "docs:preview": "vitepress preview ./vitepress"
   },
   "author": "",
