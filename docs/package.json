@@ -5,7 +5,7 @@
   "main": ".vitepress/config.ts",
   "scripts": {
     "docs:dev": "vitepress dev vitepress",
-    "docs:build": "vitepress build ./vitepress",
+    "docs:build": "vitepress build",
     "docs:serve": "vitepress serve ./vitepress",
     "docs:preview": "vitepress preview ./vitepress"
   },
