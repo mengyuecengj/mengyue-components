@@ -11,6 +11,8 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
+  base: '/mengyue-components/',
+  assetsDir: 'assets',
   title: 'MengYue plus',
   description: '一个轻量且现代的 Vue 3 组件库',
   lang: 'zh-CN',
