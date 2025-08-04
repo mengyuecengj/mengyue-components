@@ -4,10 +4,6 @@
   "description": "Documentation for mengyue-components",
   "main": ".vitepress/config.ts",
   "scripts": {
-    "docs:dev": "vitepress dev docs/ --base /mengyue-components/",
-    "docs:build": "vitepress build docs/",
-    "docs:serve": "vitepress serve docs/.vitepress",
-    "docs:preview": "vitepress preview docs/ --base /mengyue-components/"
   },
   "author": "",
   "license": "ISC",

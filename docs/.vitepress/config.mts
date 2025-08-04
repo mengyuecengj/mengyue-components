@@ -1,15 +1,14 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  // base: 'mengyue-components',
+  base: '/mengyue-components/',
   title: "Mengyue Components",
   description: "Documentation for mengyue-components",
   themeConfig: {
     nav: [
-      { text: '首页', link: 'index' },
-      { text: '指南', link: 'guide/test' },
-      { text: '参考', link: 'reference/test' },
-      // { text: '示例', link: '/mengyue-plus/examples/markdown-examples' }
+      { text: '首页', link: '/' },
+      { text: '指南', link: '/guide/test' },
+      { text: '参考', link: '/reference/test' },
     ],
     sidebar: {
       '/guide/': [
@@ -34,12 +33,5 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/your-repo/mengyue-components' }
     ]
-  },
-  rewrites: {
-    'index.md': 'index.html',
-    'examples/api-examples.md': 'examples/api-examples.html',
-    'examples/markdown-examples.md': 'examples/markdown-examples.html',
-    'guide/getting-started.md': 'guide/getting-started.html',
-    'guide/advanced-usage.md': 'guide/advanced-usage.html'
   }
 })
