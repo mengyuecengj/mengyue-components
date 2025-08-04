@@ -20,10 +20,10 @@
     "typecheck:node": "tsc -p tsconfig.node.json --noEmit",
     "typecheck:vite-config": "vue-tsc -p tsconfig.vite-config.json --composite false --noEmit",
     "typecheck:vitest": "vue-tsc -p tsconfig.vitest.json --composite false --noEmit",
-    "docs:dev": "vitepress dev docs/ --base /mengyue-plus/",
-    "docs:build": "vitepress build docs/.vitepress --base /mengyue-plus/",
+    "docs:dev": "vitepress dev docs/ --base /mengyue-components/",
+    "docs:build": "vitepress build docs/ --base /mengyue-components/",
     "docs:serve": "vitepress serve docs/.vitepress",
-    "docs:preview": "vitepress preview docs/ --base /mengyue-plus/",
+    "docs:preview": "vitepress preview docs/ --base /mengyue-components/",
     "prepare": "husky"
   },
   "peerDependencies": {
