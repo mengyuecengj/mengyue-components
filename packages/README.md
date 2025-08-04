@@ -6,6 +6,8 @@ Tired of reinventing the wheel in every project? Does coding buttons, layouts, a
 
 Say hello to **`mengyue-plus`**! 
 
+github: https://github.com/mengyuecengj/mengyue-components
+
 ## What It Does
 *   **Save Time & Effort:** Common components? Just grab 'em! Whether it's basic buttons/inputs or complex tables/date pickers - we've got you covered. Write less code, build faster.
 *   **Consistent & Reliable:** Tame inconsistent coding styles and rainbow-colored UIs. Achieve visual harmony across projects.
@@ -66,6 +68,8 @@ Hey！👋
 是不是厌倦了在项目中反复造轮子？每次写按钮、 布局、表单都觉得“似曾相识”？下次项目还得重头再来？
 
 认识一下 **`[mengyue-plus]`** 吧！
+
+github: https://github.com/mengyuecengj/mengyue-components
 
 ## 他可以做到
 *   **省时省力：** 常用组件？拿来吧你！甭管是基础的按钮、输入框，还是表格、日期选择器，都包圆了，可以用很简易的代码完成编写。
