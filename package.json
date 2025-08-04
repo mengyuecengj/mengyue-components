@@ -21,10 +21,10 @@
     "typecheck:vite-config": "vue-tsc -p tsconfig.vite-config.json --composite false --noEmit",
     "typecheck:vitest": "vue-tsc -p tsconfig.vitest.json --composite false --noEmit",
     "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "pnpm run -C docs serve",
-    "prepare": "husky",
-    "docs:preview": "vitepress preview docs"
+    "docs:build": "vitepress build docs/vitepress",
+    "docs:serve": "vitepress serve docs",
+    "docs:preview": "vitepress preview docs",
+    "prepare": "husky"
   },
   "peerDependencies": {
     "vue": "^3.2.0"

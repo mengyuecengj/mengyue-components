@@ -5,9 +5,9 @@
   "main": ".vitepress/config.ts",
   "scripts": {
     "docs:dev": "vitepress dev vitepress",
-    "docs:build": "vitepress build vitepress",
-    "docs:serve": "vitepress serve .",
-    "docs:preview": "vitepress preview vitepress"
+    "docs:build": "vitepress build ./vitepress",
+    "docs:serve": "vitepress serve ./vitepress",
+    "docs:preview": "vitepress preview ./vitepress"
   },
   "author": "",
   "license": "ISC",

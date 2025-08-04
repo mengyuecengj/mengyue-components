@@ -9,15 +9,15 @@ export default defineConfig({
       { text: '首页', link: '/' },
       { text: '指南', link: '/guide/test' },
       { text: '参考', link: '/reference/test' },
-      { text: '示例', link: '/mengyue-plus/examples/markdown-examples' }
+      // { text: '示例', link: '/mengyue-plus/examples/markdown-examples' }
     ],
     sidebar: {
       '/guide/': [
         {
           text: 'Guide',
           items: [
-            { text: 'Getting Started', link: '/mengyue-plus/guide/getting-started' },
-            { text: 'Advanced Usage', link: '/mengyue-plus/guide/advanced-usage' }
+            { text: 'Getting Started', link: '/guide/test' },
+            { text: 'Advanced Usage', link: '/guide/test' }
           ]
         }
       ],
@@ -25,8 +25,8 @@ export default defineConfig({
         {
           text: 'Examples',
           items: [
-            { text: 'Markdown Examples', link: '/mengyue-plus/examples/markdown-examples' },
-            { text: 'API Examples', link: '/mengyue-plus/examples/api-examples' }
+            { text: 'Markdown Examples', link: '/reference/test' },
+            { text: 'API Examples', link: '/reference/test' }
           ]
         }
       ]
