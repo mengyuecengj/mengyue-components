@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  base: '/mengyuecomponents-docs/',
+  base: '/mengyue-components/',
   title: "Mengyue Components",
   description: "Documentation for mengyue-components",
   themeConfig: {
