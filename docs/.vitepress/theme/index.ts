@@ -1,4 +1,7 @@
+// .vitepress/theme/index.js
 import DefaultTheme from 'vitepress/theme'
-import './style.css'
+import { h } from 'vue'
 
-export default DefaultTheme
+export default {
+  extends: DefaultTheme,
+}

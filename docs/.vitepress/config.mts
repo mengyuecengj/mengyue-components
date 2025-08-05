@@ -1,4 +1,6 @@
 import { defineConfig } from 'vitepress'
+import { indexGuide } from '../guide/index'
+import { indexReference } from '../reference/index'
 
 export default defineConfig({
   base: '/mengyue-components/',
@@ -11,27 +13,11 @@ export default defineConfig({
       { text: '参考', link: '/reference/test' },
     ],
     sidebar: {
-      '/guide/': [
-        {
-          text: 'Guide',
-          items: [
-            { text: 'Getting Started', link: '/guide/test' },
-            { text: 'Advanced Usage', link: '/guide/test' }
-          ]
-        }
-      ],
-      '/reference/': [
-        {
-          text: 'Examples',
-          items: [
-            { text: 'Markdown Examples', link: '/reference/test' },
-            { text: 'API Examples', link: '/reference/test' }
-          ]
-        }
-      ]
+      '/guide/': indexGuide,
+      '/reference/': indexReference
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/your-repo/mengyue-components' }
+      { icon: 'github', link: 'https://github.com/mengyuecengj/mengyue-components' }
     ]
   }
 })
