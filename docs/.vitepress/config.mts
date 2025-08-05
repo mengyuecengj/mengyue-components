@@ -6,10 +6,12 @@ export default defineConfig({
   base: '/mengyue-components/',
   title: "Mengyue Components",
   description: "Documentation for mengyue-components",
+
   themeConfig: {
+    outline: 'deep',
     nav: [
       { text: '首页', link: '/' },
-      { text: '指南', link: '/guide/test' },
+      { text: '指南', link: '/guide/mdGuide/start' },
       { text: '参考', link: '/reference/test' },
     ],
     sidebar: {
@@ -19,5 +21,5 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/mengyuecengj/mengyue-components' }
     ]
-  }
+  },
 })

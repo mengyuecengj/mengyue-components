@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Documentation for mengyue-components",
   "main": ".vitepress/config.ts",
-  "scripts": {
-  },
+  "scripts": {},
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mengyue-plus": "^0.0.37",
     "vitepress": "^1.6.3"
   }
 }
