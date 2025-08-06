@@ -1,13 +1,13 @@
 /* 自定义全局样式 */
-.title span {
-  margin-left: 20px;
+.title {
+  display: flex;
 }
 
 .text {
-  margin-right: 20px;
+  margin-right: 50px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 /* 只针对侧边栏：让侧边栏内部列表纵向排列 */
