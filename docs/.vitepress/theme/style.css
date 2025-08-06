@@ -9,14 +9,49 @@
   align-items: center;
 }
 
-.items {
+/* 只针对侧边栏：让侧边栏内部列表纵向排列 */
+.theme-default .sidebar .items {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  /* 其他侧边栏专用样式… */
+}
+
+/* 针对首页特性区：强制三列横向排列 */
+.theme-default .home .features .items {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: space-between;
+}
+
+/* 每个卡片宽度约三分之一 */
+.theme-default .home .features .items > * {
+  flex: 0 0 calc(33.333% - 1rem);
+  margin-bottom: 2rem;
 }
 
 .outline-title {
+  display: none;
+}
+
+.line-numbers-mode {
+  overflow: hidden;
+}
+
+/* The weight of the original style covered is high and must be used !important */
+.shiki.nord {
+/* docs/.vitepress/theme/styles/custom.css */
+
+.shiki {
+  background-color: transparent !important;
+  /* 或者设置为你页面的背景色 */
+  background: none !important;
+}
+
+}
+
+/* Hide the preceding numbers */
+.line-numbers-wrapper {
   display: none;
 }
 

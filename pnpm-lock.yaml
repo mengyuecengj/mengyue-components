@@ -71,6 +71,9 @@ importers:
       vitepress:
         specifier: ^1.6.3
         version: 1.6.3(@algolia/client-search@5.35.0)(@types/node@22.15.34)(async-validator@4.2.5)(postcss@5.2.18)(sass@1.89.2)(search-insights@2.17.3)(terser@5.43.1)(typescript@5.5.4)
+      vscode-npm-script:
+        specifier: 0.0.1-security
+        version: 0.0.1-security
     devDependencies:
       '@commitlint/cli':
         specifier: ^19.0.0
@@ -234,6 +237,9 @@ importers:
       vitepress:
         specifier: ^1.6.3
         version: 1.6.3(@algolia/client-search@5.35.0)(@types/node@22.15.34)(async-validator@4.2.5)(postcss@8.5.6)(sass@1.89.2)(search-insights@2.17.3)(terser@5.43.1)(typescript@5.5.4)
+      vscode-npm-script:
+        specifier: 0.0.1-security
+        version: 0.0.1-security
 
   packages/package:
     dependencies:
@@ -5923,6 +5929,9 @@ packages:
         optional: true
       jsdom:
         optional: true
+
+  vscode-npm-script@0.0.1-security:
+    resolution: {integrity: sha512-ANa37tRetga02lRIl5l1QylPG0nPXAeInMkQ0QOxBBwDOS9SnwDcryeUOxgD+g582mA1yYduVDFRkPExUJS+jw==}
 
   vscode-uri@3.1.0:
     resolution: {integrity: sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ==}
@@ -12491,6 +12500,8 @@ snapshots:
       - sugarss
       - supports-color
       - terser
+
+  vscode-npm-script@0.0.1-security: {}
 
   vscode-uri@3.1.0: {}
 

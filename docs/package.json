@@ -8,6 +8,7 @@
   "license": "ISC",
   "dependencies": {
     "mengyue-plus": "^0.0.37",
-    "vitepress": "^1.6.3"
+    "vitepress": "^1.6.3",
+    "vscode-npm-script": "0.0.1-security"
   }
 }

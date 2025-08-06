@@ -6,20 +6,22 @@ hero:
   name: Mengyue Components
   text: 一套简洁高效的 Vue 3 UI 组件库
   tagline: ✨ 轻量、易用、可扩展，助力开发者快速打造高质量现代界面
-  image:
-    # src: /logo.svg
-    alt: Mengyue Components Logo
-  actions:
-    - theme: brand
-      text: 快速上手
-      link: /guide/installation
-    - theme: alt
-      text: 组件一览
-      link: /components/
-    - theme: alt
-      text: GitHub
-      link: https://github.com/mengyuecengj/mengyue-components
-      external: true
+  # 必须提供 src，否则会报 Invalid prop: type check failed
+  # image:
+  #   src: /logo.svg
+  #   alt: Mengyue Components Logo
+
+actions:
+  - theme: brand
+    text: 快速上手
+    link: /guide/installation
+  - theme: alt
+    text: 组件一览
+    link: /components/
+  - theme: alt
+    text: GitHub
+    link: https://github.com/mengyuecengj/mengyue-components
+    external: true
 
 # 特性展示：三列卡片，增强视觉吸引力
 features:

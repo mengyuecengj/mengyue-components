@@ -48,7 +48,8 @@
     "npm-user-downloads": "^1.2.0",
     "vite-plugin-dts": "^4.5.4",
     "vite-svg-loader": "^5.1.0",
-    "vitepress": "^1.6.3"
+    "vitepress": "^1.6.3",
+    "vscode-npm-script": "0.0.1-security"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
