@@ -1,4 +1,4 @@
-/* 自定义全局样式 */
+自定义全局样式
 .title {
   display: flex;
 }
@@ -7,14 +7,19 @@
   margin-right: 50px;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
+}
+
+.nav {
+  top: 12%;
+  background-color: transparent;
 }
 
 /* 只针对侧边栏：让侧边栏内部列表纵向排列 */
 .theme-default .sidebar .items {
+  margin-bottom: 100px;
   display: flex;
   flex-direction: column;
-  /* 其他侧边栏专用样式… */
 }
 
 /* 针对首页特性区：强制三列横向排列 */
