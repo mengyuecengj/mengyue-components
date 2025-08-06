@@ -1,4 +1,3 @@
-// docs/.vitepress/config.js
 import { defineConfig } from 'vitepress'
 import { createHighlighter } from 'shiki'
 import { indexGuide } from '../guide/index'

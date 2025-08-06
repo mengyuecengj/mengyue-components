@@ -1,9 +1,10 @@
 /* 自定义全局样式 */
-.title {
-  margin-left: 10px;
+.title span {
+  margin-left: 20px;
 }
 
 .text {
+  margin-right: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,7 +26,7 @@
 }
 
 /* 每个卡片宽度约三分之一 */
-.theme-default .home .features .items > * {
+.theme-default .home .features .items>* {
   flex: 0 0 calc(33.333% - 1rem);
   margin-bottom: 2rem;
 }
@@ -40,13 +41,13 @@
 
 /* The weight of the original style covered is high and must be used !important */
 .shiki.nord {
-/* docs/.vitepress/theme/styles/custom.css */
+  /* docs/.vitepress/theme/styles/custom.css */
 
-.shiki {
-  background-color: transparent !important;
-  /* 或者设置为你页面的背景色 */
-  background: none !important;
-}
+  .shiki {
+    background-color: transparent !important;
+    /* 或者设置为你页面的背景色 */
+    background: none !important;
+  }
 
 }
 
