@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./chunks/framework.Dg2MLihl.js";const l=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"guide/mdGuide/carousel.md","filePath":"guide/mdGuide/carousel.md"}'),r={name:"guide/mdGuide/carousel.md"};function o(s,c,d,i,n,u){return a(),t("div")}const p=e(r,[["render",o]]);export{l as __pageData,p as default};
