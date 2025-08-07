@@ -27,7 +27,8 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '指南', link: '/guide/mdGuide/start' },
-      { text: '参考', link: '/reference/test' }
+      { text: '参考', link: '/reference/test' },
+      { text: '公告', link: ''}
     ],
     sidebar: {
       '/guide/': indexGuide,

@@ -96,7 +96,7 @@ text 文本组件，用于显示文本内容，支持多种样式和尺寸。men
 
 ### 类型定义
 
-```ts
+```vue
 interface TextProps {
   type?: string;
   size?: string;

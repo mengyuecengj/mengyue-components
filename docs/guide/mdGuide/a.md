@@ -79,7 +79,7 @@ a 链接组件，用于显示超链接内容，支持多种样式和交互行为
 | tag    | 渲染标签      | string  | 支持所有 HTML 标签                 | `a` |
 ### 类型定义
 
-```ts
+```vue
 interface AProps {
   type?: string;
   color?: string;

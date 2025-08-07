@@ -48,7 +48,7 @@ scroll 滚动条组件，用于实现自定义滚动条样式和功能。mengyue
 
 ### 类型定义
 
-```ts
+```vue
 interface ScrollProps {
   thumbColor?: string;
   thumbHoverColor?: string;

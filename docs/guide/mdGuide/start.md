@@ -1,7 +1,7 @@
 # 什么是mengyue-components
 ## 简介
 mengyue-components 是一个专为现代前端开发者打造的高质量 UI 组件库，旨在提供可复用、高性能的组件解决方案，助力快速构建现代化 Web 应用。它基于前沿的前端技术栈，支持多种主流框架（如 React、Vue 等），并配备详尽的文档和丰富的示例，让开发者能够轻松上手。
-<MYBorder paddingText="20px" round colorBg="#272843" borderColor="#272843">跳到如何使用，<MYa href="./test">尝试一下？</MYa>✨</MYBorder>
+<MYBorder paddingText="20px" round colorBg="#3a5c40" borderColor="#6b8e23"><MYText Tecolor="#fff">跳到如何使用，</MYText><MYa href="./test" color="#ffffff">尝试一下？</MYa>✨</MYBorder>
 
 ## 核心优势
 mengyue-components 不仅仅是一个组件库，更是提升开发效率与用户体验的强大工具。以下是它的几大亮点：

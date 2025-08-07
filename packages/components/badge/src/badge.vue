@@ -13,6 +13,7 @@
 <script setup lang="ts">
 import { badgeProps } from './badge';
 import { useBadgeComputed } from './badgeComputed';
+import '../style/badge.scss';
 defineOptions({
   name: "MYBadge"
 })
