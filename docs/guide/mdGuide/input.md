@@ -8,34 +8,39 @@ input输入框组件，用于用户输入文本内容。mengyue-components进行
 ```vue
 <MYInput v-model="inputValue" placeholder="请输入内容" />
 ```
+<MYInput v-model="inputValue" placeholder="请输入内容" />
 
 ## 输入类型
 通过`type`属性可以设置输入框的类型，如`text`、`password`等。
 ```vue
 <MYInput type="password" placeholder="请输入密码" />
 ```
+<MYInput type="password" placeholder="请输入密码" />
 
 ## 尺寸控制
 使用`width`和`height`属性可以自定义输入框的尺寸。
 ```vue
 <MYInput width="200px" height="40px" />
 ```
+<MYInput width="200px" height="40px" />
 
 ## 状态控制
 - `disabled`：禁用输入框
 - `clearable`：显示清除按钮
 - `showPassword`：切换密码可见性
 ```vue
-<MYInput disabled clearable showPassword />
+<MYInput clearable showPassword />
 ```
+<MYInput v-model="passwordValue" clearable />
 
 ## 输入限制
 - `minlength`：最小输入长度
 - `maxlength`：最大输入长度
 - `wordLimit`：显示字数统计
 ```vue
-<MYInput maxlength="10" wordLimit />
+<MYInput maxlength="10" word-limit />
 ```
+<MYInput maxlength="10" word-limit />
 
 ## API 参考
 
@@ -44,7 +49,7 @@ input输入框组件，用于用户输入文本内容。mengyue-components进行
 |--------------|-------------|---------|-----------------------------------|--------|
 | type         | 输入框类型   | string  | `text`/`password`等               | `text` |
 | tag          | 标签类型     | string  | `input`/`textarea`等              | `input` |
-| width        | 宽度        | string \| number | —                               | `100%` |
+| width        | 宽度        | string \| number | —                               | `200px` |
 | height       | 高度        | string \| number | —                               | `30px` |
 | disabled     | 是否禁用     | boolean | —                               | `false` |
 | clearable    | 是否可清除   | boolean | —                               | `false` |
@@ -73,3 +78,8 @@ type InputProps = {
   wordLimit: boolean;
 };
 ```
+
+<script setup>
+import { ref } from "vue";
+const inputValue = ref("111");
+</script>

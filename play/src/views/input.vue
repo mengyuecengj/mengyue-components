@@ -22,8 +22,8 @@
 
         <div class="test-section">
             <h2>密码输入框</h2>
-            <MYInput v-model="passwordValue" tag="input" type="password" clearable showPassword placeholder="输入密码"
-                form="password-form" />
+            <MYInput v-model="passwordValue" tag="input" type="password" showPassword placeholder="输入密码" clearable :maxlength="10" word-limit
+             form="password-form" width="400px"  />
         </div>
 
         <div class="test-section">
@@ -45,6 +45,8 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { MYInput } from 'mengyue-plus'
+import 'mengyue-plus/style.css'
 
 const router = useRouter()
 

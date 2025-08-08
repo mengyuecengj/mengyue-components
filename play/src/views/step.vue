@@ -27,8 +27,8 @@
     </MYSteps>
 
     <div style="margin-top: 20px; text-align: center;">
-      <MYButton style="margin-right: 12px;" @click="prev">Previous Step</MYButton>
-      <MYButton @click="next">Next Step</MYButton>
+      <MYButton type="primary" style="margin-right: 12px;" @click="prev">Previous Step</MYButton>
+      <MYButton type="danger" @click="next">Next Step</MYButton>
     </div>
   </div>
 </template>
@@ -58,7 +58,5 @@ const prev = () => {
 }
 </script>
 <style scoped>
-* {
-  background-color: #141414
-}
+
 </style>

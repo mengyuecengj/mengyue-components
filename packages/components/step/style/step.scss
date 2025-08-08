@@ -5,7 +5,7 @@
   position: relative;
   flex: 1;
   min-width: 0;
-  padding-bottom: 20px; /* 为垂直布局留空间 */
+  padding-bottom: 16px; /* 为垂直布局留空间 */
 }
 
 .my-step--horizontal {
@@ -26,6 +26,7 @@
 .my-step__icon {
   width: 24px;
   height: 24px;
+
   border-radius: 50%;
   background-color: #c0c4cc;
   display: flex;
@@ -34,6 +35,11 @@
   position: relative;
   flex-shrink: 0;
   color: white; /* 确保图标文字可见 */
+
+  .my-step__icon span {
+  margin-right: 5px;
+  margin-bottom: 5px;
+  }
 }
 
 .my-step--status-wait .my-step__icon {
@@ -70,8 +76,8 @@
   z-index: 2;
   margin-top: 8px;
   text-align: center;
-  color: #eaeaea; /* 浅色主题文字颜色 */
-  transform: translateY(-8px); /* 关键修复：上移文本 */
+  color: #606266; /* 更清晰的文字颜色 */
+  transform: translateY(-4px); /* 减少上移幅度 */
 }
 
 .my-step--horizontal .my-step__content-wrapper {

@@ -17,6 +17,10 @@ export const silderbarProps = {
     noNum: {
         type: Boolean,
         default: false,
+    },
+    modelValue: {
+        type: [String, Number],
+        default: ''
     }
 }
 

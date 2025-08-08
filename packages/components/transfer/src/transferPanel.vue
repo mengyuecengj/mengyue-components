@@ -1,14 +1,15 @@
 <template>
-  <div class="transfer-panel">
+  <div class="transfer-panel" :style="{ ...transferStyle, '--hover-background': hoverBackground }">
     <div class="transfer-panel__title">{{ title }}</div>
     <ul class="transfer-panel__list">
       <li
         v-for="item in data"
         :key="item.key"
         :class="['transfer-panel__item', { 'is-disabled': item.disabled, 'is-selected': selected.includes(item.key) }]"
+        :style="{ '--hover-background': hoverBackground }"
         @click="toggleSelect(item)"
       >
-        <input type="checkbox" :checked="selected.includes(item.key)" :disabled="item.disabled" />
+        <input class="transfer-panel__checkbox" type="checkbox" :checked="selected.includes(item.key)" :disabled="item.disabled" />
         {{ item.label }}
       </li>
     </ul>
@@ -16,22 +17,21 @@
 </template>
 
 <script lang="ts" setup>
+import { transferComputed } from './transferComputed'
+import { transferPanelProps } from './transferPanel'
+import { Option } from './type'
 
 defineOptions({
   name: 'MYTransferPanel'
 })
 
-interface Option {
-  key: number
-  label: string
-  disabled: boolean
-}
 
-const props = defineProps<{
-  title: string
-  data: Option[]
-  selected: number[]
-}>()
+const props = defineProps(transferPanelProps)
+// const props = defineProps<{
+//   title: string
+//   data: Option[]
+//   selected: number[]
+// }>()
 
 const emit = defineEmits(['update:selected'])
 
@@ -46,4 +46,6 @@ const toggleSelect = (item: Option) => {
   }
   emit('update:selected', selected)
 }
+
+const { transferStyle } = transferComputed(props)
 </script>

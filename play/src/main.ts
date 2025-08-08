@@ -5,7 +5,7 @@ import './style.css'
 import { router } from './router'
 
 // import MengyuePlus from 'mengyue-plus'
-// import 'mengyue-plus/style.css'
+import 'mengyue-plus/style.css'
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'

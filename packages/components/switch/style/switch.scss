@@ -66,6 +66,7 @@
 
     input:disabled+.slider {
         opacity: 0.5;
+        cursor: not-allowed !important;
         /* 禁用状态 */
     }
 

@@ -1,92 +1,55 @@
 .my-input-wrapper {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
+  width: auto !important;
+
+  .my-input {
+    /* 铺满 wrapper */
     width: 100%;
+    height: 100%;
+    padding: 0 11px;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color .2s;
 
-    .my-input {
-        width: 100%;
-        height: 32px; // Element Plus 的默认 input 高度
-        padding: 0 11px; // Element Plus 是左右 11px 内边距
-        border-radius: 4px;
-        border: 1px solid #dcdfe6;
-        font-size: 14px;
-        font-weight: 400;
-        font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
-            "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-        line-height: 1;
-        color: #606266;
-        background-color: #fff;
-        box-sizing: border-box;
-        transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+    &::placeholder { color: #c0c4cc; }
+    &:hover       { border-color: #c0c4cc; }
+    &:focus       { outline: none; border-color: #409EFF; }
+  }
 
-        &::placeholder {
-            color: #c0c4cc;
-        }
+  .my-input__clear {
+    position: absolute;
+    top: 50% !important;
+  }
+  .my-input__password {
+    position: absolute;
+    top: 50%;
+    right: 5px !important;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+  }
 
-        &:hover {
-            border-color: #c0c4cc;
-        }
+  /* 如果两个图标同时显示，可以给后面的 password 留更大 right */
+  .my-input__password {
+    right: 32px;
+  }
 
-        &:focus {
-            outline: none;
-            border-color: #409EFF;
-        }
-    }
+  .my-input__word-limit {
+    position: absolute;
+    top: 9px !important;
+    right: 50px !important;
+    font-size: 12px;
+    &.near-limit { color: #e6a23c; }
+  }
 
-    .my-input__clear {
-        position: absolute;
-        top: 50%;
-        right: 8px;
-        transform: translateY(-50%);
-        font-size: 14px;
-        color: #c0c4cc;
-        cursor: pointer;
-        user-select: none;
-
-        &:hover {
-            color: #909399;
-        }
-    }
-
-    .my-input__password {
-        position: absolute;
-        top: 50%;
-        right: 8px;
-        transform: translateY(-50%);
-        font-size: 14px;
-        color: #c0c4cc;
-        cursor: pointer;
-        user-select: none;
-        margin-top: 2px;
-        margin-right: 20px;
-    }
-
-
-    .my-input--disabled {
-        background-color: #f5f7fa;
-        border-color: #e4e7ed;
-        color: #c0c4cc;
-        cursor: not-allowed;
-
-        &::placeholder {
-            color: #c0c4cc;
-        }
-
-        &:hover,
-        &:focus {
-            border-color: #e4e7ed;
-        }
-    }
-
-    .my-input--showPassword {
-        -webkit-text-security: disc;
-    }
-
-    .my-input__word-limit {
-        position: absolute;
-        right: 25px;
-        bottom: 8px;
-        font-size: 12px;
-        color: #999;
-    }
+  /* disabled 样式 */
+  &.my-input--disabled .my-input {
+    background: #f5f7fa;
+    border-color: #e4e7ed;
+    color: #c0c4cc;
+    cursor: not-allowed;
+  }
 }

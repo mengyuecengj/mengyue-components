@@ -4,6 +4,8 @@
       v-model:selected="leftSelected"
       title="源数据"
       :data="leftData"
+      :style="transferStyle"
+      :hoverBackground="hoverBackground"
     />
     <div class="my-transfer__buttons">
       <button :disabled="!leftSelected.length" @click="addToRight">→</button>
@@ -13,6 +15,8 @@
       v-model:selected="rightSelected"
       title="已选中"
       :data="rightData"
+      :style="transferStyle"
+      :hoverBackground="hoverBackground"
     />
   </div>
 </template>
@@ -21,22 +25,14 @@
 import { computed, ref } from 'vue'
 import TransferPanel from './transferPanel.vue'
 import '../style/transfer.scss'
+import { transferProps } from './transfer'
+import { transferComputed } from './transferComputed'
 
 defineOptions({
   name: 'MYTransfer'
 })
 
-interface Option {
-  key: number
-  label: string
-  disabled: boolean
-}
-
-const props = defineProps<{
-  modelValue: number[]
-  data: Option[]
-}>()
-
+const props = defineProps(transferProps)
 const emit = defineEmits(['update:modelValue'])
 
 // 左右选中项
@@ -60,4 +56,6 @@ const removeFromRight = () => {
   emit('update:modelValue', newKeys)
   rightSelected.value = []
 }
+
+const { transferStyle } = transferComputed(props)
 </script>

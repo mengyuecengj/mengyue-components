@@ -37,7 +37,6 @@ const initialValue = ref(props.modelValue)
 const isChecked = computed(() => Boolean(props.modelValue))
 const isDisabled = computed(() => Boolean(props.disabled))
 
-// --- 直接解构 hook 返回的计算属性 ---
 const { classSwitch, styleSwitch } = useSwitchComputed(props)
 
 // 事件处理

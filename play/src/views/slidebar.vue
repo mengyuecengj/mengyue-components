@@ -1,8 +1,7 @@
 <template>
     <MYButton type="info" style="margin-top: 20px" @click="navigateTo('/')">返回/首页</MYButton>
-
     <div>
-        <MYSlidebar ref="slider" :size="size" :thumbColor="thumbColor" :trackColor="trackColor" :disabled="disabled"
+        <MYSlidebar v-model="test" ref="slider" :size="size" :thumbColor="thumbColor" :trackColor="trackColor" :disabled="disabled"
             :noNum="noNum" />
     </div>
 </template>
@@ -18,6 +17,7 @@ const navigateTo = (path: string) => {
 }
 const size = ref('400px')
 const thumbColor = ref('#ff0000')
+const test = ref('32')
 const trackColor = ref('#2c2')
 const disabled = ref(false)
 const noNum = ref(false)

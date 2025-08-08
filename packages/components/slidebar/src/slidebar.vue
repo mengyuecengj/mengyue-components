@@ -1,3 +1,4 @@
+<!-- MYSlidebar.vue -->
 <template>
   <div class="slider-container" :style="containerStyle" :class="{ disabled: disabled }">
     <div
@@ -22,17 +23,18 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
-import { silderbarProps } from './slidebar'
-import { useSlidebarComputed } from './slidebarComputed'
-import '../style/sildebar.scss'
+import { onMounted, onUnmounted } from 'vue';
+import { silderbarProps } from './slidebar';
+import { useSlidebarComputed } from './slidebarComputed';
+import '../style/sildebar.scss';
 
-defineOptions({ name: 'MYSlidebar' })
+defineOptions({ name: 'MYSlidebar' });
 
-const props = defineProps(silderbarProps)
+const props = defineProps(silderbarProps);
+const emit = defineEmits(['update:modelValue']);
 
-const defaultTrackBg = '#e0e0e0'
-const defaultProgressColor = '#42b983'
+const defaultTrackBg = '#e0e0e0';
+const defaultProgressColor = '#42b983';
 
 const {
   num,
@@ -41,16 +43,16 @@ const {
   containerStyle,
   startDrag,
   onMouseMove,
-  stopDrag
-} = useSlidebarComputed(props)
+  stopDrag,
+} = useSlidebarComputed(props, emit);
 
 onMounted(() => {
-  window.addEventListener('mousemove', onMouseMove)
-  window.addEventListener('mouseup', stopDrag)
-})
+  window.addEventListener('mousemove', onMouseMove);
+  window.addEventListener('mouseup', stopDrag);
+});
 
 onUnmounted(() => {
-  window.removeEventListener('mousemove', onMouseMove)
-  window.removeEventListener('mouseup', stopDrag)
-})
+  window.removeEventListener('mousemove', onMouseMove);
+  window.removeEventListener('mouseup', stopDrag);
+});
 </script>

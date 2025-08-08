@@ -1,9 +1,10 @@
 .my-steps {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
   position: relative;
   justify-content: space-between; /* 确保步骤均匀分布 */
+  gap: 16px; /* 添加步骤之间的间距 */
 }
 
 .my-steps--horizontal {

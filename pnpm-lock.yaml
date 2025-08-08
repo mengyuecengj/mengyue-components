@@ -233,7 +233,7 @@ importers:
     dependencies:
       mengyue-plus:
         specifier: ^0.0.44
-        version: 0.0.44(vue@3.5.17(typescript@5.5.4))
+        version: 0.0.44(vue@3.5.18(typescript@5.5.4))
       vitepress:
         specifier: ^1.6.3
         version: 1.6.4(@algolia/client-search@5.35.0)(@types/node@24.2.0)(async-validator@4.2.5)(postcss@8.5.6)(sass@1.90.0)(search-insights@2.17.3)(terser@5.43.1)(typescript@5.5.4)
@@ -278,8 +278,8 @@ importers:
         specifier: ^2.10.4
         version: 2.10.5(vue@3.5.18(typescript@5.5.4))
       mengyue-plus:
-        specifier: ^0.0.37
-        version: 0.0.37(vue@3.5.18(typescript@5.5.4))
+        specifier: ^0.0.44
+        version: 0.0.44(vue@3.5.18(typescript@5.5.4))
       vue:
         specifier: ^3.5.13
         version: 3.5.18(typescript@5.5.4)
@@ -10825,9 +10825,9 @@ snapshots:
     dependencies:
       vue: 3.5.18(typescript@5.5.4)
 
-  mengyue-plus@0.0.44(vue@3.5.17(typescript@5.5.4)):
+  mengyue-plus@0.0.44(vue@3.5.18(typescript@5.5.4)):
     dependencies:
-      vue: 3.5.17(typescript@5.5.4)
+      vue: 3.5.18(typescript@5.5.4)
 
   meow@12.1.1: {}
 

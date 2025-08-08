@@ -1,6 +1,6 @@
 <template>
   <div style="padding: 20px">
-    <MYTransfer v-model="value" :data="data" />
+    <MYTransfer v-model="value" :data="data" backgroundColor="#ff0000" colorText="#2c2" hoverBackground="#2c2" />
     <div style="margin-top: 20px">
       <strong>当前选中：</strong> {{ value }}
     </div>
