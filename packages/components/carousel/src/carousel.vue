@@ -8,7 +8,6 @@
       <span v-for="index in itemCount" :key="index - 1" :class="['dot', { active: (index - 1) === activeIndex }]"
         @click="trigger === 'click' && setActive(index - 1)"
         @mouseenter="trigger === 'hover' && setActive(index - 1)"></span>
-
     </div>
 
     <button class="nav prev" @click="prev">‹</button>
@@ -27,7 +26,8 @@ defineOptions({
 const props = defineProps({
   height: { type: String, default: '200px' },
   interval: { type: Number, default: 3000 },
-  trigger: { type: String as () => 'hover' | 'click', default: 'hover' }
+  trigger: { type: String as () => 'hover' | 'click', default: 'hover' },
+  autoplay: { type: Boolean, default: true }
 })
 
 const activeIndex = ref(0)
@@ -41,11 +41,13 @@ function setActive(index: number) {
 function next() {
   activeIndex.value = (activeIndex.value + 1) % itemCount.value
 }
+
 function prev() {
   activeIndex.value = (activeIndex.value - 1 + itemCount.value) % itemCount.value
 }
 
 function play() {
+  if (!props.autoplay) return
   stop()
   timer.value = window.setInterval(next, props.interval)
 }
@@ -76,7 +78,8 @@ const containerStyle = computed(() => ({
   transform: `translateX(-${activeIndex.value * 100}%)`,
   transition: 'transform 0.5s ease',
   display: 'flex',
-  width: '100%'
+  width: '100%',
+  backgroundColor: '#99A9BF'
 }))
 </script>
 

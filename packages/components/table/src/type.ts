@@ -1,26 +1,27 @@
-// Define Props Interface
-export interface Props {
-  data: Array<Record<string, unknown>>;
-  border?: boolean;
-  stripe?: boolean;
-  height?: number;
-  fluidHeight?: boolean;
-  selection?: 'single' | 'multiple';
-  selectionFixed?: boolean;
-  rowClassName?: (params: { row: Record<string, unknown>; index: number }) => string;
-}
-
-// Column Interface
-export interface Column {
-  prop?: string;
-  label: string;
+export interface TableColumnProps {
+  prop: string;
+  label?: string;
   width?: string;
+  height?: string;
   fixed?: 'left' | 'right';
   sortable?: boolean;
   filterable?: boolean;
   filters?: Array<{ text: string; value: string | number }>;
   scopedSlot?: string;
-  children?: Column[];
+  children?: TableColumnProps[];
   colspan?: number;
   rowspan?: number;
+}
+
+export interface TableProps {
+  data?: Record<string, unknown>[];
+  modelValue?: string;
+  columns?: TableColumnProps[];
+  width?: string;
+  height?: string;
+  headerColor?: string;
+  headerTextColor?: string;
+  stripe?: string;
+  borderColor?: string;
+  [key: string]: unknown;
 }

@@ -1,21 +1,9 @@
-<!-- MYTableColumn.vue -->
 <template>
+  <!-- 列只是声明，实际渲染由父表格负责，列 slot 用于单元格自定义 -->
   <slot />
 </template>
 
-<script lang="ts" setup>
-defineOptions({
-    name: 'MYTableColumn'
-})
+<script setup lang="ts">
 
-defineProps<{
-  prop?: string;
-  label?: string;
-  width?: string;
-  fixed?: 'left' | 'right';
-  sortable?: boolean;
-  filterable?: boolean;
-  filters?: Array<{ text: string; value: string | number }>;
-  scopedSlot?: string;
-}>();
+defineOptions({ name: 'MYTableColumn' });
 </script>

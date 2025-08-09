@@ -1,118 +1,56 @@
 <template>
-  <MYButton type="success" @click="navigateTo('/')">返回/首页</MYButton>
-
   <div>
-    <h2>Table Test Component</h2>
-    <MYTable
-      :data="tableData"
-      border
-      stripe
-      :height="400"
-      selection="multiple"
-      selection-fixed
-      :row-class-name="rowClassName"
-      @selection-change="handleSelectionChange"
-      @sort-change="handleSortChange"
-      @filter-change="handleFilterChange"
-    >
-      <!-- Multi-level header -->
-      <MYTableColumn label="Group 1">
-        <MYTableColumn prop="date" label="Date" width="180px" sortable filterable :filters="dateFilters" />
-        <MYTableColumn prop="name" label="Name" width="180px">
-          <template #default="{ row }">
-            <span :style="{ color: row.status === 'success' ? 'green' : 'red' }">{{ row.name }}</span>
-          </template>
-        </MYTableColumn>
-      </MYTableColumn>
-      <MYTableColumn label="Details" fixed="right">
-        <MYTableColumn prop="address" label="Address" width="200px" />
-        <MYTableColumn prop="status" label="Status" width="120px" />
-      </MYTableColumn>
+    <MYTable :data="tableData" :columns="tableColumns" headerBackgroundColor="#ff0000" headerTextColor="#2c2" stripe="#ff0000" borderColor="#2c2">
+      <MYTableColumn prop="id" label="Id" width="100px" />
+      <MYTableColumn prop="date" label="Date" width="100px" />
+      <MYTableColumn prop="name" label="Name" width="100px" />
+      <MYTableColumn prop="address" label="Address" width="100px" />
+      <MYTableColumn prop="number" label="Number" width="100px" />
+      <template #status="{ row }">
+        <span :class="row.status === 'success' ? 'text-green' : 'text-red'">
+          {{ row.status }}
+        </span>
+      </template>
     </MYTable>
-
-    <!-- Display selected rows and event logs -->
-    <div class="log-panel">
-      <h3>Selected Rows:</h3>
-      <pre>{{ selectedRows }}</pre>
-      <h3>Event Logs:</h3>
-      <ul>
-        <li v-for="(log, index) in eventLogs" :key="index">{{ log }}</li>
-      </ul>
-    </div>
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref } from 'vue';
-import { useRouter } from 'vue-router'
-const router = useRouter()
 
-const navigateTo = (path: string) => {
-    router.push(path)
-}
-// Sample Data
+// 定义 tableData
 const tableData = ref([
-  { date: '2025-07-25', name: 'Alice', address: '123 Main St', status: 'success' },
-  { date: '2025-07-24', name: 'Bob', address: '456 Oak Ave', status: 'error' },
-  { date: '2025-07-23', name: 'Charlie', address: '789 Pine Rd', status: 'success' },
-  { date: '2025-07-22', name: 'David', address: '101 Elm St', status: 'error' },
+  { id: '1', date: '2025-07-25', name: 'Alice', address: '123 Main St', number: '13999999999', status: 'success' },
+  { id: '2', date: '2025-07-24', name: 'Bob', address: '456 Oak Ave', number: '13999999999', status: 'error' },
+  { id: '3', date: '2025-07-25', name: 'Alice', address: '123 Main St', number: '13999999999', status: 'success' },
+  { id: '4', date: '2025-07-24', name: 'Bob', address: '456 Oak Ave', number: '13999999999', status: 'error' },
+  { id: '5', date: '2025-07-25', name: 'Alice', address: '123 Main St', number: '13999999999', status: 'success' },
+  { id: '6', date: '2025-07-24', name: 'Bob', address: '456 Oak Ave', number: '13999999999', status: 'error' },
+  { id: '7', date: '2025-07-25', name: 'Alice', address: '123 Main St', number: '13999999999', status: 'success' },
+  { id: '8', date: '2025-07-24', name: 'Bob', address: '456 Oak Ave', number: '13999999999', status: 'error' },
+  { id: '9', date: '2025-07-25', name: 'Alice', address: '123 Main St', number: '13999999999', status: 'success' },
+  { id: '10', date: '2025-07-24', name: 'Bob', address: '456 Oak Ave', number: '13999999999', status: 'error' },
+  { id: '11', date: '2025-07-25', name: 'Alice', address: '123 Main St', number: '13999999999', status: 'success' },
+  { id: '12', date: '2025-07-24', name: 'Bob', address: '456 Oak Ave', number: '13999999999', status: 'error' },
 ]);
 
-// Filters for Date Column
-const dateFilters = [
-  { text: '2025-07-25', value: '2025-07-25' },
-  { text: '2025-07-24', value: '2025-07-24' },
-];
-
-// Row Class Name
-const rowClassName = ({ row }: { row: { status: string } }) => {
-  return row.status === 'success' ? 'success-row' : 'error-row';
-};
-
-// Selected Rows and Event Logs
-const selectedRows = ref<{ date: string; name: string; address: string; status: string }[]>([]);
-const eventLogs = ref<string[]>([]);
-
-const handleSelectionChange = (rows: { date: string; name: string; address: string; status: string }[]) => {
-  selectedRows.value = rows;
-  eventLogs.value.push(`Selection changed at ${new Date().toLocaleTimeString()}: ${rows.length} rows selected`);
-};
-
-const handleSortChange = ({ prop, order }: { prop: string; order: 'asc' | 'desc' }) => {
-  eventLogs.value.push(`Sort changed at ${new Date().toLocaleTimeString()}: ${prop} ${order}`);
-};
-
-const handleFilterChange = (filters: Record<string, { text: string; value: string }[]>) => {
-  eventLogs.value.push(`Filter changed at ${new Date().toLocaleTimeString()}: ${JSON.stringify(filters)}`);
-};
-
-// Computed to limit event logs (optional)
+// 定义 tableColumns
+const tableColumns = ref([
+  { id: '0', prop: 'id', label: 'Id', width: '80px' },
+  { id: '1', prop: 'date', label: 'Date', width: '180px' },
+  { id: '2', prop: 'name', label: 'Name', width: '180px' },
+  { id: '3', prop: 'address', label: 'Address', width: '200px' },
+  { id: '4', prop: 'number', label: 'Number', width: '200px' },
+  { id: '5', prop: 'status', label: 'Status', width: '120px' },
+]);
 </script>
 
-<style scoped>
-.log-panel {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+<style>
+.text-green {
+  color: green;
 }
 
-pre {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  max-height: 200px;
-  overflow-y: auto;
-  background-color: #fff;
-  padding: 10px;
-  border: 1px solid #eee;
-}
-
-.success-row {
-  background-color: #e6ffe6;
-}
-
-.error-row {
-  background-color: #ffe6e6;
+.text-red {
+  color: red;
 }
 </style>

@@ -1,66 +1,75 @@
-import { mount } from '@vue/test-utils';
-import Table from '../src/table.vue';
-import { describe, expect, it } from 'vitest';
+// tests/table.spec.ts
+import { mount } from '@vue/test-utils'
+import { describe, it, expect } from 'vitest'
+import Table from '../src/table.vue'
 
-describe('Table Component', () => {
-  const testData = [
-    { id: 1, name: '张三', age: 25, gender: '男' },
-    { id: 2, name: '李四', age: 30, gender: '女' },
-    { id: 3, name: '王五', age: 28, gender: '男' }
-  ];
+describe('Table.vue', () => {
+  const columns = [
+    { prop: 'id', label: 'ID', width: '50px' },
+    { prop: 'name', label: 'Name', width: '150px' }
+  ]
+  const data = [
+    { id: 1, name: '张三' },
+    { id: 2, name: '李四' }
+  ]
 
-  const testColumns = [
-    { prop: 'name', label: '姓名', sortable: true },
-    { prop: 'age', label: '年龄', filterable: true },
-    { prop: 'gender', label: '性别' }
-  ];
-
-  it('renders basic table with data', () => {
+  it('renders table header and rows correctly', () => {
     const wrapper = mount(Table, {
-      props: {
-        data: testData,
-        columns: testColumns
-      }
-    });
+      props: { columns, data }
+    })
 
-    expect(wrapper.find('table').exists()).toBe(true);
-    expect(wrapper.findAll('tbody tr').length).toBe(testData.length);
-  });
+    const ths = wrapper.findAll('thead th')
+    expect(ths.length).toBe(columns.length)
+    expect(ths[0].text()).toBe('ID')
+    expect(ths[1].text()).toBe('Name')
+    expect(ths[0].attributes('style')).toContain('width: 50px;')
+    expect(ths[1].attributes('style')).toContain('width: 150px;')
 
-  it('selects rows when selection enabled', async () => {
+    const trs = wrapper.findAll('tbody tr')
+    expect(trs.length).toBe(data.length)
+    expect(trs[0].find('[data-column="id"]').text()).toBe('1')
+    expect(trs[0].find('[data-column="name"]').text()).toBe('张三')
+  })
+
+  it('applies stripe background color on odd rows', () => {
+    const stripeColor = '#f0f0f0'
     const wrapper = mount(Table, {
-      props: {
-        data: testData,
-        columns: testColumns,
-        selection: 'multiple'
-      }
-    });
+      attachTo: document.body,  // 让 getComputedStyle 有元素挂载点
+      props: { columns, data, stripe: stripeColor }
+    })
 
-    await wrapper.find('tbody input[type="checkbox"]').setValue(true);
-    expect(wrapper.emitted('selection-change')).toBeTruthy();
-  });
+    const trs = wrapper.findAll('tbody tr')
+    const el0 = trs[0].element as HTMLElement
+    const el1 = trs[1].element as HTMLElement
 
-  it('applies bordered class when border prop is true', () => {
+    const bg0 = getComputedStyle(el0).backgroundColor
+    const bg1 = getComputedStyle(el1).backgroundColor
+
+    // #f0f0f0 的 rgb 是 rgb(240, 240, 240)
+    expect(bg0).not.toBe('rgb(240, 240, 240)')
+    expect(bg1).toBe('rgb(240, 240, 240)')
+
+    wrapper.unmount()
+  })
+
+  it('renders custom slot content for a column', () => {
     const wrapper = mount(Table, {
-      props: {
-        data: testData,
-        columns: testColumns,
-        border: true
+      props: { columns, data },
+      slots: {
+        name: ({ row }: { row: Record<string, unknown> }) => `姓名: ${row.name}`
       }
-    });
+    })
 
-    expect(wrapper.find('.bordered').exists()).toBe(true);
-  });
+    const firstRowNameCell = wrapper.find('tbody tr:first-child td[data-column="name"]')
+    expect(firstRowNameCell.text()).toBe('姓名: 张三')
+  })
 
-  it('applies stripe class when stripe prop is true', () => {
+  it('sets CSS variable --table-border-color from borderColor prop', () => {
+    const borderColor = 'red'
     const wrapper = mount(Table, {
-      props: {
-        data: testData,
-        columns: testColumns,
-        stripe: true
-      }
-    });
+      props: { columns, data, borderColor }
+    })
 
-    expect(wrapper.find('.stripe').exists()).toBe(true);
-  });
-});
+    expect(wrapper.attributes('style')).toContain(`--table-border-color: ${borderColor}`)
+  })
+})
