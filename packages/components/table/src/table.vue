@@ -70,7 +70,7 @@ const slots = useSlots();
  */
 const slotColumns = computed<TableColumnProps[]>(() => {
   // raw vnodes（可能包含文本节点、注释等）
-  const rawVnodes = slots.default ? slots.default() : [];
+  const rawVnodes = slots.default ? slots.default({ row: {} }) : [];
   // 明确地把它当作 VNode[] 处理
   const vnodes = (rawVnodes as VNode[]) ?? [];
   const cols: TableColumnProps[] = [];

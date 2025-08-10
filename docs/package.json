@@ -1,14 +1,11 @@
 {
-  "name": "mengyue-components-docs",
-  "version": "1.0.0",
-  "description": "Documentation for mengyue-components",
-  "main": ".vitepress/config.ts",
-  "scripts": {},
+  "name": "docs",
+  "version": "0.0.1",
+  "description": "docs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "mengyue-plus": "^0.0.44",
-    "vitepress": "^1.6.3",
-    "vscode-npm-script": "0.0.1-security"
-  }
+  "license": "ISC"
 }

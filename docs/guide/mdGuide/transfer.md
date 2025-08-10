@@ -4,7 +4,13 @@ Transfer 穿梭框组件，用于在两栏中移动数据项。mengyue-component
 可以使用 `<MYTransfer></MYTransfer>` 或者 `<MYTransfer />` 来实现一个穿梭框组件。
 
 ## 穿梭框使用方法
-<MYTransfer v-model="value" :data="data" />
+```vue
+<MYTransfer v-model="value" :data="data" backgroundColor="#ff0000" colorText="#2c2" hoverBackground="#2c2" />
+```
+<div style="padding: 20px">
+  <MYTransfer v-model="value" :data="data" backgroundColor="#ff0000" colorText="#2c2" hoverBackground="#2c2" />
+</div>
+
 
 ## API 参考
 ### Transfer Props
