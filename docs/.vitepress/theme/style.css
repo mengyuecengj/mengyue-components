@@ -3,7 +3,7 @@
 /* 标题和文本布局 */
 .title {
   position: relative;
-  bottom: 10% !important;
+  top: 0;
   right: 4%;
   /* margin-right: 40px ; */
   border: none !important;
@@ -19,8 +19,10 @@
 
 /* 导航栏调整（假设针对顶部 nav；如果针对侧边栏，改为 .vp-sidebar-nav） */
 .nav {
-  top: 12%;
-  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  top: 150%;
+  position: relative;
 }
 
 /* 针对首页特性区：强制三列横向排列（使用 VitePress 类名 .vp-home .vp-features） */
@@ -39,7 +41,7 @@
 
 /* 强制去掉侧边栏的边距 */
 .VPSidebar {
-  padding: 70px 12px 15px 60px !important;
+  padding: 0px 12px 150px 150px !important;
 }
 
 /* 去除侧边栏（Sider）的分隔线 */

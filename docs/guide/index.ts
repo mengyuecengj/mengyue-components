@@ -68,8 +68,7 @@ export const indexGuide = [
             { text: 'dropdown下拉', link: '/guide/mdGuide/dropdown' },
             { text: 'menu菜单', link: '/guide/mdGuide/menu' },
             { text: 'step步骤条(维护中)', link: '/guide/mdGuide/step' },
-            { text: 'carousel走马灯(维护中)', link: '/guide/mdGuide/carousel' },
-        ],
+                    ],
     },
     {
         text: '其他组件',
