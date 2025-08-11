@@ -1,56 +1,3 @@
-<!-- <template>
-  <div ref="triggerRef" class="my-dropdown" @click="handleTriggerClick" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
-    <slot />
-    <teleport to="body">
-      <transition name="fade">
-        <div
-          v-if="visible"
-          ref="menuRef"
-          class="my-dropdown-menu-wrapper"
-          :style="menuStyles"
-          @mouseenter="handleMenuMouseEnter"
-          @mouseleave="handleMenuMouseLeave"
-        >
-          <slot name="dropdown" />
-        </div>
-      </transition>
-    </teleport>
-  </div>
-</template>
-
-<script setup lang="ts">
-import { useDropdown } from './dropdown'
-import '../style/dropdown.scss'
-import { DropdownProps } from './dropdown';
-
-defineOptions({
-    name: 'MYDropdown'
-})
-// const props = defineProps({
-//   trigger: {
-//     type: String,
-//     default: 'click', // 'click' | 'hover'
-//   },
-//   placement: {
-//     type: String,
-//     default: 'bottom-start', // 目前支持 'bottom-start' | 'bottom-end'
-//   }
-// })
-const props = defineProps<DropdownProps>()
-const {
-  visible,
-  triggerRef,
-  menuRef,
-  menuStyles,
-  handleTriggerClick,
-  handleMouseEnter,
-  handleMouseLeave,
-  handleMenuMouseEnter,
-  handleMenuMouseLeave,
-} = useDropdown(props)
-</script> -->
-
-<!-- src/components/dropdown/Dropdown.vue -->
 <template>
   <div
     class="m-dropdown"
@@ -58,7 +5,7 @@ const {
     ref="rootRef"
     @keydown.prevent.stop="onRootKeydown"
   >
-    <!-- trigger area -->
+    <!-- 触发区域 -->
     <div
       class="m-dropdown__trigger"
       ref="triggerRef"
@@ -66,7 +13,7 @@ const {
       @mouseenter="onTriggerMouseEnter"
       @mouseleave="onTriggerMouseLeave"
     >
-      <!-- split button support -->
+      <!-- 支持分割按钮 -->
       <template v-if="splitButton">
         <div class="m-split">
           <button
@@ -89,7 +36,7 @@ const {
         </div>
       </template>
 
-      <!-- normal trigger slot (button-like) -->
+      <!-- 普通触发按钮（类似按钮） -->
       <template v-else>
         <button
           :class="['m-btn', 'm-btn--' + (type || 'default'), sizeClass]"
@@ -103,7 +50,7 @@ const {
       </template>
     </div>
 
-    <!-- menu: teleported or inline -->
+    <!-- 菜单: 通过 Teleport 或内联渲染 -->
     <Teleport v-if="teleported" to="body">
       <div
         v-show="isVisible"
@@ -147,7 +94,6 @@ defineOptions({
 });
 
 const props = defineProps({
-  // 基本 props（覆盖你需要的大部分）
   type: { type: String, default: 'default' }, // default, primary
   size: { type: String, default: 'md' }, // sm, md, lg
   buttonProps: { type: Object, default: () => ({}) },
@@ -170,7 +116,7 @@ const props = defineProps({
 
 const emit = defineEmits(['command', 'visible-change', 'click']);
 
-// init hook with options
+// 初始化钩子
 const {
   visible,
   triggerEl,
@@ -202,7 +148,7 @@ const triggerRef = triggerEl;
 const menuRef = menuEl;
 const rootRef = ref<HTMLElement | null>(null);
 
-// computed
+// 计算属性
 const isVisible = computed(() => visible.value);
 const sizeClass = computed(() => {
   if (props.size === 'sm' || props.size === 'small') return 'm-btn--sm';
@@ -210,7 +156,7 @@ const sizeClass = computed(() => {
   return 'm-btn--md';
 });
 
-// provide selection for DropdownItem
+// 提供选择功能给 DropdownItem
 provide('m-dropdown-context', {
   select: (command: any) => {
     emit('command', command);
@@ -225,19 +171,31 @@ function onTriggerClick(e?: MouseEvent) {
   if (props.trigger === 'click') toggle();
   emit('click', e);
 }
+
 function onPrimaryClick(e?: MouseEvent) {
   e?.stopPropagation();
   if (props.disabled) return;
-  // by default primary action emits click event
+  // 默认情况下，primary action 会触发 click 事件
   emit('click', e);
 }
 
 function onTriggerMouseEnter() { onTriggerEnter(); }
-function onTriggerMouseLeave() { onTriggerLeave(); }
+function onTriggerMouseLeave() { 
+  if (!menuRef.value || !menuRef.value.contains(document.activeElement)) {
+    onTriggerLeave();
+  }
+}
 function onMenuMouseEnter() { onMenuEnter(); }
-function onMenuMouseLeave() { onMenuLeave(); }
+function onMenuMouseLeave() { 
+  // 只有当鼠标不在触发区域和菜单区域时，才关闭菜单
+  if (!triggerRef.value || !menuRef.value || 
+    !triggerRef.value.contains(document.activeElement) &&
+    !menuRef.value.contains(document.activeElement)) {
+    onMenuLeave();
+  }
+}
+
 function onRootKeydown(e: KeyboardEvent) {
-  // let hook handle global keydowns via window listener; but also allow Enter on trigger
   if (props.disabled) return;
   if (props.triggerKeys?.includes(e.key)) {
     e.preventDefault();

@@ -23,7 +23,7 @@
         <div class="test-section">
             <h2>密码输入框</h2>
             <MYInput v-model="passwordValue" tag="input" type="password" showPassword placeholder="输入密码" clearable :maxlength="10" word-limit
-             form="password-form" width="400px"  />
+             form="password-form" width="400px" />
         </div>
 
         <div class="test-section">
@@ -33,8 +33,8 @@
 
         <div class="test-section">
             <h2>自定义宽度高度</h2>
-            <MYInput v-model="customSizeValue" width="300px" :height="40" placeholder="自定义尺寸" />
-        </div>
+            <MYInput v-model="customSizeValue" width="600px" height="440px" placeholder="自定义尺寸" />
+        </div> 
 
         <div class="test-section">
             <h2>文本域</h2>
@@ -45,8 +45,6 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { MYInput } from 'mengyue-plus'
-import 'mengyue-plus/style.css'
 
 const router = useRouter()
 

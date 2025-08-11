@@ -2,7 +2,7 @@
 <template>
   <div style="padding:32px; display:flex; gap:24px; flex-wrap:wrap;">
     <!-- 基本 hover -->
-    <MYDropdown type="default" size="md" @command="onCommand">
+    <MYDropdown type="default" size="md" @command="onCommand" @close="close">
       <template #default>默认操作</template>
       <template #dropdown>
         <MYDropdown-item command="a">选项 A</MYDropdown-item>
@@ -45,7 +45,8 @@
 </template>
 
 <script lang="ts" setup>
-
+import { ref } from 'vue' 
+const visible = ref(false);
 function onCommand(cmd: any) {
   console.log('命令：', cmd);
   alert(`选中: ${JSON.stringify(cmd)}`);
@@ -53,6 +54,11 @@ function onCommand(cmd: any) {
 function onPrimary() {
   alert('主操作触发');
 }
+
+const close = () => {
+  visible.value = false;  // 关闭菜单
+};
+
 </script>
 
 <style scoped>

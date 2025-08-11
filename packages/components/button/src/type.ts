@@ -1,4 +1,4 @@
-import { Ref } from 'vue'
+import type { Ref } from 'vue'
 export interface ButtonProps {
   type?: string;
   size?: string;

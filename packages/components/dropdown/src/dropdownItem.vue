@@ -1,41 +1,3 @@
-<!-- <template>
-  <li
-    class="my-dropdown-item"
-    :class="{ disabled, divided }"
-    @click="handleClick"
-  >
-    <slot />
-  </li>
-</template>
-
-<script setup lang="ts">
-import '../style/dropdownItem.scss'
-defineOptions({
-    name: 'MYDropdown-item'
-})
-
-const props = defineProps({
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  divided: {
-    type: Boolean,
-    default: false,
-  },
-})
-
-const emit = defineEmits(['click'])
-
-function handleClick(event: MouseEvent) {
-  if (props.disabled) {
-    event.stopPropagation()
-    return
-  }
-  emit('click', event)
-}
-</script> -->
-
 <template>
   <li
     class="my-dropdown-item"
@@ -47,8 +9,8 @@ function handleClick(event: MouseEvent) {
     tabindex="0"
     data-dropdown-item="true"
     :data-disabled="disabled || undefined"
-    @keydown="handleKeydown"
     @click="handleClick"
+    @keydown="handleKeydown"
   >
     <span v-if="icon" class="my-dropdown-item__icon">
       <component :is="icon" />
@@ -71,20 +33,26 @@ const props = defineProps<{
   icon?: string | object
 }>()
 
+// 正确的 defineEmits 语法
 const emit = defineEmits<{
   (e: 'click', command: CommandType, evt: MouseEvent): void
+  (e: 'close'): void  // 新增 'close' 事件
 }>()
 
+// 点击菜单项后触发关闭菜单
 const handleClick = (e: MouseEvent) => {
   if (props.disabled) return
-  emit('click', props.command ?? '', e)
+  emit('click', props.command ?? '', e)  // 触发点击事件
+  emit('close')  // 自动关闭菜单
 }
 
+// 键盘事件处理
 const handleKeydown = (e: KeyboardEvent) => {
   if (props.disabled) return
   if (['Enter', ' ', 'Spacebar'].includes(e.key)) {
     e.preventDefault()
     emit('click', props.command ?? '', e as unknown as MouseEvent)
+    emit('close')  // 自动关闭菜单
   }
 }
 </script>

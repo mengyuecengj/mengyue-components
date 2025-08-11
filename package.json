@@ -12,6 +12,8 @@
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "dev": "pnpm -C play dev",
+    "play:build": "cd play && vite build",
+    "play:preview": "pnpm -C play preview",
     "format": "prettier --write --cache .",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx,.md,.json --max-warnings 0 --cache",
     "lint:fix": "pnpm run lint --fix",

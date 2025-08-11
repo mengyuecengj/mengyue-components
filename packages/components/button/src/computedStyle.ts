@@ -1,7 +1,7 @@
 import { ref, type ComputedRef, type CSSProperties } from 'vue';
 import { useClassComputed } from '../../../hooks/useClassComputed';
 import { useColorComputed } from '../../../hooks/useColorComputed';
-import { ButtonProps } from './type'
+import type { ButtonProps } from './type'
 
 export function useButtonStyle(props: ButtonProps): {
   btnClass: ComputedRef<string[]>;
