@@ -65,10 +65,10 @@ export const indexGuide = [
         items: [
             { text: 'backtop回到顶部', link: '/guide/mdGuide/backtop' },
             { text: 'breadcrumb导航', link: '/guide/mdGuide/breadcrumb' },
-            { text: 'dropdown下拉', link: '/guide/mdGuide/dropdown' },
+            { text: 'dropdown下拉框', link: '/guide/mdGuide/dropdown' },
             { text: 'menu菜单', link: '/guide/mdGuide/menu' },
-            { text: 'step步骤条(维护中)', link: '/guide/mdGuide/step' },
-                    ],
+            { text: 'step步骤条', link: '/guide/mdGuide/step' },
+        ],
     },
     {
         text: '其他组件',

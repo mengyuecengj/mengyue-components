@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, defineEmits } from 'vue'
+import { inject } from 'vue';
 
 type CommandType = string | number | Record<string, any>
 
@@ -36,23 +36,28 @@ const props = defineProps<{
 // 正确的 defineEmits 语法
 const emit = defineEmits<{
   (e: 'click', command: CommandType, evt: MouseEvent): void
-  (e: 'close'): void  // 新增 'close' 事件
+  // (e: 'close'): void  // 新增 'close' 事件
 }>()
+
+const dropdownContext: any = inject('m-dropdown-context')
 
 // 点击菜单项后触发关闭菜单
 const handleClick = (e: MouseEvent) => {
   if (props.disabled) return
-  emit('click', props.command ?? '', e)  // 触发点击事件
-  emit('close')  // 自动关闭菜单
+  if (dropdownContext) {
+    dropdownContext.select(props.command ?? '')  // 调用 select：emit('command') + close()
+  }
+  emit('click', props.command ?? '', e)  // 可选保留
 }
-
 // 键盘事件处理
 const handleKeydown = (e: KeyboardEvent) => {
   if (props.disabled) return
   if (['Enter', ' ', 'Spacebar'].includes(e.key)) {
-    e.preventDefault()
-    emit('click', props.command ?? '', e as unknown as MouseEvent)
-    emit('close')  // 自动关闭菜单
+    // e.preventDefault()
+    if (dropdownContext) {
+      dropdownContext.select(props.command ?? '')
+    }
+    emit('click', props.command ?? '', e as unknown as MouseEvent)  // 可选保留
   }
 }
 </script>

@@ -34,14 +34,17 @@ export function useDropdown(options: UseDropdownOptions = {}) {
   const showTimer = ref<number | null>(null);
   const hideTimer = ref<number | null>(null);
 
-  const open = async () => {
+const open = async (reason: 'mouse' | 'click' | 'key' = 'mouse') => {
     if (options.disabled) return;
     clearTimers();
     visible.value = true;
     await nextTick();
     updatePosition();
-    focusFirstItem();
+    if (reason === 'key') {
+      focusFirstItem();  // 只键盘打开时聚焦
+    }
   };
+  
   const close = () => {
     clearTimers();
     visible.value = false;
@@ -56,11 +59,11 @@ export function useDropdown(options: UseDropdownOptions = {}) {
     if (hideTimer.value) { window.clearTimeout(hideTimer.value); hideTimer.value = null; }
   }
 
-  function onTriggerEnter() {
+function onTriggerEnter() {
     if (options.trigger !== 'hover') return;
     clearTimers();
     const ms = options.showTimeout ?? 150;
-    showTimer.value = window.setTimeout(() => open(), ms);
+    showTimer.value = window.setTimeout(() => open('mouse'), ms);
   }
   function onTriggerLeave() {
     if (options.trigger !== 'hover') return;
@@ -68,8 +71,15 @@ export function useDropdown(options: UseDropdownOptions = {}) {
     const ms = options.hideTimeout ?? 150;
     hideTimer.value = window.setTimeout(() => close(), ms);
   }
-  function onMenuEnter() { if (options.trigger !== 'hover') return clearTimers(); }
-  function onMenuLeave() { if (options.trigger !== 'hover') { clearTimers(); hideTimer.value = window.setTimeout(() => close(), options.hideTimeout ?? 150); } }
+function onMenuEnter() { 
+  if (options.trigger === 'hover') clearTimers(); 
+}
+  function onMenuLeave() { 
+  if (options.trigger === 'hover') { 
+    clearTimers(); 
+    hideTimer.value = window.setTimeout(() => close(), options.hideTimeout ?? 150); 
+  } 
+}
 
   // basic positioning (no Popper). Compute relative to viewport and trigger
   function updatePosition(mouseX?: number, mouseY?: number) {
@@ -142,12 +152,12 @@ export function useDropdown(options: UseDropdownOptions = {}) {
     first?.focus();
   }
   function onKeydown(e: KeyboardEvent) {
-    if (options.disabled) return;
+if (options.disabled) return;
     const key = e.key;
     const triggerKeys = options.triggerKeys ?? ['Enter', ' ', 'ArrowDown', 'NumpadEnter'];
     if (!visible.value && triggerKeys.includes(key)) {
       e.preventDefault();
-      open();
+      open('key');  // 指定 'key'
       return;
     }
     if (visible.value) {

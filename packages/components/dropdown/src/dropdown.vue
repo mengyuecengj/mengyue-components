@@ -168,7 +168,7 @@ provide('m-dropdown-context', {
 function onTriggerClick(e?: MouseEvent) {
   e?.stopPropagation();
   if (props.disabled) return;
-  if (props.trigger === 'click') toggle();
+  if (props.trigger === 'click') toggle();  // toggle() 内 open('click')？见下
   emit('click', e);
 }
 

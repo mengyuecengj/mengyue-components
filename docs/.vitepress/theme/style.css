@@ -21,7 +21,8 @@
 .nav {
   display: flex;
   flex-direction: column;
-  top: 150%;
+  top: 0%;
+  bottom: 0%;
   position: relative;
 }
 
@@ -41,7 +42,8 @@
 
 /* 强制去掉侧边栏的边距 */
 .VPSidebar {
-  padding: 0px 12px 150px 150px !important;
+  /* padding: 0px 12px 150px 150px !important; */
+  padding-bottom: 0px !important;
 }
 
 /* 去除侧边栏（Sider）的分隔线 */

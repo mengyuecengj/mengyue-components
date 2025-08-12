@@ -9,7 +9,7 @@ Dropdown 下拉菜单组件，用于展示一个下拉菜单。mengyue-component
 ## 使用方法
 dropdown下拉框基本用法
 ```vue
-<MYDropdown type="default" size="md" @command="onCommand">
+<MYDropdown type="default" size="md">
   <template #default>默认操作</template>
     <template #dropdown>
       <MYDropdown-item command="a">选项 A</MYDropdown-item>
