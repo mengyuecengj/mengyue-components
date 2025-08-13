@@ -24,4 +24,16 @@ export const selectProps = {
         type: [String, Number] as PropType<SelectSize>,
         default: '40px'
     },
+    backgroundColor: {
+        type: String,
+        default: ''
+    },
+    hoverbackgroundColor: {
+        type: String,
+        default: ''
+    },
+    borderColor: {
+        type: String,
+        default: ''
+    }
 };

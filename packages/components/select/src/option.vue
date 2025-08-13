@@ -1,9 +1,12 @@
 <template>
-    <div class="select-option" 
+    <div
+        class="select-option" 
         :class="{
             'is-selected': isSelected,
             'is-disabled': disabled
-        }" 
+        }"
+        :data-value="value"
+        :data-label="label || value"
         @click="handleClick"
     >
         <slot>{{ label }}</slot>
@@ -25,18 +28,18 @@ const props = defineProps({
     disabled: { type: Boolean, default: false }
 })
 
-const { 
-    selectOption, 
-    currentValue, 
-    disabled: selectDisabled, 
-} = inject<SelectContext>('select')!;
+const ctx = inject<SelectContext>('select')
+if (!ctx) {
+    throw new Error('MYOption must be used inside MYSelect')
+}
 
+const { selectOption, currentValue, disabled: selectDisabled } = ctx
 
-const isSelected = computed(() => currentValue.value === props.value);
+const isSelected = computed(() => currentValue.value === props.value)
 
 const handleClick = () => {
     if (!props.disabled && !selectDisabled.value) {
-        selectOption(props.value, props.label)
+        selectOption(props.value, props.label || String(props.value))
     }
 }
 </script>

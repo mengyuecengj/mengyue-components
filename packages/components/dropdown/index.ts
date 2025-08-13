@@ -1,4 +1,4 @@
-import { App, Plugin } from 'vue'
+import type { App, Plugin } from 'vue'
 import dropdown from './src/dropdown.vue'
 import dropdownMenu from './src/dropdownMenu.vue'
 import dropdownItem from './src/dropdownItem.vue'

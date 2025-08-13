@@ -49,6 +49,7 @@ export const indexGuide = [
             { text: 'progress进度条', link: '/guide/mdGuide/progress' },
             { text: 'result结果', link: '/guide/mdGuide/result' },
             { text: 'skeleton骨架屏', link: '/guide/mdGuide/skeleton' },
+            { text: 'dialog对话框', link: '/guide/mdGuide/dialog' },
         ],
     },
     {

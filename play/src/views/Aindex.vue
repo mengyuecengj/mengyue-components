@@ -110,6 +110,9 @@
         </MYButton>
         <MYButton type="success" @click="navigateTo('/test/alert')">
             alert components
+        </MYButton>        
+        <MYButton type="success" @click="navigateTo('/test/dialog')">
+            dialog components
         </MYButton>
     </div>
 </template>

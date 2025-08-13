@@ -1,20 +1,56 @@
-import { describe, it, expect } from 'vitest';
-import { selectProps } from '../src/select';
+import { describe, it, expect, beforeEach } from 'vitest';
+import { mount } from '@vue/test-utils';
+import MYSelect from '../src/select.vue';
+import MYScrollbar from '../../scrollbar/src/scrollbar.vue';
 
-describe('selectProps', () => {
-  it('should have correct default values', () => {
-    expect(selectProps.modelValue.default).toBe('');
-    expect(selectProps.placeholder.default).toBe('请选择');
-    expect(selectProps.disabled.default).toBe(false);
-    expect(selectProps.width.default).toBe('260px');
-    expect(selectProps.height.default).toBe('40px');
+describe('MYSelect', () => {
+  let wrapper: ReturnType<typeof mount>;
+
+  const createWrapper = (props = {}) => {
+    return mount(MYSelect, {
+      props: {
+        modelValue: '',
+        placeholder: '请选择',
+        disabled: false,
+        width: '260px',
+        height: '40px',
+        ...props,
+      },
+      global: {
+        components: { MYScrollbar },
+      },
+      slots: {
+        default: '<div class="option">Option 1</div><div class="option">Option 2</div>',
+      },
+    });
+  };
+
+  beforeEach(() => {
+    wrapper = createWrapper();
   });
 
-  it('should have correct types', () => {
-    expect(selectProps.modelValue.type).toEqual([String, Number]);
-    expect(selectProps.placeholder.type).toBe(String);
-    expect(selectProps.disabled.type).toBe(Boolean);
-    expect(selectProps.width.type).toEqual([String, Number]);
-    expect(selectProps.height.type).toEqual([String, Number]);
+  it('renders correctly with default props', () => {
+    expect(wrapper.find('.select-e').exists()).toBe(true);
+    expect(wrapper.find('.selected-value').text()).toBe('请选择');
+    expect(wrapper.find('.arrow-icon').exists()).toBe(true);
+  });
+
+  it('closes dropdown on blur', async () => {
+    await wrapper.find('.select-trigger').trigger('click');
+    expect((wrapper.vm as any).dropdownVisible).toBe(true);
+
+    await wrapper.find('.select-e').trigger('blur');
+    expect((wrapper.vm as any).dropdownVisible).toBe(false);
+  });
+
+  it('does not open dropdown when disabled', async () => {
+    wrapper = createWrapper({ disabled: true });
+    await wrapper.find('.select-trigger').trigger('click');
+    expect((wrapper.vm as any).dropdownVisible).toBe(false);
+  });
+
+  it('updates selectedLabel when modelValue changes', async () => {
+    await wrapper.setProps({ modelValue: 'Option 1' });
+    expect((wrapper.vm as any).selectedLabel).toBe('Option 1');
   });
 });

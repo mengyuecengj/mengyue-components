@@ -162,6 +162,10 @@ const routes: RouteRecordRaw[] = [
     path: '/test/alert',
     component: () => import('../views/alert.vue')
   },
+  {
+    path: '/test/dialog',
+    component: () => import('../views/dialog.vue')
+  },
 ]
 
 export const router = createRouter({

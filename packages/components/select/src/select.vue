@@ -1,8 +1,15 @@
 <template>
-    <div class="select-e" :class="{
-        'is-disabled': disabled,
-        'is-focused': isFocused
-    }" tabindex="0" :style="selectStyle" @focus="handleFocus" @blur="handleBlur">
+    <div
+        class="select-e"
+        :class="{
+            'is-disabled': disabled,
+            'is-focused': isFocused
+        }"
+        tabindex="0"
+        :style="selectStyle"
+        @focus="handleFocus"
+        @blur="handleBlur"
+    >
         <div class="select-trigger" @click="toggleDropdown">
             <span class="selected-value">{{ selectedLabel || placeholder }}</span>
             <span class="arrow-icon" :class="{ 'is-open': dropdownVisible }">
@@ -12,9 +19,14 @@
             </span>
         </div>
         <Transition name="slide-fade">
-            <div v-show="dropdownVisible" ref="dropdownRef" class="select-dropdown">
-                <MYScrollbar v-if="showScrollbar" height="200px" thumbColor="#4C4D4F" thumbHoverColor="#2a2a2e"
-                    trackColor="#2a2a2e">
+            <div v-if="dropdownVisible" ref="dropdownRef" class="select-dropdown">
+                <MYScrollbar
+                    v-if="showScrollbar"
+                    height="200px"
+                    thumbColor="#4C4D4F"
+                    thumbHoverColor="#2a2a2e"
+                    trackColor="#2a2a2e"
+                >
                     <slot></slot>
                 </MYScrollbar>
                 <div v-else class="select-dropdown-content">
@@ -33,7 +45,7 @@ import { selectProps } from './select'
 import '../style/select.scss'
 
 defineOptions({
-    name: "MYSelect"
+    name: 'MYSelect'
 })
 
 const props = defineProps(selectProps)
@@ -42,20 +54,21 @@ const emit = defineEmits(['update:modelValue'])
 const dropdownRef = ref<HTMLElement | null>(null)
 const showScrollbar = ref(false)
 
-// 检查是否需要显示滚动条
+const dropdownVisible = ref(false)
+const selectedLabel = ref('')
+const isFocused = ref(false)
+
 const checkScrollbarVisibility = () => {
     nextTick(() => {
         if (dropdownRef.value) {
-            const contentHeight = dropdownRef.value.scrollHeight
-            showScrollbar.value = contentHeight > 120
+            // 判断下拉框内部内容高度是否超过限制
+            const content = dropdownRef.value.querySelector('.select-dropdown-content') || dropdownRef.value
+            const contentHeight = (content as HTMLElement).scrollHeight
+            showScrollbar.value = contentHeight > 200
         }
     })
 }
 
-const dropdownVisible = ref(false)
-
-const selectedLabel = ref('')
-const isFocused = ref(false)
 const selectOption = (value: string | number, label: string) => {
     if (!props.disabled) {
         emit('update:modelValue', value)
@@ -65,7 +78,9 @@ const selectOption = (value: string | number, label: string) => {
 }
 
 const handleFocus = () => {
-    isFocused.value = true
+    if (!props.disabled) {
+        isFocused.value = true
+    }
 }
 
 const handleBlur = () => {
@@ -76,23 +91,40 @@ const handleBlur = () => {
 const toggleDropdown = () => {
     if (props.disabled) return
     dropdownVisible.value = !dropdownVisible.value
+    if (dropdownVisible.value) {
+        checkScrollbarVisibility()
+    }
 }
 
 const selectStyle = useStyleComputed(props, {
-    propToStyleMap: { width: 'width', height: 'height' }
-})  
-
-watch(() => props.modelValue, (newVal) => {
-    if (!newVal) {
-        selectedLabel.value = ''
+    propToStyleMap: {
+        width: 'width',
+        height: 'height',
+        backgroundColor: 'backgroundColor',
+        hoverbackgroundColor: '--hover-bg-color'
     }
-}, { immediate: true })
+})
+
+watch(
+    () => props.modelValue,
+    (newVal) => {
+        if (newVal == null || newVal === '') {
+            selectedLabel.value = ''
+        } else {
+            const options = (dropdownRef.value?.querySelectorAll?.('[data-value]') || []) as NodeListOf<HTMLElement>
+            const match = Array.from(options).find(opt => opt.dataset.value == String(newVal))
+            selectedLabel.value = match?.dataset.label || String(newVal)
+        }
+    },
+    { immediate: true }
+)
 
 watch(dropdownVisible, (val) => {
     if (val) {
-        checkScrollbarVisibility();
+        checkScrollbarVisibility()
     }
 })
+
 provide('select', {
     selectOption,
     currentValue: computed(() => props.modelValue),

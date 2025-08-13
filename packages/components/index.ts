@@ -36,6 +36,7 @@ import { MYStep, MYSteps } from './step';
 import { MYCarousel, MYCarouselItem } from './carousel';
 import { MYTransfer, MYTransferPanel } from './transfer';
 import { MYAlert } from './alert';
+import { MYDialog } from './dialog'
 
 
 // 组件映射，显式定义 name
@@ -99,6 +100,7 @@ const components = {
   MYTransfer: { component: MYTransfer, name: 'MYTransfer' },
   MYTransferPanel: { component: MYTransferPanel, name: 'MYTransferPanel' },
   MYAlert: { component: MYAlert, name: 'MYAlert' },
+  MYDialog: { component: MYDialog, name: 'MYDialog' }
 };
 
 // interface ComponentWithName {
@@ -189,5 +191,6 @@ export {
   MYCarouselItem,
   MYTransfer,
   MYTransferPanel,
-  MYAlert
+  MYAlert,
+  MYDialog
 };
