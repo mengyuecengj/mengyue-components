@@ -37,7 +37,7 @@ import { MYCarousel, MYCarouselItem } from './carousel';
 import { MYTransfer, MYTransferPanel } from './transfer';
 import { MYAlert } from './alert';
 import { MYDialog } from './dialog'
-
+import { MYMessage, message, MessagePlugin } from './message'
 
 // 组件映射，显式定义 name
 const components = {
@@ -55,10 +55,10 @@ const components = {
   MYRow: { component: MYRow, name: 'MYRow' },
   MYCol: { component: MYCol, name: 'MYCol' },
   MYInput: { component: MYInput, name: 'MYInput' },
-  MYRadio: { component: MYRadio, name: 'MYRadio'},
+  MYRadio: { component: MYRadio, name: 'MYRadio' },
   MYRadioGroup: { component: MYRadioGroup, name: 'MYRadio-group' },
   MYCheckbox: { component: MYCheckbox, name: 'MYCheckbox' },
-  MYCheckboxGroup: { component: MYCheckboxGroup, name: 'MYCheckbox-group'},
+  MYCheckboxGroup: { component: MYCheckboxGroup, name: 'MYCheckbox-group' },
   MYSwitch: { component: MYSwitch, name: 'MYSwitch' },
   MYRate: { component: MYRate, name: 'MYRate' },
   MYPickColor: { component: MYPickColor, name: 'MYSelect-color' },
@@ -69,9 +69,9 @@ const components = {
   selectCascader: { component: MYSelectCascader, name: 'MYSelect-cascader' },
   MYSlidebar: { component: MYSlidebar, name: 'MYSlidebar' },
   MYForm: { component: MYForm, name: 'MYForm' },
-  MYFormItem: { component: MYFormItem, name: 'MYFormItem'},
-  MYBadge: { component: MYBadge, name: 'MYBadge'},
-  MYCollapse: { component: MYCollapse, name: 'MYCollapse'},
+  MYFormItem: { component: MYFormItem, name: 'MYFormItem' },
+  MYBadge: { component: MYBadge, name: 'MYBadge' },
+  MYCollapse: { component: MYCollapse, name: 'MYCollapse' },
   MYCollapseItem: { component: MYCollapseItem, name: 'MYCollapse-item' },
   MYProgress: { component: MYProgress, name: 'MYProgress' },
   MYResult: { component: MYResult, name: 'MYResult' },
@@ -85,14 +85,14 @@ const components = {
   MYTree: { component: MYTree, name: 'MYTree' },
   MYTreeNode: { component: MYTreeNode, name: 'MYTree-node' },
   MYBacktop: { component: MYBacktop, name: 'MYBacktop' },
-  MYBreadcrumb: { component: MYBreadcrumb, name: 'MYBreadcrumb'},
+  MYBreadcrumb: { component: MYBreadcrumb, name: 'MYBreadcrumb' },
   MYBreadcrumbItem: { component: MYBreadcrumbItem, name: 'MYBreadcrumb-item' },
   MYDropdown: { component: MYDropdown, name: 'MYDropdown' },
   MYDropdownMenu: { component: MYDropdownMenu, name: 'MYDropdown-menu' },
   MYDropdownItem: { component: MYDropdownItem, name: 'MYDropdown-item' },
   MYMenu: { component: MYMenu, name: 'MYMenu' },
   MYMenuSubMenu: { component: MYMenuSubMenu, name: 'MYMenu-submenu' },
-  MYMenuItem: { component: MYMenuItem, name: 'MYMenu-item'},
+  MYMenuItem: { component: MYMenuItem, name: 'MYMenu-item' },
   MYStep: { component: MYStep, name: 'MYStep' },
   MYSteps: { component: MYSteps, name: 'MYSteps' },
   MYCarousel: { component: MYCarousel, name: 'MYCarousel' },
@@ -100,7 +100,8 @@ const components = {
   MYTransfer: { component: MYTransfer, name: 'MYTransfer' },
   MYTransferPanel: { component: MYTransferPanel, name: 'MYTransferPanel' },
   MYAlert: { component: MYAlert, name: 'MYAlert' },
-  MYDialog: { component: MYDialog, name: 'MYDialog' }
+  MYDialog: { component: MYDialog, name: 'MYDialog' },
+  MYMessage: { component: MYMessage, name: 'MYMessage' },
 };
 
 // interface ComponentWithName {
@@ -113,25 +114,23 @@ const components = {
 //   name: string;
 // }
 
-// install 方法
+// 安装方法
 const install: Plugin['install'] = (app: App) => {
   Object.values(components).forEach(({ component, name }) => {
-    // 检查是否已注册，避免覆盖
-    if (app.component(name)) {
-      console.warn(`Component ${name} is already registered, skipping.`);
-      return;
+    if (!app.component(name)) {
+      app.component(name, component)
     }
-    // 使用组件自身的 name 作为备用
-    const finalName = name;
-    app.component(finalName, component);
-  });
-};
+  })
+  // 安装 message 插件
+  app.use(MessagePlugin)
+}
 
-// 插件对象
-const MengyuePlus: Plugin = { install };
+const MengyuePlus: Plugin = { install }
+
+// 默认导出插件
+export default MengyuePlus
 
 // ───── 导出 ─────
-export default MengyuePlus;
 export {
   MYButton,
   MYBorder,
@@ -192,5 +191,8 @@ export {
   MYTransfer,
   MYTransferPanel,
   MYAlert,
-  MYDialog
+  MYDialog,
+  MYMessage,
+  message,
+  MessagePlugin,
 };

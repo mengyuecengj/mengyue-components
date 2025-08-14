@@ -1,6 +1,9 @@
 {
   "extends": "./tsconfig.web.json",
   "compilerOptions": {
+    "paths": {
+      "mengyue-plus": ["../../packages/components"]
+    },
     "allowJs": true,
     "lib": [
       "ESNext",

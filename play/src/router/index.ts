@@ -166,6 +166,10 @@ const routes: RouteRecordRaw[] = [
     path: '/test/dialog',
     component: () => import('../views/dialog.vue')
   },
+  {
+    path: '/test/message',
+    component: () => import('../views/message.vue')
+  },
 ]
 
 export const router = createRouter({

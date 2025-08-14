@@ -114,6 +114,9 @@
         <MYButton type="success" @click="navigateTo('/test/dialog')">
             dialog components
         </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/message')">
+            message components
+        </MYButton>
     </div>
 </template>
 <script setup>
