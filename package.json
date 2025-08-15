@@ -100,7 +100,7 @@
     "unplugin-vue-macros": "^2.7.11",
     "vite": "^6.3.5",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vitest": "^2.0.5",
+    "vitest": "^2.1.9",
     "vue": "^3.5.17",
     "vue-eslint-parser": "9.4.3",
     "vue-router": "^4.0.16",

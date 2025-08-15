@@ -7,7 +7,12 @@
   >
     <!-- 正常情况走纯文本；仅当允许时才用 v-html -->
     <!-- <div class="my-message--content" v-if="!dangerouslyUseHTMLString"> -->
-    <MYButton class="my-message--content" v-if="!dangerouslyUseHTMLString">
+    <MYButton 
+      class="my-message--content"
+      v-if="!dangerouslyUseHTMLString"
+      :type="buttonType"
+      plain
+      size="medium">
       {{ content }}
     </MYButton>
     <div class="my-message--content" v-else v-html="content"></div>
@@ -17,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted } from 'vue'
+import { onBeforeUnmount, onMounted, computed } from 'vue'
 import MYButton from '../../button/src/button.vue';
 import type { MessageOption } from './type'
 import '../style/message.scss'
@@ -30,6 +35,12 @@ const content = props.content ?? ''
 const type = props.type ?? 'info'
 const showClose = props.showClose ?? false
 const dangerouslyUseHTMLString = !!props.dangerouslyUseHTMLString
+
+const buttonType = computed(() => {
+  if (type === 'error') return 'danger';
+  if (type === 'default') return undefined;
+  return type;
+})
 
 let timer: number | null = null
 let start = 0
