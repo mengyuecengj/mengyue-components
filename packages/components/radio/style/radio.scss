@@ -1,0 +1,69 @@
+.my-radio {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  &__input {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__original {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  &__inner {
+    width: 14px;
+    height: 14px;
+    border: 1px solid #dcdfe6;
+    border-radius: 50%;
+    background: #fff;
+    position: relative;
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.15s ease-in;
+    }
+  }
+
+  &__label {
+    margin-left: 8px;
+    font-size: 14px;
+    user-select: none;
+  }
+
+  &--checked {
+    .my-radio__inner {
+      border-color: #409eff;
+      background-color: #409eff;
+
+      &:after {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+  }
+
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed !important;
+
+    * {
+      cursor: not-allowed !important;
+      pointer-events: none;
+      user-select: none;
+    }
+  }
+}

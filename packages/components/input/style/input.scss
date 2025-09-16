@@ -1,0 +1,115 @@
+.my-input-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.my-input {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 4px 11px;  /* padding-right 将被Vue style覆盖 */
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 14px;
+  line-height: 1.5714285714285714;  /* 保持，但height:100%优先 */
+  list-style: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;  /* 确保跟随wrapper */
+  min-width: 0;
+  background-color: #ffffff;
+  background-image: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d9d9d9;
+  border-radius: 6px;
+  transition: all 0.2s;
+
+  &:focus {
+    border-color: #4096ff;
+    box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+    outline: 0;
+  }
+
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.25);
+    user-select: none;
+  }
+
+  &:hover {
+    border-color: #4096ff;
+  }
+}
+
+.my-input__suffix {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.my-input--disabled {
+  color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.04);
+  border-color: #d9d9d9;
+  box-shadow: none;
+  cursor: not-allowed !important;
+  opacity: 1;
+
+  &:hover {
+    border-color: #d9d9d9;
+  }
+}
+
+.my-input__suffix {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1;
+  justify-content: flex-end;
+}
+
+.my-input__clear {
+  cursor: pointer;
+  color: #999;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+}
+.my-input__password {
+  cursor: pointer;
+  color: #999;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+}
+.my-input__word-limit {
+  cursor: pointer;
+  color: #999;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+
+.my-input__password svg {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+.my-input-wrapper .my-input__word-limit {
+  position: absolute;
+  right: 50px;
+  top: 5%;
+}

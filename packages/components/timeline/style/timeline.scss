@@ -1,0 +1,12 @@
+.my-timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 16px 0;
+}
+
+.my-timeline.horizontal {
+  flex-direction: row;
+  align-items: center;
+  padding: 0 16px;
+}

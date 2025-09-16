@@ -1,0 +1,29 @@
+.my-col {
+  position: relative;
+  box-sizing: border-box;
+  width: var(--col-width, 100%);
+  margin-left: var(--col-offset-left, 0);
+  margin-right: var(--col-offset-right, 0);
+  left: var(--col-push, 0);
+  left: var(--col-pull, 0);
+
+  @for $i from 1 through 24 {
+    &--span-#{$i} {
+      width: calc(#{$i} / 24 * 100%);
+    }
+    &--offsetLeft-#{$i} {
+      margin-left: calc(#{$i} / 24 * 100%);
+    }
+    &--offsetRight-#{$i} {
+      margin-right: calc(#{$i} / 24 * 100%);
+    }
+    &--pull-#{$i} {
+      position: relative;
+      left: calc(-#{$i} / 24 * 100%);
+    }
+    &--push-#{$i} {
+      position: relative;
+      left: calc(#{$i} / 24 * 100%);
+    }
+  }
+}

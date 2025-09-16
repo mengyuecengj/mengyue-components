@@ -1,0 +1,43 @@
+/* form.scss */
+.my-form {
+  display: block;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+
+  /* 内联模式时让子项水平排列 */
+  &.inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* 全局 label 宽度变量 */
+  --label-width: auto;
+
+  /* 通用 items 间距 */
+  > :not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  /* disabled 整体半透明 */
+  &.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  /* 大小尺寸变化 */
+  &.large {
+    font-size: 16px;
+  }
+  &.medium {
+    font-size: 14px;
+  }
+  &.small {
+    font-size: 12px;
+  }
+  &.mini {
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,211 @@
+.select-e {
+    position: relative;
+    width: 260px;
+    font-size: 14px;
+    border: 1px solid #4c4d4f;
+    border-radius: 4px;
+    background-color: #1f1f21;
+    color: #e0e0e0;
+    outline: none;
+
+    &.is-focused {
+        border-color: #409eff;
+    }
+
+    &.is-disabled {
+        border-color: transparent
+    }
+}
+
+.select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    cursor: pointer;
+    user-select: none;
+    height: 100%;
+
+    &:hover {
+        background-color: #2a2a2e;
+    }
+
+    .selected-value {
+        color: #e0e0e0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .arrow-icon {
+        transition: transform 0.2s ease;
+        display: flex;
+        align-items: center;
+
+        svg {
+            fill: #909399;
+        }
+
+        &.is-open {
+            transform: rotate(180deg);
+        }
+    }
+
+    // /* 悬停效果 */
+    // &:hover:not(.is-disabled) {
+    //     border: 1px solid #303333;
+    // }
+
+    // /* 聚焦/点击保持效果 */
+    // &.is-focused,
+    // &:focus:not(.is-disabled) {
+    //     border: 1px solid #409Eff;
+    // }
+
+    &.is-disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+
+        .select-trigger {
+            cursor: not-allowed;
+            pointer-events: none;
+
+            /* 禁用悬停效果 */
+            &:hover {
+                border: 1px solid 1f1f21;
+                background: inherit;
+
+                &.is-focused,
+                &:focus:not(.is-disabled) {
+                    border: 1px solid 1f1f21;
+                }
+            }
+        }
+    }
+}
+
+.select-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #2a2a2e;
+    border: 1px solid #4c4d4f;
+    border-radius: 4px;
+    z-index: 10;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+
+    &.is-disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+
+        .select-trigger {
+            cursor: not-allowed;
+            pointer-events: none;
+
+            /* 禁用悬停效果 */
+            &:hover {
+                border: 1px solid 1f1f21;
+                background: inherit;
+
+                &.is-focused,
+                &:focus:not(.is-disabled) {
+                    border: 1px solid 1f1f21;
+                }
+            }
+        }
+    }
+}
+
+.select-option {
+    position: relative;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: #e0e0e0;
+    white-space: nowrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:hover {
+        background-color: #409eff;
+        color: #fff;
+
+        .arrow-icon svg {
+            fill: #fff;
+        }
+    }
+
+    .arrow-icon {
+        margin-left: 8px;
+        font-size: 8px;
+
+        svg {
+            fill: #909399;
+            width: 0.75em;
+            height: 0.75em;
+            transition: fill 0.2s ease;
+        }
+    }
+
+    .label {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &.is-disabled {
+        cursor: not-allowed !important; // 强制设置禁用光标
+        opacity: 0.6; // 添加透明度变化增强视觉效果
+
+        // 确保子元素也继承禁用状态
+        * {
+            cursor: not-allowed !important;
+            pointer-events: none !important;
+        }
+
+        // 禁用状态下的悬停效果
+        &:hover {
+            background-color: inherit !important;
+            color: inherit !important;
+        }
+    }
+}
+
+.sub-menu,
+.third-menu {
+    position: absolute;
+    background-color: #2a2a2e;
+    border: 1px solid #4c4d4f;
+    border-radius: 4px;
+    z-index: 11;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    height: 90px;
+
+    .select-option {
+        padding: 8px 16px;
+        color: #e0e0e0;
+
+        &:hover {
+            background-color: #409eff;
+            color: #fff;
+
+            .arrow-icon svg {
+                fill: #fff;
+            }
+        }
+    }
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+    transition: all 0.2s ease;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
+}

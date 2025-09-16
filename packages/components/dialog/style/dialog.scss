@@ -1,0 +1,47 @@
+.my-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  .my-dialog {
+    background: #fff;
+    border-radius: 4px;
+    overflow: auto;
+    min-width: 320px;
+    
+    .my-dialog__header {
+      padding: 12px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+    }
+    .my-dialog__close {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .my-dialog__body {
+      padding: 16px;
+    }
+    .my-dialog__footer {
+      padding: 12px;
+      text-align: right;
+    }
+  }
+
+  .my-dialog.my-dialog--overflow {
+    overflow: hidden;
+  }
+}
+.dialog-fade-enter-active,
+.dialog-fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.dialog-fade-enter-from,
+.dialog-fade-leave-to {
+  opacity: 0;
+}

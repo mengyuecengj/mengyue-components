@@ -1,0 +1,100 @@
+@use '../../../theme-chalk/src/common/var.scss';
+
+.my-a {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        color: #000;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+}
+
+.my-a--default {
+    color: #fff;
+    
+    &:hover {
+        color: #fff;
+        text-decoration-color: #fff;
+    }
+}
+
+.my-a--primary {
+    color: var(--btn-color-primary);
+
+    &:hover {
+        color: var(--btn-color-primary);
+        text-decoration-color: var(--btn-color-primary);
+    }
+}
+
+.my-a--success {
+    color: var(--btn-color-success);
+    
+    &:hover {
+        color: var(--btn-color-success);
+        text-decoration-color: var(--btn-color-success);
+    }
+}
+
+.my-a--warning {
+    color: var(--btn-color-warning);
+    
+    &:hover {
+        color: var(--btn-color-warning);
+        text-decoration-color: var(--btn-color-warning);
+    }
+}
+
+.my-a--danger {
+    color: var(--btn-color-danger);
+    
+    &:hover {
+        color: var(--btn-color-danger);
+        text-decoration-color: var(--btn-color-danger);
+    }
+}
+
+.my-a--info {
+    color: var(--btn-color-info);
+    
+    &:hover {
+        color: var(--btn-color-info);
+        text-decoration-color: var(--btn-color-info);
+    }
+}
+
+.my-a--large {
+    font-size: 20px;
+}
+
+.my-a--medium {
+    font-size: 18px;
+}
+
+.my-a-small {
+    font-size: 16px;
+}
+
+.my-a--mini {
+    font-size: 14px;
+}
+
+.my-a--disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+  
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.my-a--underline {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none !important;
+    }
+}

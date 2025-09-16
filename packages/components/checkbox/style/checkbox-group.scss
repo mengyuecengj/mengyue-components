@@ -1,0 +1,37 @@
+.my-checkbox-group {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    // 水平排列 (默认)
+    &.is-horizontal {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--checkbox-group-gap, 12px); // 使用 CSS 变量方便覆盖
+    }
+
+    // 垂直排列
+    &.is-vertical {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: calc(var(--checkbox-group-gap, 12px) * 0.8); // 垂直间距稍小
+    }
+
+    // 禁用状态
+    &.is-disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+
+        // 禁用状态下禁止子元素交互
+        * {
+            pointer-events: none;
+        }
+    }
+
+    // 响应式调整 (可选)
+    @media (max-width: 768px) {
+        &.is-horizontal {
+            flex-wrap: wrap;
+        }
+    }
+}

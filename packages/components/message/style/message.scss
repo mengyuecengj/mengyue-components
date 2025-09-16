@@ -1,0 +1,90 @@
+.my-message {
+    pointer-events: auto;
+    // padding: 8px 12px;
+    padding: 0;
+    border-radius: 6px;
+    color: #fff;
+    // background: #333;
+    display: inline-flex;
+    align-items: center;
+}
+
+.my-message--content {
+    margin-right: 8px;
+    max-width: 300px;  /* 超过200px换行 */
+    word-wrap: break-word;  /* 自动换行，支持长词断开 */
+    white-space: normal;  /* 允许换行（默认 pre-line 或 normal） */
+    overflow-wrap: break-word;  /* 额外兼容长词 */
+}
+
+.my-message-container {
+    position: fixed;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.my-message-container.top-right {
+    top: 0px;
+    right: 16px;
+    align-items: flex-end;
+}
+
+.my-message-container.top-left {
+    top: 8px;
+    left: 16px;
+    align-items: flex-start;
+}
+
+.my-message-container.top-center {
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+}
+
+.my-message-container.bottom-right {
+    bottom: 8px;
+    right: 16px;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+}
+
+.my-message-container.bottom-left {
+    bottom: 8px;
+    left: 16px;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+}
+
+.my-message-container.bottom-center {
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+// .my-message--success {
+//     background: #57A957
+// }
+
+// .my-message--info {
+//     background: #909399
+// }
+
+// .my-message--warning {
+//     background: #e6a23c;
+//     color: #000
+// }
+
+// .my-message--error {
+//     background: #f56c6c
+// }
+
+.my-message--close {
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer
+}

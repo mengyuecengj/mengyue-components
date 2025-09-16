@@ -1,0 +1,16 @@
+.my-breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  
+  .my-breadcrumb-link {
+    color: var(--el-color-primary, #409EFF);
+    text-decoration: none;
+  }
+  
+  .my-breadcrumb-separator {
+    margin: 0 8px;
+    color: var(--el-text-color-secondary, #c0c4cc);
+    display: flex;
+    align-items: center;
+  }
+}

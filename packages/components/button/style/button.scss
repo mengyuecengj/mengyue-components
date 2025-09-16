@@ -1,0 +1,93 @@
+@use 'sass:map';
+@use 'sass:string';
+@use '../../../theme-chalk/src/common/var.scss' as *;
+
+/* basic */
+.my-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color var(--btn-transition), filter var(--btn-transition);
+}
+
+/* 普通模式 base/hover/active */
+@each $type, $map in $btn-colors {
+  $key: string.unquote("#{$type}");
+
+  .my-btn--#{$key}:not(.my-btn--plain) {
+    background-color: map.get($map, base);
+    color: if($key =='default', inherit, #fff);
+    border: if($key =='default', 2px solid var(--btn-color-primary), none);
+
+    &:hover {
+      background-color: map.get($map, hover);
+    }
+
+    &:active {
+      background-color: map.get($map, active);
+    }
+  }
+}
+
+/* default 非 plain 的白边白字交互 */
+.my-btn--default:not(.my-btn--plain) {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+
+  &:hover,
+  &:active {
+    color: #409EFF;
+    border-color: #409EFF;
+    background-color: rgba(18, 96, 232, 0.2);
+    /* #12888C 0.2透明度 */
+  }
+}
+
+/* 尺寸、修饰、禁用 */
+.my-btn--supersmall {
+  padding: var(--btn-padding-supersmall);
+  font-size: var(--btn-font-supersmall);
+}
+
+.my-btn--small {
+  padding: var(--btn-padding-small);
+  font-size: var(--btn-font-small);
+}
+
+.my-btn--medium {
+  padding: var(--btn-padding-medium);
+  font-size: var(--btn-font-medium);
+}
+
+.my-btn--large {
+  padding: var(--btn-padding-large);
+  font-size: var(--btn-font-large);
+}
+
+.my-btn--superbig {
+  padding: var(--btn-padding-superbig);
+  font-size: var(--btn-font-superbig);
+}
+
+.my-btn--round {
+  border-radius: 9999px;
+}
+
+.my-btn--circle {
+  border-radius: var(--btn-radius-circle);
+}
+
+.my-btn.my-btn--disabled,
+.my-btn.my-btn--disabled:hover,
+.my-btn.my-btn--disabled:active {
+  opacity: 0.6;
+  cursor: not-allowed;
+  border-color: #fff;
+  color: #fff;
+  background-color: transparent;
+}

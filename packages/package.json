@@ -1,0 +1,47 @@
+{
+  "name": "mengyue-plus",
+  "version": "0.0.48",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/mengyue-plus.cjs.js",
+  "module": "dist/mengyue-plus.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/mengyue-plus.es.js",
+      "require": "./dist/mengyue-plus.cjs.js"
+    },
+    "./style.css": "./dist/mengyue-plus.css"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "scripts": {
+    "build": "cross-env SASS_QUIET_DEPRECATION=1 vite build",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.52.9",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "cross-env": "^10.0.0",
+    "sass": "^1.89.2",
+    "sass-loader": "^13.0.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.19",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-svg-loader": "^5.1.0"
+  },
+  "keywords": [
+    "vue",
+    "vite",
+    "ui",
+    "component",
+    "mengyue-plus"
+  ],
+  "dependencies": {
+    "path": "^0.12.7"
+  }
+}

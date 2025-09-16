@@ -1,0 +1,28 @@
+.MYRate {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0;
+}
+.MYRate__star {
+  position: relative;
+  display: inline-block;
+  margin-right: 6px;
+  cursor: pointer;
+  font-size: 20px;
+}
+.MYRate__star.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.MYRate__star-inner {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  transition: color 0.2s;
+  height: 2.0rem;
+}
+.MYRate__text {
+  margin-left: 10px;
+  font-size: 14px;
+  vertical-align: middle;
+}

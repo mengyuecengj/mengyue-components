@@ -1,0 +1,10 @@
+<template>
+    <MYIconBase size="24px" :viewBox="'0 0 1024 1024'">
+        <path fill="#000000" d="M128 192h768v128H128V192zm0 256h512v128H128V448zm0 256h768v128H128V704zm576-352 192 160-192 128V352z"/>
+    </MYIconBase>
+</template>
+
+<script setup lang="ts">
+import MYIconBase from './IconBase.vue'
+defineOptions({ name: 'MYExpand' })
+</script>

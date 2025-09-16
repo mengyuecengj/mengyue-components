@@ -1,0 +1,15 @@
+html {
+    --global-scroll-track-color: #2C2C2C;
+    --global-scroll-width: 12px;
+
+    /* Webkit 浏览器支持 */
+    &::-webkit-scrollbar {
+        width: var(--global-scroll-width);
+    }
+
+    // Track style
+    &::-webkit-scrollbar-track {
+        background-color: var(--global-scroll-track-color);
+        border-radius: 10px;
+    }
+}

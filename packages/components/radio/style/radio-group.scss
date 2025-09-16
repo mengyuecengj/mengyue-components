@@ -1,0 +1,7 @@
+.my-radio-group {
+  display: flex;
+  gap: 10px;
+}
+.my-radio-group.is-vertical {
+  flex-direction: column;
+}

@@ -1,0 +1,46 @@
+.my-timeline-item {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 24px;
+  .timeline-timestamp {
+    flex: 0 0 120px;
+    text-align: right;
+    padding-right: 24px;
+    color: #666;
+    font-size: 14px;
+  }
+
+  .timeline-node {
+    position: relative;
+    width: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .timeline-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: #409eff;
+      z-index: 1;
+      box-shadow: 0 0 0 3px rgba(64, 158, 255, 0.2);
+    }
+    .timeline-line {
+      position: absolute;
+      top: 14px;
+      bottom: -30px;
+      width: 2px;
+      background-color: #e4e7ed;
+    }
+    .my-timeline-item:last-child .timeline-line {
+      display: none;
+    }
+  }
+  .timeline-content {
+    // flex: 1;
+    padding-left: 24px;
+    font-size: 14px;
+    color: #333;
+  }
+}

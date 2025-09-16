@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "ESNext",
+    "target": "ESNext",
+    "baseUrl": ".",
+    "sourceMap": false,
+    "moduleResolution": "node",
+    "allowJs": false,
+    "strict": true,
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "removeComments": false,
+    "rootDir": ".",
+    "types": ["vite/client", "node"], // 添加 Vite 和 Node 类型
+    "paths": {
+      "@mengyue-plus/components": ["packages/components"],
+      "@mengyue-plus/components/*": ["packages/components/*"],
+      "@mengyue-plus/utils": ["packages/utils"],
+      "@mengyue-plus/utils/*": ["packages/utils/*"],
+      "@mengyue-plus/hooks": ["packages/hooks"],
+      "@mengyue-plus/directives": ["packages/directives"],
+      "@mengyue-plus/constants": ["packages/constants"],
+      "@mengyue-plus/locale": ["packages/locale"],
+      "@mengyue-plus/locale/*": ["packages/locale/*"],
+      "mengyue-plus": ["packages/mengyue-plus"]
+    },
+    "preserveSymlinks": true
+  },
+  "include": [
+    "icons/src/**/*", // 包含 icons/src 下的所有文件
+    "packages/**/*",  // 包含 packages 下的所有文件
+    "vite.config.ts", // 包含 Vite 配置文件
+    "vite-env.d.ts"   // 包含 Vite 类型声明
+  ]
+}
