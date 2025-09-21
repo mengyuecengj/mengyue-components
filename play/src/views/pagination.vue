@@ -8,13 +8,10 @@
   </div>
   <div class="example-pagination-block">
     <div class="example-demonstration">With Background and Sizes</div>
-    <MYPagination v-model:current-page="currentPage" v-model:page-size="pageSize" layout="sizes, prev, pager, next, jumper, total"
-      :total="1000" :page-sizes="[10, 20, 50, 100]" background @change="handleChange" />
-  </div>
-  <div class="example-pagination-block">
-    <div class="example-demonstration">Small Pagination, Hide on Single Page</div>
-    <MYPagination v-model:current-page="currentPage" v-model:page-size="pageSize" layout="prev, pager, next" :total="10" small
-      hide-on-single-page />
+    <MYPagination v-model:current-page="currentPage" v-model:page-size="pageSize"
+      layout="sizes, prev, pager, next, jumper, total" :total="1000" :page-sizes="[10, 20, 50, 100]" background
+      @change="handleChange" prneColor="#fff000" prneTextColor="#ff0000" itemColor="#2c2" itemTextColor="#fff"
+      activeItemColor="#f00" activeItemTextColor="#000" />
   </div>
 </template>
 
@@ -25,7 +22,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const navigateTo = (path: string) => {
-    router.push(path);
+  router.push(path);
 };
 const currentPage = ref(1);
 const pageSize = ref(10);
