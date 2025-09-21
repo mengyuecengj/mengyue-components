@@ -6,6 +6,7 @@ export interface FormRule {
   message?: string
   /** 自定义校验函数，返回 true/false 或 Promise */
   validator?: (rule: FormRule, value: string) => boolean | Promise<boolean>
+  len?: number
 }
 
 export interface FormContext {

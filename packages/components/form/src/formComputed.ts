@@ -11,17 +11,29 @@ export function useFormComputed(props: FormItemProps, emit: FormEmits) {
 
   // Validation logic
   async function validateField(prop: string) {
-    // 获取当前字段的规则，确保类型为数组对象
-    const rules = (props.rules?.[prop] as FormRule[] | undefined) || []
-    const model = props.modelValue as unknown as Record<string, string>
+    if (!props.rules || !props.rules[prop]) return true
+
+    const rules = props.rules[prop] as FormRule[]
+    const model = props.modelValue as Record<string, any>
     const value = model[prop]
+
     for (const rule of rules) {
-      // 仅对对象规则进行校验，忽略字符串或其他类型
       if (typeof rule === 'object') {
-        const { required, message, validator } = rule
+        const { required, message, validator, len } = rule
+
+        // 必填验证
         if (required && (value === undefined || value === null || value === '')) {
           throw new Error(message || `${prop} is required`)
         }
+
+        // 长度验证
+        if (len !== undefined && value !== undefined && value !== null) {
+          if (typeof value === 'string' && value.length !== len) {
+            throw new Error(message || `${prop} length must be ${len}`)
+          }
+        }
+
+        // 自定义验证器
         if (validator) {
           const result = await validator(rule, value)
           if (!result) throw new Error(message || `${prop} validation failed`)
@@ -54,7 +66,7 @@ export function useFormComputed(props: FormItemProps, emit: FormEmits) {
   const emitter = mitt();
 
   function clearValidate(field?: string) {
-    emitter.emit('clear-validate', field) 
+    emitter.emit('clear-validate', field)
     emit('clear-validate', field)
   }
 

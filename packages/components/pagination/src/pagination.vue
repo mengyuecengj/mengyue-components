@@ -2,48 +2,31 @@
   <div v-if="!hideOnSinglePage || totalPages > 1" class="my-pagination" :class="{ small, disabled }">
     <template v-for="item in (layout || '').split(',').map(s => s.trim())" :key="item">
       <!-- 上一页 -->
-      <button
-        v-if="item === 'prev'"
-        class="btn-prev"
-        :class="{ 'has-background': background }"
-        :disabled="currentPage === 1 || disabled"
-        @click="handlePageChange(currentPage - 1)"
-      >
+      <button v-if="item === 'prev'" class="btn-prev" :class="{ 'has-background': background }"
+        :disabled="currentPage === 1 || disabled" @click="handlePageChange(currentPage - 1)" :style="stylePage">
         Prev
       </button>
 
       <!-- 页码 -->
       <div v-if="item === 'pager'" class="pager">
-        <button
-          v-for="page in pagerList"
-          :key="page"
-          :class="['pager-item', { active: currentPage === page, 'has-background': background }]"
-          :disabled="disabled"
+        <button v-for="page in pagerList" :key="page"
+          :class="['pager-item', { active: currentPage === page, 'has-background': background }]" :disabled="disabled"
           @click="page !== '...' && handlePageChange(Number(page))"
-        >
+          :style="currentPage === page ? activeItemStyle : itemPageStyle">
           {{ page }}
         </button>
       </div>
 
       <!-- 下一页 -->
-      <button
-        v-if="item === 'next'"
-        class="btn-next"
-        :class="{ 'has-background': background }"
-        :disabled="currentPage === totalPages || disabled"
-        @click="handlePageChange(currentPage + 1)"
-      >
+      <button v-if="item === 'next'" class="btn-next" :class="{ 'has-background': background }"
+        :disabled="currentPage === totalPages || disabled" @click="handlePageChange(currentPage + 1)"
+        :style="stylePage">
         Next
       </button>
 
       <!-- 每页条数 -->
-      <select
-        v-if="item === 'sizes' && pageSizes.length"
-        class="page-sizes"
-        :disabled="disabled"
-        :value="pageSize"
-        @change="handleSizeChange(($event.target as HTMLSelectElement).value)"
-      >
+      <select v-if="item === 'sizes' && pageSizes.length" class="page-sizes" :disabled="disabled" :value="pageSize"
+        @change="handleSizeChange(($event.target as HTMLSelectElement).value)">
         <option v-for="size in pageSizes" :key="size" :value="size">
           {{ size }} / page
         </option>
@@ -52,12 +35,8 @@
       <!-- 跳转 -->
       <div v-if="item === 'jumper'" class="jumper">
         Go to
-        <input
-          type="number"
-          :value="currentPage"
-          :disabled="disabled"
-          @change="handleJumperChange(($event.target as HTMLInputElement).value)"
-        />
+        <input type="number" :value="currentPage" :disabled="disabled"
+          @change="handleJumperChange(($event.target as HTMLInputElement).value)" />
       </div>
 
       <!-- 总条数 -->
@@ -67,19 +46,19 @@
 </template>
 
 <script setup lang="ts">
-import { paginationProps } from  './pagination'
+import { paginationProps } from './pagination'
 import { usePaginationComputed } from './paginationComputed';
 import '../style/pagination.scss'
 
 defineOptions({
-    name: 'MYPagination'
+  name: 'MYPagination'
 })
 
 const props = defineProps(paginationProps)
 // Emits
 const emit = defineEmits(['update:current-page', 'update:page-size', 'change']);
 
-const { pagerList, totalPages } = usePaginationComputed(props, emit)
+const { pagerList, totalPages, stylePage, itemPageStyle, activeItemStyle } = usePaginationComputed(props, emit)
 
 // 页码变更
 const handlePageChange = (page: number) => {

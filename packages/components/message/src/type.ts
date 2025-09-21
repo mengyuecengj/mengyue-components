@@ -1,4 +1,4 @@
-import { VNode } from "vue";
+import type { VNode } from "vue";
 
 export type MessageType = 'info' | 'success' | 'warning' | 'error' | 'default'
 
@@ -23,6 +23,7 @@ export interface MessageOption {
   offset?: number // 容器 top/bottom 偏移
   zIndex?: number // 覆盖全局 zIndex
   onClose?: () => void // 关闭回调
+  plain?: boolean
 }
 
 export interface MessageHandle {

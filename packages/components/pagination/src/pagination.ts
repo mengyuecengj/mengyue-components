@@ -38,6 +38,30 @@ export const paginationProps = {
     disabled: {
         type: Boolean,
         default: false
+    },
+    prneColor: {
+        'type': String,
+        default: ''
+    },
+    prneTextColor: {
+        type: String,
+        default: ''
+    },
+    itemColor: {
+        type: String,
+        default: ''
+    },
+    itemTextColor: {
+        type: String,
+        default: ''
+    },
+    activeItemColor: {
+        type: String,
+        default: ''
+    },
+    activeItemTextColor: {
+        type: String,
+        default: ''
     }
 }
 

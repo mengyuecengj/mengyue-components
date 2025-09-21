@@ -1,15 +1,8 @@
 <template>
-    <div
-        class="select-e"
-        :class="{
-            'is-disabled': disabled,
-            'is-focused': isFocused
-        }"
-        tabindex="0"
-        :style="selectStyle"
-        @focus="handleFocus"
-        @blur="handleBlur"
-    >
+    <div class="select-e" :class="{
+        'is-disabled': disabled,
+        'is-focused': isFocused
+    }" tabindex="0" :style="selectStyle" @focus="handleFocus" @blur="handleBlur">
         <div class="select-trigger" @click="toggleDropdown">
             <span class="selected-value">{{ selectedLabel || placeholder }}</span>
             <span class="arrow-icon" :class="{ 'is-open': dropdownVisible }">
@@ -20,13 +13,8 @@
         </div>
         <Transition name="slide-fade">
             <div v-if="dropdownVisible" ref="dropdownRef" class="select-dropdown">
-                <MYScrollbar
-                    v-if="showScrollbar"
-                    height="200px"
-                    thumbColor="#4C4D4F"
-                    thumbHoverColor="#2a2a2e"
-                    trackColor="#2a2a2e"
-                >
+                <MYScrollbar v-if="showScrollbar" height="200px" thumbColor="#4C4D4F" thumbHoverColor="#2a2a2e"
+                    trackColor="#2a2a2e">
                     <slot></slot>
                 </MYScrollbar>
                 <div v-else class="select-dropdown-content">
@@ -58,13 +46,18 @@ const dropdownVisible = ref(false)
 const selectedLabel = ref('')
 const isFocused = ref(false)
 
+// 在 select.vue 的 script 部分
 const checkScrollbarVisibility = () => {
     nextTick(() => {
+        if (!props.autoScrollbar) {
+            showScrollbar.value = false
+            return
+        }
+
         if (dropdownRef.value) {
-            // 判断下拉框内部内容高度是否超过限制
             const content = dropdownRef.value.querySelector('.select-dropdown-content') || dropdownRef.value
             const contentHeight = (content as HTMLElement).scrollHeight
-            showScrollbar.value = contentHeight > 200
+            showScrollbar.value = contentHeight > 190
         }
     })
 }

@@ -1,21 +1,24 @@
 .select-option {
     padding: 8px 16px;
     cursor: pointer;
+    background-color: var(--option-bg-color, transparent);
+    color: var(--option-text-color, inherit);
 
     &:hover {
-        background-color: #1D1E1F;
+        background-color: var(--option-hover-bg-color, #1D1E1F);
+        color: var(--option-hover-text-color, inherit);
     }
 
     &.is-selected {
-        color: #409eff;
-        background-color: #1D1E1F;
+        color: var(--option-selected-text-color, #409eff);
+        background-color: var(--option-selected-bg-color, #1D1E1F);
     }
 
     &.is-disabled {
         opacity: 0.6;
         cursor: not-allowed;
-        color: #999 !important;
-        background-color: inherit !important;
+        color: var(--option-disabled-text-color, #999) !important;
+        background-color: var(--option-disabled-bg-color, inherit) !important;
 
         /* 禁用状态下的触发器 */
         .select-trigger {

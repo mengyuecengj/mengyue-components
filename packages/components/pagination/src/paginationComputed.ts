@@ -5,6 +5,12 @@ export interface PaginationProps {
     pageSize: number
     maxPagerCount: number
     currentPage: number
+    prneColor: string
+    prneTextColor: string
+    itemColor: string
+    itemTextColor: string
+    activeItemColor?: string     // 添加选中项背景色
+    activeItemTextColor?: string // 添加选中项文字颜色
 }
 
 export function usePaginationComputed(props: PaginationProps, emit: (event: "update:current-page" | "update:page-size" | "change", ...args: any[]) => void) {
@@ -48,5 +54,28 @@ export function usePaginationComputed(props: PaginationProps, emit: (event: "upd
 
         return pages;
     });
-    return { totalPages, pagerList }
+
+    const stylePage = computed(() => {
+        return {
+            backgroundColor: props.prneColor,
+            color: props.prneTextColor,
+        }
+    })
+
+    // backgroundColor
+    const itemPageStyle = computed(() => {
+        return {
+            backgroundColor: props.itemColor,  // 未选中项也使用 itemColor
+            color: props.itemTextColor,
+        }
+    })
+
+    // 选中项样式（可以和未选中项相同或不同）
+    const activeItemStyle = computed(() => {
+        return {
+            backgroundColor: props.activeItemColor || props.itemColor,  // 优先使用选中项颜色
+            color: props.activeItemTextColor || props.itemTextColor,
+        }
+    })
+    return { totalPages, pagerList, stylePage, itemPageStyle, activeItemStyle }
 }

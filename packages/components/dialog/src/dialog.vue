@@ -39,6 +39,11 @@ import { dialogProps } from './dialog'
 import type { DialogEmits } from './type'
 import { useDialog } from './dialogComputed'
 
+defineOptions({
+  name: 'MYDialog',
+  inheritAttrs: false
+})
+
 const props = defineProps(dialogProps)
 const emit = defineEmits<DialogEmits>()
 

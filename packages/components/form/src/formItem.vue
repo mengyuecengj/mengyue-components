@@ -15,18 +15,11 @@ import { inject } from 'vue'
 import { formItemProps } from './formItem'
 import { useFormItemComputed } from './formItemComputed'
 import '../style/formItem.scss'
-import { FormContext } from './type'
+import type { FormContext } from './type'
 
 defineOptions({ name: 'MYForm-item' })
 
-const form = inject<FormContext>('form', {
-  modelValue: {},
-  labelWidth: 'auto',
-  emitter: { 
-    on: () => { },
-    off: () => { }
-  }
-})
+const form = inject<FormContext>('form')
 
 if (!form) {
   throw new Error('FormItem must be used inside Form component')
@@ -35,5 +28,6 @@ if (!form) {
 const props = defineProps(formItemProps)
 
 const { formItemRef, errorMessage, labelWidth, formItemClass, attachTrigger } = useFormItemComputed(props, form)
+attachTrigger()
 attachTrigger()
 </script> 

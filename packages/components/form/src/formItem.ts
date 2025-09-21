@@ -1,5 +1,5 @@
-import { PropType } from "vue"
-import { FormRule } from "./type"
+import type { PropType } from "vue"
+import type { FormRule } from "./type"
 import { formProps } from './form'
 
 // ==================== 类型定义 ====================

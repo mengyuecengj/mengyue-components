@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { provide, reactive, toRefs } from 'vue'
+import { provide, reactive, toRefs, watch } from 'vue'
 import { useClassComputed } from '../../../hooks/useClassComputed'
 import { useFormComputed } from './formComputed'
 import { formProps } from './form'
@@ -34,6 +34,12 @@ const {
   formContext,
   emitter,
 } = useFormComputed(props, emit)
+
+// 提供更新 modelValue 的方法
+const updateFieldValue = (field: string, value: any) => {
+  const newModel = { ...props.modelValue, [field]: value }
+  emit('update:modelValue', newModel)
+}
 
 const formClass = useClassComputed({
   baseClass: 'my-form',
@@ -64,6 +70,7 @@ provide('form', reactive({
   resetFields,
   clearValidate,
   emitter,
-  formClass
+  formClass,
+  updateFieldValue,
 }))
 </script>

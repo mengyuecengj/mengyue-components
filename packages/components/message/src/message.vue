@@ -6,7 +6,6 @@
     @mouseleave="resume"
   >
     <!-- 正常情况走纯文本；仅当允许时才用 v-html -->
-    <!-- <div class="my-message--content" v-if="!dangerouslyUseHTMLString"> -->
     <MYButton 
       class="my-message--content"
       v-if="!dangerouslyUseHTMLString"

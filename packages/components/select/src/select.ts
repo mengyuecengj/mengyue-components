@@ -1,4 +1,4 @@
-import { PropType } from "vue";
+import type { PropType } from "vue";
 
 type SelectValue = string | number;
 type SelectSize = string | number;
@@ -35,5 +35,9 @@ export const selectProps = {
     borderColor: {
         type: String,
         default: ''
+    },
+    autoScrollbar: {
+        type: Boolean,
+        default: true
     }
 };

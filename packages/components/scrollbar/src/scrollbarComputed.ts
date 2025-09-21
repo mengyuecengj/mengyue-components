@@ -1,8 +1,8 @@
-import { ComputedRef, CSSProperties } from 'vue';
+import type { ComputedRef, CSSProperties } from 'vue';
+import type { ScrollbarProps } from './type';
 import { useClassComputed } from '../../../hooks/useClassComputed';
 import { useStyleComputed } from '../../../hooks/useStyleComputed';
 import { useScrollVariables } from '../../../hooks/useScrollCommon';
-import { ScrollbarProps } from './type'
 
 export function useScrollbarComputed(props: ScrollbarProps): {
   scrollbarClass: ComputedRef<string[]>;

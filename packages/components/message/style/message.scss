@@ -1,20 +1,76 @@
 .my-message {
     pointer-events: auto;
-    // padding: 8px 12px;
     padding: 0;
     border-radius: 6px;
-    color: #fff;
-    // background: #333;
     display: inline-flex;
     align-items: center;
+    border: 1px solid transparent;
+    position: relative;
+}
+
+// 非 plain 样式 (filled)
+// .my-message--success {
+//     background: #67c23a;
+//     color: #fff;
+// }
+
+// .my-message--info {
+//     background: #909399;
+//     color: #fff;
+// }
+
+// .my-message--warning {
+//     background: #e6a23c;
+//     color: #fff;
+// }
+
+// .my-message--error {
+//     background: #f56c6c;
+//     color: #fff;
+// }
+
+// .my-message--default {
+//     background: #409eff;
+//     color: #fff;
+// }
+
+// plain 样式
+.my-message--success.is-plain {
+    background: #f0f9eb;
+    color: #67c23a;
+    border-color: #67c23a;
+}
+
+.my-message--info.is-plain {
+    background: #f4f4f5;
+    color: #909399;
+    border-color: #909399;
+}
+
+.my-message--warning.is-plain {
+    background: #fdf6ec;
+    color: #e6a23c;
+    border-color: #e6a23c;
+}
+
+.my-message--error.is-plain {
+    background: #fef0f0;
+    color: #f56c6c;
+    border-color: #f56c6c;
+}
+
+.my-message--default.is-plain {
+    background: #ecf5ff;
+    color: #409eff;
+    border-color: #409eff;
 }
 
 .my-message--content {
     margin-right: 8px;
-    max-width: 300px;  /* 超过200px换行 */
-    word-wrap: break-word;  /* 自动换行，支持长词断开 */
-    white-space: normal;  /* 允许换行（默认 pre-line 或 normal） */
-    overflow-wrap: break-word;  /* 额外兼容长词 */
+    max-width: 300px;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
 }
 
 .my-message-container {
@@ -65,26 +121,15 @@
     align-items: center;
 }
 
-// .my-message--success {
-//     background: #57A957
-// }
-
-// .my-message--info {
-//     background: #909399
-// }
-
-// .my-message--warning {
-//     background: #e6a23c;
-//     color: #000
-// }
-
-// .my-message--error {
-//     background: #f56c6c
-// }
-
 .my-message--close {
     background: transparent;
     border: none;
     color: inherit;
-    cursor: pointer
+    cursor: pointer;
+    padding: 0 8px;
+    font-size: 18px;
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
 }

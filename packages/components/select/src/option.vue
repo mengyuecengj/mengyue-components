@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { computed, inject } from 'vue'
 import '../style/option.scss'
-import { SelectContext } from './type'
+import type { SelectContext } from './type'
 
 defineOptions({
     name: "MYOption"

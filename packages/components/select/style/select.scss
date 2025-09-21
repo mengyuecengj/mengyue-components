@@ -3,10 +3,10 @@
   width: 260px;
   height: 40px;
   font-size: 14px;
-  color: #fff;
+  color: var(--text-color, #fff);
   border: 1px solid #4C4D4F;
   border-radius: 4px;
-  background: #1f1f21;
+  background: var(--dropdown-bg-color, #1f1f21);
   transition: border-color 0.2s ease;
   user-select: none;
   outline: none;
@@ -15,13 +15,14 @@
   /* 悬停效果 */
   &:hover:not(.is-disabled) {
     border: 1px solid #303333;
-    background-color: var(--hover-bg-color);
+    background-color: var(--hover-bg-color, #2a2a2e);
+    color: var(--hover-text-color, var(--text-color, #fff));
   }
 
   /* 聚焦/点击保持效果 */
   &.is-focused,
   &:focus:not(.is-disabled) {
-    border: 1px solid #409Eff;
+    border: 1px solid var(--active-color, #409Eff);
   }
 
   &.is-disabled {
@@ -36,7 +37,7 @@
 
       /* 禁用悬停效果 */
       &:hover {
-        background-color: v-bind(hoverbackgroundColor);
+        background-color: var(--hover-bg-color, #1f1f21);
         border: none;
         background: inherit;
       }
@@ -62,7 +63,7 @@
   cursor: pointer;
 
   &:hover {
-    background-color: var(--hover-bg-color);
+    background-color: var(--hover-bg-color, #2a2a2e);
   }
 
   .selected-value {
@@ -70,7 +71,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: #E0E0E0;
+    color: var(--text-color, #E0E0E0);
     line-height: inherit;
     /* 继承父元素的行高 */
     height: 100%;
@@ -95,7 +96,7 @@
     }
 
     svg {
-      fill: #909399;
+      fill: var(--text-color, #909399);
       transition: fill 0.2s ease;
     }
   }
@@ -105,14 +106,18 @@
   position: absolute;
   width: 100%;
   margin-top: 4px;
-  background: #2a2a2e;
+  background: var(--dropdown-bg-color, #2a2a2e);
   border: 1px solid #4C4D4F;
   border-radius: 4px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
   z-index: 1000;
   max-height: 200px;
-  overflow-y: auto;
+  overflow: hidden;
   margin-top: 7px;
+
+  &.with-scrollbar {
+    overflow: visible;
+  }
 }
 
 .slide-fade-enter-active {

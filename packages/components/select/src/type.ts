@@ -1,4 +1,4 @@
-import { ComputedRef } from 'vue';
+import type { ComputedRef } from 'vue';
 export interface SelectContext {
     selectOption: (value: string | number, label: string) => void;
     currentValue: ComputedRef<string | number>;
