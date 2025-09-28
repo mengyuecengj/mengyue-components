@@ -1,5 +1,7 @@
-import { PropType } from "vue";
-export const selectDateProps ={
+import type { PropType } from "vue";
+type SelectSize = string | number;
+
+export const selectDateProps = {
   modelValue: {
     type: [String, Array] as PropType<string | string[]>,
     default: ''
@@ -31,5 +33,13 @@ export const selectDateProps ={
   showToday: {
     type: Boolean,
     default: true
+  },
+  width: {
+    type: [String, Number] as PropType<SelectSize>,
+    default: '260px'
+  },
+  height: {
+    type: [String, Number] as PropType<SelectSize>,
+    default: '20px'
   },
 };

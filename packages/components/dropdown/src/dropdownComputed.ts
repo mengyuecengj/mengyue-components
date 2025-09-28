@@ -1,5 +1,5 @@
-// src/components/dropdown/useDropdown.ts
-import { reactive, ref, onMounted, onBeforeUnmount, watch, nextTick } from 'vue';
+import { reactive, ref, onMounted, onBeforeUnmount, watch, nextTick, computed } from 'vue';
+import { dropdownProps } from './dropdown';
 
 export type Placement = 'bottom' | 'bottom-start' | 'bottom-end' | 'top' | 'top-start' | 'top-end' | 'left' | 'right';
 
@@ -15,9 +15,10 @@ export interface UseDropdownOptions {
   triggerKeys?: string[]; // keyboard keys to open
   hideOnClick?: boolean;
   popperOptions?: Record<string, any>;
+  backGroundColor?: string;
 }
 
-export function useDropdown(options: UseDropdownOptions = {}) {
+export function useDropdown(options: UseDropdownOptions = {}, props: typeof dropdownProps) {
   const visible = ref(false);
   const triggerEl = ref<HTMLElement | null>(null);
   const menuEl = ref<HTMLElement | null>(null);
@@ -34,7 +35,7 @@ export function useDropdown(options: UseDropdownOptions = {}) {
   const showTimer = ref<number | null>(null);
   const hideTimer = ref<number | null>(null);
 
-const open = async (reason: 'mouse' | 'click' | 'key' = 'mouse') => {
+  const open = async (reason: 'mouse' | 'click' | 'key' = 'mouse') => {
     if (options.disabled) return;
     clearTimers();
     visible.value = true;
@@ -44,7 +45,7 @@ const open = async (reason: 'mouse' | 'click' | 'key' = 'mouse') => {
       focusFirstItem();  // 只键盘打开时聚焦
     }
   };
-  
+
   const close = () => {
     clearTimers();
     visible.value = false;
@@ -59,7 +60,7 @@ const open = async (reason: 'mouse' | 'click' | 'key' = 'mouse') => {
     if (hideTimer.value) { window.clearTimeout(hideTimer.value); hideTimer.value = null; }
   }
 
-function onTriggerEnter() {
+  function onTriggerEnter() {
     if (options.trigger !== 'hover') return;
     clearTimers();
     const ms = options.showTimeout ?? 150;
@@ -71,15 +72,21 @@ function onTriggerEnter() {
     const ms = options.hideTimeout ?? 150;
     hideTimer.value = window.setTimeout(() => close(), ms);
   }
-function onMenuEnter() { 
-  if (options.trigger === 'hover') clearTimers(); 
-}
-  function onMenuLeave() { 
-  if (options.trigger === 'hover') { 
-    clearTimers(); 
-    hideTimer.value = window.setTimeout(() => close(), options.hideTimeout ?? 150); 
-  } 
-}
+  function onMenuEnter() {
+    if (options.trigger === 'hover') clearTimers();
+  }
+  function onMenuLeave() {
+    if (options.trigger === 'hover') {
+      clearTimers();
+      hideTimer.value = window.setTimeout(() => close(), options.hideTimeout ?? 150);
+    }
+  }
+
+  const dropdownStyle = computed(() => {
+    return {
+      backgroundColor: props.backGroundColor,  // 未选中项也使用 itemColor
+    }
+  })
 
   // basic positioning (no Popper). Compute relative to viewport and trigger
   function updatePosition(mouseX?: number, mouseY?: number) {
@@ -152,7 +159,7 @@ function onMenuEnter() {
     first?.focus();
   }
   function onKeydown(e: KeyboardEvent) {
-if (options.disabled) return;
+    if (options.disabled) return;
     const key = e.key;
     const triggerKeys = options.triggerKeys ?? ['Enter', ' ', 'ArrowDown', 'NumpadEnter'];
     if (!visible.value && triggerKeys.includes(key)) {
@@ -208,6 +215,7 @@ if (options.disabled) return;
     triggerEl,
     menuEl,
     menuStyle,
+    dropdownStyle,
     open,
     close,
     toggle,

@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 import { transferComputed } from './transferComputed'
 import { transferPanelProps } from './transferPanel'
-import { Option } from './type'
+import type { Option } from './type'
 
 defineOptions({
   name: 'MYTransferPanel'

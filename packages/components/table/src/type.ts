@@ -1,4 +1,5 @@
 export interface TableColumnProps {
+  className: string;
   prop: string;
   label?: string;
   width?: string;
@@ -11,6 +12,10 @@ export interface TableColumnProps {
   children?: TableColumnProps[];
   colspan?: number;
   rowspan?: number;
+  type?: string;  // 新增：支持 type="selection"
+  align?: 'left' | 'center' | 'right';
+  headerAlign?: 'left' | 'center' | 'right';
+  bodyAlign?: 'left' | 'center' | 'right';
 }
 
 export interface TableProps {

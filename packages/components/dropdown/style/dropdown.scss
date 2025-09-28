@@ -44,7 +44,10 @@
   color: var(--m-text);
   user-select: none;
 
-  &.is-disabled { opacity: 0.6; pointer-events: none; }
+  &.is-disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
 
   &__trigger {
     display: inline-flex;
@@ -57,51 +60,74 @@
     --btn-padding-x: 12px;
     border-radius: 8px;
     padding: var(--btn-padding-y) var(--btn-padding-x);
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     border: 1px solid transparent;
     cursor: pointer;
     transition: all .14s ease;
     font-weight: 500;
-    background: linear-gradient(180deg, #fff, #f5f8ff);
+    // background: linear-gradient(180deg, #fff, #f5f8ff);
   }
+
   .m-btn--primary {
     background: linear-gradient(180deg, var(--m-primary), var(--m-primary-600));
     color: #fff;
-    box-shadow: 0 6px 18px rgba(47,107,254,0.12);
+    box-shadow: 0 6px 18px rgba(47, 107, 254, 0.12);
   }
+
   .m-btn--default {
-    background: linear-gradient(180deg,#fff,#f7f9fc);
+    // background: linear-gradient(180deg, #fff, #f7f9fc);
     color: var(--m-text);
     border: 1px solid var(--m-border);
   }
-  .m-btn:hover { transform: translateY(-1px); }
 
-  .m-btn--sm { font-size: 13px; padding: 6px 9px; border-radius:6px; }
-  .m-btn--md { font-size: 14px; padding: 8px 12px; }
-  .m-btn--lg { font-size: 16px; padding: 10px 14px; }
+  .m-btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .m-btn--sm {
+    font-size: 13px;
+    padding: 6px 9px;
+    border-radius: 6px;
+  }
+
+  .m-btn--md {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .m-btn--lg {
+    font-size: 16px;
+    padding: 10px 14px;
+  }
 
   .m-split {
-    display:inline-flex;
-    align-items:center;
-    gap:4px;
-    .m-split__main { border-top-right-radius: 6px; border-bottom-right-radius:6px; }
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    .m-split__main {
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+
     .m-split__caret {
-      border-top-left-radius: 6px; border-bottom-left-radius:6px;
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
       padding: 8px 10px;
-      background: linear-gradient(180deg,#fbfdff,#f3f7ff);
+      background: linear-gradient(180deg, #fbfdff, #f3f7ff);
       border: 1px solid var(--m-border);
       cursor: pointer;
     }
   }
 
   &__menu {
-    min-width: 160px;
+    min-width: 10px !important;
     background: var(--m-bg);
     border-radius: 10px;
     border: 1px solid var(--m-border);
-    box-shadow: 0 12px 40px rgba(13,34,64,0.12);
+    box-shadow: 0 12px 40px rgba(13, 34, 64, 0.12);
     padding: 6px 4px;
     position: absolute;
     z-index: 1100;
@@ -110,23 +136,49 @@
 }
 
 /* visibility helpers applied via classes */
-.m-hidden { opacity: 0; transform: translateY(-6px); pointer-events: none; }
-.m-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.m-hidden {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+}
+
+.m-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
 
 /* menu item */
 .m-dropdown-item {
   padding: 8px 14px;
-  display:flex;
-  align-items:center;
-  gap:8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   border-radius: 8px;
-  cursor:pointer;
+  cursor: pointer;
   color: var(--m-text);
   font-size: 14px;
   transition: background .12s ease;
 }
-.m-dropdown-item:hover { background: #f5f7fb; }
-.m-dropdown-item.is-disabled { color: #9aa4b2; cursor: not-allowed; background: transparent; }
-.m-dropdown-item.is-divided { border-top: 1px solid #eef3fb; padding-top: 10px; margin-top: 6px; }
 
-.m-item-icon { width:18px; display:inline-flex; justify-content:center; }
+.m-dropdown-item:hover {
+  background: #f5f7fb;
+}
+
+.m-dropdown-item.is-disabled {
+  color: #9aa4b2;
+  cursor: not-allowed;
+  background: transparent;
+}
+
+.m-dropdown-item.is-divided {
+  border-top: 1px solid #eef3fb;
+  padding-top: 10px;
+  margin-top: 6px;
+}
+
+.m-item-icon {
+  width: 18px;
+  display: inline-flex;
+  justify-content: center;
+}

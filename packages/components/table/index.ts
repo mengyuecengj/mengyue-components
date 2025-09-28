@@ -1,4 +1,4 @@
-import { App, Plugin } from 'vue'
+import type { App, Plugin } from 'vue'
 import table from './src/table.vue'
 import tableColumn from './src/tableColumn.vue'
 import { withInstall } from '../../theme-chalk/utils/withInstall'

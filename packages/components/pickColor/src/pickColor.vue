@@ -10,6 +10,7 @@ import { computed, toRefs } from 'vue'
 import { pickColorProps } from './pickColor'
 import { useColorUtils } from '../../../hooks/useColorUtils'
 import { useInputStyle } from './pickColorComputed'
+
 defineOptions({
     name: 'MYSelect-color'
 })
@@ -20,7 +21,7 @@ const emit = defineEmits(['update:modelValue'])
 const { modelValue, size, rgba, noBorder, circle } = toRefs(props)
 const { parseHexOrRgb } = useColorUtils()
 
-// 转换 modelValue 为 hex
+// 转换 modelValue 为 hex（忽略 alpha，用于 input 显示）
 const hexValue = computed(() => {
     if (modelValue.value.startsWith('rgba')) {
         const rgb = parseHexOrRgb(modelValue.value)
@@ -36,7 +37,17 @@ const hexValue = computed(() => {
 const inputStyle = useInputStyle(size.value, String(rgba.value))
 
 const handleColorChange = (e: Event) => {
-    emit('update:modelValue', (e.target as HTMLInputElement).value)
+    const hexValue = (e.target as HTMLInputElement).value // 如 #ff0000
+    const rgb = parseHexOrRgb(hexValue) // 假设返回 [r, g, b]
+    if (rgb) {
+        const [r, g, b] = rgb
+        const alpha = typeof rgba.value === 'string' ? parseFloat(rgba.value) : rgba.value // 获取当前 alpha (0-1)
+        const newRgbaValue = `rgba(${r}, ${g}, ${b}, ${alpha})`
+        emit('update:modelValue', newRgbaValue)
+    } else {
+        // fallback，如果解析失败，直接 emit hex
+        emit('update:modelValue', hexValue)
+    }
 }
 </script>
 

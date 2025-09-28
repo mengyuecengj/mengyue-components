@@ -13,7 +13,8 @@ export function useInputComputed(props: ExtractPropTypes<typeof inputProps>): {
     flagClasses: { disabled: props.disabled }
   })
   const inputStyle = useStyleComputed(props, {
-    propToStyleMap: { width: 'width', height: 'height' }
+    propToStyleMap: { width: 'width', height: 'height', textColor: 'color' },
+
   })
   return { inputClass, inputStyle }
 }

@@ -1,5 +1,5 @@
-import { PropType } from 'vue'
-import { Option } from './type'
+import type { PropType } from 'vue'
+import type { Option } from './type'
 export const transferProps = {
     modelValue: {
         type: Array as PropType<number[]>,
@@ -20,5 +20,9 @@ export const transferProps = {
     hoverBackground: {
         type: String,
         default: ''
+    },
+    titles: {
+        type: Array as PropType<string[]>,
+        default: () => []
     }
 }

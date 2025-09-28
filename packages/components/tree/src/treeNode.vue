@@ -6,7 +6,9 @@
     </div>
     <div v-if="expanded && !isLeaf" class="my-tree-node__children">
       <TreeNode v-for="child in (node[treeProps.children] as TreeNode[])"
-        :key="(child[treeProps.label] as string | number) || child.id || Math.random().toString()" :node="child"
+        :key="(child[treeProps.label] as string | number) || child.id || Math.random().toString()" 
+        :defaultExpanded="true"
+        :node="child"
         :treeProps="treeProps" />
     </div>
   </div>
@@ -28,9 +30,10 @@ const props = defineProps<{
     label: string
     children: string
   }
+  defaultExpanded?: boolean
 }>()
 
-const expanded = ref(false)
+const expanded = ref(props.defaultExpanded || false)
 const toggle = () => {
   if (!isLeaf.value) expanded.value = !expanded.value
 }

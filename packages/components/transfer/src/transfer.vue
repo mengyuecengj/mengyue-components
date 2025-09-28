@@ -2,7 +2,7 @@
   <div class="my-transfer">
     <TransferPanel
       v-model:selected="leftSelected"
-      title="源数据"
+      :title="leftTitle"
       :data="leftData"
       :style="transferStyle"
       :hoverBackground="hoverBackground"
@@ -13,7 +13,7 @@
     </div>
     <TransferPanel
       v-model:selected="rightSelected"
-      title="已选中"
+      :title="rightTitle"
       :data="rightData"
       :style="transferStyle"
       :hoverBackground="hoverBackground"
@@ -42,6 +42,10 @@ const rightSelected = ref<number[]>([])
 // 拆分左右数据
 const leftData = computed(() => props.data.filter(item => !props.modelValue.includes(item.key)))
 const rightData = computed(() => props.data.filter(item => props.modelValue.includes(item.key)))
+
+// 默认标题
+const leftTitle = computed(() => props.titles?.[0])
+const rightTitle = computed(() => props.titles?.[1])
 
 // 添加到右侧
 const addToRight = () => {

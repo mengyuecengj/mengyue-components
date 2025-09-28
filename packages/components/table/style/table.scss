@@ -1,49 +1,86 @@
 .my-table {
-  overflow: auto;
   position: relative;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid var(--table-border-color, #dcdfe6);
+  border-radius: 4px;
+  font-size: 14px;
+  color: #606266;
+  background-color: #fff;
 
-  /* 用于表格本体（加入 table-layout: fixed） */
-  &__table,
   table {
     width: 100%;
-    border-collapse: separate; /* 保持你原来的设置 */
+    border-collapse: collapse;  // 修改：从 separate 改为 collapse，消除微间距
     border-spacing: 0;
-    table-layout: fixed; /* <- 关键：按 col/width 固定布局 */
-    border-collapse: collapse; /* 合并边框 */
-    
-    .my-table-header {
-      background-color: #d5d2d2;
+    table-layout: auto;
+  }
+
+  thead {
+    color: #909399;
+    font-weight: 500;
+    background-color: #f5f7fa;
+  }
+
+  th,
+  td {
+    padding: 8px 6px;
+    text-align: left;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ebeef5;
+    vertical-align: middle;
+    position: relative;  // 保持：为 input absolute 准备
+
+    // 新增：selection 列专用 padding:0，避免 padding 干扰 absolute
+    &[data-column="selection"] {
+      padding: 0;  // 窄列无需 padding
     }
   }
-  
 
-  th, td {
-    margin-left: 0;
-    padding: 12px 16px;
-    text-align: left;
-    border: 1px solid var(--table-border-color);
-    border-bottom: 1px solid var(--table-border-color);
-
-    /* 防止内容撑列，超出显示省略 */
-    overflow: hidden;
-    text-overflow: ellipsis;
+  th {
     white-space: nowrap;
   }
 
-  tr:hover {
-    background-color: #a19f9f;
+  tbody tr:hover {
+    background-color: #f5f7fa;
   }
 
-  /* 你的 id 列对齐规则保持（保留 !important，如果确实需要）*/
-  td[data-column="id"], th[data-column="id"] {
-    text-align: center !important;
+  .my-table-header {
+    background-color: inherit;
+    color: inherit;
   }
 
-  // &--border {
-  //   border: 1px solid #2c2;
-  //   th, td {
-  //     border: 1px solid #2c2 !important;
-  //   }
-  // }
+  // 修改：直接针对 selection 列的 input（无 wrapper）
+  th[data-column="selection"] .selection-checkbox,
+  td[data-column="selection"] .selection-checkbox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+    // 新增：覆盖浏览器默认样式，确保一致
+    appearance: auto;  // 或 none + custom，如果需要自定义外观
+  }
+
+  .my-table__expand-icon {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 8px;
+    transition: transform 0.3s ease-in-out;
+    vertical-align: middle;
+    
+    &--expanded {
+      transform: rotate(90deg);
+    }
+    
+    svg {
+      transition: transform 0.3s;
+      width: 12px;
+      height: 12px;
+    }
+  }
 }

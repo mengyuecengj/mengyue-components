@@ -3,9 +3,9 @@
     <div class="input-test-container">
         <h1>MYInput 组件测试</h1>
 
-        <div class="test-section">
+        <div class="test-sections">
             <h2>基础用法</h2>
-            <MYInput v-model="basicValue" />
+            <MYInput v-model="basicValue" textColor="#fff" placeholder="输入内容" />
             <p>当前值: {{ basicValue }}</p>
         </div>
 
@@ -22,8 +22,8 @@
 
         <div class="test-section">
             <h2>密码输入框</h2>
-            <MYInput v-model="passwordValue" tag="input" type="password" showPassword placeholder="输入密码" clearable :maxlength="10" word-limit
-             form="password-form" width="400px" />
+            <MYInput v-model="passwordValue" tag="input" type="password" showPassword placeholder="输入密码" clearable
+                :maxlength="10" word-limit form="password-form" width="400px" />
         </div>
 
         <div class="test-section">
@@ -34,7 +34,7 @@
         <div class="test-section">
             <h2>自定义宽度高度</h2>
             <MYInput v-model="customSizeValue" width="600px" height="440px" placeholder="自定义尺寸" />
-        </div> 
+        </div>
 
         <div class="test-section">
             <h2>文本域</h2>
@@ -73,6 +73,13 @@ h1 {
     color: #333;
     text-align: center;
     margin-bottom: 30px;
+}
+
+.test-sections {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 4px;
+    background-color: #0b1018;
 }
 
 .test-section {

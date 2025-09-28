@@ -1,4 +1,3 @@
-<!-- MyInput.vue -->
 <template>
   <div
     class="my-input-wrapper"
@@ -50,7 +49,7 @@ import type { CSSProperties } from 'vue'
 import { inputProps } from './input'
 import close from './close.vue'
 import viewsvgrepo from './viewsvgrepo.vue'
-import viewhide from './viewHide.vue'
+import viewhide from './viewhide.vue'
 import '../style/input.scss'
 import { useInputComputed } from './inputComputed'
 

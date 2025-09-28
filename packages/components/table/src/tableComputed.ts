@@ -4,19 +4,12 @@ import { useStyleComputed } from '../../../hooks/useStyleComputed';
 // import { useClassComputed } from '../../../hooks/useClassComputed';
 import type { TableProps } from './type';
 
+// packages/components/table/src/tableComputed.ts
 export function useTableComputed(props: TableProps): {
-  // tableClass: ComputedRef<string[]>
   tableStyle: ComputedRef<CSSProperties>;
   headerStyle: ComputedRef<CSSProperties>;
-  // contextStyle: ComputedRef<CSSProperties>;
   bodyStyle: ComputedRef<CSSProperties>;
 } {
-  // const tableClass = useClassComputed<TableProps>({
-  //   baseClass: 'my-table',
-  //   flagClasses: {
-  //     border: props.border
-  //   }
-  // });
   const tableStyle = useStyleComputed<TableProps>(props, {
     propToStyleMap: {
       width: 'width',
@@ -28,28 +21,22 @@ export function useTableComputed(props: TableProps): {
   const headerStyle = useStyleComputed<TableProps>(props, {
     propToStyleMap: {
       headerBackgroundColor: 'backgroundColor',
-      headerTextColor: 'color'
+      headerTextColor: 'color',
+      headerAlign: 'textAlign'
     }
-  })
-
-  // const contextStyle = useStyleComputed<TableProps>(props, {
-  //   propToStyleMap: {
-  //     stripe: 'backgroundColor'
-  //   }
-  // })
+  });
 
   const bodyStyle = useStyleComputed<TableProps>(props, {
     propToStyleMap: {
       bodyBackgroundColor: 'backgroundColor',
-      bodyTextColor: 'color'
+      bodyTextColor: 'color',
+      bodyAlign: 'textAlign'
     }
-  })
+  });
 
   return {
-    // tableClass,
     tableStyle,
     headerStyle,
-    // contextStyle
     bodyStyle
   };
 }

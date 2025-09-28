@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import { FormRule } from './type'
+import type { FormRule } from './type'
 
 // ==================== 类型定义 ====================
 /** 表单绑定数据类型 */

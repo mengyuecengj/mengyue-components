@@ -1,4 +1,4 @@
-import { Plugin, App } from 'vue'
+import type { Plugin, App } from 'vue'
 import scrollbar from './src/scrollbar.vue'
 import type { scrollbarProps } from './src/scrollbar'
 import { withInstall } from '../../theme-chalk/utils/withInstall'

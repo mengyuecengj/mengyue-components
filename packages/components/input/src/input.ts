@@ -1,4 +1,4 @@
-import { PropType, ExtractPropTypes } from 'vue'
+import type { PropType, ExtractPropTypes } from 'vue'
 
 // 输入类型与标签
 const typeAndTagProps = {
@@ -9,6 +9,10 @@ const typeAndTagProps = {
   tag: {
     type: String as PropType<string>,
     default: 'input'
+  },
+  textColor: {
+    type: String as PropType<string>,
+    default: ''
   }
 }
 

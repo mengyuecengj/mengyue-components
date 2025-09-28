@@ -69,7 +69,6 @@ const handleKeydown = (e: KeyboardEvent) => {
   padding: 8px 14px;
   font-size: 14px;
   cursor: pointer;
-  color: #333;
   background-color: transparent;
   transition: background-color 0.2s ease;
 

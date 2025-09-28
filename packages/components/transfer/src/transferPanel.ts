@@ -1,5 +1,5 @@
-import { PropType } from "vue";
-import { Option } from './type'
+import type { PropType } from "vue";
+import type { Option } from './type'
 import { transferProps } from './transfer'
 
 export const transferPanelProps = {

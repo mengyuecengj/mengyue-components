@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import Scrollbar from '../src/scrollbar.vue'; // 确保路径正确
-import { scrollbarProps } from '../src/scrollbar'; // 确保路径正确
-import { ScrollbarProps } from '../src/type'; // 确保路径正确
+import Scrollbar from '../src/scrollbar.vue';
+import { scrollbarProps } from '../src/scrollbar';
+import type { ScrollbarProps } from '../src/type';
 
 describe('Scrollbar 组件', () => {
   // 辅助函数创建带自定义 props 的 wrapper

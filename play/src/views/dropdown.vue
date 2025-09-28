@@ -2,13 +2,14 @@
 <template>
   <div style="padding:32px; display:flex; gap:24px; flex-wrap:wrap;">
     <!-- 基本 hover -->
-    <MYDropdown type="default" size="md" @close="close">
-      <template #default>默认操作</template>
+    <MYDropdown type="default" size="md" @close="close" backGroundColor="#0f1115" textColor="#ffffff">
+      <template #default>1</template>
       <template #dropdown>
-        <MYDropdown-item command="a">选项 A</MYDropdown-item>
-        <MYDropdown-item command="b">选项 B</MYDropdown-item>
-        <MYDropdown-item command="c" disabled>选项 C（禁用）</MYDropdown-item>
-        <MYDropdown-item command="d" divided>选项 D（分隔）</MYDropdown-item>
+        <MYDropdown-item command="a">较大</MYDropdown-item>
+        <MYDropdown-item command="b">默认</MYDropdown-item>
+        <MYDropdown-item command="c">较小</MYDropdown-item>
+        <!-- <MYDropdown-item command="c" disabled>选项 C（禁用）</MYDropdown-item>
+        <MYDropdown-item command="d" divided>选项 D（分隔）</MYDropdown-item> -->
       </template>
     </MYDropdown>
 
@@ -25,7 +26,7 @@
     <MYDropdown splitButton type="primary" @click="onPrimary">
       <template #default>主操作</template>
       <template #dropdown>
-        <MYDropdown-item command="x">删除</MYDropdown-item> 
+        <MYDropdown-item command="x">删除</MYDropdown-item>
         <MYDropdown-item command="y">重命名</MYDropdown-item>
       </template>
     </MYDropdown>
@@ -33,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue' 
+import { ref } from 'vue'
 const visible = ref(false);
 function onPrimary() {
   alert('主操作触发');

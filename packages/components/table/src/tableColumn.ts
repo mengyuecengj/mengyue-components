@@ -36,5 +36,21 @@ export const tableColumnProps = {
   scopedSlot: {
     type: String,
     default: ''
+  },
+  align: {
+    type: String as PropType<'left' | 'right' | 'center'>,
+    default: ''
+  },
+  headerAlign: {
+    type: String as PropType<'left' | 'right' | 'center'>,
+    default: ''
+  },
+  bodyAlign: {
+    type: String as PropType<'left' | 'right' | 'center'>,
+    default: ''
+  },
+  type: {  // 新增：支持 type="selection"
+    type: String,
+    default: ''
   }
 } as const;

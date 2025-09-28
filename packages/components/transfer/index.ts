@@ -1,4 +1,4 @@
-import { App, Plugin } from 'vue'
+import type { App, Plugin } from 'vue'
 import transfer from './src/transfer.vue'
 import transferPanel from './src/transferPanel.vue'
 import { withInstall } from '../../theme-chalk/utils/withInstall'
