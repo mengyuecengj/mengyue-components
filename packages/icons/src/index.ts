@@ -30,3 +30,4 @@ export default { install }
   下面示例单个导出，添加更多时按需扩展或用生成脚本自动生成 index-exports。
 */
 export { default as ViewHide } from './components/viewHide.vue'
+export { default as MYIconWrapper } from './components/aMYIconWrapper.vue'

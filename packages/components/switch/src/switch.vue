@@ -1,12 +1,6 @@
 <template>
-  <label class="my-switch" :class="classSwitch" :style="styleSwitch">
-    <input
-      type="checkbox"
-      hidden
-      :checked="isChecked"
-      :disabled="isDisabled"
-      @input="onInput"
-    />
+  <label class="my-switch" :class="[classSwitch, { 'is-checked': isChecked }]" :style="styleSwitch">
+    <input type="checkbox" hidden :checked="isChecked" :disabled="isDisabled" @input="onInput" />
     <span class="slider">
       <span v-if="props.text" class="slider-text">{{ props.text }}</span>
     </span>

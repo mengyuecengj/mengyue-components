@@ -11,6 +11,7 @@
     @mousedown="onMouseDown"
     @mouseup="onMouseUp"
   >
+    <slot name="icon" />
     <slot />
   </component>
 </template>
@@ -22,6 +23,7 @@ import { useButtonStyle } from './computedStyle'
 
 defineSlots<{
   default?: (props: {}) => string
+  icon?: (props: {}) => string
 }>()
 
 // **给组件取个名字，供 withInstall 注册使用**

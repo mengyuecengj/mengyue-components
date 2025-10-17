@@ -1,5 +1,5 @@
 <template>
-    <MYIconBase size="24px" viewBox="0 0 1024 1024">
+    <MYIconBase :size="size" :color="color" viewBox="0 0 1024 1024">
         <path fill="#000000"
             d="M399.5 849.5a225 225 0 1 0 0-450 225 225 0 0 0 0 450zm0 56.25a281.25 281.25 0 1 1 0-562.5 281.25 281.25 0 0 1 0 562.5zm253.125-787.5h225q28.125 0 28.125 28.125T877.625 174.5h-225q-28.125 0-28.125-28.125t28.125-28.125z" />
         <path fill="#000000"
@@ -11,4 +11,7 @@
 <script setup lang="ts">
 import MYIconBase from './IconBase.vue'
 defineOptions({ name: 'MYMale' })
+
+import { Props } from '../type'
+defineProps<Props>()
 </script>

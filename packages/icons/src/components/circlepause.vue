@@ -1,5 +1,5 @@
 <template>
-    <MYIconBase size="21px" :viewBox="'0 0 16 16'">
+    <MYIconBase :size="size" :color="color" :viewBox="'0 0 16 16'">
         <path fill-rule="evenodd" clip-rule="evenodd"
             d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM5 5H7V11H5V5ZM9 5H11V11H9V5Z"
             fill="#000000" />
@@ -8,4 +8,7 @@
 <script setup lang="ts">
 import MYIconBase from './IconBase.vue'
 defineOptions({ name: 'MYCirclePause' })
+
+import { Props } from '../type'
+defineProps<Props>()
 </script>

@@ -1,6 +1,6 @@
 import { computed, inject, useAttrs } from 'vue'
-import { RadioProps, RadioGroupContext } from './type'
-import { useFormField, useInputState, useInputClasses, FormItemContext } from '../../../hooks/useCheckComputed'
+import type { RadioProps, RadioGroupContext } from './type'
+import { useFormField, useInputState, useInputClasses, type FormItemContext } from '../../../hooks/useCheckComputed'
 
 export function useRadio(
   props: RadioProps,

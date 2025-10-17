@@ -1,5 +1,5 @@
 <template>
-    <MYIconBase size="24px" :viewBox="'0 0 24 24'">
+    <MYIconBase :size="size" :color="color" :viewBox="'0 0 24 24'">
         <path fill-rule="evenodd" clip-rule="evenodd"
             d="M9.57909 4.83828C10.5644 4.07194 12 4.77409 12 6.02231V12V17.9777C12 19.2259 10.5644 19.928 9.57909 19.1617L1.38606 12.7893C1.14247 12.5999 1 12.3086 1 12C1 11.6914 1.14247 11.4001 1.38606 11.2106L9.57909 4.83828ZM3.62882 12L10 16.9553V7.04463L3.62882 12Z"
             fill="#000000" />
@@ -12,4 +12,7 @@
 <script setup lang="ts">
 import MYIconBase from './IconBase.vue'
 defineOptions({ name: 'MYMediaBackward' })
+
+import { Props } from '../type'
+defineProps<Props>()
 </script>

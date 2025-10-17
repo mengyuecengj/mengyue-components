@@ -1,5 +1,6 @@
 import { reactive, ref, onMounted, onBeforeUnmount, watch, nextTick, computed } from 'vue';
 import { dropdownProps } from './dropdown';
+import { useClassComputed } from '../../../hooks/useClassComputed';
 
 export type Placement = 'bottom' | 'bottom-start' | 'bottom-end' | 'top' | 'top-start' | 'top-end' | 'left' | 'right';
 
@@ -192,6 +193,13 @@ export function useDropdown(options: UseDropdownOptions = {}, props: typeof drop
     }
   }
 
+  const carectClass = useClassComputed<typeof dropdownProps>({
+    baseClass: 'm-dropdown__caret',
+    propClasses: {
+      noCaret: '',
+    },
+  })
+
   onMounted(() => {
     document.addEventListener('pointerdown', onDocPointerDown);
     window.addEventListener('keydown', onKeydown);
@@ -215,6 +223,7 @@ export function useDropdown(options: UseDropdownOptions = {}, props: typeof drop
     triggerEl,
     menuEl,
     menuStyle,
+    carectClass,
     dropdownStyle,
     open,
     close,

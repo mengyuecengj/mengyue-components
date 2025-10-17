@@ -1,5 +1,5 @@
 <template>
-    <MYIconBase size="24px" viewBox="0 0 24 24">
+    <MYIconBase :size="size" :color="color" viewBox="0 0 24 24">
         <path fill="#000000"
             d="M22.53,8.97c-0.74-0.74-1.73-1.25-2.83-1.39c-0.1-1.72-0.83-3.28-1.98-4.42
 		c-1.23-1.23-2.93-1.99-4.81-1.99c-1.76,0-3.36,0.67-4.57,1.76c-1.04,0.94-1.78,2.2-2.08,3.62
@@ -20,4 +20,7 @@
 <script setup lang="ts">
 import MYIconBase from './IconBase.vue'
 defineOptions({ name: 'MYWeatherSymbol' })
+
+import { Props } from '../type'
+defineProps<Props>()
 </script>

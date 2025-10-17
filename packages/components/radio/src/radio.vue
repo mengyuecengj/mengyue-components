@@ -28,7 +28,7 @@
 import { computed, inject } from 'vue'
 import { radioProps } from './radio'
 import '../style/radio.scss'
-import { RadioGroupContext } from './type'
+import type { RadioGroupContext } from './type'
 
 defineOptions({ name: 'MYRadio' })
 

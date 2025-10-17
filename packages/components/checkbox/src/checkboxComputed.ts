@@ -4,8 +4,8 @@ import {
   useInputState,
   useInputClasses,
   useInputChange,
-  GroupContext,
-  FormItemContext
+  type GroupContext,
+  type FormItemContext
 } from '../../../hooks/useCheckComputed';
 
 interface Props {

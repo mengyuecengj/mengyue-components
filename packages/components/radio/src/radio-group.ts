@@ -1,5 +1,4 @@
-// packages/components/Radio/src/radio-group-props.ts
-import { PropType } from 'vue'
+import type { PropType } from 'vue'
 import { radioProps } from './radio'
 
 // 单独封装 radio-group 的 props

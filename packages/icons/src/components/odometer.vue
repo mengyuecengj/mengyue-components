@@ -1,5 +1,5 @@
 <template>
-    <MYIconBase size="24px" viewBox="0 0 1024 1024">
+    <MYIconBase :size="size" :color="color" viewBox="0 0 1024 1024">
         <path fill="#000000"
             d="M512 896a384 384 0 1 0 0-768 384 384 0 0 0 0 768zm0 64a448 448 0 1 1 0-896 448 448 0 0 1 0 896z" />
         <path fill="#000000" d="M192 512a320 320 0 1 1 640 0 32 32 0 1 1-64 0 256 256 0 1 0-512 0 32 32 0 0 1-64 0z" />
@@ -11,4 +11,7 @@
 <script setup lang="ts">
 import MYIconBase from './IconBase.vue'
 defineOptions({ name: 'MYOdometer' })
+
+import { Props } from '../type'
+defineProps<Props>()
 </script>

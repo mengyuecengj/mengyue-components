@@ -1,4 +1,4 @@
-import { onMounted, onBeforeUnmount, type Ref, type ComputedRef, CSSProperties } from 'vue'
+import { onBeforeUnmount, onMounted, type Ref, type ComputedRef, type CSSProperties } from 'vue'
 import { useClassComputed } from '../../../hooks/useClassComputed'
 import { useStyleComputed } from '../../../hooks/useStyleComputed'
 

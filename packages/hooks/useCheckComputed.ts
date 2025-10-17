@@ -12,8 +12,8 @@ import {
   onBeforeUnmount,
   watch,
   ref,
-  Ref,
-  UnwrapRef
+  type Ref,
+  type UnwrapRef
 } from 'vue'
 
 /**

@@ -1,62 +1,66 @@
+// file: ./packages/components/tree/src/treeNode.vue
+// 替换原有<style>部分
+
 .my-tree-node {
   margin-left: 14px;
 
   &__content {
     display: flex;
     align-items: center;
-    padding: 4px 8px;
+    padding: 6px 8px;
     cursor: pointer;
     border-radius: 4px;
-    transition: background 0.2s;
+    transition: all 0.2s;
+    color: var(--tree-text-color, #606266);
 
     &:hover {
-      background-color: #2c2c2c;
+      background-color: #f5f7fa;
     }
 
-    // &.expanded {
-    //   // background-color: #3a3a3a;
-    // }
-
     &.leaf:hover {
-      background-color: #333;
+      background-color: #f5f7fa;
+    }
+
+    &.selected {
+      background-color: var(--tree-active-color, #409eff) !important;
+      color: white;
+    }
+
+    &.selected:hover {
+      background-color: var(--tree-active-color, #409eff) !important;
     }
   }
 
   .arrow {
     margin-right: 6px;
     color: #bbb;
-    font-size: 8px;
+    font-size: 12px;
     width: 16px;
-    display: inline-block;
-    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
   }
 
   .label {
-    color: #eaeaea;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &__children {
-    margin-left: 12px;
-    border-left: 1px dashed #555;
-    padding-left: 8px;
+    margin-left: 16px;
+    border-left: 1px dashed #dcdfe6;
+    padding-left: 12px;
+    padding-top: 4px;
   }
 
-  .cell-tree-wrapper {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+  .tree-checkbox {
+    margin-right: 8px;
   }
 
-  .expander {
-    cursor: pointer;
-    user-select: none;
-    width: 12px;
-    display: inline-block;
-    text-align: center;
-  }
-
-  .expander-placeholder {
-    display: inline-block;
-    width: 12px;
+  .my-checkbox__input {
+    margin-right: 0;
   }
 }

@@ -78,5 +78,9 @@ export const dropdownProps = {
     textColor: {
         type: String,
         default: ''
+    },
+    noCaret: {
+        type: Boolean,
+        default: false
     }
 };

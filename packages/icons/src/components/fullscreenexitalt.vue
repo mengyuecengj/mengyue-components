@@ -1,5 +1,5 @@
 <template>
-    <MYIconBase size="24px" :viewBox="'0 0 24 24'">
+    <MYIconBase :size="size" :color="color" :viewBox="'0 0 24 24'">
         <path
             d="M7 9.5C8.38071 9.5 9.5 8.38071 9.5 7V2.5C9.5 1.94772 9.05228 1.5 8.5 1.5H7.5C6.94772 1.5 6.5 1.94772 6.5 2.5V6.5H2.5C1.94772 6.5 1.5 6.94772 1.5 7.5V8.5C1.5 9.05228 1.94772 9.5 2.5 9.5H7Z"
             fill="#000000" />
@@ -18,4 +18,7 @@
 <script setup lang="ts">
 import MYIconBase from './IconBase.vue'
 defineOptions({ name: 'MYFullScreennExitAlt' })
+
+import { Props } from '../type'
+defineProps<Props>()
 </script>

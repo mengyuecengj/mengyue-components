@@ -17,6 +17,6 @@ export const switchProps = {
     },
     disabled: {
         type: Boolean,
-        default: false
+        default: false 
     }
 }

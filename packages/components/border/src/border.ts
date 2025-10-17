@@ -1,4 +1,4 @@
-import { ExtractPropTypes, PropType } from "vue";
+import type { ExtractPropTypes, PropType } from "vue";
 
 // 边框基础属性
 const baseBorderProps = {

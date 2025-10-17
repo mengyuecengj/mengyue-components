@@ -1,7 +1,75 @@
 .my-radio-group {
-  display: flex;
-  gap: 10px;
-}
-.my-radio-group.is-vertical {
-  flex-direction: column;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  overflow: hidden; // 剪裁圆角外溢
+  line-height: normal;
+
+  &.is-vertical {
+    flex-direction: column;
+    width: 100%;
+
+    .my-radio-button {
+      display: block;
+      width: 100%;
+      border-radius: 0;
+      border-top: 1px solid #dcdfe6;
+      border-left: 0 !important; // 覆盖基础
+
+      &:first-child {
+        border-top: 1px solid #dcdfe6;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+      }
+
+      &:last-child {
+        border-bottom: 1px solid #dcdfe6;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+
+      &:not(:first-child):not(:last-child) {
+        border-top: 0;
+      }
+
+      &.is-active .my-radio-button__inner {
+        box-shadow: 0 -1px 0 0 #409eff; // 垂直上影
+      }
+    }
+  }
+
+  // 水平：无缝分隔
+  &:not(.is-vertical) {
+    .my-radio-button {
+      border-left: 0 !important; // 统一无左边
+      border-right: 1px solid #dcdfe6; // 分隔靠右边
+
+      &:first-child {
+        border-left: 1px solid #dcdfe6 !important; // 只有首左边
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+      }
+
+      &:last-child {
+        border-right: 1px solid #dcdfe6; // 末右边
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+
+      // 中间：右边分隔，无左
+      &:not(:first-child):not(:last-child) {
+        border-right: 1px solid #dcdfe6;
+      }
+
+      // 选中：内影覆盖左分隔变蓝，右分隔保持灰（或同步，但 Element 是灰）
+      &.is-active {
+        border-right: 1px solid #dcdfe6; // 保持灰右分隔
+        .my-radio-button__inner {
+          box-shadow: -1px 0 0 0 #409eff; // 左蓝影覆盖前分隔
+        }
+      }
+
+      // 如果选中后下一个左分隔需蓝：但 Element 不这样，保持简单灰分隔
+    }
+  }
 }

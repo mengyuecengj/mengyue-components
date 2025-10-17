@@ -1,58 +1,36 @@
-.my-submenu {
-  position: relative;
-  user-select: none;
-
-  &.open > .submenu-title {
-    background-color: #409eff44;
-  }
-}
-
-.submenu-title {
+.my-submenu .submenu-title {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 12px 20px;
+  height: 56px;
+  padding: 0 20px;
   cursor: pointer;
-  color: var(--menu-text, #fff);
-  user-select: none;
-
-  &:hover {
-    background-color: #409eff22;
-  }
 }
 
-.icon.arrow {
-  transition: transform 0.3s ease;
-  transform-origin: center;
+.submenu-arrow {
+  margin-left: auto;
+  transition: transform .22s ease;
 }
 
-.my-submenu.open .icon.arrow {
+.my-submenu.is-open .submenu-arrow {
   transform: rotate(90deg);
 }
 
 .submenu-list {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  min-width: 160px;
-  background-color: var(--menu-bg, #2d2f33);
-  border: 1px solid #444;
-  padding: 4px 0;
-  z-index: 999;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-  user-select: none;
   list-style: none;
   margin: 0;
-    list-style: none; /* 去掉子菜单的ul默认原点 */
-  margin: 0;
-  padding: 4px 0;
+  padding-left: 56px;
+  /* 让二级缩进 */
 }
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.2s ease;
+
+/* 简单折叠动画 */
+.slide-enter-active,
+.slide-leave-active {
+  transition: height .18s ease, opacity .18s ease;
 }
-.fade-enter-from,
-.fade-leave-to {
+
+.slide-enter-from,
+.slide-leave-to {
+  height: 0;
   opacity: 0;
-  transform: translateY(-6px);
+  overflow: hidden;
 }

@@ -46,6 +46,11 @@ const stateProps = {
 
 // 占位与绑定值
 const valueProps = {
+  // 在 typeAndTagProps 或 valueProps 中添加
+  placeholderColor: {
+    type: String as PropType<string>,
+    default: ''
+  },
   placeholder: {
     type: String,
     default: ''

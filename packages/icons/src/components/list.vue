@@ -1,5 +1,5 @@
 <template>
-    <MYIconBase size="24px" :viewBox="'0 0 16 16'">
+    <MYIconBase :size="size" :color="color" :viewBox="'0 0 16 16'">
         <path d="M3 1H1V3H3V1Z" fill="#000000" />
         <path d="M3 5H1V7H3V5Z" fill="#000000" />
         <path d="M1 9H3V11H1V9Z" fill="#000000" />
@@ -14,4 +14,7 @@
 <script setup lang="ts">
 import MYIconBase from './IconBase.vue'
 defineOptions({ name: 'MYList' })
+
+import { Props } from '../type'
+defineProps<Props>()
 </script>

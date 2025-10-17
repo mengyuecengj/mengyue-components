@@ -1,6 +1,7 @@
-import { App, Plugin } from 'vue'
+import type { App, Plugin } from 'vue'
 import tree from './src/tree.vue'
 import treeNode from './src/treeNode.vue'
+import treeSelect from './src/treeSelect.vue'
 import { withInstall } from '../../theme-chalk/utils/withInstall'
 
 const MTree: Plugin = {
@@ -15,6 +16,13 @@ const MTreeNode: Plugin = {
     }
 }
 
+const MTreeSelect: Plugin = {
+    install(app: App) {
+        app.component('MYTree-select', treeSelect)
+    }
+}
+
 export const MYTree: Plugin = withInstall(tree)
 export const MYTreeNode: Plugin = withInstall(treeNode)
-export { tree, MTree, treeNode, MTreeNode }
+export const MYTreeSelect: Plugin = withInstall(treeSelect)
+export { tree, MTree, treeNode, MTreeNode, MTreeSelect }

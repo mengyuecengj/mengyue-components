@@ -1,4 +1,4 @@
-import { App, Plugin } from 'vue'
+import type { App, Plugin } from 'vue'
 import checkbox from './src/checkbox.vue'
 import { checkboxProps } from './src/checkbox'
 import { withInstall } from '../../theme-chalk/utils/withInstall'

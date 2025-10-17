@@ -1,5 +1,5 @@
 <template>
-    <MYIconBase size="24px" :viewBox="'0 0 24 24'">
+    <MYIconBase :size="size" :color="color" :viewBox="'0 0 24 24'">
         <path
             d="M11.282 3V8.40222H3.51679C4.337 5.87539 6.4185 3.93845 9.02975 3.32458C9.77194 3.1501 10.5256 3.04191 11.282 3Z"
             fill="#363853" />
@@ -18,4 +18,7 @@
 <script setup lang="ts">
 import MYIconBase from './IconBase.vue'
 defineOptions({ name: 'MYGrid' })
+
+import { Props } from '../type'
+defineProps<Props>()
 </script>

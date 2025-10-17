@@ -1,5 +1,5 @@
 <template>
-    <MYIconBase size="24px" :viewBox="'0 0 24 24'">
+    <MYIconBase :size="size" :color="color" :viewBox="'0 0 24 24'">
         <path d="M10 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M14 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -10,4 +10,7 @@
 <script setup lang="ts">
 import MYIconBase from './IconBase.vue'
 defineOptions({ name: 'MYDeleteCircle' })
+
+import { Props } from '../type'
+defineProps<Props>()
 </script>

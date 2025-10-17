@@ -1,5 +1,7 @@
-import { Ref } from 'vue'
+import type { Ref } from 'vue'
 export interface RadioGroupContext {
+  textColor: string
+  fill: string
   name?: string | Ref<string>
   disabled?: boolean | Ref<boolean>
   modelValue?: any | Ref<any>

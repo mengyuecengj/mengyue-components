@@ -20,29 +20,30 @@
           :style="index % 2 === 1 ? { backgroundColor: props.stripe } : {}" class="my-table-row"
           :class="{ 'my-table-row--expanded': isRowExpanded(item.row) }">
           <td v-for="column in columnsWithWidth" :key="column.prop" :data-column="column.prop" :style="{
-            paddingLeft: column.prop === firstColumnProp ? calcPadding(item.level) : '',
+            paddingLeft: column.type !== 'selection' && column.prop === firstColumnProp ? calcPadding(item.level) : '',
             ...getColumnStyle(column, 'body')
           }">
-            <!-- 展开图标 -->
-            <span v-if="column.prop === firstColumnProp && hasTreeData" class="my-table__expand-icon"
-              :class="{ 'my-table__expand-icon--expanded': isRowExpanded(item.row) }"
-              @click="toggleRowExpansion(item.row)" v-show="!item.isLeaf || hasChildren(item.row)">
-              <svg v-if="!item.isLeaf || hasChildren(item.row)" viewBox="0 0 1024 1024" width="12" height="12">
-                <path d="M256 128l512 384-512 384z" fill="currentColor"></path>
-              </svg>
-            </span>
-
-            <!-- 处理 selection 列的行复选框（直接 input，无 wrapper） -->
+            <!-- selection 列 -->
             <input v-if="column.type === 'selection'" type="checkbox" class="selection-checkbox"
               :checked="isRowSelected(item.row)" @change="toggleRowSelection(item.row)" />
 
-            <!-- 优先渲染具名 slot，否则渲染单元格值 -->
+            <!-- 数据列 -->
             <template v-else>
+              <!-- 树形展开图标只加在首个数据列 -->
+              <span v-if="column.prop === firstColumnProp && hasTreeData" class="my-table__expand-icon"
+                :class="{ 'my-table__expand-icon--expanded': isRowExpanded(item.row) }"
+                @click="toggleRowExpansion(item.row)" v-show="!item.isLeaf || hasChildren(item.row)">
+                <svg v-if="!item.isLeaf || hasChildren(item.row)" viewBox="0 0 1024 1024" width="12" height="12">
+                  <path d="M256 128l512 384-512 384z" fill="currentColor"></path>
+                </svg>
+              </span>
+
               <slot :name="column.prop" :row="item.row" :level="item.level" :index="index">
                 {{ getCellValue(item.row, column.prop) }}
               </slot>
             </template>
           </td>
+
         </tr>
       </tbody>
     </table>
@@ -80,9 +81,8 @@ const slots = useSlots();
 
 /* 辅助：第一个展示列的 prop（用于缩进/展开图标） */
 const firstColumnProp = computed(() => {
-  // 优先取 props.columns 的第一个 prop，否则取合并后的 columnsWithWidth 的第一个
-  const pc = (props.columns && props.columns[0] && (props.columns[0].prop as string | undefined)) ?? undefined;
-  return pc ?? (columnsWithWidth.value[0]?.prop ?? '');
+  const first = columnsWithWidth.value.find(c => c.type !== 'selection');
+  return first?.prop ?? '';
 });
 
 /* 检查是否有树形数据 */
@@ -253,62 +253,79 @@ const emitUpdate = () => {
 watch(selectedRows, emitUpdate, { deep: true });
 
 /* ---------------------- 解析 slot 中的列声明 ---------------------- */
-const isValidAlign = (align: any): align is 'left' | 'right' | 'center' => {
-  return ['left', 'right', 'center'].includes(align);
-};
+// const isValidAlign = (align: any): align is 'left' | 'right' | 'center' => {
+//   return ['left', 'right', 'center'].includes(align);
+// };
 
 const slotColumns = computed<TableColumnProps[]>(() => {
-  const rawVnodes = slots.default ? slots.default({ row: {}, level: 0, index: 0 }) : [];
+  // slots.default 返回的 vnode 列表（按 template 中声明的顺序）
+  const rawVnodes = slots.default ? slots.default({
+    row: {} as RowRecord,
+    level: 0,
+    index: 0
+  }) : [];
   const vnodes = (rawVnodes as VNode[]) ?? [];
   const cols: TableColumnProps[] = [];
+  const seen = new Set<string>(); // 用于去重（保留首次出现）
 
   for (const v of vnodes) {
     if (!v || typeof v !== 'object') continue;
 
-    const comp = (v as VNode).type as unknown;
-    let compName: string | undefined;
-
-    if (typeof comp === 'object' && comp !== null) {
-      compName = (comp as { name?: string }).name || (comp as any).__name || (comp as any).displayName;
-    } else if (typeof comp === 'function') {
-      compName = (comp as { name?: string }).name;
-    } else if (typeof comp === 'string') {
-      compName = comp;
-    }
+    const comp = (v as VNode).type as any;
+    const compName = comp?.name || comp?.__name || '';
 
     // 处理 MYTableColumn 组件
-    if (compName && compName === 'MYTableColumn') {
-      // 把 vnode.props 断言成 Record<string, any>，再做类型检查
-      const p = ((v as VNode).props ?? {}) as Record<string, any>;
+    if (compName === 'MYTableColumn') {
+      const p = (v as VNode).props ?? {};
+      const typeVal = p.type;
       const propVal = p.prop;
-      const typeVal = p.type;  // 新增：提取 type
-      if (typeof propVal !== 'string' && typeVal !== 'selection') continue;  // selection 无需 prop
 
-      const effectiveProp = typeVal === 'selection' ? 'selection' : propVal;  // selection 列用特殊 prop
-      const label = typeof p.label === 'string' ? p.label : (typeVal === 'selection' ? '' : undefined);  // selection 无 label
-      const width = typeof p.width === 'string' ? p.width : undefined;
-      const align = isValidAlign(p.align) ? p.align : (typeVal === 'selection' ? 'center' : undefined);  // selection 默认 center
+      // selection 列处理（给一个稳定的内部 prop）
+      if (typeVal === 'selection') {
+        if (seen.has('__selection__')) continue;
+        seen.add('__selection__');
+        cols.push({
+          prop: '__selection__',
+          label: '',
+          width: (p.width as string) ?? '',
+          type: 'selection',
+          align: (p.align as any) ?? 'center',
+          className: ''
+        });
+        continue;
+      }
+
+      // 如果没有 prop（空标签），忽略
+      if (!propVal) continue;
+
+      const propStr = String(propVal);
+      if (seen.has(propStr)) continue;
+      seen.add(propStr);
 
       cols.push({
-        prop: effectiveProp,
-        label,
-        width,
-        type: typeVal,  // 新增
-        align,  // 新增
-        className: '',
+        prop: propStr,
+        label: (p.label as string) ?? '',
+        width: (p.width as string) ?? '',
+        type: (p.type as string) ?? '',
+        align: (p.align as any) ?? undefined,
+        className: ''
       });
     }
-    // 处理具名插槽（如序号列等自定义列）
+
+    // 处理具名 template 插槽：<template #status> ... </template>
+    // Vue 的 vnode.props.slot 字段会携带 slot 名称（注意：不同 Vue 版本 vnode 结构可能有差异）
     else if ((v as VNode).props && typeof (v as VNode).props === 'object') {
-      // 检查是否是具名插槽
       const vnodeProps = (v as VNode).props as Record<string, any>;
-      if (vnodeProps.slot) {
-        // 对于具名插槽，我们创建一个虚拟的列定义
+      const slotName = vnodeProps.slot;
+      if (slotName && !seen.has(slotName)) {
+        seen.add(slotName);
         cols.push({
-          prop: vnodeProps.slot,
-          label: vnodeProps.slot, // 默认使用slot名称作为label
+          prop: slotName,
+          label: slotName,
           width: '',
-          className: '',
+          type: '',
+          align: undefined,
+          className: ''
         });
       }
     }
@@ -317,27 +334,36 @@ const slotColumns = computed<TableColumnProps[]>(() => {
   return cols;
 });
 
+
 /* ---------------------- 合并 columns（props 与 slot） ---------------------- */
 const columnsWithWidth = computed<TableColumnProps[]>(() => {
   const propCols = (props.columns ?? []) as TableColumnProps[];
+  let merged: TableColumnProps[] = [];
 
   if (!propCols || propCols.length === 0) {
-    return slotColumns.value.map((c) => ({ ...c, width: c.width ?? '' }));
-  }
+    merged = slotColumns.value.map((c) => ({ ...c, width: c.width ?? '' }));
+  } else {
+    merged = propCols.map((pc) => {
+      const sc = slotColumns.value.find((s) => s.prop === pc.prop);
+      const width = sc && sc.width ? sc.width : pc.width ?? '';
+      const type = sc?.type ?? pc.type ?? '';
+      const align = sc?.align ?? pc.align ?? '';
+      return { ...pc, width, type, align } as TableColumnProps;
+    });
 
-  const merged = propCols.map((pc) => {
-    const sc = slotColumns.value.find((s) => s.prop === pc.prop);
-    const width = sc && sc.width ? sc.width : pc.width ?? '';
-    const type = sc?.type ?? pc.type ?? '';
-    const align = sc?.align ?? pc.align ?? '';
-    return { ...pc, width, type, align } as TableColumnProps;
-  });
-
-  for (const s of slotColumns.value) {
-    if (!merged.find((m) => m.prop === s.prop)) {
-      merged.push({ ...s, width: s.width ?? '' });
+    for (const s of slotColumns.value) {
+      if (!merged.find((m) => m.prop === s.prop)) {
+        merged.push({ ...s, width: s.width ?? '' });
+      }
     }
   }
+
+  // 强制 selection 列排在最前
+  merged.sort((a, b) => {
+    if (a.type === 'selection') return -1;
+    if (b.type === 'selection') return 1;
+    return 0;
+  });
 
   return merged;
 });

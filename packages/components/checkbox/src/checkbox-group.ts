@@ -1,12 +1,5 @@
-import type { PropType } from 'vue'
-import { checkboxProps } from './checkbox'
-
+import type { PropType } from "vue"
 export const checkboxGroupProps = {
-  ...checkboxProps,
-  value: {
-    type: [String, Number, Boolean] as PropType<string | number | boolean>,
-    required: false
-  },
   modelValue: {
     type: Array as PropType<Array<string | number | boolean>>,
     default: () => []
@@ -22,7 +15,10 @@ export const checkboxGroupProps = {
   gap: {
     type: String as PropType<string>,
     default: '12px'
+  },
+  // 新增：是否开启严格模式（不自动级联选中）
+  checkStrictly: {
+    type: Boolean as PropType<boolean>,
+    default: false
   }
 } as const
-
-export type CheckboxGroupProps = typeof checkboxGroupProps

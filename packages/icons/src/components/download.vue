@@ -1,5 +1,5 @@
 <template>
-    <MYIconBase size="24px" :viewBox="'0 0 24 24'">
+    <MYIconBase :size="size" :color="color" :viewBox="'0 0 24 24'">
         <path fill-rule="evenodd" clip-rule="evenodd"
             d="M23 22C23 22.5523 22.5523 23 22 23H2C1.44772 23 1 22.5523 1 22C1 21.4477 1.44772 21 2 21H22C22.5523 21 23 21.4477 23 22Z"
             fill="#0F0F0F" />
@@ -12,4 +12,7 @@
 <script setup lang="ts">
 import MYIconBase from './IconBase.vue'
 defineOptions({ name: 'MYDownload' })
+
+import { Props } from '../type'
+defineProps<Props>()
 </script>

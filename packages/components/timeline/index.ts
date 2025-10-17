@@ -1,4 +1,4 @@
-import { App, Plugin } from 'vue'
+import type { App, Plugin } from 'vue'
 import timeline from './src/timeline.vue'
 import timelineItem from './src/timelineItem.vue'
 import { withInstall } from '../../theme-chalk/utils/withInstall'

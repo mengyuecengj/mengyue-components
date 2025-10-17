@@ -1,5 +1,5 @@
 <template>
-    <MYIconBase size="24px" viewBox="0 0 512 512">
+    <MYIconBase :size="size" :color="color" viewBox="0 0 512 512">
         <path d="M255.996,0C145.058,0,55.138,89.929,55.138,200.866c0,68.454,34.648,128.363,86.55,165.174
 		c47.356,33.594,57.811,41.609,74.462,73.4c13.174,25.147,34.541,69.279,34.541,69.279c1.004,2.008,3.052,3.281,5.306,3.281
 		c2.244,0,4.31-1.274,5.313-3.281c0,0,21.368-44.132,34.541-69.279c16.642-31.791,27.106-39.806,74.454-73.4
@@ -12,4 +12,7 @@
 <script setup lang="ts">
 import MYIconBase from './IconBase.vue'
 defineOptions({ name: 'MYPositionBoonon' })
+
+import { Props } from '../type'
+defineProps<Props>()
 </script>

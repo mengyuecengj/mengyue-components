@@ -1,5 +1,5 @@
 <template>
-  <MYIconBase size="24px" :viewBox="'0 0 24 24'">
+  <MYIconBase :size="size" :color="color" :viewBox="'0 0 24 24'">
     <!-- 保留并使用 currentColor -->
     <path
       fill-rule="evenodd"
@@ -20,4 +20,7 @@
 <script setup lang="ts">
 import MYIconBase from './IconBase.vue'
 defineOptions({ name: 'MYViewHide' })
+
+import { Props } from '../type'
+defineProps<Props>()
 </script>

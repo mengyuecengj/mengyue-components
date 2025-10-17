@@ -1,5 +1,5 @@
 <template>
-    <MYIconBase size="24px" :viewBox="'0 0 24 24'">
+    <MYIconBase :size="size" :color="color" :viewBox="'0 0 24 24'">
         <rect x="3.38" y="3.38" width="17.25" height="17.25" rx="2.18"
             fill="none" stroke="#020202" stroke-miterlimit="10" stroke-width="1.92"/>
         <rect x="7.21" y="7.21" width="9.58" height="9.58" rx="1.92"
@@ -33,4 +33,7 @@
 <script setup lang="ts">
 import MYIconBase from './IconBase.vue'
 defineOptions({ name: 'MYComputerChip' })
+
+import { Props } from '../type'
+defineProps<Props>()
 </script>

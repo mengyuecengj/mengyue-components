@@ -2,15 +2,16 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
-// import sass from 'sass';
 import path from 'path';
 import svgLoader from 'vite-svg-loader';
+import { visualizer } from 'rollup-plugin-visualizer';
+
+const isAnalyze = process.env.ANALYZE === 'true';
 
 export default defineConfig({
   plugins: [
     vue(),
-
-    // 生成 .d.ts
+    svgLoader(),
     dts({
       outDir: 'dist',
       insertTypesEntry: true,
@@ -18,20 +19,22 @@ export default defineConfig({
       include: ['components/**/*'],
       rollupTypes: true,
     }),
-
-    svgLoader(),
+    ...(isAnalyze
+      ? [
+          visualizer({
+            open: true, // ✅ 打包结束后自动打开浏览器
+            gzipSize: true,
+            brotliSize: true,
+            filename: 'stats.html',
+          }),
+        ]
+      : []),
   ],
-  // test: {
-  //   environment: 'happy-dom', // 或 'jsdom'
-  //   // 模拟虚拟模块
-  //   alias: {
-  //     'virtual:svg-icons-register': path.resolve(__dirname, './src/mocks/svg-icons-register.ts'),
-  //   },
-  // },
+
   build: {
     lib: {
       entry: path.resolve(__dirname, 'components/index.ts'),
-      name:  'MengyuePlusButton',
+      name: 'MengyuePlusButton',
       fileName: (format) => `mengyue-plus.${format}.js`,
     },
     rollupOptions: {
@@ -47,8 +50,6 @@ export default defineConfig({
         },
       },
     },
-
-    // 用 esbuild 做 JS+CSS 的压缩
     minify: 'esbuild',
     cssMinify: 'esbuild',
   },
@@ -56,14 +57,8 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        // 确保 Vite 处理 <style lang="scss"> 时用 Dart‑Sass 新 API
-        // implementation: sass,
         silenceDeprecations: ['legacy-js-api'],
-        // 静默所有来自依赖的 deprecation 警告
-        // sassOptions: {
-        //   quietDeps: true
-        // }
-      }
-    }
-  }
+      },
+    },
+  },
 });

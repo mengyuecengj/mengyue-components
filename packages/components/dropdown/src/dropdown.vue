@@ -1,5 +1,5 @@
 <template>
-  <div class="m-dropdown" :class="{ 'is-disabled': disabled }" @keydown.prevent.stop="onRootKeydown">
+  <div class="m-dropdown" :class="{ 'is-disabled': disabled }">
     <!-- 触发区域 -->
     <div class="m-dropdown__trigger" ref="triggerRef" @click="onTriggerClick" @mouseenter="onTriggerMouseEnter"
       @mouseleave="onTriggerMouseLeave">
@@ -7,15 +7,16 @@
       <template v-if="splitButton">
         <div class="m-split">
           <button class="m-btn" :class="['m-btn--' + (type || 'default'), sizeClass]" :disabled="disabled"
-            :style="{ backgroundColor: props.backGroundColor, color: props.textColor }" @click.stop="onPrimaryClick">
+            :style="{ backgroundColor: props.backGroundColor, color: props.textColor }" @click.stop="onPrimaryClick"
+            @keydown.prevent>
             <slot name="default">操作</slot>
           </button>
           <button class="m-split__caret" :disabled="disabled"
             :style="{ backgroundColor: props.backGroundColor, color: props.textColor }" @click.stop="toggle()"
-            aria-haspopup="menu" :aria-expanded="isVisible">
+            aria-haspopup="menu" :aria-expanded="isVisible" @keydown.prevent>
             <svg width="14" height="8" viewBox="0 0 14 8" fill="none">
               <path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-                stroke-linejoin="round" /> <!-- 改成 currentColor，继承文本色 -->
+                stroke-linejoin="round" />
             </svg>
           </button>
         </div>
@@ -24,12 +25,16 @@
       <!-- 普通触发按钮（类似按钮） -->
       <template v-else>
         <button :class="['m-btn', 'm-btn--' + (type || 'default'), sizeClass]" :disabled="disabled" aria-haspopup="menu"
-          :aria-expanded="isVisible" :style="{ backgroundColor: props.backGroundColor, color: props.textColor }">
+          :aria-expanded="isVisible" :style="{ backgroundColor: props.backGroundColor, color: props.textColor }"
+          @keydown.prevent>
           <slot></slot>
-          <span style="margin-left:8px;display:inline-flex"><svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+          <span v-if="!props.noCaret" style="margin-left:8px;display:inline-flex" class="m-dropdown__caret"
+            :class="carectClass">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
               <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
-                stroke-linejoin="round" /> <!-- 已用 currentColor -->
-            </svg></span>
+                stroke-linejoin="round" />
+            </svg>
+          </span>
         </button>
       </template>
     </div>
@@ -64,28 +69,6 @@ import { dropdownProps } from './dropdown';
 defineOptions({
   name: 'MYDropdown',
 });
-
-// const props = defineProps({
-//   type: { type: String, default: 'default' }, // default, primary
-//   size: { type: String, default: 'md' }, // sm, md, lg
-//   buttonProps: { type: Object, default: () => ({}) },
-//   maxHeight: { type: [String, Number], default: null },
-//   splitButton: { type: Boolean, default: false },
-//   disabled: { type: Boolean, default: false },
-//   placement: { type: String, default: 'bottom' },
-//   trigger: { type: String as () => UseDropdownOptions['trigger'], default: 'hover' },
-//   triggerKeys: { type: Array as any, default: () => ['Enter', ' ', 'ArrowDown', 'NumpadEnter'] },
-//   hideOnClick: { type: Boolean, default: true },
-//   showTimeout: { type: Number, default: 150 },
-//   hideTimeout: { type: Number, default: 150 },
-//   role: { type: String, default: 'menu' },
-//   tabindex: { type: [String, Number], default: 0 },
-//   popperClass: { type: String, default: '' },
-//   popperOptions: { type: Object as any, default: () => ({}) }, // reserved
-//   teleported: { type: Boolean, default: true },
-//   persistent: { type: Boolean, default: true },
-//   backGroundColor: { type: String, default: '' },
-// });
 const props = defineProps(dropdownProps);
 const emit = defineEmits(['command', 'visible-change', 'click']);
 
@@ -94,8 +77,8 @@ const {
   visible,
   triggerEl,
   menuEl,
+  carectClass,
   menuStyle,
-  open,
   close,
   toggle,
   onTriggerEnter,
@@ -112,7 +95,7 @@ const {
   disabled: props.disabled,
   teleported: props.teleported,
   persistent: props.persistent,
-  triggerKeys: props.triggerKeys,
+  triggerKeys: [], // 禁用 triggerKeys 功能
   hideOnClick: props.hideOnClick,
   popperOptions: props.popperOptions,
 }, dropdownProps);
@@ -120,7 +103,6 @@ const {
 // refs to bind DOM
 const triggerRef = triggerEl;
 const menuRef = menuEl;
-// const rootRef = ref<HTMLElement | null>(null);
 
 // 计算属性
 const isVisible = computed(() => visible.value);
@@ -140,16 +122,25 @@ provide('m-dropdown-context', {
 });
 
 function onTriggerClick(e?: MouseEvent) {
+  // 阻止键盘事件触发（Enter和Space键会触发click事件）
+  if (e instanceof KeyboardEvent && (e.key === 'Enter' || e.key === ' ')) {
+    return;
+  }
+  
   e?.stopPropagation();
   if (props.disabled) return;
-  if (props.trigger === 'click') toggle();  // toggle() 内 open('click')？见下
+  if (props.trigger === 'click') toggle();
   emit('click', e);
 }
 
 function onPrimaryClick(e?: MouseEvent) {
+  // 阻止键盘事件触发
+  if (e instanceof KeyboardEvent && (e.key === 'Enter' || e.key === ' ')) {
+    return;
+  }
+  
   e?.stopPropagation();
   if (props.disabled) return;
-  // 默认情况下，primary action 会触发 click 事件
   emit('click', e);
 }
 
@@ -166,14 +157,6 @@ function onMenuMouseLeave() {
     !triggerRef.value.contains(document.activeElement) &&
     !menuRef.value.contains(document.activeElement)) {
     onMenuLeave();
-  }
-}
-
-function onRootKeydown(e: KeyboardEvent) {
-  if (props.disabled) return;
-  if (props.triggerKeys?.includes(e.key)) {
-    e.preventDefault();
-    open();
   }
 }
 </script>

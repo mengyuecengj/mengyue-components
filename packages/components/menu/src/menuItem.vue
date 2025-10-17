@@ -1,33 +1,56 @@
 <template>
-  <li
-    class="my-menu-item"
-    :class="{ active: isActive, disabled }"
-    @click="handleClick"
-  >
-    <slot />
+  <li class="my-menu-item" :class="{ 'is-active': isActive, 'is-disabled': disabled }" @click.stop="handleClick">
+    <span class="menu-icon">
+      <slot name="icon" />
+    </span>
+    <span class="menu-label" v-show="showLabel">
+      <slot />
+    </span>
   </li>
 </template>
 
 <script setup lang="ts">
 import { inject, computed } from 'vue'
-import '../style/menuItem.scss'
 
-defineOptions({
-  name: 'MYMenu-item',
-})
+defineOptions({ name: 'MYMenuItem' })
 
 const props = defineProps({
-  index: String,
-  disabled: Boolean,
+  index: { type: String, required: true },
+  disabled: { type: Boolean, default: false }
 })
 
-const menuContext = inject<{ activeIndex?: { value: string }; handleSelect: (index: string, indexPath: string[]) => void }>('menuContext')
+const menu = inject<any>('menuContext')
+const parentPath = inject<string[]>('indexPath', [])
+const subLevel = inject<number>('subLevel', 0)
 
-const isActive = computed(() => menuContext?.activeIndex?.value === props.index)
+const isActive = computed(() => menu?.activeIndex?.value === props.index)
+const collapsed = computed(() => !!(menu?.collapse?.value))
+const showLabel = computed(() => subLevel > 0 || !collapsed.value)
 
 function handleClick() {
   if (props.disabled) return
-  menuContext?.handleSelect(props.index as string, [props.index as string])
+  const indexPath = [...(parentPath || []), props.index]
+  menu?.handleSelect(props.index, indexPath)
 }
 </script>
 
+<style scoped lang="scss">
+.my-menu-item {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 16px;
+  cursor: pointer;
+}
+
+.my-menu-item.is-active {
+  color: var(--menu-active, #409EFF);
+}
+
+.menu-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+</style>

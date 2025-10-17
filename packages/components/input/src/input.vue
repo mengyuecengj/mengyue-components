@@ -10,10 +10,9 @@
       ref="inputRef"
       v-bind="componentArrts"
       :class="['my-input', ...inputClass]"
-      :style="[inputStyle, { paddingRight: suffixPadding }]"
+      :style="[mergedInputStyle, { paddingRight: suffixPadding }]"
       :value="props.modelValue"
       @input="handleInput"
-      @blur="handleBlur"
     >
       <slot v-if="props.tag !== 'input' && props.tag !== 'textarea'" />
     </component>
@@ -53,6 +52,7 @@ import viewhide from './viewhide.vue'
 import '../style/input.scss'
 import { useInputComputed } from './inputComputed'
 
+
 interface FormItemContext {
   validate?: (trigger?: string) => void
   clearValidate?: () => void
@@ -60,7 +60,7 @@ interface FormItemContext {
 const formItemContext = inject<FormItemContext | null>('myFormItemContext', null)
 
 const props = defineProps(inputProps)
-const emit = defineEmits(['update:showPassword', 'update:modelValue'])
+const emit = defineEmits(['update:showPassword', 'update:modelValue', 'input'])
 
 const showView = ref(false)
 const hovering = ref(false)
@@ -98,9 +98,9 @@ const wrapperStyle = computed<CSSProperties>(() => ({
 const handleInput = (e: Event) => {
   const v = (e.target as HTMLInputElement).value
   emit('update:modelValue', v)
+  emit('input', v) // ← 新增：兼容父组件 @input
   formItemContext?.validate?.('change')
 }
-const handleBlur = () => formItemContext?.validate?.('blur')
 const clearText = () => {
   emit('update:modelValue', '')
   const el = getInputElement()
@@ -122,7 +122,7 @@ const getInputElement = (): HTMLInputElement | HTMLTextAreaElement | null => {
 
 const componentArrts = computed(() => {
   const attrs: Record<string, any> = {
-    placeholder: props.placeholder,
+    placeholder: props.placeholder, // ← 正确使用 placeholder 文本
     ...(props.maxlength ? { maxlength: props.maxlength } : {}),
     ...(props.minlength ? { minlength: props.minlength } : {}),
     ...(props.disabled ? { disabled: true } : {})
@@ -132,9 +132,37 @@ const componentArrts = computed(() => {
       ? (showView.value ? 'text' : 'password')
       : props.type
   }
+
+  // 如果还有额外的 $attrs（如 id、name、autocomplete 等），也透传过去
+  // NOTE: 这里我们把剩余 $attrs 合并进去，以免丢失父组件传来的原生属性
+  // @ts-ignore
+
   return attrs
 })
 
 const { inputClass, inputStyle } = useInputComputed(props)  // 注意：现在使用inputStyle
+
+// 合并 inputStyle 并注入 placeholder 变量
+const mergedInputStyle = computed<CSSProperties>(() => {
+  const base = (inputStyle as any)?.value ? { ...(inputStyle as any).value } : {}
+  // 将占位符颜色注入为 CSS 变量（fallback 可选）
+  if (props.placeholderColor) {
+    base['--my-input-placeholder'] = props.placeholderColor
+  } else {
+    base['--my-input-placeholder'] = 'rgba(255,255,255,0.6)' // 默认白色半透明
+  }
+  return base
+})
+// 暴露 focus / blur 给父组件
+function focus() {
+  const el = getInputElement()
+  el?.focus()
+}
+function blur() {
+  const el = getInputElement()
+  el?.blur()
+}
+defineExpose({ focus, blur })
+
 watch(() => props.modelValue, () => formItemContext?.clearValidate?.())
 </script>

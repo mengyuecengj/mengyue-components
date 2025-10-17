@@ -1,6 +1,6 @@
 {
   "name": "mengyue-plus",
-  "version": "0.0.51",
+  "version": "0.0.62",
   "type": "module",
   "files": [
     "dist"
@@ -21,12 +21,14 @@
   },
   "scripts": {
     "build": "cross-env SASS_QUIET_DEPRECATION=1 vite build",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "analyze": "cross-env ANALYZE=true vite build"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.52.9",
     "@vitejs/plugin-vue": "^5.1.4",
     "cross-env": "^10.0.0",
+    "rollup-plugin-visualizer": "^6.0.5",
     "sass": "^1.89.2",
     "sass-loader": "^13.0.0",
     "typescript": "^5.6.3",

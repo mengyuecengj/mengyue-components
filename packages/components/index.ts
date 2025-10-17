@@ -8,7 +8,7 @@ import { MYScrollbar } from './scrollbar';
 import { MYContainer, MYHeader, MYMain, MYFooter, MYAside } from './container';
 import { MYRow, MYCol } from './layout';
 import { MYInput } from './input';
-import { MYRadio, MYRadioGroup } from './radio'
+import { MYRadio, MYRadioButton, MYRadioGroup } from './radio'
 import { MYCheckbox, MYCheckboxGroup } from './checkbox';
 import { MYSwitch } from './switch';
 import { MYRate } from './rate'
@@ -27,7 +27,7 @@ import { MYSkeleton, MYSkeletonItem } from './skeleton';
 import { MYPagination } from './pagination';
 import { MYTable, MYTableColumn } from './table';
 import { MYTimeline, MYTimelineItem } from './timeline';
-import { MYTree, MYTreeNode } from './tree';
+import { MYTree, MYTreeNode, MYTreeSelect } from './tree';
 import { MYBacktop } from './backtop';
 import { MYBreadcrumb, MYBreadcrumbItem } from './breadcrumb';
 import { MYDropdown, MYDropdownMenu, MYDropdownItem } from './dropdown';
@@ -39,6 +39,10 @@ import { MYAlert } from './alert';
 import { MYDialog } from './dialog'
 import { MYMessage, message, MessagePlugin } from './message'
 import Icons from '../icons/src'
+import { MYDrawer } from './drawer'
+import { MYCard } from './card'
+import { MYInputNumber } from './inputNumber'
+import { MYUpload } from './upload'
 // export { default as ViewHide } from '../icons/src/components/viewHide.vue'
 // export { default as Aim } from '../icons/src/components/Aim.vue'
 
@@ -59,6 +63,7 @@ const components = {
   MYCol: { component: MYCol, name: 'MYCol' },
   MYInput: { component: MYInput, name: 'MYInput' },
   MYRadio: { component: MYRadio, name: 'MYRadio' },
+  MYRadioButton: { component: MYRadioButton, name: 'MYRadioButton' },
   MYRadioGroup: { component: MYRadioGroup, name: 'MYRadio-group' },
   MYCheckbox: { component: MYCheckbox, name: 'MYCheckbox' },
   MYCheckboxGroup: { component: MYCheckboxGroup, name: 'MYCheckbox-group' },
@@ -87,6 +92,7 @@ const components = {
   MYTimelineItem: { component: MYTimelineItem, name: 'MYTimeline-item' },
   MYTree: { component: MYTree, name: 'MYTree' },
   MYTreeNode: { component: MYTreeNode, name: 'MYTree-node' },
+  MYTreeSelect: { component: MYTreeSelect, name: 'MYTreeSelect' },
   MYBacktop: { component: MYBacktop, name: 'MYBacktop' },
   MYBreadcrumb: { component: MYBreadcrumb, name: 'MYBreadcrumb' },
   MYBreadcrumbItem: { component: MYBreadcrumbItem, name: 'MYBreadcrumb-item' },
@@ -105,6 +111,10 @@ const components = {
   MYAlert: { component: MYAlert, name: 'MYAlert' },
   MYDialog: { component: MYDialog, name: 'MYDialog' },
   MYMessage: { component: MYMessage, name: 'MYMessage' },
+  MYDrawer: { component: MYDrawer, name: 'MYDrawer' },
+  MYCard: { component: MYCard, name: 'MYCard' },
+  MYInputNumber: { component: MYInputNumber, name: 'MYInputNumber' },
+  MYUpload: { component: MYUpload, name: 'MYUpload' }
 };
 
 // interface ComponentWithName {
@@ -154,6 +164,7 @@ export {
   MYCol,
   MYInput,
   MYRadio,
+  MYRadioButton,
   MYRadioGroup,
   MYCheckbox,
   MYCheckboxGroup,
@@ -182,6 +193,7 @@ export {
   MYTimelineItem,
   MYTree,
   MYTreeNode,
+  MYTreeSelect,
   MYBacktop,
   MYBreadcrumb,
   MYBreadcrumbItem,
@@ -202,4 +214,8 @@ export {
   MYMessage,
   message,
   MessagePlugin,
+  MYDrawer,
+  MYCard,
+  MYInputNumber,
+  MYUpload
 };

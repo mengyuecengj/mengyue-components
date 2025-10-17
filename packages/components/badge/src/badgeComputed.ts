@@ -1,6 +1,6 @@
 import { computed } from 'vue';
 import { useStyleComputed } from '../../../hooks/useStyleComputed'
-import { BadgeProps } from './type'
+import type { BadgeProps } from './type'
 export function useBadgeComputed(props: BadgeProps) {
     const displayContent = computed(() => {
         if (props.dot) return '';
