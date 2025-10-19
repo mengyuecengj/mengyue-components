@@ -37,6 +37,7 @@ import { computed, inject, ref } from 'vue'
 import { radioProps } from './radio'
 import type { RadioGroupContext } from './type'
 import type { PropType } from 'vue'
+import '../style/radio-button.scss'
 
 defineOptions({
   name: 'MYRadioButton',
@@ -109,64 +110,6 @@ const activeStyle = computed(() => {
 })
 </script>
 
-<style lang="scss">
-.my-radio-button {
-  position: relative;
-  display: inline-block;
-  box-sizing: border-box;
-  height: 36px;
-  line-height: 36px;
-  font-size: 14px;
-  font-weight: 500;
-  border: 1px solid #dcdfe6;
-  background: #fff;
-  color: #606266;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin: 0;
-  padding: 0 16px;
-  border-radius: 0;
-  outline: none;
+<style setup lang="scss">
 
-  // Size
-  &.my-radio-button--large { height: 40px; line-height: 40px; padding: 0 20px; font-size: 14px; }
-  &.my-radio-button--small { height: 32px; line-height: 32px; padding: 0 12px; font-size: 13px; }
-
-  // Hover
-  &:hover:not(.is-disabled) {
-    color: #409eff;
-    border-color: #409eff;
-  }
-
-  &.is-active {
-    color: #fff;
-    background-color: #409eff;
-    border-color: #409eff;
-  }
-
-  &.is-disabled {
-    color: #c0c4cc;
-    background-color: #f5f7fa;
-    border-color: #e4e7ed;
-    cursor: not-allowed;
-  }
-
-  &.is-focus:not(.is-disabled) {
-    box-shadow: 0 0 0 1px rgba(64, 158, 255, 0.5);
-  }
-
-  .my-radio-button__inner {
-    display: block;
-    padding: 0;
-    line-height: inherit;
-    transition: inherit;
-    border-radius: 0; // 无圆角，由 label 控制
-  }
-
-  // 非组内独立使用
-  &:not(.my-radio-group *) {
-    border-left: 1px solid #dcdfe6;
-    border-radius: 4px;
-  }
-}
 </style>

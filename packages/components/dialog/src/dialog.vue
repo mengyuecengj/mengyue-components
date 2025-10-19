@@ -49,4 +49,3 @@ const emit = defineEmits<DialogEmits>()
 
 const { visible, close, handleOverlayClick, dialogStyle, dialogClass } = useDialog(props, emit)
 </script>
-

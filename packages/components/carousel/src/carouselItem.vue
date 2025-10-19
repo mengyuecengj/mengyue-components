@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { inject, computed, onMounted, Ref } from 'vue'
+import { inject, computed, onMounted, type Ref } from 'vue'
 
 defineOptions({
     name: 'MYCarousel-item'

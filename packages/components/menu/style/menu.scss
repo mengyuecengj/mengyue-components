@@ -3,13 +3,11 @@
   margin: 0;
   padding: 0;
   width: 220px;
-  height: 100vh;           /* <- 整列占满视口高度 */
-  overflow-y: auto;        /* <- 可滚动 */
-  background: var(--menu-bg);
-  color: var(--menu-text);
+  height: 100vh;
+  overflow: auto;
+  background: var(--menu-bg, #2f3b46);
+  color: var(--menu-text, #bfcbd9);
   transition: width .25s ease;
-  box-sizing: border-box;
-  padding-top: 20px;
 }
 
 .my-menu.is-collapse {

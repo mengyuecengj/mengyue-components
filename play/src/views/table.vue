@@ -3,19 +3,11 @@
     <!-- 普通表格测试（带复选框） -->
     <div>
       <h2>普通表格测试（带复选框）</h2>
-      <MYTable 
-        :data="tableData" 
-        :columns="tableColumns" 
-        stripe="rgba(0, 0, 0, 0.05)" 
-        headerBackgroundColor="#f5f7fa"
-        headerTextColor="#909399" 
-        bodyBackgroundColor="#fff" 
-        bodyTextColor="#606266" 
-        border-color="#ebeef5"
-        v-model="selectedRows"
-      >
-        <MYTableColumn type="selection" width="50px" align="center" />
-        <MYTableColumn prop="date" label="Date" width="200px" />
+      <MYTable :data="tableData" stripe="rgba(0, 0, 0, 0.05)" headerBackgroundColor="#f5f7fa" headerTextColor="#909399"
+        bodyBackgroundColor="#fff" bodyTextColor="#606266" border-color="#ebeef5" v-model="selectedRows">
+        <MYTableColumn type="selection" width="70px" align="center" />
+        <MYTableColumn prop="id" label="Id" width="50px" />
+        <MYTableColumn prop="date" label="Date" width="180px" />
         <MYTableColumn prop="name" label="Name" width="180px" />
         <MYTableColumn prop="address" label="Address" width="200px" />
         <MYTableColumn prop="number" label="Number" width="200px" />
@@ -30,21 +22,11 @@
     <!-- 树形表格测试（带复选框） -->
     <div style="margin-top: 50px;">
       <h2>树形表格测试（带复选框）</h2>
-      <MYTable 
-        :data="treeTableData" 
-        row-key="id" 
-        :tree-props="{ children: 'children' }" 
-        indent="20"
-        stripe="rgba(0, 0, 0, 0.05)" 
-        headerBackgroundColor="#f5f7fa" 
-        headerTextColor="#909399"
-        bodyBackgroundColor="#fff" 
-        bodyTextColor="#606266" 
-        border-color="#ebeef5" 
-        style="margin-top: 20px;"
-        v-model="selectedTreeRows"
-      >
- 
+      <MYTable :data="treeTableData" row-key="id" :tree-props="{ children: 'children' }" indent="20"
+        stripe="rgba(0, 0, 0, 0.05)" headerBackgroundColor="#f5f7fa" headerTextColor="#909399"
+        bodyBackgroundColor="#fff" bodyTextColor="#606266" border-color="#ebeef5" style="margin-top: 20px;"
+        v-model="selectedTreeRows">
+
         <MYTableColumn prop="name" label="姓名" width="200px" />
         <MYTableColumn prop="age" label="年龄" width="100px" />
         <MYTableColumn prop="address" label="地址" width="300px" />
@@ -52,7 +34,7 @@
           <button @click="handleAction(row)">操作</button>
         </template>
       </MYTable>
-      
+
       <div style="margin-top: 10px;">
         <button @click="selectTreeAll">全选</button>
         <button @click="clearTreeSelection">清空选择</button>
@@ -82,15 +64,15 @@ const tableData = ref([
 ]);
 
 // 普通表格列定义
-const tableColumns = ref([
-  { id: '0', prop: 'selection', label: '', width: '50px' }, // 复选框列
-  { id: '1', prop: 'id', label: 'Id', width: '80px' },
-  { id: '2', prop: 'date', label: 'Date', width: '180px' },
-  { id: '3', prop: 'name', label: 'Name', width: '180px' },
-  { id: '4', prop: 'address', label: 'Address', width: '200px' },
-  { id: '5', prop: 'number', label: 'Number', width: '200px' },
-  { id: '6', prop: 'status', label: 'Status', width: '120px' },
-]);
+// const tableColumns = ref([
+//   { id: '0', prop: 'selection', label: '', width: '50px' }, // 复选框列
+//   { id: '1', prop: 'id', label: 'Id', width: '80px' },
+//   { id: '2', prop: 'date', label: 'Date', width: '180px' },
+//   { id: '3', prop: 'name', label: 'Name', width: '180px' },
+//   { id: '4', prop: 'address', label: 'Address', width: '200px' },
+//   { id: '5', prop: 'number', label: 'Number', width: '200px' },
+//   { id: '6', prop: 'status', label: 'Status', width: '120px' },
+// ]);
 
 // 选中的行
 const selectedRows = ref<string[]>([]);

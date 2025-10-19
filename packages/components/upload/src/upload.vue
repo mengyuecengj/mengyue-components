@@ -119,7 +119,3 @@ const uploadFile = (file: File) => {
     xhr.send(fd)
 }
 </script>
-
-<style scoped lang="scss">
-
-</style>

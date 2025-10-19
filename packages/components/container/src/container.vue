@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, h, useSlots, VNode, VNodeTypes } from 'vue';
+import { computed, h, useSlots, type VNode, type VNodeTypes } from 'vue';
 import { containerProps } from './container';
 import { useContainerComputed } from './containerComputed';
 import '../style/container.scss';

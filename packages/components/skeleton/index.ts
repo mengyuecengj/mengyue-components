@@ -1,4 +1,4 @@
-import { App, Plugin } from 'vue';
+import type { App, Plugin } from 'vue';
 import skeleton from './src/skeleton.vue';
 import skeletonItem from './src/skeletonItem.vue'
 import { withInstall } from '../../theme-chalk/utils/withInstall'

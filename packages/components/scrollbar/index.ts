@@ -9,5 +9,5 @@ const MScrollbar: Plugin = {
     }
 }
 export const MYScrollbar = withInstall(scrollbar)
-export { scrollbar, scrollbarProps, MScrollbar }
+export { scrollbar, MScrollbar }
 export default MScrollbar

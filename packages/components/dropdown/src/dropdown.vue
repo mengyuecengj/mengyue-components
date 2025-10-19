@@ -62,7 +62,8 @@
 
 <script lang="ts" setup>
 import { computed, provide } from 'vue';
-import { useDropdown, type UseDropdownOptions } from './dropdownComputed';
+import { useDropdown } from './dropdownComputed';
+import { type UseDropdownOptions } from './type'
 import '../style/dropdown.scss';
 import { dropdownProps } from './dropdown';
 

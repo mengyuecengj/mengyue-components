@@ -1,31 +1,44 @@
-.my-submenu .submenu-title {
-  display: flex;
-  align-items: center;
-  height: 56px;
-  padding: 0 20px;
-  cursor: pointer;
+.my-submenu {
+  .submenu-title {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    padding: 0 16px;
+    cursor: pointer;
+  }
+
+  .menu-label {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .submenu-arrow {
+    margin-left: auto;
+    transition: transform 0.22s ease;
+  }
+
+  &.is-open .submenu-arrow {
+    transform: rotate(90deg);
+  }
+
+  .submenu-list {
+    list-style: none;
+    margin: 0;
+    padding-left: 40px;
+  }
+
+  .teleported-list {
+    position: absolute;
+    display: block;
+  }
 }
 
-.submenu-arrow {
-  margin-left: auto;
-  transition: transform .22s ease;
-}
-
-.my-submenu.is-open .submenu-arrow {
-  transform: rotate(90deg);
-}
-
-.submenu-list {
-  list-style: none;
-  margin: 0;
-  padding-left: 56px;
-  /* 让二级缩进 */
-}
-
-/* 简单折叠动画 */
+/* slide 动画 */
 .slide-enter-active,
 .slide-leave-active {
-  transition: height .18s ease, opacity .18s ease;
+  transition: height 0.18s ease, opacity 0.18s ease;
 }
 
 .slide-enter-from,

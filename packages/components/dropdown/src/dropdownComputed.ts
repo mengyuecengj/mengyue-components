@@ -1,23 +1,7 @@
 import { reactive, ref, onMounted, onBeforeUnmount, watch, nextTick, computed } from 'vue';
 import { dropdownProps } from './dropdown';
 import { useClassComputed } from '../../../hooks/useClassComputed';
-
-export type Placement = 'bottom' | 'bottom-start' | 'bottom-end' | 'top' | 'top-start' | 'top-end' | 'left' | 'right';
-
-export interface UseDropdownOptions {
-  trigger?: 'hover' | 'click' | 'contextmenu';
-  showTimeout?: number;
-  hideTimeout?: number;
-  placement?: Placement;
-  maxHeight?: string | number | null;
-  disabled?: boolean;
-  teleported?: boolean;
-  persistent?: boolean;
-  triggerKeys?: string[]; // keyboard keys to open
-  hideOnClick?: boolean;
-  popperOptions?: Record<string, any>;
-  backGroundColor?: string;
-}
+import type { UseDropdownOptions } from './type';
 
 export function useDropdown(options: UseDropdownOptions = {}, props: typeof dropdownProps) {
   const visible = ref(false);

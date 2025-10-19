@@ -5,8 +5,13 @@
 
         <div class="test-sections">
             <h2>基础用法</h2>
-            <MYInput v-model="basicValue" textColor="#fff" placeholder="输入内容" />
-            <p>当前值: {{ basicValue }}</p>
+            <MYInput v-model="basicValue" ref="headerSearchSelectRef" size="large"
+                prefix-icon="Search"
+                clearable
+                :textColor="'#fff'"
+                placeholderColor="菜单搜索，支持标题、URL模糊查询"
+                class="search-input" />
+                <p>当前值: {{ basicValue }}</p>
         </div>
 
         <div class="test-section">

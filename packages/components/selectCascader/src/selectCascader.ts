@@ -1,5 +1,5 @@
-import { PropType, ExtractPropTypes } from 'vue';
-import { Option } from './type'
+import type { PropType, ExtractPropTypes } from 'vue';
+import type { Option } from './type';
 
 export const selectCascaderProps = {
     modelValue: {

@@ -40,6 +40,13 @@
                 <MYRadio value="2">垂直选项2</MYRadio>
             </MYRadio-group>
         </div>
+        <div class="demo-group">
+            <MYRadio-group v-model="singleSelected" direction="horizontal">
+                <MYRadioButton value="1" label="选项1"></MYRadioButton>
+                <MYRadioButton value="2" label="选项2"></MYRadioButton>
+                <MYRadioButton value="3" label="选项3"></MYRadioButton>
+            </MYRadio-group>
+        </div>
     </div>
 </template>
 

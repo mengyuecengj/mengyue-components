@@ -5,8 +5,8 @@ import Table from '../src/table.vue'
 
 describe('Table.vue', () => {
   const columns = [
-    { prop: 'id', label: 'ID', width: '50px' },
-    { prop: 'name', label: 'Name', width: '150px' }
+    { prop: 'id', label: 'ID', width: '50px', className: '' },
+    { prop: 'name', label: 'Name', width: '150px', className: '' }
   ]
   const data = [
     { id: 1, name: '张三' },

@@ -1,7 +1,7 @@
-import { ComputedRef, CSSProperties } from 'vue';
+import type { ComputedRef, CSSProperties } from 'vue';
 import { useClassComputed } from '../../../hooks/useClassComputed';
 import { useStyleComputed } from '../../../hooks/useStyleComputed';
-import { TextProps } from './type';
+import type { TextProps } from './type';
 
 export function useTextComputed(props: TextProps): {
   textClass: ComputedRef<string[]>;

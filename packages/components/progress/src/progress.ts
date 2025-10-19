@@ -1,4 +1,4 @@
-import { PropType } from 'vue'
+import type { PropType } from 'vue'
 
 /** 进度条状态类型 */
 export type ProgressStatus = 'success' | 'warning' | 'exception'

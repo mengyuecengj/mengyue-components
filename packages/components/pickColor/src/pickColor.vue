@@ -7,6 +7,7 @@
 
 <script setup lang="ts">
 import { ref, watch, onMounted, nextTick } from 'vue'
+import '../style/pickColor.scss'
 
 const props = defineProps({
   modelValue: { type: String, default: '#409EFF' },
@@ -127,9 +128,3 @@ function parseColor(value: string): { r: number; g: number; b: number; a: number
   return { r, g, b, a }
 }
 </script>
-
-<style scoped>
-.color-picker {
-  padding: 6px;
-}
-</style>

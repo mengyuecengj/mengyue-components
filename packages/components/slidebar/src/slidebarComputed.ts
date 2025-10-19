@@ -1,6 +1,6 @@
 // slidebarComputed.ts
 import { ref, computed } from 'vue';
-import { SlidebarProps } from './slidebar';
+import type { SlidebarProps } from './slidebar';
 
 export function useSlidebarComputed(props: SlidebarProps, emit: (event: 'update:modelValue', value: number | string) => void) {
   const num = ref<number | string>(1); // num 支持 number 或 string

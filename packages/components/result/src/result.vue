@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { useSlots, defineAsyncComponent, type Component } from 'vue';
-import { IconType, Props } from './type';
+import type { IconType, Props } from './type';
 import '../style/result.scss';
 
 defineOptions({

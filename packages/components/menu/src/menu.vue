@@ -10,43 +10,39 @@
 
 <script setup lang="ts">
 import { reactive, provide, watch, onMounted, ref, computed } from 'vue'
-import type { PropType } from 'vue'
+import { menuProps } from './menu'
+import '../style/menu.scss'
 
 defineOptions({ name: 'MYMenu' })
 
-const props = defineProps({
-  defaultActive: { type: String, default: '' },
-  mode: { type: String as PropType<'vertical' | 'horizontal'>, default: 'vertical' },
-  collapse: { type: Boolean, default: false },
-  backgroundColor: { type: String, default: '#2f3b46' },
-  textColor: { type: String, default: '#bfcbd9' },
-  activeTextColor: { type: String, default: '#409EFF' },
-  trigger: { type: String as PropType<'click' | 'hover'>, default: 'click' },
-  uniqueOpened: { type: Boolean, default: false },
-  defaultOpeneds: { type: Array as PropType<string[]>, default: () => [] },
-  collapseTransition: { type: Boolean, default: true }
-})
+// const props = defineProps({
+//   defaultActive: { type: String, default: '' },
+//   mode: { type: String as PropType<'vertical' | 'horizontal'>, default: 'vertical' },
+//   collapse: { type: Boolean, default: false },
+//   backgroundColor: { type: String, default: '#2f3b46' },
+//   textColor: { type: String, default: '#bfcbd9' },
+//   activeTextColor: { type: String, default: '#409EFF' },
+//   trigger: { type: String as PropType<'click' | 'hover'>, default: 'click' },
+//   uniqueOpened: { type: Boolean, default: false },
+//   defaultOpeneds: { type: Array as PropType<string[]>, default: () => [] },
+//   collapseTransition: { type: Boolean, default: true }
+// })
+const props = defineProps(menuProps)
 const emit = defineEmits(['select', 'open', 'close'])
 
 // 使用 ref 而不是 reactive，避免 Proxy 问题
 const activeIndex = ref(props.defaultActive || '')
 const openedMenus = ref<string[]>([...props.defaultOpeneds])
 
-console.log('🔄 MYMenu 创建，初始 openedMenus:', openedMenus.value)
-console.log('🔄 MYMenu 创建，初始 activeIndex:', activeIndex.value)
-
 // 监听 defaultOpeneds 变化
 watch(() => props.defaultOpeneds, (newOpeneds) => {
-  console.log('🔄 MYMenu: defaultOpeneds 变化', newOpeneds)
   if (JSON.stringify(newOpeneds) !== JSON.stringify(openedMenus.value)) {
     openedMenus.value = Array.isArray(newOpeneds) ? [...newOpeneds] : []
-    console.log('✅ MYMenu: 更新内部 openedMenus', openedMenus.value)
   }
 }, { deep: true })
 
 watch(() => props.defaultActive, (v) => {
   activeIndex.value = v || ''
-  console.log('🔄 MYMenu: defaultActive 变化', v)
 })
 
 const mode = computed(() => props.mode)
@@ -61,7 +57,6 @@ let cachedOpenedMenus: string[] = []
 let cachedMap: Record<string, string> = {}
 
 function handleSelect(index: string, indexPath: string[] = []) {
-  console.log('🔄 MYMenu: handleSelect', index, indexPath)
   activeIndex.value = index
   emit('select', index, indexPath)
 
@@ -164,26 +159,4 @@ provide('indexPath', [] as string[])
 // 提供 subLevel
 provide('subLevel', 0)
 
-onMounted(() => {
-  console.log('✅ MYMenu mounted, current openedMenus:', openedMenus.value)
-  console.log('✅ MYMenu mounted, current activeIndex:', activeIndex.value)
-})
 </script>
-
-<style scoped lang="scss">
-.my-menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 220px;
-  height: 100vh;
-  overflow: auto;
-  background: var(--menu-bg, #2f3b46);
-  color: var(--menu-text, #bfcbd9);
-  transition: width .25s ease;
-}
-
-.my-menu.is-collapse {
-  width: 64px;
-}
-</style>

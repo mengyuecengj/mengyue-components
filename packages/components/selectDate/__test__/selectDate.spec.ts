@@ -1,9 +1,25 @@
 import { describe, it, expect, vi } from 'vitest';
 import { useSelectDate } from '../src/selectDateComputed';
 
+// 假设 SelectSize 是一个字符串联合类型，如 'small' | 'medium' | 'large'
+type SelectSize = 'small' | 'medium' | 'large';
+
+interface SelectDateProps {
+  modelValue: string | string[];
+  disabled: boolean;
+  width: SelectSize;
+  height: SelectSize;
+  type: string;
+  time: boolean;
+  year: boolean;
+  month: boolean;
+  range: boolean;
+  showToday: boolean;
+}
+
 describe('useSelectDate', () => {
   const emit = vi.fn();
-  const props = {
+  const props: SelectDateProps = {
     modelValue: '',
     type: 'date',
     disabled: false,
@@ -12,6 +28,8 @@ describe('useSelectDate', () => {
     month: false,
     time: false,
     showToday: true,
+    width: 'medium',   // 补充 width
+    height: 'medium',  // 补充 height
   };
 
   it('should initialize with default values', () => {
@@ -33,15 +51,15 @@ describe('useSelectDate', () => {
     const { mode } = useSelectDate(props, emit);
     expect(mode.value).toBe('date');
 
-    const rangeProps = { ...props, range: true };
+    const rangeProps: SelectDateProps = { ...props, range: true };
     const { mode: rangeMode } = useSelectDate(rangeProps, emit);
     expect(rangeMode.value).toBe('range-date');
 
-    const yearProps = { ...props, year: true };
+    const yearProps: SelectDateProps = { ...props, year: true };
     const { mode: yearMode } = useSelectDate(yearProps, emit);
     expect(yearMode.value).toBe('year');
 
-    const monthProps = { ...props, month: true };
+    const monthProps: SelectDateProps = { ...props, month: true };
     const { mode: monthMode } = useSelectDate(monthProps, emit);
     expect(monthMode.value).toBe('month');
   });
@@ -50,11 +68,11 @@ describe('useSelectDate', () => {
     const { placeholderText } = useSelectDate(props, emit);
     expect(placeholderText.value).toBe('请选择日期');
 
-    const yearProps = { ...props, year: true };
+    const yearProps: SelectDateProps = { ...props, year: true };
     const { placeholderText: yearPlaceholder } = useSelectDate(yearProps, emit);
     expect(yearPlaceholder.value).toBe('请选择年份');
 
-    const monthProps = { ...props, month: true };
+    const monthProps: SelectDateProps = { ...props, month: true };
     const { placeholderText: monthPlaceholder } = useSelectDate(monthProps, emit);
     expect(monthPlaceholder.value).toBe('请选择月份');
   });
@@ -73,7 +91,7 @@ describe('useSelectDate', () => {
   });
 
   it('should select a range date and emit event', () => {
-    const rangeProps = { ...props, range: true };
+    const rangeProps: SelectDateProps = { ...props, range: true };
     const { selectRangeDate } = useSelectDate(rangeProps, emit);
     const date = new Date();
     selectRangeDate(date);
@@ -83,7 +101,7 @@ describe('useSelectDate', () => {
   });
 
   it('should select a month and emit event', () => {
-    const monthProps = { ...props, month: true };
+    const monthProps: SelectDateProps = { ...props, month: true };
     const { selectMonth } = useSelectDate(monthProps, emit);
     selectMonth(0);
     expect(emit).toHaveBeenCalledWith('update:modelValue', expect.any(String));
@@ -91,7 +109,7 @@ describe('useSelectDate', () => {
   });
 
   it('should select a year and emit event', () => {
-    const yearProps = { ...props, year: true };
+    const yearProps: SelectDateProps = { ...props, year: true };
     const { selectYear } = useSelectDate(yearProps, emit);
     selectYear(2025);
     expect(emit).toHaveBeenCalledWith('update:modelValue', expect.any(String));

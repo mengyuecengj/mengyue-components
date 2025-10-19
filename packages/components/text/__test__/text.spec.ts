@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { useTextComputed } from '../src/textComputed';
-import { TextProps } from '../src/type';
+import type { TextProps } from '../src/type';
 
 describe('useTextComputed', () => {
   it('should handle empty props', () => {

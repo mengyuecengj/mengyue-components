@@ -2,36 +2,17 @@
   display: flex;
   align-items: center;
   height: 56px;
-  padding: 0 20px;
+  padding: 0 16px;
   cursor: pointer;
-  font-size: 18px;
-  color: inherit;
-  user-select: none;
-}
-
-.menu-icon {
-  width: 36px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 12px;
-  font-size: 20px;
-}
-
-.menu-label {
-  white-space: nowrap;
-  line-height: 56px;
-}
-
-.my-menu-item:hover {
-  background: rgba(255, 255, 255, 0.02);
 }
 
 .my-menu-item.is-active {
-  color: var(--menu-active);
+  color: var(--menu-active, #409EFF);
 }
 
-.my-menu-item.is-disabled {
-  opacity: .5;
-  cursor: not-allowed;
+.menu-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

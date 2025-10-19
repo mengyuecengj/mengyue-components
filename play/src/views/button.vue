@@ -4,6 +4,11 @@
     <div style="margin-top: 10px;"></div>
     <!-- Type variants -->
     <MYButton>Default</MYButton>
+    <MYButton>
+        <MYArrowRight size="20px" color="red" />
+        编辑按钮
+    </MYButton>
+
     <MYButton type="primary">Primary</MYButton>
     <MYButton type="success">Success</MYButton>
     <MYButton type="warning">Warning</MYButton>
@@ -57,5 +62,4 @@ const navigateTo = (path: string) => {
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

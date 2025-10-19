@@ -174,6 +174,22 @@ const routes: RouteRecordRaw[] = [
     path: '/test/icon',
     component: () => import('../views/icon.vue')
   },
+  {
+    path: '/test/drawer',
+    component: () => import('../views/drawer.vue')
+  },
+  {
+    path: '/test/card',
+    component: () => import('../views/card.vue')
+  },
+  {
+    path: '/test/inputNumber',
+    component: () => import('../views/inputNumber.vue')
+  },
+    {
+    path: '/test/upload',
+    component: () => import('../views/upload.vue')
+  },
 ]
 
 export const router = createRouter({

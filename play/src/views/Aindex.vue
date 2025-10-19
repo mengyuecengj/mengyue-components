@@ -66,7 +66,7 @@
         <MYButton type="success" @click="navigateTo('/test/collapse')">
             collapse components
         </MYButton>
-         <MYButton type="success" @click="navigateTo('/test/progress')">
+        <MYButton type="success" @click="navigateTo('/test/progress')">
             progress components
         </MYButton>
         <MYButton type="success" @click="navigateTo('/test/result')">
@@ -110,7 +110,7 @@
         </MYButton>
         <MYButton type="success" @click="navigateTo('/test/alert')">
             alert components
-        </MYButton>        
+        </MYButton>
         <MYButton type="success" @click="navigateTo('/test/dialog')">
             dialog components
         </MYButton>
@@ -119,6 +119,18 @@
         </MYButton>
         <MYButton type="success" @click="navigateTo('/test/icon')">
             icon components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/drawer')">
+            drawer components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/card')">
+            card components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/inputNumber')">
+            inputNumber components
+        </MYButton>
+        <MYButton type="success" @click="navigateTo('/test/upload')">
+            upload components
         </MYButton>
     </div>
 </template>

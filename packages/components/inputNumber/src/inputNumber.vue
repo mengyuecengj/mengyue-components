@@ -8,6 +8,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import '../style/inputNumber.scss'
 
 defineOptions({
     name: 'MYInputNumber'
@@ -15,9 +16,3 @@ defineOptions({
 
 const count = ref(0)
 </script>
-<style scoped>
-.my-inputNumber__input {
-    display: flex;
-    justify-content: center;
-}
-</style>

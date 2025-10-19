@@ -9,5 +9,5 @@ const MScroll: Plugin = {
     }
 }
 export const MYScroll = withInstall(scroll)
-export { scroll, scrollProps, MScroll }
+export { scroll, MScroll }
 export default MScroll

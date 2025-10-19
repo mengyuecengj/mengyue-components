@@ -28,7 +28,3 @@ provide('radioGroup', {
   change: updateValue  // 这里改成 change，和 MYRadio 里一致
 })
 </script>
-
-<style scoped>
-
-</style>

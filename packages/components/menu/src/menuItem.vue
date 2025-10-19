@@ -11,13 +11,16 @@
 
 <script setup lang="ts">
 import { inject, computed } from 'vue'
+import { menuItemProps } from './menuItem'
+import '../style/menuItem.scss'
 
 defineOptions({ name: 'MYMenuItem' })
 
-const props = defineProps({
-  index: { type: String, required: true },
-  disabled: { type: Boolean, default: false }
-})
+const props = defineProps(menuItemProps)
+// const props = defineProps({
+//   index: { type: String, required: true },
+//   disabled: { type: Boolean, default: false }
+// })
 
 const menu = inject<any>('menuContext')
 const parentPath = inject<string[]>('indexPath', [])
@@ -33,24 +36,3 @@ function handleClick() {
   menu?.handleSelect(props.index, indexPath)
 }
 </script>
-
-<style scoped lang="scss">
-.my-menu-item {
-  display: flex;
-  align-items: center;
-  height: 56px;
-  padding: 0 16px;
-  cursor: pointer;
-}
-
-.my-menu-item.is-active {
-  color: var(--menu-active, #409EFF);
-}
-
-.menu-label {
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-</style>

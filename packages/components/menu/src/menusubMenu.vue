@@ -41,15 +41,17 @@
 
 <script setup lang="ts">
 import { inject, computed, ref, watch, nextTick, provide } from 'vue'
-import type { PropType } from 'vue'
+import { subMenuProps } from './menusubMenu'
+import '../style/menusubMenu.scss'
 
 defineOptions({ name: 'MYSubMenu' })
 
-const props = defineProps({
-  index: { type: String, required: true },
-  trigger: { type: String as PropType<'click' | 'hover'>, default: undefined },
-  teleported: { type: Boolean, default: false }
-})
+const props = defineProps(subMenuProps)
+// const props = defineProps({
+//   index: { type: String, required: true },
+//   trigger: { type: String as PropType<'click' | 'hover'>, default: undefined },
+//   teleported: { type: Boolean, default: false }
+// })
 
 const menu = inject<any>('menuContext')
 const parentPath = inject<string[]>('indexPath', [])
@@ -146,55 +148,3 @@ function onPopupLeave() {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.my-submenu {
-  .submenu-title {
-    display: flex;
-    align-items: center;
-    height: 56px;
-    padding: 0 16px;
-    cursor: pointer;
-  }
-
-  .menu-label {
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .submenu-arrow {
-    margin-left: auto;
-    transition: transform 0.22s ease;
-  }
-
-  &.is-open .submenu-arrow {
-    transform: rotate(90deg);
-  }
-
-  .submenu-list {
-    list-style: none;
-    margin: 0;
-    padding-left: 40px;
-  }
-
-  .teleported-list {
-    position: absolute;
-    display: block;
-  }
-}
-
-/* slide 动画 */
-.slide-enter-active,
-.slide-leave-active {
-  transition: height 0.18s ease, opacity 0.18s ease;
-}
-
-.slide-enter-from,
-.slide-leave-to {
-  height: 0;
-  opacity: 0;
-  overflow: hidden;
-}
-</style>

@@ -1,129 +1,192 @@
+<!-- ColorPickerDemo.vue -->
 <template>
-    <MYButton type="success" @click="navigateTo('/')">返回/首页</MYButton>
-
-    <div class="test-container">
-        <h1>颜色选择器测试</h1>
-
-        <div class="test-section">
-            <h2>基础用法</h2>
-            <MYSelect-color v-model="color1" />
-            <p>当前颜色值: {{ color1 }}</p>
-        </div>
-
-        <div class="test-section">
-            <h2>自定义大小</h2>
-            <MYSelect-color v-model="color2" size="30px" />
-            <MYSelect-color v-model="color2" size="50px" />
-            <MYSelect-color v-model="color2" size="80px" />
-            <p>当前颜色值: {{ color2 }}</p>
-        </div>
-
-        <div class="test-section">
-            <h2>透明度控制</h2>
-            <MYSelect-color v-model="color3" :rgba="opacity" />
-            <div class="opacity-control">
-                <span>透明度: </span>
-                <input v-model="opacity" type="range" min="0" max="1" step="0.1">
-                <span>{{ opacity }}</span>
-            </div>
-            <p>当前颜色值: {{ color3 }}</p>
-        </div>
-
-        <div class="test-section">
-            <h2>无边框模式</h2>
-            <MYSelect-color v-model="color4" no-border />
-            <p>当前颜色值: {{ color4 }}</p>
-        </div>
-
-        <div class="test-section">
-            <h2>圆形模式</h2>
-            <MYSelect-color v-model="color5" circle />
-            <p>当前颜色值: {{ color5 }}</p>
-        </div>
-
-        <div class="test-section">
-            <h2>组合模式</h2>
-            <MYSelect-color v-model="color6" size="60px" circle no-border rgba="0.3" />
-            <p>当前颜色值: {{ color6 }}, 透明度0.3</p>
-        </div>
-
-        <div class="test-section">
-            <h2>RGBA 颜色支持</h2>
-            <MYSelect-color v-model="rgbaColor" />
-            <p>当前颜色值: {{ rgbaColor }}</p>
-            <button @click="setRgbaColor">设置为 rgba(255, 0, 0, 0.5)</button>
-        </div>
+  <div class="demo-wrap">
+    <div class="controls">
+      <MYSelect-color ref="colorPickerRef" v-model="colorValue" />
     </div>
+
+    <section class="preview">
+      <div class="preview-row">
+        <div class="panel">
+          <h3>Element Plus Switch</h3>
+          <el-switch v-model="elSwitch1" />
+          <el-switch v-model="elSwitch2" />
+        </div>
+
+        <div class="panel">
+          <h3>自定义 Switch（MYSwitch）</h3>
+          <label class="my-switch">
+            <input type="checkbox" v-model="mySwitch1" />
+            <span class="slider"></span>
+          </label>
+
+          <label class="my-switch">
+            <input type="checkbox" v-model="mySwitch2" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="panel full">
+        <h3>示例区域（--app-primary-color）</h3>
+        <button class="btn-primary">主色按钮</button>
+        <span class="hint">文字颜色使用 --on-primary-text</span>
+      </div>
+
+      <div class="panel full">
+        <h3>RGBA 颜色支持测试</h3>
+        <button @click="setRedColor">设置为红色</button>
+        <button @click="setBlueColor">设置为蓝色</button>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router';
+import { ref, onMounted } from 'vue'
 
-const router = useRouter();
+const colorPickerRef = ref<any>(null)
+const colorValue = ref('') // ❌ 不要给默认色
 
-const navigateTo = (path: string) => {
-    router.push(path);
-};
-// 测试数据
-const color1 = ref('#3498db')
-const color2 = ref('#e74c3c')
-const color3 = ref('#2ecc71')
-const color4 = ref('#f1c40f')
-const color5 = ref('#9b59b6')
-const color6 = ref('#1abc9c')
-const rgbaColor = ref('rgba(100, 200, 50, 0.8)')
-const opacity = ref(0.7)
+const elSwitch1 = ref(true)
+const elSwitch2 = ref(false)
+const mySwitch1 = ref(true)
+const mySwitch2 = ref(false)
 
-// 设置RGBA颜色
-const setRgbaColor = () => {
-    rgbaColor.value = 'rgba(255, 0, 0, 0.5)'
+// 从 localStorage 恢复主题
+onMounted(() => {
+  try {
+    const layoutSetting = localStorage.getItem('layout-setting')
+    if (layoutSetting) {
+      const settings = JSON.parse(layoutSetting)
+      colorValue.value = settings.theme || '#409EFF'
+    } else {
+      colorValue.value = '#409EFF'
+    }
+  } catch (e) {
+    console.error('Failed to load theme from localStorage', e)
+    colorValue.value = '#409EFF'
+  }
+})
+
+const setRedColor = () => {
+  colorValue.value = '#ff0000'
+}
+const setBlueColor = () => {
+  colorValue.value = '#0000ff'
 }
 </script>
 
 <style scoped>
-.test-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+.demo-wrap {
+  padding: 16px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.test-section {
-    margin-bottom: 30px;
-    padding: 20px;
-    border: 1px solid #eee;
-    border-radius: 8px;
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
-h1 {
-    color: #333;
-    text-align: center;
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-h2 {
-    color: #555;
-    margin-bottom: 15px;
+.preview-row {
+  display: flex;
+  gap: 12px;
 }
 
-.opacity-control {
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.panel {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #e6e6e6;
+  min-width: 220px;
+}
+
+.panel.full {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-primary {
+  background: var(--app-primary-color) !important;
+  border-color: var(--app-primary-color) !important;
+  color: var(--on-primary-text) !important;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.hint {
+  color: var(--on-primary-text);
+}
+
+/* Element Plus switch */
+.el-switch.is-checked .el-switch__core {
+  background-color: var(--myswitch-active) !important;
+  border-color: var(--myswitch-active) !important;
+}
+
+.el-switch__core::after,
+.el-switch__button {
+  background-color: var(--on-primary-text) !important;
+}
+
+/* 自定义 switch */
+.my-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  margin-right: 8px;
+}
+.my-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.my-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.2s;
+  border-radius: 34px;
+}
+.my-switch .slider::before {
+  position: absolute;
+  content: '';
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+.my-switch input:checked + .slider {
+  background-color: var(--myswitch-active);
+}
+.my-switch input:checked + .slider::before {
+  transform: translateX(20px);
+  background-color: var(--on-primary-text);
 }
 
 button {
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #2980b9;
+  margin: 0 5px;
+  padding: 6px 12px;
+  background: var(--app-primary-color);
+  color: var(--on-primary-text);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 </style>

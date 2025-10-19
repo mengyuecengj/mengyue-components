@@ -82,5 +82,3 @@ const containerStyle = computed(() => ({
   backgroundColor: '#99A9BF'
 }))
 </script>
-
-<style scoped></style>

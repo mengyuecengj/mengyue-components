@@ -1,4 +1,4 @@
-import { ExtractPropTypes } from "vue";
+import type { ExtractPropTypes } from "vue";
 
 // 滚动条颜色配置
 const scrollColorProps = {

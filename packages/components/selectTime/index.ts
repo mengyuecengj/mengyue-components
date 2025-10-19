@@ -1,4 +1,4 @@
-import { App, Plugin } from 'vue'
+import type { App, Plugin } from 'vue'
 import selectTime from './src/selectTime.vue'
 import { withInstall } from '../../theme-chalk/utils/withInstall'
 

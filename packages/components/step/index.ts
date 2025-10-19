@@ -1,4 +1,4 @@
-import { App, Plugin } from 'vue'
+import type { App, Plugin } from 'vue'
 import step from './src/step.vue'
 import steps from './src/steps.vue'
 import { withInstall } from '../../theme-chalk/utils/withInstall'
