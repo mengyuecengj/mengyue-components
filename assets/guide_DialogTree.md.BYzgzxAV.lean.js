@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./chunks/framework.DHTvsukI.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"guide/DialogTree.md","filePath":"guide/DialogTree.md"}'),r={name:"guide/DialogTree.md"};function o(i,s,c,n,d,l){return a(),t("div")}const m=e(r,[["render",o]]);export{_ as __pageData,m as default};

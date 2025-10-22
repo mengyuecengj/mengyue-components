@@ -1,0 +1,61 @@
+import{_ as r}from"./chunks/button.vue_vue_type_script_setup_true_lang.Dqdzdh-x.js";import{d as z,h as U,p as G,Z as W,c as f,o as m,n as O,k as b,b as $,e as j,w as t,a as i,t as J,x as L,G as X,H as Z,J as e,M as q,O as K,R as Q,ak as ss,al as is,ag as ns,I as as,ah as _,j as a}from"./chunks/framework.BWIYv-lY.js";import"./chunks/useClassComputed.D3OyU7_1.js";import"./chunks/useColorUtils.OM-kkZVO.js";const ts=["innerHTML"],es=z({__name:"message",props:{id:{},content:{},type:{},duration:{},showClose:{type:Boolean},closable:{type:Boolean},dangerouslyUseHTMLString:{type:Boolean},icon:{},position:{},offset:{},zIndex:{},onClose:{type:Function},plain:{type:Boolean}},emits:["close"],setup(n,{emit:o}){const p=n,l=o,h=p.duration??3e3,c=p.content??"",d=p.type??"info",y=p.showClose??!1,B=!!p.dangerouslyUseHTMLString,A=U(()=>{if(d==="error")return"danger";if(d!=="default")return d});let g=null,x=0,C=h;function E(){!h||h<=0||(D(),x=Date.now(),g=window.setTimeout(()=>{v()},C))}function D(){g!==null&&(clearTimeout(g),g=null)}function T(){if(g===null)return;const Y=Date.now()-x;C=Math.max(0,C-Y),D()}function H(){h&&h>0&&E()}function v(){l("close",p.id),p.onClose?.()}function F(){D(),v()}return G(()=>{h&&h>0&&E()}),W(()=>{D()}),(Y,I)=>(m(),f("div",{class:O(["my-message","my-message--"+b(d)]),onMouseenter:T,onMouseleave:H},[B?(m(),f("div",{key:1,class:"my-message--content",innerHTML:b(c)},null,8,ts)):(m(),$(r,{key:0,class:"my-message--content",type:A.value,plain:"",size:"medium"},{default:t(()=>[i(J(b(c)),1)]),_:1},8,["type"])),b(y)?(m(),f("button",{key:2,class:"my-message--close",onClick:F},"×")):j("",!0)],34))}}),ls=z({__name:"messageContainer",props:{list:{},position:{},zIndex:{}},setup(n,{expose:o}){const p=L(null),l=n,h=l.list,c=l.position??"top-right",d=l.zIndex??9999;function y(B){const A=h.findIndex(g=>g.id===B);A>=0&&h.splice(A,1)}return o({container:p}),(B,A)=>(m(),f("div",{class:O(["my-message-container",b(c)]),style:K({zIndex:b(d)}),ref_key:"container",ref:p},[(m(!0),f(X,null,Z(b(h),g=>(m(),f("div",{key:g.id,class:"my-message-wrapper",style:{"margin-top":"8px"}},[e(es,q({id:g.id},{ref_for:!0},g,{onClose:()=>g.id&&y(g.id)}),null,16,["id","onClose"])]))),128))],6))}}),P=new Map;let ps=0,w={duration:3e3,position:"top-right",zIndex:9999};const S=48;function hs(n){const o=String(n);if(P.has(o))return P.get(o);const p=document.createElement("div");document.body.appendChild(p);const l=ss([]),h=L(null),c=is({render(){return ns(ls,{list:l,position:o,zIndex:w.zIndex,ref:h})}});c.mount(p);const d={app:c,el:p,list:l,containerRef:h};P.set(o,d);const y=()=>V(d,n);return window.addEventListener("resize",y),d}function V(n,o){const p=window.innerHeight;let l=0;const h=o.includes("top");for(l=n.list.length*S;l>p&&n.list.length>0;)h?n.list.pop():n.list.shift(),l-=S}function ks(n){w={...w,...n}}function M(n,o){if(typeof n=="string"&&(n={content:n,type:o,plain:!1}),typeof window>"u")return{id:"ssr",close(){}};const p=n.position??w.position,l=hs(p);if(!l)return{id:"err",close(){}};const h=n.id??`m_${Date.now()}_${ps++}`,c={id:h,...n,duration:n.duration??w.duration},d=p.includes("top");return Q(()=>{V(l,p),(l.list.length+1)*S>window.innerHeight&&(d?l.list.pop():l.list.shift())}),d?l.list.unshift(c):l.list.push(c),{id:h,close:()=>{const y=l.list.findIndex(B=>B.id===h);y>=0&&l.list.splice(y,1)}}}const k=Object.assign(function(n){return M(n)},{info(n){return M(typeof n=="string"?{type:"info",content:n,plain:!1}:{...n,type:"info"})},success(n){return M(typeof n=="string"?{type:"success",content:n,plain:!1}:{...n,type:"success"})},warning(n){return M(typeof n=="string"?{type:"warning",content:n,plain:!1}:{...n,type:"warning"})},error(n){return M(typeof n=="string"?{type:"error",content:n,plain:!1}:{...n,type:"error"})},configureGlobal:ks}),rs={style:{display:"flex",gap:"10px","flex-wrap":"wrap"}},os={style:{display:"flex",gap:"10px","flex-wrap":"wrap"}},ds={style:{display:"flex",gap:"10px","flex-wrap":"wrap"}},gs={style:{display:"flex",gap:"10px","flex-wrap":"wrap"}},cs={style:{display:"flex",gap:"10px","flex-wrap":"wrap"}},fs=JSON.parse('{"title":"Message","description":"","frontmatter":{},"headers":[],"relativePath":"components/FeedbackMessage.md","filePath":"components/FeedbackMessage.md"}'),ys={name:"components/FeedbackMessage.md"},Ds=Object.assign(ys,{setup(n){const o=L(null),p=()=>{k.info("这是一条信息提示"),console.log("显示信息提示")},l=()=>{k.success("操作成功！"),console.log("显示成功提示")},h=()=>{k.warning("请注意操作风险"),console.log("显示警告提示")},c=()=>{k.error("操作失败，请重试"),console.log("显示错误提示")},d=()=>{k({content:"这条消息可以手动关闭",type:"info",showClose:!0}),console.log("显示带关闭按钮的消息")},y=()=>{k({content:"这条消息只显示1秒",type:"success",duration:1e3}),console.log("显示短时间消息")},B=()=>{k({content:"这条消息显示10秒",type:"warning",duration:1e4}),console.log("显示长时间消息")},A=()=>{k({content:"这条消息不会自动关闭",type:"info",duration:0,showClose:!0}),console.log("显示永久消息")},g=()=>{k({content:"左上角消息",position:"top-left"}),console.log("显示左上角消息")},x=()=>{k({content:"右上角消息",position:"top-right"}),console.log("显示右上角消息")},C=()=>{k({content:"顶部居中消息",position:"top-center"}),console.log("显示顶部居中消息")},E=()=>{k({content:"左下角消息",position:"bottom-left"}),console.log("显示左下角消息")},D=()=>{k({content:"右下角消息",position:"bottom-right"}),console.log("显示右下角消息")},T=()=>{k({content:"底部居中消息",position:"bottom-center"}),console.log("显示底部居中消息")},H=()=>{k({content:'<strong>加粗文本</strong> 和 <span style="color: red;">红色文本</span>',dangerouslyUseHTMLString:!0}),console.log("显示HTML内容消息")},v=()=>{o.value=k({content:"这条消息需要通过按钮关闭",type:"info",duration:0}),console.log("显示手动关闭消息")},F=()=>{o.value&&(o.value.close(),o.value=null),console.log("手动关闭消息")},Y=()=>{k({content:"关闭时会触发回调",type:"success",onClose:()=>{console.log("消息已关闭")}}),console.log("显示带回调的消息")},I=()=>{k({content:"这条消息有自定义偏移量",type:"info",offset:100}),console.log("显示带偏移量的消息")},N=()=>{k({content:"消息1",offset:20}),k({content:"消息2",offset:80}),k({content:"消息3",offset:140}),console.log("显示多个偏移消息")},R=()=>{k({content:"组合使用示例消息",type:"success",duration:5e3,showClose:!0,position:"top-center",offset:50,zIndex:1e4,onClose:()=>{console.log("组合消息已关闭")}}),console.log("显示组合使用消息")};return(us,s)=>{const u=as("ShowCode");return m(),f("div",null,[s[21]||(s[21]=_("",5)),e(u,{title:"代码演示",code:`
+<template>
+    <div style='display: flex; gap: 10px; flex-wrap: wrap;'>
+        <MYButton @click='showInfo'>信息提示</MYButton>
+        <MYButton @click='showSuccess'>成功提示</MYButton>
+        <MYButton @click='showWarning'>警告提示</MYButton>
+        <MYButton @click='showError'>错误提示</MYButton>
+    </div>
+</template>
+  `.trim()},{demo:t(()=>[a("div",rs,[e(r,{onClick:p},{default:t(()=>[...s[0]||(s[0]=[i("信息提示",-1)])]),_:1}),e(r,{onClick:l},{default:t(()=>[...s[1]||(s[1]=[i("成功提示",-1)])]),_:1}),e(r,{onClick:h},{default:t(()=>[...s[2]||(s[2]=[i("警告提示",-1)])]),_:1}),e(r,{onClick:c},{default:t(()=>[...s[3]||(s[3]=[i("错误提示",-1)])]),_:1})])]),_:1},8,["code"]),s[22]||(s[22]=a("h2",{id:"显示关闭按钮",tabindex:"-1"},[i("显示关闭按钮 "),a("a",{class:"header-anchor",href:"#显示关闭按钮","aria-label":"Permalink to “显示关闭按钮”"},"​")],-1)),s[23]||(s[23]=a("p",null,[i("使用"),a("code",null,"showClose"),i("属性可以显示关闭按钮。")],-1)),e(u,{title:"代码演示",code:`
+<template>
+    <MYButton @click='showClosableMessage'>显示关闭按钮</MYButton>
+</template>
+  `.trim()},{demo:t(()=>[e(r,{onClick:d},{default:t(()=>[...s[4]||(s[4]=[i("显示关闭按钮",-1)])]),_:1})]),_:1},8,["code"]),s[24]||(s[24]=a("h2",{id:"自定义持续时间",tabindex:"-1"},[i("自定义持续时间 "),a("a",{class:"header-anchor",href:"#自定义持续时间","aria-label":"Permalink to “自定义持续时间”"},"​")],-1)),s[25]||(s[25]=a("p",null,[i("使用"),a("code",null,"duration"),i("属性可以自定义消息显示的持续时间。")],-1)),e(u,{title:"代码演示",code:`
+<template>
+    <div style='display: flex; gap: 10px; flex-wrap: wrap;'>
+        <MYButton @click='showShortMessage'>短时间 (1秒)</MYButton>
+        <MYButton @click='showLongMessage'>长时间 (10秒)</MYButton>
+        <MYButton @click='showPermanentMessage'>永久显示</MYButton>
+    </div>
+</template>
+  `.trim()},{demo:t(()=>[a("div",os,[e(r,{onClick:y},{default:t(()=>[...s[5]||(s[5]=[i("短时间 (1秒)",-1)])]),_:1}),e(r,{onClick:B},{default:t(()=>[...s[6]||(s[6]=[i("长时间 (10秒)",-1)])]),_:1}),e(r,{onClick:A},{default:t(()=>[...s[7]||(s[7]=[i("永久显示",-1)])]),_:1})])]),_:1},8,["code"]),s[26]||(s[26]=a("h2",{id:"自定义位置",tabindex:"-1"},[i("自定义位置 "),a("a",{class:"header-anchor",href:"#自定义位置","aria-label":"Permalink to “自定义位置”"},"​")],-1)),s[27]||(s[27]=a("p",null,[i("使用"),a("code",null,"position"),i("属性可以设置消息显示的位置。")],-1)),e(u,{title:"代码演示",code:`
+<template>
+    <div style='display: flex; gap: 10px; flex-wrap: wrap;'>
+        <MYButton @click='showTopLeft'>左上角</MYButton>
+        <MYButton @click='showTopRight'>右上角</MYButton>
+        <MYButton @click='showTopCenter'>顶部居中</MYButton>
+        <MYButton @click='showBottomLeft'>左下角</MYButton>
+        <MYButton @click='showBottomRight'>右下角</MYButton>
+        <MYButton @click='showBottomCenter'>底部居中</MYButton>
+    </div>
+</template>
+  `.trim()},{demo:t(()=>[a("div",ds,[e(r,{onClick:g},{default:t(()=>[...s[8]||(s[8]=[i("左上角",-1)])]),_:1}),e(r,{onClick:x},{default:t(()=>[...s[9]||(s[9]=[i("右上角",-1)])]),_:1}),e(r,{onClick:C},{default:t(()=>[...s[10]||(s[10]=[i("顶部居中",-1)])]),_:1}),e(r,{onClick:E},{default:t(()=>[...s[11]||(s[11]=[i("左下角",-1)])]),_:1}),e(r,{onClick:D},{default:t(()=>[...s[12]||(s[12]=[i("右下角",-1)])]),_:1}),e(r,{onClick:T},{default:t(()=>[...s[13]||(s[13]=[i("底部居中",-1)])]),_:1})])]),_:1},8,["code"]),s[28]||(s[28]=a("h2",{id:"html内容支持",tabindex:"-1"},[i("HTML内容支持 "),a("a",{class:"header-anchor",href:"#html内容支持","aria-label":"Permalink to “HTML内容支持”"},"​")],-1)),s[29]||(s[29]=a("p",null,[i("使用"),a("code",null,"dangerouslyUseHTMLString"),i("属性可以支持HTML内容（注意XSS风险）。")],-1)),e(u,{title:"代码演示",code:`
+<template>
+    <MYButton @click='showHTMLMessage'>显示HTML内容</MYButton>
+</template>
+  `.trim()},{demo:t(()=>[e(r,{onClick:H},{default:t(()=>[...s[14]||(s[14]=[i("显示HTML内容",-1)])]),_:1})]),_:1},8,["code"]),s[30]||(s[30]=a("h2",{id:"手动关闭控制",tabindex:"-1"},[i("手动关闭控制 "),a("a",{class:"header-anchor",href:"#手动关闭控制","aria-label":"Permalink to “手动关闭控制”"},"​")],-1)),s[31]||(s[31]=a("p",null,"可以通过返回值手动控制消息的关闭。",-1)),e(u,{title:"代码演示",code:`
+<template>
+    <div style='display: flex; gap: 10px; flex-wrap: wrap;'>
+        <MYButton @click='showManualMessage'>显示可手动关闭的消息</MYButton>
+        <MYButton @click='closeManualMessage' :disabled='!manualMessageHandle'>
+            手动关闭
+        </MYButton>
+    </div>
+</template>
+  `.trim()},{demo:t(()=>[a("div",gs,[e(r,{onClick:v},{default:t(()=>[...s[15]||(s[15]=[i("显示可手动关闭的消息",-1)])]),_:1}),e(r,{onClick:F,disabled:!o.value},{default:t(()=>[...s[16]||(s[16]=[i(" 手动关闭 ",-1)])]),_:1},8,["disabled"])])]),_:1},8,["code"]),s[32]||(s[32]=a("h2",{id:"关闭回调",tabindex:"-1"},[i("关闭回调 "),a("a",{class:"header-anchor",href:"#关闭回调","aria-label":"Permalink to “关闭回调”"},"​")],-1)),s[33]||(s[33]=a("p",null,[i("使用"),a("code",null,"onClose"),i("属性可以在消息关闭时执行回调函数。")],-1)),e(u,{title:"代码演示",code:`
+<template>
+    <MYButton @click='showMessageWithCallback'>显示带回调的消息</MYButton>
+</template>
+  `.trim()},{demo:t(()=>[e(r,{onClick:Y},{default:t(()=>[...s[17]||(s[17]=[i("显示带回调的消息",-1)])]),_:1})]),_:1},8,["code"]),s[34]||(s[34]=a("h2",{id:"偏移量设置",tabindex:"-1"},[i("偏移量设置 "),a("a",{class:"header-anchor",href:"#偏移量设置","aria-label":"Permalink to “偏移量设置”"},"​")],-1)),s[35]||(s[35]=a("p",null,[i("使用"),a("code",null,"offset"),i("属性可以设置消息容器的偏移量。")],-1)),e(u,{title:"代码演示",code:`
+<template>
+    <div style='display: flex; gap: 10px; flex-wrap: wrap;'>
+        <MYButton @click='showMessageWithOffset'>带偏移量的消息</MYButton>
+        <MYButton @click='showMultipleOffsetMessages'>多个偏移消息</MYButton>
+    </div>
+</template>
+  `.trim()},{demo:t(()=>[a("div",cs,[e(r,{onClick:I},{default:t(()=>[...s[18]||(s[18]=[i("带偏移量的消息",-1)])]),_:1}),e(r,{onClick:N},{default:t(()=>[...s[19]||(s[19]=[i("多个偏移消息",-1)])]),_:1})])]),_:1},8,["code"]),s[36]||(s[36]=a("h2",{id:"组合使用",tabindex:"-1"},[i("组合使用 "),a("a",{class:"header-anchor",href:"#组合使用","aria-label":"Permalink to “组合使用”"},"​")],-1)),s[37]||(s[37]=a("p",null,"最后，实现个多种api组合使用实现个完整的消息提示：",-1)),e(u,{title:"代码演示",code:`
+<template>
+    <MYButton @click='showComplexMessage'>组合使用示例</MYButton>
+</template>
+  `.trim()},{demo:t(()=>[e(r,{onClick:R},{default:t(()=>[...s[20]||(s[20]=[i("组合使用示例",-1)])]),_:1})]),_:1},8,["code"]),s[38]||(s[38]=_("",11))])}}});export{fs as __pageData,Ds as default};

@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./chunks/framework.BWIYv-lY.js";const u=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"guide/useTable.md","filePath":"guide/useTable.md"}'),s={name:"guide/useTable.md"};function r(o,c,n,d,i,l){return a(),t("div")}const _=e(s,[["render",r]]);export{u as __pageData,_ as default};
