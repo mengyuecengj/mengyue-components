@@ -1,6 +1,5 @@
 import type { App, Plugin } from 'vue'
 import Switch from './src/switch.vue'
-import type { switchProps } from './src/switch'
 import { withInstall } from '../../theme-chalk/utils/withInstall'
 
 const MSwitch: Plugin = {

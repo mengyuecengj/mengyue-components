@@ -1,21 +1,18 @@
-import DefaultTheme from 'vitepress/theme';
-import { h } from 'vue';
-import Demo from './Demo.vue';
-import 'mengyue-plus/style.css'; // CSS 导入通常没问题，可以保留
-import './style.css'
-
+import DefaultTheme from 'vitepress/theme'
+import 'virtual:group-icons.css'
+import './styles/var.css'
+import './styles/variables.module.css'
+import DemoClient from './components/demoClient.vue'
+import ShowCode from './components/showCode.vue'
+import '@vitepress-demo-preview/component/dist/style.css';
+// import { MYMessage } from '../../../packages/components/message/src/message.vue'
 
 export default {
   extends: DefaultTheme,
   enhanceApp({ app }) {
-    // 注册自定义组件
-    app.component('Demo', Demo);
-    
-    // 仅在客户端环境中加载 mengyue-plus
-    if (typeof window !== 'undefined') {
-      import('mengyue-plus').then((MengyuePlus) => {
-        app.use(MengyuePlus.default || MengyuePlus);
-      });
-    }
-  },
-};
+    // 注册局部 Demo 容器
+    app.component('DemoClient', DemoClient)
+    app.component('ShowCode', ShowCode)
+    // app.config.globalProperties.MYMessage = MYMessage
+  }
+}

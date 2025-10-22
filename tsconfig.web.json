@@ -23,7 +23,7 @@
     "docs/.vitepress/**/*.tsx",
     "docs/.vitepress/**/*.vue",
     "typings/env.d.ts"
-  ],
+, "docs/.vitepress/theme/index.ts"  ],
   "exclude": [
     "node_modules",
     "**/dist/**",

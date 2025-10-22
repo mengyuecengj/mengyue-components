@@ -1,4 +1,4 @@
-import { type UseDropdownOptions } from './dropdownComputed';
+import type { UseDropdownOptions } from './type';
 export const dropdownProps = {
     type: {
         type: String,

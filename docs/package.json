@@ -14,9 +14,10 @@
     "@vueuse/core": "^9.1.0",
     "clipboard-copy": "^4.0.1",
     "element-plus": "npm:element-plus@latest",
-    "mengyue-plus": "^0.0.45",
+    "mengyue-plus": "file:..\\packages\\mengyue-plus-0.0.62.tgz",
     "normalize.css": "^8.0.1",
-    "nprogress": "^0.2.0"
+    "nprogress": "^0.2.0",
+    "prismjs": "^1.30.0"
   },
   "devDependencies": {
     "@crowdin/cli": "^4.5.0",
@@ -24,6 +25,8 @@
     "@iconify-json/ri": "^1.1.3",
     "@mdit-vue/shared": "^2.1.3",
     "@vitejs/plugin-vue-jsx": "^4.0.1",
+    "@vitepress-demo-preview/component": "^2.5.2",
+    "@vitepress-demo-preview/plugin": "^1.4.1",
     "chalk": "^4.1.2",
     "consola": "^2.15.3",
     "escape-html": "^1.0.3",
@@ -38,6 +41,6 @@
     "vite-plugin-inspect": "^0.8.7",
     "vite-plugin-mkcert": "^1.17.6",
     "vitepress": "^1.2.3",
-    "vitepress-plugin-group-icons": "^1.3.4"
+    "vitepress-plugin-group-icons": "^1.6.4"
   }
 }

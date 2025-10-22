@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, provide, watch, onMounted, ref, computed } from 'vue'
+import { reactive, provide, watch, ref, computed } from 'vue'
 import { menuProps } from './menu'
 import '../style/menu.scss'
 

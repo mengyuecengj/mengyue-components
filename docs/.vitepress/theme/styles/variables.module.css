@@ -1,0 +1,33 @@
+:root {
+  /* ========== 💡 亮色模式 ========== */
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-soft: #f6f7f8;
+  --vp-c-bg-alt: #fafafa;
+  --vp-c-text: #222222;
+  --vp-c-text-soft: #555555;
+  --vp-c-brand: #6b8e23;
+  --vp-c-border: #e0e0e0;
+  --vp-c-accent: #3a5c40;
+  --vp-c-card-bg: linear-gradient(135deg, #f4f8f4, #eaf2ea);
+  --vp-c-card-shadow: rgba(0, 0, 0, 0.08);
+
+  /* 文档内容区（右侧）背景 */
+  --vp-c-doc-bg: var(--vp-c-bg);
+}
+
+html.dark {
+  /* ========== 🌙 暗色模式 ========== */
+  --vp-c-bg: #1b1d1a;
+  --vp-c-bg-soft: #232623;
+  --vp-c-bg-alt: #202320;
+  --vp-c-text: #e8e8e8;
+  --vp-c-text-soft: #aaaaaa;
+  --vp-c-brand: #9acd32;
+  --vp-c-border: #333;
+  --vp-c-accent: #b4e391;
+  --vp-c-card-bg: linear-gradient(135deg, #2a2d29, #1f221f);
+  --vp-c-card-shadow: rgba(0, 0, 0, 0.4);
+
+  /* 文档内容区（右侧）背景 */
+  --vp-c-doc-bg: #1b1d1a;
+}
