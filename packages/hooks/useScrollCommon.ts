@@ -3,7 +3,7 @@
  * This file is specifically designed for scroll components and scrollbar components
  * contains scss environment file for the design and gloabal scss
  */
-import { computed, ComputedRef, CSSProperties, onUnmounted } from 'vue';
+import { computed, type ComputedRef, type CSSProperties, onMounted, onUnmounted } from 'vue';
 
 export const useScrollStyles = (props: {
   thumbColor?: string;
@@ -11,32 +11,27 @@ export const useScrollStyles = (props: {
   trackColor?: string;
   width?: string;
 }): ComputedRef<CSSProperties> => {
-  const html = document.documentElement;
-
   const updateStyles = () => {
     const styles: CSSProperties = {};
-    if (props.thumbColor) {
-      html.style.setProperty('--global-scroll-thumb-color', props.thumbColor);
-      styles['--global-scroll-thumb-color'] = props.thumbColor;
-    }
-    if (props.thumbHoverColor) {
-      html.style.setProperty('--global-scroll-thumb-hover-color', props.thumbHoverColor);
-      styles['--global-scroll-thumb-hover-color'] = props.thumbHoverColor;
-    }
-    if (props.trackColor) {
-      html.style.setProperty('--global-scroll-track-color', props.trackColor);
-      styles['--global-scroll-track-color'] = props.trackColor;
-    }
-    if (props.width) {
-      html.style.setProperty('--global-scroll-width', props.width);
-      styles.width = props.width;
-    }
+    if (props.thumbColor) styles['--global-scroll-thumb-color'] = props.thumbColor;
+    if (props.thumbHoverColor) styles['--global-scroll-thumb-hover-color'] = props.thumbHoverColor;
+    if (props.trackColor) styles['--global-scroll-track-color'] = props.trackColor;
+    if (props.width) styles.width = props.width;  // 注意: width 可能用于组件宽度
     return styles;
   };
 
   const styleRef = computed(() => updateStyles());
 
+  onMounted(() => {
+    const html = document.documentElement;
+    if (props.thumbColor) html.style.setProperty('--global-scroll-thumb-color', props.thumbColor);
+    if (props.thumbHoverColor) html.style.setProperty('--global-scroll-thumb-hover-color', props.thumbHoverColor);
+    if (props.trackColor) html.style.setProperty('--global-scroll-track-color', props.trackColor);
+    if (props.width) html.style.setProperty('--global-scroll-width', props.width);
+  });
+
   onUnmounted(() => {
+    const html = document.documentElement;
     html.style.removeProperty('--global-scroll-thumb-color');
     html.style.removeProperty('--global-scroll-thumb-hover-color');
     html.style.removeProperty('--global-scroll-track-color');
@@ -45,7 +40,6 @@ export const useScrollStyles = (props: {
 
   return styleRef;
 };
-
 export const useScrollVariables = (props: {
   thumbColor?: string;
   thumbHoverColor?: string;

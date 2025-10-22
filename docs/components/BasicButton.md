@@ -23,14 +23,16 @@ button按钮，基础组件经典交互元素，常用的操作按钮，可以�
 >
   <template #demo>
     <span>注意: 演示效果有一定的放大元素，具体尺寸请阅读下面<MYa href="#aboutSize" style="">关于尺寸</MYa>的描述</span>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; justify-content: center; margin-top: 20px;">
-      <MYButton>Default按钮</MYButton>
-      <MYButton type="primary">primary按钮</MYButton>
-      <MYButton type="success">Success按钮</MYButton>
-      <MYButton type="warning">Warning按钮</MYButton>
-      <MYButton type="danger">Danger按钮</MYButton>
-      <MYButton type="info">Info按钮</MYButton>
-    </div>
+    <ClientOnly>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; justify-content: center; margin-top: 20px;">
+            <MYButton>Default按钮</MYButton>
+            <MYButton type="primary">primary按钮</MYButton>
+            <MYButton type="success">Success按钮</MYButton>
+            <MYButton type="warning">Warning按钮</MYButton>
+            <MYButton type="danger">Danger按钮</MYButton>
+            <MYButton type="info">Info按钮</MYButton>
+        </div>
+    </ClientOnly>
   </template>
 </ShowCode>
 
@@ -48,8 +50,10 @@ button按钮，基础组件经典交互元素，常用的操作按钮，可以�
 >
   <template #demo>
     <div style="display: flex; gap: 50px;">
-        <MYButton colorBg="#ff0000">十六进制自定义红色背景按钮</MYButton>
-        <MYButton colorBg="red">单词自定义红色背景按钮</MYButton>
+        <ClientOnly>
+            <MYButton colorBg="#ff0000">十六进制自定义红色背景按钮</MYButton>
+            <MYButton colorBg="red">单词自定义红色背景按钮</MYButton>
+        </ClientOnly>
     </div>
   </template>
 </ShowCode>
@@ -67,8 +71,10 @@ button按钮，基础组件经典交互元素，常用的操作按钮，可以�
 >
     <template #demo>
         <div style="display: flex; gap: 50px;">
+        <ClientOnly>
             <MYButton colorText="#ff0000">十六进制自定义红色背景按钮</MYButton>
             <MYButton colorText="red">单词自定义红色背景按钮</MYButton>
+        </ClientOnly>
         </div>
     </template>
 </ShowCode>
@@ -86,8 +92,10 @@ button按钮，基础组件经典交互元素，常用的操作按钮，可以�
 >
     <template #demo>
         <div style="display: flex; gap: 50px;">
+        <ClientOnly>
             <MYButton colorBorder='#FF7F50'>十六进制自定义橙色边框按钮</MYButton>
             <MYButton colorBorder='#FF7F50'>单词自定义橙色边框按钮</MYButton>
+            </ClientOnly>
         </div>
     </template>
 </ShowCode>
@@ -110,12 +118,14 @@ button按钮，基础组件经典交互元素，常用的操作按钮，可以�
   <template #demo>
     <span>注意: 演示效果有一定的放大元素，具体尺寸请阅读下面<MYa href="#aboutSize" style="">关于尺寸</MYa>的描述</span>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; justify-content: center; margin-top: 20px;">
+    <ClientOnly>
         <MYButton plain>Default按钮</MYButton>
         <MYButton type="primary" plain>primary按钮</MYButton>
         <MYButton type="success" plain>Success按钮</MYButton>
         <MYButton type="warning" plain>Warning按钮</MYButton>
         <MYButton type="danger" plain>Danger按钮</MYButton>
         <MYButton type="info" plain>Info按钮</MYButton>
+    </ClientOnly>
     </div>
   </template>
 </ShowCode>
@@ -132,7 +142,9 @@ button按钮，基础组件经典交互元素，常用的操作按钮，可以�
     `"
 >
     <template #demo>
+    <ClientOnly>
         <MYButton round>圆角按钮</MYButton>
+    </ClientOnly>
     </template>
 </ShowCode>
 
@@ -148,7 +160,9 @@ button按钮，基础组件经典交互元素，常用的操作按钮，可以�
     `"
 >
     <template #demo>
+    <ClientOnly>
         <MYButton circle>A</MYButton>
+        </ClientOnly>
     </template>
 </ShowCode>
 
@@ -170,11 +184,13 @@ button按钮，基础组件经典交互元素，常用的操作按钮，可以�
   <template #demo>
     <span>注意: 演示效果有一定的放大元素，具体尺寸请阅读下面<MYa href="#aboutSize" style="">关于尺寸</MYa>的描述</span>
     <div>
+    <ClientOnly>
         <MYButton style="display: block; margin-top: 20px" size="supersmall">supersmall按钮</MYButton>
         <MYButton style="display: block; margin-top: 20px" size="small">small按钮</MYButton>
         <MYButton style="display: block; margin-top: 20px" size="medium">medium按钮</MYButton>
         <MYButton style="display: block; margin-top: 20px" size="large">large按钮</MYButton>
         <MYButton style="display: block; margin-top: 20px" size="superbig">superbig按钮</MYButton>
+        </ClientOnly>
     </div>
   </template>
 </ShowCode>
@@ -191,7 +207,9 @@ button按钮，基础组件经典交互元素，常用的操作按钮，可以�
     `"
 >
     <template #demo>
+    <ClientOnly>
         <MYButton disabled>禁用按钮</MYButton>
+        </ClientOnly>
     </template>
 </ShowCode>
 
@@ -212,6 +230,7 @@ button按钮，基础组件经典交互元素，常用的操作按钮，可以�
     `"
 >
     <template #demo>
+    <ClientOnly>
         <MYButton
             size='superbig'
             round
@@ -220,6 +239,7 @@ button按钮，基础组件经典交互元素，常用的操作按钮，可以�
             colorBg='#8d4dd1'
             colorText='red'
         >组合按钮</MYButton>
+        </ClientOnly>
     </template>
 </ShowCode>
 

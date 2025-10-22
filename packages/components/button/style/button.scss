@@ -2,6 +2,21 @@
 @use 'sass:string';
 @use '../../../theme-chalk/src/common/var.scss' as *;
 
+:root {
+  --btn-color-default: #ffffff;
+  --btn-color-default-hover: #f0f0f0;
+  --btn-color-primary: #409eff;
+  --btn-color-primary-hover: #66b1ff;
+  --btn-color-success: #67c23a;
+  --btn-color-success-hover: #85ce61;
+  --btn-color-warning: #e6a23c;
+  --btn-color-warning-hover: #ebb563;
+  --btn-color-danger: #f56c6c;
+  --btn-color-danger-hover: #f78989;
+  --btn-color-info: #909399;
+  --btn-color-info-hover: #a6a9ad;
+}
+
 /* basic */
 .my-btn {
   display: inline-flex;

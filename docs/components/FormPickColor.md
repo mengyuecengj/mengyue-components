@@ -14,7 +14,9 @@ pickColor颜色选择器组件，用于用户选择颜色。<br />
   `.trim()"
 >
   <template #demo>
+      <ClientOnly>
     <MYSelect-color v-model="colorValue" />
+        </ClientOnly>
   </template>
 </ShowCode>
 
@@ -32,5 +34,15 @@ interface PickColorProps {
 }
 ```
 <script setup> 
-import MYSelectColor from '../../packages/components/pickColor/src/pickColor.vue' 
+import { ref, onMounted } from 'vue'
+import MYSelectColor from '../../packages/components/pickColor/src/pickColor.vue'
+import { useColorUtils } from '../../packages/hooks/useColorUtils'
+
+const colorValue = ref('#409EFF')
+
+// ✅ 完全移除 watch，只用 onMounted
+onMounted(() => {
+  const { applyGlobalColor } = useColorUtils()
+  applyGlobalColor(colorValue.value, '--global-primary-color')
+})
 </script>

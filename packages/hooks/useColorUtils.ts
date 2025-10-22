@@ -2,57 +2,63 @@
  * @description This is a about color set file
  * It's more like a collection file of tool function color than a hooks
  * This is also a necessary file in some color hooks files
- * We will evaluate whether it will be stored as hooks files in this directory in the future
  */
-const _canvasCtx = (() => {
-  const ctx = document.createElement('canvas').getContext('2d');
-  return ctx || undefined;
-})();
+import { onMounted, onUnmounted } from 'vue'
+
+// SSR 安全：延迟创建 canvas
+let _canvasCtx: CanvasRenderingContext2D | undefined = undefined
 
 export function useColorUtils() {
-  function parseHexOrRgb(input: string): [number, number, number] | null {
-    if (input.startsWith('#')) {
-      const hex = input.slice(1).length === 3 ? input.slice(1).replace(/./g, '$&$&') : input.slice(1);
-      if (hex.length === 6 && /^[0-9a-fA-F]{6}$/.test(hex)) {
-        const n = parseInt(hex, 16);
-        return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  // 客户端才创建 canvas
+  onMounted(() => {
+    if (typeof document !== 'undefined') {
+      _canvasCtx = document.createElement('canvas').getContext('2d')
+    }
+  })
+
+  const toRGBA = (color: string, opacity: number): string => {
+    // SSR 安全：不使用 document，直接字符串处理
+    if (!color) return 'transparent'
+    
+    // 简单实现：支持 #RRGGBB 和 rgb()
+    if (color.startsWith('#')) {
+      const hex = color.slice(1)
+      if (hex.length === 3) {
+        const r = hex[0].repeat(2)
+        const g = hex[1].repeat(2)
+        const b = hex[2].repeat(2)
+        return `rgba(${parseInt(r, 16)}, ${parseInt(g, 16)}, ${parseInt(b, 16)}, ${opacity})`
       }
-      return null;
+      return `rgba(${parseInt(hex.slice(0, 2), 16)}, ${parseInt(hex.slice(2, 4), 16)}, ${parseInt(hex.slice(4, 6), 16)}, ${opacity})`
     }
-    const m = input.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-    return m ? [+m[1], +m[2], +m[3]] : null;
+    
+    if (color.startsWith('rgb')) {
+      const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/)
+      if (match) {
+        return `rgba(${match[1]}, ${match[2]}, ${match[3]}, ${opacity})`
+      }
+    }
+    
+    return color
   }
 
-  function toRGBA(color: string, alpha = 0.2): string {
-    if (!color) return '';
-
-    // 如果是 CSS 变量（如 var(--color)），尝试解析实际值
-    if (color.startsWith('var(')) {
-      const dummyElement = document.createElement('div');
-      dummyElement.style.color = color;
-      document.body.appendChild(dummyElement);
-      const resolvedColor = getComputedStyle(dummyElement).color;
-      document.body.removeChild(dummyElement);
-
-      // 解析计算后的颜色（可能是 rgb(...)）
-      const rgb = parseHexOrRgb(resolvedColor);
-      if (rgb) return `rgba(${rgb.join(',')},${alpha})`;
-    }
-
-    // 原始逻辑（处理 #RRGGBB 或 rgb(...)）
-    const rgb = parseHexOrRgb(color);
-    if (rgb) return `rgba(${rgb.join(',')},${alpha})`;
-
-    // Canvas 回退逻辑
-    if (_canvasCtx) {
-      _canvasCtx.fillStyle = color;
-      const resolved = _canvasCtx.fillStyle;
-      const fromCanvas = parseHexOrRgb(resolved);
-      if (fromCanvas) return `rgba(${fromCanvas.join(',')},${alpha})`;
-    }
-
-    return color; // 无法解析时返回原值
+  // 客户端专用的全局样式应用
+  const applyGlobalColor = (color: string, varName: string) => {
+    if (typeof document === 'undefined') return
+    
+    onMounted(() => {
+      document.documentElement.style.setProperty(varName, color)
+    })
+    
+    onUnmounted(() => {
+      if (typeof document !== 'undefined') {
+        document.documentElement.style.removeProperty(varName)
+      }
+    })
   }
 
-  return { parseHexOrRgb, toRGBA };
+  return {
+    toRGBA,
+    applyGlobalColor
+  }
 }

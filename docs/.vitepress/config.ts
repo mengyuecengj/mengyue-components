@@ -26,7 +26,11 @@ export default defineConfig({
   vite: {
     plugins: [
       groupIconVitePlugin(),
-    ]
+    ],
+    // 将 SSR 配置统一放在这里
+    ssr: {
+      noExternal: ['@vitepress-demo-preview/component']
+    }
   },
   themeConfig: {
     outlineTitle: '引导目录',
@@ -38,7 +42,7 @@ export default defineConfig({
       { text: '设计', link: '/design/FastRead', activeMatch: '/design/' },
       { text: '研发', link: '/development/Preface', activeMatch: '/development/' },
       { text: '关于', link: '/about/index', activeMatch: '/about/' },
-      { text: '版本', link: '/version/0.0.1', activeMatch: '/version/' },
+      { text: '版本', link: '/version/0.0.10', activeMatch: '/version/' },
     ],
 
     sidebar: {

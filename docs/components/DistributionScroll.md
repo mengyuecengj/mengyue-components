@@ -18,7 +18,11 @@ scroll 滚动条组件，用于实现自定义滚动条样式和功能。
   `.trim()"
 >
   <template #demo>
-      <MYScroll thumbColor="#ff0000">自定义红色滑块滚动条</MYScroll>
+  <ClientOnly>
+    <MYScroll thumbColor="#ff0000" style="height: 100px; overflow-y: auto;">
+      <div style="height: 500px">滚动内容</div>
+    </MYScroll>
+  </ClientOnly>
   </template>
 </ShowCode>
 
@@ -34,7 +38,11 @@ scroll 滚动条组件，用于实现自定义滚动条样式和功能。
   `.trim()"
 >
   <template #demo>
-      <MYScroll thumbHoverColor="#00ff00">悬停时绿色滑块滚动条</MYScroll>
+  <ClientOnly>
+      <MYScroll thumbHoverColor="#00ff00" style="height: 100px; overflow-y: auto;">
+        <div style="height: 500px">滚动内容</div>
+      </MYScroll>
+    </ClientOnly>
   </template>
 </ShowCode>
 
@@ -50,7 +58,11 @@ scroll 滚动条组件，用于实现自定义滚动条样式和功能。
   `.trim()"
 >
   <template #demo>
-      <MYScroll trackColor="#0000ff">蓝色轨道滚动条</MYScroll>
+  <ClientOnly>
+      <MYScroll trackColor="#0000ff" style="height: 100px; overflow-y: auto;">
+        <div style="height: 500px">滚动内容</div>
+      </MYScroll>
+    </ClientOnly>
   </template>
 </ShowCode>
 

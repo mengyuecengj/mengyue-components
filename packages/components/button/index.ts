@@ -1,4 +1,4 @@
-import { App, Plugin } from 'vue';
+import type { App, Plugin } from 'vue';
 import Button from './src/button.vue';
 import type { ButtonProps } from './src/button';
 
@@ -10,7 +10,7 @@ const MengyuePlus: Plugin = {
 };
 
 // 显式导出所有内容
-export { Button, ButtonProps, MengyuePlus };
+export { Button, MengyuePlus };
 
 // 可选：添加默认导出以兼容部分场景
 export default MengyuePlus;

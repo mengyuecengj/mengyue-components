@@ -18,7 +18,9 @@ BackTop 返回顶部组件，用于快速返回页面顶部。mengyue-components
   `.trim()"
 >
   <template #demo>
+  <ClientOnly>
     <MYBacktop :right="50" :bottom="80" />
+    </ClientOnly>
   </template>
 </ShowCode>
 
@@ -34,7 +36,9 @@ BackTop 返回顶部组件，用于快速返回页面顶部。mengyue-components
   `.trim()"
 >
   <template #demo>
+  <ClientOnly>
     <MYBacktop :right="100" :bottom="100" />
+     </ClientOnly> 
   </template>
 </ShowCode>
 
@@ -65,6 +69,7 @@ BackTop 返回顶部组件，用于快速返回页面顶部。mengyue-components
   `.trim()"
 >
   <template #demo>
+    <ClientOnly>
     <MYBacktop :bottom="140" :right="110">
       <div
         style="
@@ -81,6 +86,7 @@ BackTop 返回顶部组件，用于快速返回页面顶部。mengyue-components
         UP
       </div>
     </MYBacktop>
+      </ClientOnly>
   </template>
 </ShowCode>
 

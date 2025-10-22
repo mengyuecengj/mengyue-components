@@ -87,5 +87,4 @@ interface BreadcrumbItemProps {
 <script setup> 
 import MYBreadcrumb from '../../packages/components/breadcrumb/src/breadcrumb.vue' 
 import MYBreadcrumbItem from '../../packages/components/breadcrumb/src/breadcrumbItem.vue' 
-import { ArrowRight } from '@element-plus/icons-vue' 
 </script>

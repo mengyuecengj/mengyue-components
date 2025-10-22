@@ -1,7 +1,5 @@
 /**
  * @description color computed logic hooks file
- * This hooks files is color computed logic hooks file The color calculation logic for the button component has been computeted And great support
- * Expected to complete more funcions and support more components to achieve excellent color calculation
  */
 import { computed } from 'vue';
 import type { Ref } from 'vue';
@@ -20,13 +18,15 @@ export interface ColorComputedProps {
 }
 
 export function useColorComputed(props: ColorComputedProps) {
+  const { toRGBA } = useColorUtils() // 只使用 SSR 安全的 toRGBA
+  
   return computed<CSSProperties>(() => {
     const { colorBg, colorText, colorBorder, plain, isHovered, isActive, disabled, type } = props;
     const style: CSSProperties = {};
     const baseColor = colorBorder || colorBg || '';
     const isDefaultType = type === 'default' || !type;
 
-    // 处理 Ref 类型（如果是 Ref，取 .value）
+    // 处理 Ref 类型
     const hovered = typeof isHovered === 'boolean' ? isHovered : isHovered?.value;
     const active = typeof isActive === 'boolean' ? isActive : isActive?.value;
 
@@ -40,7 +40,6 @@ export function useColorComputed(props: ColorComputedProps) {
     if (plain) {
       const defaultColor = `--btn-color-${type}`;
       const defaultColorHover = `--btn-color-${type}-hover`;
-      const { toRGBA } = useColorUtils(); 
       const internal = hovered || active;
 
       // 默认plain模式
