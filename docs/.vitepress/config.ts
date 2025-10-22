@@ -10,6 +10,7 @@ import { componentPreview, containerPreview } from '@vitepress-demo-preview/plug
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "mengyue-docs",
+    base: '/mengyue-components/',
   description: "front end ui components library using vue.js",
   markdown: {
     theme: {
