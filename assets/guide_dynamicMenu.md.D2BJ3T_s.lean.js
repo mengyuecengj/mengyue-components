@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./chunks/framework.BWIYv-lY.js";const u=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"guide/dynamicMenu.md","filePath":"guide/dynamicMenu.md"}'),n={name:"guide/dynamicMenu.md"};function c(r,d,i,o,s,m){return a(),t("div")}const _=e(n,[["render",c]]);export{u as __pageData,_ as default};
