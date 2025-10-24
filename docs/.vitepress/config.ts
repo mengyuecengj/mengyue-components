@@ -10,7 +10,7 @@ import { componentPreview, containerPreview } from '@vitepress-demo-preview/plug
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "mengyue-docs",
-    base: '/mengyue-components/',
+  base: '/mengyue-components/',
   description: "front end ui components library using vue.js",
   markdown: {
     theme: {
@@ -28,6 +28,11 @@ export default defineConfig({
     plugins: [
       groupIconVitePlugin(),
     ],
+    esbuild: {
+      jsxFactory: 'h',
+      jsxFragment: 'Fragment',
+      jsxInject: `import { h } from 'vue'`
+    },
     // 将 SSR 配置统一放在这里
     ssr: {
       noExternal: ['@vitepress-demo-preview/component']
@@ -41,7 +46,7 @@ export default defineConfig({
       { text: '组件', link: '/components/FastStart', activeMatch: '/components/' },
       { text: '参考', link: '/guide/overView', activeMatch: '/guide/' },
       { text: '设计', link: '/design/FastRead', activeMatch: '/design/' },
-      { text: '研发', link: '/development/Preface', activeMatch: '/development/' },
+      { text: '研发', link: '/development/preface', activeMatch: '/development/' },
       { text: '关于', link: '/about/index', activeMatch: '/about/' },
       { text: '版本', link: '/version/0.0.10', activeMatch: '/version/' },
     ],
@@ -60,9 +65,17 @@ export default defineConfig({
       ],
       '/version/': indexVersion
     },
-
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2024-present Your Name & Contributors'
+    },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ]
+      { 
+        icon: 'github', link: 'https://github.com/mengyuecengj/mengyue-components',
+      },
+      {
+        icon: 'npm', link: 'https://www.npmjs.com/package/mengyue-plus'
+      }
+    ],
   }
 })

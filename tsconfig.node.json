@@ -4,6 +4,8 @@
     "module": "ESNext",
     "target": "ESNext",
     "composite": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "lib": [
       "ESNext"
     ],
