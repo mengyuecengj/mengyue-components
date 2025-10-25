@@ -7,7 +7,7 @@ hero:
   actions:
     - theme: brand
       text: 开始探索 →
-      link: /guide/intro
+      link: /components/FastStart
 ---
 
 <section class="about-container">
@@ -31,14 +31,14 @@ hero:
 
   <p>
     因此，在整个研发过程中，更多的时间被用来思考：
-    <ul>
-      <li>如何让组件逻辑更加简洁、可复用？</li>
-      <li>如何让样式系统既灵活又统一？</li>
-      <li>如何让项目体积最小化、加载更迅速？</li>
-      <li>如何让组件的文档更易用？</li>
-      <li>每个人的需求都不一样，如何精简还通用?</li>
-    </ul>
   </p>
+  <ul>
+    <li>如何让组件逻辑更加简洁、可复用？</li>
+    <li>如何让样式系统既灵活又统一？</li>
+    <li>如何让项目体积最小化、加载更迅速？</li>
+    <li>如何让组件的文档更易用？</li>
+    <li>每个人的需求都不一样，如何精简还通用?</li>
+  </ul>
 
   <h2>🚀 从 0 到 1</h2>
   <p>
@@ -59,7 +59,7 @@ hero:
   </p>
 
   <p class="thanks">
-    最后，感谢每一次点击与访问。
+    最后，感谢读者们的每一次点击与访问。
   </p>
 </section>
 
