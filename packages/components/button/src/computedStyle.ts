@@ -29,7 +29,8 @@ export function useButtonStyle(props: ButtonProps): {
       round: props.round,
       circle: props.circle,
       disabled: props.disabled,
-      plain: props.plain
+      plain: props.plain,
+      iconOnly: props.iconOnly,
     }
   })
 

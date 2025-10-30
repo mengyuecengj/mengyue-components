@@ -1,19 +1,11 @@
 <template>
-  <component
-    :is="props.tag"
-    :class="btnClass"
-    :style="customStyle"
-    :disabled="props.disabled"
-    :type="props.nativeType || 'button'"
-    @click="handleClick"
-    @mouseover="onMouseOver"
-    @mouseleave="onMouseOut"
-    @mousedown="onMouseDown"
-    @mouseup="onMouseUp"
-  >
-    <slot name="icon" />
+  <component v-if="!props.iconOnly" :is="props.tag" :class="btnClass" :style="customStyle" :disabled="props.disabled"
+    :type="props.nativeType || 'button'" @click="handleClick" @mouseover="onMouseOver" @mouseleave="onMouseOut"
+    @mousedown="onMouseDown" @mouseup="onMouseUp">
+    <component v-if="props.icon" :is="props.icon" class="my-btn-icon" />
     <slot />
   </component>
+  <component v-else :is="props.icon" class="my-btn-icon" @click="handleClick" :class="[btnClass, 'my-btn--icon-only-icon']" :style="customStyle" />
 </template>
 
 <script setup lang="ts">
@@ -26,7 +18,6 @@ defineSlots<{
   icon?: (props: {}) => string
 }>()
 
-// **给组件取个名字，供 withInstall 注册使用**
 defineOptions({
   name: 'MYButton'
 })
@@ -34,7 +25,6 @@ defineOptions({
 const props = defineProps(buttonProps)
 const emit = defineEmits<{ (e: 'click', ev: MouseEvent): void }>()
 
-// const formContext = inject<any>('myFormContext', null)
 function handleClick(e: MouseEvent) {
   if (props.disabled) return
   emit('click', e)

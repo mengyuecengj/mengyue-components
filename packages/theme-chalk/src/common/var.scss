@@ -58,9 +58,9 @@ $btn-hex-colors: (
 /* SCSS Map：CSS 变量 Map，用于普通模式 */
 $btn-colors: (
   default: (
-    base:   transparent,
-    hover:  var(--btn-color-default-hover),
-    active: var(--btn-color-default-active)
+    base:   #ffffff,     /* 改为白色实心 */
+    hover:  #f5f7fa,
+    active: #e6e6e6
   ),
   primary: (
     base:   var(--btn-color-primary),

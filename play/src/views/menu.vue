@@ -242,9 +242,6 @@ const loadMenuState = () => {
     const savedActive = localStorage.getItem('test_menu_activeIndex')
     const savedOpeneds = localStorage.getItem('test_menu_openeds')
 
-    console.log('🔍 测试代码：从localStorage加载菜单状态:')
-    console.log('  - activeIndex:', savedActive)
-    console.log('  - openedMenus:', savedOpeneds)
 
     if (savedActive) {
       activeIndex.value = savedActive
@@ -252,11 +249,9 @@ const loadMenuState = () => {
 
     if (savedOpeneds) {
       const parsed = JSON.parse(savedOpeneds)
-      console.log('✅ 测试代码：解析后的菜单状态:', parsed)
       return parsed
     }
   } catch (error) {
-    console.error('测试代码：加载菜单展开状态失败:', error)
   }
   return []
 }
@@ -266,10 +261,6 @@ const defaultOpeneds = ref<string[]>(loadMenuState())
 // 保存所有状态到 localStorage
 const saveMenuState = () => {
   try {
-    console.log('💾 测试代码：保存菜单状态到localStorage:')
-    console.log('  - activeIndex:', activeIndex.value)
-    console.log('  - openedMenus:', defaultOpeneds.value)
-
     localStorage.setItem('test_menu_activeIndex', activeIndex.value)
     localStorage.setItem('test_menu_openeds', JSON.stringify(defaultOpeneds.value))
   } catch (error) {
@@ -286,13 +277,11 @@ watch([activeIndex, defaultOpeneds], () => {
 watch(defaultOpeneds, (newOpeneds, oldOpeneds) => {
   if (uniqueOpened.value && newOpeneds.length === 1 && oldOpeneds && oldOpeneds.length > 0) {
     uniqueOpenedTestPassed.value = true
-    console.log('✅ unique-opened 功能测试通过')
   }
 }, { deep: true })
 
 // 修改菜单展开处理逻辑
 const handleMenuOpen = (key: string, keyPath: string[]) => {
-  console.log('📂 测试代码：菜单展开 - key:', key, 'keyPath:', keyPath)
 
   if (uniqueOpened.value) {
     // 在 unique-opened 模式下，只保留当前展开的菜单及其父级菜单
@@ -312,8 +301,6 @@ const handleMenuOpen = (key: string, keyPath: string[]) => {
 }
 
 const handleMenuClose = (key: string, keyPath: string[]) => {
-  console.log('📁 测试代码：菜单关闭 - key:', key, 'keyPath:', keyPath)
-
   if (uniqueOpened.value) {
     // 在 unique-opened 模式下，关闭菜单时需要特殊处理
     // 移除当前菜单及其所有子菜单
@@ -343,7 +330,6 @@ const handleMenuClose = (key: string, keyPath: string[]) => {
 
 // 修改菜单选择处理，确保激活状态正确
 const handleSelect = (index: string, indexPath: string[]) => {
-  console.log('选中菜单:', index, '完整路径:', indexPath)
   activeIndex.value = index
 
   if (uniqueOpened.value) {
@@ -368,7 +354,6 @@ const toggleUniqueOpened = () => {
     const activePath = getActiveMenuPath(activeIndex.value)
     defaultOpeneds.value = activePath
   }
-  console.log('🔄 uniqueOpened 模式:', uniqueOpened.value ? '开启' : '关闭')
 }
 
 // 辅助函数：根据激活菜单索引获取其路径
@@ -385,7 +370,6 @@ const getActiveMenuPath = (index: string): string[] => {
 
 // 强制刷新状态（用于调试）
 const forceRefresh = () => {
-  console.log('🔄 强制刷新状态')
   const currentOpeneds = [...defaultOpeneds.value]
   const currentActive = activeIndex.value
 
@@ -397,9 +381,6 @@ const forceRefresh = () => {
   setTimeout(() => {
     defaultOpeneds.value = currentOpeneds
     activeIndex.value = currentActive
-    console.log('✅ 状态刷新完成:')
-    console.log('  - openedMenus:', defaultOpeneds.value)
-    console.log('  - activeIndex:', activeIndex.value)
   }, 100)
 }
 
@@ -410,7 +391,6 @@ const clearStorage = () => {
   activeIndex.value = '1'
   defaultOpeneds.value = []
   uniqueOpenedTestPassed.value = false
-  console.log('🗑️ 已清除 localStorage 状态')
 }
 
 // 模拟根据激活索引显示路径
@@ -470,13 +450,6 @@ const componentState = computed(() => {
     openedMenus: defaultOpeneds.value,
     uniqueOpened: uniqueOpened.value
   }
-})
-
-onMounted(() => {
-  console.log('🔄 测试代码：组件挂载')
-  console.log('  - activeIndex:', activeIndex.value)
-  console.log('  - defaultOpeneds:', defaultOpeneds.value)
-  console.log('  - uniqueOpened:', uniqueOpened.value)
 })
 </script>
 <style scoped>

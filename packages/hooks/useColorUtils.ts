@@ -3,19 +3,9 @@
  * It's more like a collection file of tool function color than a hooks
  * This is also a necessary file in some color hooks files
  */
-import { onMounted, onUnmounted } from 'vue'
-
-// SSR 安全：延迟创建 canvas
-let _canvasCtx: CanvasRenderingContext2D | undefined = undefined
+import { onUnmounted } from 'vue'
 
 export function useColorUtils() {
-  // 客户端才创建 canvas
-  onMounted(() => {
-    if (typeof document !== 'undefined') {
-      _canvasCtx = document.createElement('canvas').getContext('2d')
-    }
-  })
-
   const toRGBA = (color: string, opacity: number): string => {
     // SSR 安全：不使用 document，直接字符串处理
     if (!color) return 'transparent'
@@ -46,14 +36,12 @@ export function useColorUtils() {
   const applyGlobalColor = (color: string, varName: string) => {
     if (typeof document === 'undefined') return
     
-    onMounted(() => {
-      document.documentElement.style.setProperty(varName, color)
-    })
+    // 直接应用样式（无需 onMounted）
+    document.documentElement.style.setProperty(varName, color)
     
+    // 修复点3：确保卸载时清理
     onUnmounted(() => {
-      if (typeof document !== 'undefined') {
-        document.documentElement.style.removeProperty(varName)
-      }
+      document.documentElement.style.removeProperty(varName)
     })
   }
 

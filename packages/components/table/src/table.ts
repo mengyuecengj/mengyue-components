@@ -11,8 +11,8 @@ export const tableProps = {
     default: () => []
   },
   modelValue: {
-    type: String,
-    default: ''
+    type: [Array, String] as PropType<string[] | number[] | string>, // 使用 PropType 明确指定类型
+    default: () => []
   },
   width: {
     type: String,
@@ -39,6 +39,10 @@ export const tableProps = {
     default: ''
   },
   bodyBackgroundColor: {
+    type: String,
+    default: ''
+  },
+  hoverBackgroundColor: {
     type: String,
     default: ''
   },

@@ -30,7 +30,8 @@ export function useTableComputed(props: TableProps): {
     propToStyleMap: {
       bodyBackgroundColor: 'backgroundColor',
       bodyTextColor: 'color',
-      bodyAlign: 'textAlign'
+      bodyAlign: 'textAlign',
+      hoverBackgroundColor: '--hover-bg-color'
     }
   });
 

@@ -1,7 +1,7 @@
 # Table
 ## 简易介绍
 Table 表格组件，用于展示结构化数据，支持树形数据、选择功能、自定义样式等。
-可以使用 `<MYTable></MYTable>` 来实现一个表格组件。
+可以使用 `<MYTable></MYTable>` 来实现一个表格组件。支持通过props.columns或子组件`<MYTableColumn>`定义列结构，自定义内容需使用命名插槽。
 
 ## 基础表格
 <ShowCode
@@ -406,25 +406,25 @@ const handlePageChange = (page, size) => {
       </MYTable>
     </div>
   </template>
-</ShowCode>
+</ShowCode> 
 
 ## API 参考
 ### Table Props
-| 参数          | 说明         | 类型     | 可选值                              | 默认值  |
-|--------------|-------------|---------|-----------------------------------|--------|
-| data  | 表格数据      | Array  | — | `[]`  |
-| columns  | 列配置      | TableColumnProps[]  | — | `[]`  |
-| width  | 表格宽度      | string  | — | `''`  |
-| height  | 表格高度      | string  | — | `''`  |
-| headerBackgroundColor  | 表头背景色      | string  | 支持16进制颜色或单词颜色 | `''`  |
-| headerTextColor  | 表头文字颜色      | string  | 支持16进制颜色或单词颜色 | `''`  |
-| stripe  | 斑马纹颜色      | string  | 支持16进制颜色或单词颜色 | `''`  |
-| borderColor  | 边框颜色      | string  | 支持16进制颜色或单词颜色 | `''`  |
-| bodyBackgroundColor  | 表格体背景色      | string  | 支持16进制颜色或单词颜色 | `''`  |
-| bodyTextColor  | 表格体文字颜色      | string  | 支持16进制颜色或单词颜色 | `''`  |
-| rowKey  | 行数据的 Key      | string  | — | `'id'`  |
-| treeProps  | 树形结构的配置      | object  | — | `{ children: 'children', hasChildren: 'hasChildren' }`  |
-| indent  | 树形数据缩进      | number  | — | `16`  |
+| 参数                  | 说明                     | 类型                | 可选值                              | 默认值                                      |
+|----------------------|-------------------------|--------------------|------------------------------------|--------------------------------------------|
+| data                 | 表格数据                 | Array              | —                                  | `[]`                                       |
+| columns              | 列配置                   | TableColumnProps[] | —                                  | `[]`                                       |
+| width                | 表格宽度                 | string             | —                                  | `''`                                       |
+| height               | 表格高度                 | string             | —                                  | `''`                                       |
+| headerBackgroundColor | 表头背景色               | string             | 支持16进制颜色或单词颜色           | `''`                                       |
+| headerTextColor      | 表头文字颜色             | string             | 支持16进制颜色或单词颜色           | `''`                                       |
+| stripe               | 斑马纹颜色               | string             | 支持16进制颜色或单词颜色           | `''`                                       |
+| borderColor          | 边框颜色                 | string             | 支持16进制颜色或单词颜色           | `''`                                       |
+| bodyBackgroundColor  | 表格体背景色             | string             | 支持16进制颜色或单词颜色           | `''`                                       |
+| bodyTextColor        | 表格体文字颜色           | string             | 支持16进制颜色或单词颜色           | `''`                                       |
+| rowKey               | 行数据的 Key             | string             | —                                  | `'id'`                                     |
+| treeProps            | 树形结构的配置           | object             | —                                  | `{ children: 'children', hasChildren: 'hasChildren' }` |
+| indent               | 树形数据缩进             | number             | —                                  | `16`                                       |
 | align  | 表格内容对齐方式      | string  | `left`/`center`/`right` | `'left'`  |
 | headerAlign  | 表头对齐方式      | string  | `left`/`center`/`right` | `''`  |
 | bodyAlign  | 表格体对齐方式      | string  | `left`/`center`/`right` | `''`  |

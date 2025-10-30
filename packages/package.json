@@ -1,6 +1,6 @@
 {
   "name": "mengyue-plus",
-  "version": "0.0.62",
+  "version": "0.0.64",
   "type": "module",
   "files": [
     "dist"

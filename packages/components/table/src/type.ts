@@ -20,7 +20,7 @@ export interface TableColumnProps {
 
 export interface TableProps {
   data?: Record<string, unknown>[];
-  modelValue?: string;
+  modelValue?: string[] | number[] | string;
   columns?: TableColumnProps[];
   width?: string;
   height?: string;
@@ -29,6 +29,7 @@ export interface TableProps {
   stripe?: string;
   borderColor?: string;
   bodyBackgroundColor?: string;
+  hoverBackgroundColor?: string;
   bodyTextColor?: string;
   [key: string]: unknown;
 }

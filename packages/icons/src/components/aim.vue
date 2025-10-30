@@ -1,7 +1,7 @@
 <template>
-    <MYIconBase :size="size" :color="color" :viewBox="'0 0 1024 1024'">
-        <path d="M512 896a384 384 0 1 0 0-768 384 384 0 0 0 0 768zm0 64a448 448 0 1 1 0-896 448 448 0 0 1 0 896z" />
-        <path
+    <MYIconBase :size="size" :color="color" viewBox="0 0 1024 1024">
+        <path :fill="color" d="M512 896a384 384 0 1 0 0-768 384 384 0 0 0 0 768zm0 64a448 448 0 1 1 0-896 448 448 0 0 1 0 896z" />
+        <path :fill="color"
             d="M512 96a32 32 0 0 1 32 32v192a32 32 0 0 1-64 0V128a32 32 0 0 1 32-32zm0 576a32 32 0 0 1 32 32v192a32 32 0 1 1-64 0V704a32 32 0 0 1 32-32zM96 512a32 32 0 0 1 32-32h192a32 32 0 0 1 0 64H128a32 32 0 0 1-32-32zm576 0a32 32 0 0 1 32-32h192a32 32 0 1 1 0 64H704a32 32 0 0 1-32-32z" />
     </MYIconBase>
 </template>
@@ -11,5 +11,14 @@ import MYIconBase from './IconBase.vue'
 defineOptions({ name: 'MYAim' })
 
 import { Props } from '../type'
-defineProps<Props>()
+
+interface ExtendedProps extends Props {
+  size?: string | number; // 图标大小，默认值为 24
+  color?: string; // 图标颜色，默认值为黑色
+}
+
+withDefaults(defineProps<ExtendedProps>(), {
+  size: 24,
+  color: '#fff',
+});
 </script>

@@ -1,113 +1,111 @@
 <template>
-    <MYViewHide />
-    <MYViewEye />
-    <MYPlus />
-    <MYAim />
-    <MYArrowLeft />
-    <MYArrowRight />
-    <MYArrowDown />
-    <MYAttach />
-    <MYBellFilled />
-    <MYBellSlash />
-    <MYBell />
-    <MYCaretDown />
-    <MYCaretLeft />
-    <MYCaretRight />
-    <MYArrowUp />
-    <MYChatdots />
-    <MYChatRounddots />
-    <MYChatLinedots />
-    <MYCheck />
-    <MYCircleCheck />
-    <MYCircleCheckMark />
-    <MYCircleInformation />
-    <MYCircleMinus />
-    <MYCirclePause />
-    <MYCirclePlay />
-    <MYCirclePlus />
-    <MYCircleQuestion />
-    <MYCircleStop />
-    <MYCircleXmark />
-    <MYClockSeven />
-    <MYClockTen />
-    <MYClockThreeThirty />
-    <MYClockThree />
-    <MYClockTwelveThirty />
-    <MYClockTwo />
-    <MYCircleClose />
-    <MYComputerChip />
-    <MYComputer />
-    <MYDelete />
-    <MYDeleteCircle />
-    <MYDownloadMinimalistic />
-    <MYDownload />
-    <MYDowns />
-    <MYEdit />
-    <MYExpand />
-    <MYFemaleUserCircle />
-    <MYFemaleUser />
-    <MYFemale />
-    <MYFold />
-    <MYFullScreennExitAlt />
-    <MYFullScreen />
-    <MYFullScreenCircle />
-    <MYFullScreenA />
-    <MYGrid />
-    <MYHouseCircle />
-    <MYHouseWindow />
-    <MYHouse />
-    <MYLinkAlt />
-    <MYLink />
-    <MYLinkA />
-    <MYListUlAlt />
-    <MYListUl />
-    <MYList />
-    <MYLoading />
-    <MYLoadingA />
-    <MYLoadingB />
-    <MYLock />
-    <MYLockAlt />
-    <MYLockSlash />
-    <MYMale />
-    <MYMediaBackward />
-    <MYMediaRemoable />
-    <MYMessageSearch />
-    <MYMicrophone />
-    <MYMicrophoneSlash />
-    <MYMinus />
-    <MYNotificationRemove />
-    <MYNotificationUnread />
-    <MYOdometer />
-    <MYOdometerText />
-    <MYPointer />
-    <MYPointerA />
-    <!-- <MYPositionBoonon />
-    <MYPositionLocation /> -->
-    <MYRefreshLeft />
-    <MYRefreshRight />
-    <MYSearchAlt />
-    <MYSettings />
-    <MYSettingsA />
-    <MYSettingsB />
-    <MYSortAlt />
-    <MYSort />
-    <MYStar />
-    <MYStarA />
-    <MYStarAlt />
-    <MYUnlockAlt />
-    <MYUnlock />
-    <MYUploadminimalistic />
-    <MYUpload />
-    <MYUser />
-    <MYUserAlt />
-    <MYUserA />
-    <MYWarning />
-    <MYWeatherRain />
-    <MYWeatherSymbol />
-    <MYWeatherWindy />
-    <MYWeatherSunshine />
-    <MYWeatherCloud />
-    <MYClose />
+    <MYViewHide size="48px" color="#ff0000" />
+    <MYViewEye size="48px" color="#ff0000" />
+    <MYPlus size="48px" color="#ff0000" />
+    <MYAim size="48px" color="#ff0000" />
+    <MYArrowLeft size="48px" color="#ff0000" />
+    <MYArrowRight size="48px" color="#ff0000" />
+    <MYArrowDown size="48px" color="#ff0000" />
+    <MYAttach size="48px" color="#ff0000" />
+    <MYBellFilled size="48px" color="#ff0000" />
+    <MYBellSlash size="48px" color="#ff0000" />
+    <MYBell size="48px" color="#ff0000" />
+    <MYCaretDown size="48px" color="#ff0000" />
+    <MYCaretLeft size="48px" color="#ff0000" />
+    <MYCaretRight size="48px" color="#ff0000" />
+    <MYArrowUp size="48px" color="#ff0000" />
+    <MYChatdots size="48px" color="#ff0000" />
+    <MYChatRounddots size="48px" color="#ff0000" />
+    <MYChatLinedots size="48px" color="#ff0000" />
+    <MYCheck size="48px" color="#ff0000" />
+    <MYCircleCheck size="48px" color="#ff0000" />
+    <MYCircleCheckMark size="48px" color="#ff0000" />
+    <MYCircleInformation size="48px" color="#ff0000" />
+    <MYCircleMinus size="48px" color="#ff0000" />
+    <MYCirclePause size="48px" color="#ff0000" />
+    <MYCirclePlay size="48px" color="#ff0000" />
+    <MYCirclePlus size="48px" color="#ff0000" />
+    <MYCircleQuestion size="48px" color="#ff0000" />
+    <MYCircleStop size="48px" color="#ff0000" />
+    <MYCircleXmark size="48px" color="#ff0000" />
+    <MYClockSeven size="48px" color="#ff0000" />
+    <MYClockTen size="48px" color="#ff0000" />
+    <MYClockThreeThirty size="48px" color="#ff0000" />
+    <MYClockThree size="48px" color="#ff0000" />
+    <MYClockTwelveThirty size="48px" color="#ff0000" />
+    <MYClockTwo size="48px" color="#ff0000" />
+    <MYCircleClose size="48px" color="#ff0000" />
+    <MYComputerChip size="48px" color="#ff0000" />
+    <MYComputer size="48px" color="#ff0000" />
+    <MYDelete size="48px" color="#ff0000" />
+    <MYDeleteCircle size="48px" color="#ff0000" />
+    <MYDownloadMinimalistic size="48px" color="#ff0000" />
+    <MYDownload size="48px" color="#ff0000" />
+    <MYDowns size="48px" color="#ff0000" />
+    <MYEdit size="48px" color="#ff0000" />
+    <MYExpand size="48px" color="#ff0000" />
+    <MYFemaleUserCircle size="48px" color="#ff0000" />
+    <MYFemaleUser size="48px" color="#ff0000" />
+    <MYFemale size="48px" color="#ff0000" />
+    <MYFold size="48px" color="#ff0000" />
+    <MYFullScreennExitAlt size="48px" color="#ff0000" />
+    <MYFullScreen size="48px" color="#ff0000" />
+    <MYFullScreenCircle size="48px" color="#ff0000" />
+    <MYFullScreenA size="48px" color="#ff0000" />
+    <MYGrid size="48px" color="#ff0000" />
+    <MYHouseCircle size="48px" color="#ff0000" />
+    <MYHouseWindow size="48px" color="#ff0000" />
+    <MYHouse size="48px" color="#ff0000" />
+    <MYLinkAlt size="48px" color="#ff0000" />
+    <MYLink size="48px" color="#ff0000" />
+    <MYLinkA size="48px" color="#ff0000" />
+    <MYListUlAlt size="48px" color="#ff0000" />
+    <MYListUl size="48px" color="#ff0000" />
+    <MYList size="48px" color="#ff0000" />
+    <MYLoading size="48px" color="#ff0000" />
+    <MYLoadingA size="48px" color="#ff0000" />
+    <MYLoadingB size="48px" color="#ff0000" />
+    <MYLock size="48px" color="#ff0000" />
+    <MYLockAlt size="48px" color="#ff0000" />
+    <MYLockSlash size="48px" color="#ff0000" />
+    <MYMale size="48px" color="#ff0000" />
+    <MYMediaBackward size="48px" color="#ff0000" />
+    <MYMediaRemoable size="48px" color="#ff0000" />
+    <MYMessageSearch size="48px" color="#ff0000" />
+    <MYMicrophone size="48px" color="#ff0000" />
+    <MYMicrophoneSlash size="48px" color="#ff0000" />
+    <MYMinus size="48px" color="#ff0000" />
+    <MYNotificationRemove size="48px" color="#ff0000" />
+    <MYNotificationUnread size="48px" color="#ff0000" />
+    <MYOdometer size="48px" color="#ff0000" />
+    <MYOdometerText size="48px" color="#ff0000" />
+    <MYPointer size="48px" color="#ff0000" />
+    <MYPointerA size="48px" color="#ff0000" />
+    <MYPositionBoonon  size="48px" color="#ff0000" />
+    <MYRefreshLeft size="48px" color="#ff0000" />
+    <MYRefreshRight size="48px" color="#ff0000" />
+    <MYSearchAlt size="48px" color="#ff0000" />
+    <MYSettings size="48px" color="#ff0000" />
+    <MYSettingsA size="48px" color="#ff0000" />
+    <MYSettingsB size="48px" color="#ff0000" />
+    <MYSortAlt size="48px" color="#ff0000" />
+    <MYSort size="48px" color="#ff0000" />
+    <MYStar size="48px" color="#ff0000" />
+    <MYStarA size="48px" color="#ff0000" />
+    <MYStarAlt size="48px" color="#ff0000" />
+    <MYUnlockAlt size="48px" color="#ff0000" />
+    <MYUnlock size="48px" color="#ff0000" />
+    <MYUploadminimalistic size="48px" color="#ff0000" />
+    <MYUser size="48px" color="#ff0000" />
+    <MYUserAlt size="48px" color="#ff0000" />
+    <MYUserA size="48px" color="#ff0000" />
+    <MYWarning size="48px" color="#ff0000" />
+    <MYWeatherRain size="48px" color="#ff0000" />
+    <MYWeatherSymbol size="48px" color="#ff0000" />
+    <MYWeatherWindy size="48px" color="#ff0000" />
+    <MYWeatherSunshine size="48px" color="#ff0000" />
+    <MYWeatherCloud size="48px" color="#ff0000" />
+    <MYClose size="48px" color="#ff0000" />
 </template>
 
 <script setup lang="ts">

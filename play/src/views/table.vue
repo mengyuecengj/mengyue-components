@@ -3,8 +3,8 @@
     <!-- 普通表格测试（带复选框） -->
     <div>
       <h2>普通表格测试（带复选框）</h2>
-      <MYTable :data="tableData" stripe="rgba(0, 0, 0, 0.05)" headerBackgroundColor="#f5f7fa" headerTextColor="#909399"
-        bodyBackgroundColor="#fff" bodyTextColor="#606266" border-color="#ebeef5" v-model="selectedRows">
+      <MYTable :data="tableData" hoverBackgroundColor="#2c2" stripe="rgba(0, 0, 0, 0.05)" headerTextColor="#909399"
+        bodyBackgroundColor="#fff" bodyTextColor="#606266" border-color="#ebeef5" :modelValue="selectedRows">
         <MYTableColumn type="selection" width="70px" align="center" />
         <MYTableColumn prop="id" label="Id" width="50px" />
         <MYTableColumn prop="date" label="Date" width="180px" />
@@ -22,10 +22,10 @@
     <!-- 树形表格测试（带复选框） -->
     <div style="margin-top: 50px;">
       <h2>树形表格测试（带复选框）</h2>
-      <MYTable :data="treeTableData" row-key="id" :tree-props="{ children: 'children' }" indent="20"
+      <MYTable :data="treeTableData" row-key="id" :tree-props="{ children: 'children' }"
         stripe="rgba(0, 0, 0, 0.05)" headerBackgroundColor="#f5f7fa" headerTextColor="#909399"
         bodyBackgroundColor="#fff" bodyTextColor="#606266" border-color="#ebeef5" style="margin-top: 20px;"
-        v-model="selectedTreeRows">
+        :modelValue="selectedTreeRows">
 
         <MYTableColumn prop="name" label="姓名" width="200px" />
         <MYTableColumn prop="age" label="年龄" width="100px" />

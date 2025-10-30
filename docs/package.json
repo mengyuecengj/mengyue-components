@@ -26,6 +26,7 @@
     "@mdit-vue/shared": "^2.1.3",
     "@vitepress-demo-preview/component": "^2.5.2",
     "@vitepress-demo-preview/plugin": "^1.4.1",
+    "@vuepress/plugin-icon": "2.0.0-rc.115",
     "chalk": "^4.1.2",
     "consola": "^2.15.3",
     "escape-html": "^1.0.3",

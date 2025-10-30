@@ -1,18 +1,27 @@
-<template>
-    <MYIconBase :size="size" :color="color" viewBox="0 0 512 512">
-        <path d="M255.996,0C145.058,0,55.138,89.929,55.138,200.866c0,68.454,34.648,128.363,86.55,165.174
-		c47.356,33.594,57.811,41.609,74.462,73.4c13.174,25.147,34.541,69.279,34.541,69.279c1.004,2.008,3.052,3.281,5.306,3.281
-		c2.244,0,4.31-1.274,5.313-3.281c0,0,21.368-44.132,34.541-69.279c16.642-31.791,27.106-39.806,74.454-73.4
-		c51.91-36.811,86.558-96.72,86.558-165.174C456.862,89.929,366.925,0,255.996,0z M255.996,335.473
-		c-74.331,0-134.599-60.268-134.599-134.608c0-74.339,60.268-134.607,134.599-134.607c74.339,0,134.606,60.268,134.606,134.607
-		C390.602,275.205,330.335,335.473,255.996,335.473z" />
-    </MYIconBase>
-</template>
-
 <script setup lang="ts">
 import MYIconBase from './IconBase.vue'
 defineOptions({ name: 'MYPositionBoonon' })
 
 import { Props } from '../type'
-defineProps<Props>()
+
+interface ExtendedProps extends Props {
+  size?: string | number // 图标大小，默认值为 24
+  color?: string // 图标颜色，默认值为黑色
+}
+
+withDefaults(defineProps<ExtendedProps>(), {
+  size: 24,
+  color: '#fff',
+})
+
+// 提取并优化 path 的 d 属性
+const iconPath = `
+M256 0c-111 0-201 90-201 201 0 68 35 128 87 165 47 34 58 42 74 73 13 25 35 69 35 69 1 2 3 3 5 3 2 0 4-1 5-3 0 0 21-44 35-69 17-32 27-40 74-73 52-37 87-97 87-165C457 90 367 0 256 0zm0 335c-74 0-135-60-135-135 0-74 60-135 135-135 74 0 135 60 135 135 0 74-60 135-135 135z
+`
 </script>
+
+<template>
+    <MYIconBase :size="size" :color="color" viewBox="0 0 512 512">
+        <path :fill="color" :d="iconPath" />
+    </MYIconBase>
+</template>

@@ -13,6 +13,7 @@ export const indexComponents = [
             { text: 'border边框', link: '/components/BasicBorder' },
             { text: 'text文本', link: '/components/Basictext' },
             { text: 'A链接', link: '/components/BasicA' },
+            { text: 'icon图标', link: '/components/BasicIcon' },
         ],
     },
     {

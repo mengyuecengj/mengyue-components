@@ -213,6 +213,26 @@ button按钮，基础组件经典交互元素，常用的操作按钮，可以�
     </template>
 </ShowCode>
 
+## 插入图标
+使用icon属性可以支持插入图标
+<ShowCode
+    title='代码演示'
+    :code='`
+<template>
+    <MYButton icon="MYPlus">带图标的按钮</MYButton>
+</template>
+    `'
+>
+    <template #demo>
+        <ClientOnly>
+<MYButton type="success">
+    <MYPlus /> 带图标的按钮
+</MYButton>
+        </ClientOnly>
+    </template>
+</ShowCode>
+
+
 最后，实现个多种api组合使用实现个按钮：
 <ShowCode
     title="代码演示"
@@ -270,6 +290,7 @@ interface ButtonProps {
   colorBg?: string;
   colorText?: string;
   colorBorder?: string;
+  iconOnly?: boolean;
   tag?: string;
 }
 ```
@@ -277,4 +298,5 @@ interface ButtonProps {
 <script setup>
 import MYButton from '../../packages/components/button/src/button.vue'
 import MYa from '../../packages/components/a/src/a.vue'
+import MYPlus from '../../packages/icons/src/components/plus.vue' // 新增这行
 </script>

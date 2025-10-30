@@ -6,6 +6,7 @@ import { indexDevelopment } from '../development/Aindex'
 import { indexVersion } from '../version/Aindex'
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 import { componentPreview, containerPreview } from '@vitepress-demo-preview/plugin';
+import { fileURLToPath } from 'url'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -36,6 +37,11 @@ export default defineConfig({
     // 将 SSR 配置统一放在这里
     ssr: {
       noExternal: ['@vitepress-demo-preview/component']
+    },
+    resolve: {
+      alias: {
+        '@icons': fileURLToPath(new URL('../../packages/icons/src/components', import.meta.url))
+      }
     }
   },
   themeConfig: {

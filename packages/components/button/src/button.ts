@@ -51,17 +51,29 @@ const buttonBehaviorProps = {
     type: String as PropType<'button' | 'submit' | 'reset'>,
     default: 'button',
   },
+  icon: {
+    type: String,
+    default: '',
+  },
   tag: {
     type: [String, Object] as PropType<string | Component>,
     default: 'button',
   },
 } as const
 
+const buttonIconProps = {
+  iconOnly: {
+    type: Boolean,
+    default: false
+  }
+}
+
 export const buttonProps = {
   ...buttonTypeProps,
   ...buttonStyleProps,
   ...buttonColorProps,
   ...buttonBehaviorProps,
+  ...buttonIconProps
 } as const
 
 type ButtonPropsWithDynamic = ExtractPropTypes<typeof buttonProps> & {

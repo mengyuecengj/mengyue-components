@@ -1,5 +1,11 @@
 <template>
-  <div class="my-table" :style="{ '--table-border-color': props.borderColor, ...tableStyle }">
+  <div class="my-table" 
+       :style="{ 
+          '--table-border-color': props.borderColor, 
+          '--hover-bg-color': props.hoverBackgroundColor,
+          ...tableStyle 
+        }"
+  >
     <table>
       <thead :style="headerStyle">
         <tr>
@@ -33,6 +39,12 @@
               <span v-if="column.prop === firstColumnProp && hasTreeData" class="my-table__expand-icon"
                 :class="{ 'my-table__expand-icon--expanded': isRowExpanded(item.row) }"
                 @click="toggleRowExpansion(item.row)" v-show="!item.isLeaf || hasChildren(item.row)">
+
+                <!-- 添加插槽调试 -->
+                <div v-if="column.prop === 'operation'" style="background: orange; padding: 5px; color: black;">
+                  操作列调试 - 插槽存在: {{ !!slots[column.prop] }}, 列prop: {{ column.prop }}
+                </div>
+
                 <svg v-if="!item.isLeaf || hasChildren(item.row)" viewBox="0 0 1024 1024" width="12" height="12">
                   <path d="M256 128l512 384-512 384z" fill="currentColor"></path>
                 </svg>
@@ -57,7 +69,7 @@
 
 <script setup lang="ts">
 import { computed, provide, useSlots, ref, watch } from 'vue';
-import type { VNode } from 'vue';
+import type { Slots, VNode } from 'vue';
 import type { TableColumnProps, TableProps } from './type';
 import { tableProps } from './table';
 import { useTableComputed } from './tableComputed';
@@ -77,7 +89,7 @@ const emit = defineEmits<{
 const { tableStyle, headerStyle, bodyStyle } = useTableComputed(props);
 
 /* slots */
-const slots = useSlots();
+const slots: Slots = useSlots();
 
 /* 辅助：第一个展示列的 prop（用于缩进/展开图标） */
 const firstColumnProp = computed(() => {
@@ -258,7 +270,6 @@ watch(selectedRows, emitUpdate, { deep: true });
 // };
 
 const slotColumns = computed<TableColumnProps[]>(() => {
-  // slots.default 返回的 vnode 列表（按 template 中声明的顺序）
   const rawVnodes = slots.default ? slots.default({
     row: {} as RowRecord,
     level: 0,
@@ -266,7 +277,7 @@ const slotColumns = computed<TableColumnProps[]>(() => {
   }) : [];
   const vnodes = (rawVnodes as VNode[]) ?? [];
   const cols: TableColumnProps[] = [];
-  const seen = new Set<string>(); // 用于去重（保留首次出现）
+  const seen = new Set<string>();
 
   for (const v of vnodes) {
     if (!v || typeof v !== 'object') continue;
@@ -280,7 +291,7 @@ const slotColumns = computed<TableColumnProps[]>(() => {
       const typeVal = p.type;
       const propVal = p.prop;
 
-      // selection 列处理（给一个稳定的内部 prop）
+      // selection 列处理
       if (typeVal === 'selection') {
         if (seen.has('__selection__')) continue;
         seen.add('__selection__');
@@ -291,12 +302,25 @@ const slotColumns = computed<TableColumnProps[]>(() => {
           type: 'selection',
           align: (p.align as any) ?? 'center',
           className: ''
-        });
+        } as TableColumnProps);
         continue;
       }
 
-      // 如果没有 prop（空标签），忽略
-      if (!propVal) continue;
+      // 如果没有 prop，使用默认插槽
+      if (!propVal) {
+        const defaultSlotKey = `__default_${cols.length}__`;
+        if (seen.has(defaultSlotKey)) continue;
+        seen.add(defaultSlotKey);
+        cols.push({
+          prop: defaultSlotKey,
+          label: (p.label as string) ?? '',
+          width: (p.width as string) ?? '',
+          type: (p.type as string) ?? '',
+          align: (p.align as any) ?? undefined,
+          className: ''
+        });
+        continue;
+      }
 
       const propStr = String(propVal);
       if (seen.has(propStr)) continue;
@@ -312,8 +336,7 @@ const slotColumns = computed<TableColumnProps[]>(() => {
       });
     }
 
-    // 处理具名 template 插槽：<template #status> ... </template>
-    // Vue 的 vnode.props.slot 字段会携带 slot 名称（注意：不同 Vue 版本 vnode 结构可能有差异）
+    // 处理具名 template 插槽
     else if ((v as VNode).props && typeof (v as VNode).props === 'object') {
       const vnodeProps = (v as VNode).props as Record<string, any>;
       const slotName = vnodeProps.slot;
@@ -330,10 +353,8 @@ const slotColumns = computed<TableColumnProps[]>(() => {
       }
     }
   }
-
   return cols;
 });
-
 
 /* ---------------------- 合并 columns（props 与 slot） ---------------------- */
 const columnsWithWidth = computed<TableColumnProps[]>(() => {

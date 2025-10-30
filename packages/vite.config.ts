@@ -22,7 +22,7 @@ export default defineConfig({
     ...(isAnalyze
       ? [
           visualizer({
-            open: true, // ✅ 打包结束后自动打开浏览器
+            open: true,
             gzipSize: true,
             brotliSize: true,
             filename: 'stats.html',

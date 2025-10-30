@@ -12,5 +12,6 @@ export interface ButtonProps {
   nativeType?: 'button' | 'submit' | 'reset';
   isHovered?: boolean | Ref<boolean>;
   isActive?: boolean | Ref<boolean>;
+  iconOnly: boolean;
   [key: string]: unknown;
 }
