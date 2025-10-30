@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./chunks/framework.CMpBhb2-.js";const l=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"design/utils/date.md","filePath":"design/utils/date.md"}'),s={name:"design/utils/date.md"};function n(r,d,o,i,c,p){return a(),t("div")}const m=e(s,[["render",n]]);export{l as __pageData,m as default};

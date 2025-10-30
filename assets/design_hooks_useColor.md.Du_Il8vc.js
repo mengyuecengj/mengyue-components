@@ -1,0 +1,1 @@
+import{_ as e,c as o,o as s}from"./chunks/framework.CMpBhb2-.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"design/hooks/useColor.md","filePath":"design/hooks/useColor.md"}'),t={name:"design/hooks/useColor.md"};function r(a,n,c,d,i,l){return s(),o("div")}const m=e(t,[["render",r]]);export{_ as __pageData,m as default};

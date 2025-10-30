@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as r}from"./chunks/framework.CMpBhb2-.js";const u=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"guide/useForm.md","filePath":"guide/useForm.md"}'),o={name:"guide/useForm.md"};function a(s,c,n,d,i,m){return r(),t("div")}const _=e(o,[["render",a]]);export{u as __pageData,_ as default};

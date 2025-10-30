@@ -1,0 +1,1 @@
+import{_ as e,c as s,o as t}from"./chunks/framework.CMpBhb2-.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"design/hooks/useCheck.md","filePath":"design/hooks/useCheck.md"}'),o={name:"design/hooks/useCheck.md"};function a(c,n,r,d,i,h){return t(),s("div")}const k=e(o,[["render",a]]);export{_ as __pageData,k as default};
