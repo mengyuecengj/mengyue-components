@@ -1,0 +1,1 @@
+import{_ as e,c as s,o as t}from"./chunks/framework.PAn8Jj8p.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"design/hooks/useOverall.md","filePath":"design/hooks/useOverall.md"}'),a={name:"design/hooks/useOverall.md"};function o(r,n,c,l,d,i){return t(),s("div")}const m=e(a,[["render",o]]);export{_ as __pageData,m as default};

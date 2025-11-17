@@ -1,0 +1,1 @@
+import{_ as t,c as e,o as s}from"./chunks/framework.PAn8Jj8p.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"design/utils/withInstall.md","filePath":"design/utils/withInstall.md"}'),a={name:"design/utils/withInstall.md"};function n(i,l,r,o,c,d){return s(),e("div")}const m=t(a,[["render",n]]);export{_ as __pageData,m as default};

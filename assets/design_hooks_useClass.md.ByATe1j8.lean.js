@@ -1,1 +1,0 @@
-import{_ as s,c as e,o as t}from"./chunks/framework.CMpBhb2-.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"design/hooks/useClass.md","filePath":"design/hooks/useClass.md"}'),a={name:"design/hooks/useClass.md"};function o(n,r,c,d,i,l){return t(),e("div")}const m=s(a,[["render",o]]);export{_ as __pageData,m as default};
