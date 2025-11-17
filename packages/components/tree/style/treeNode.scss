@@ -1,8 +1,5 @@
-// file: ./packages/components/tree/src/treeNode.vue
-// 替换原有<style>部分
-
 .my-tree-node {
-  margin-left: 14px;
+  margin-left: 3px;
 
   &__content {
     display: flex;
@@ -32,9 +29,8 @@
   }
 
   .arrow {
-    margin-right: 6px;
     color: #bbb;
-    font-size: 12px;
+    font-size: 10px;
     width: 16px;
     display: inline-flex;
     align-items: center;

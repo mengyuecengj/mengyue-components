@@ -44,17 +44,6 @@ export const clearValidate = (
   formItemContext?.clearValidate?.()
 }
 
-// 处理切换逻辑
-export const handleChange = (
-  isDisabled: Ref<boolean>,
-  isChecked: Ref<boolean>,
-  emit: EmitFn
-): void => {
-  if (isDisabled.value) return
-  const newValue = !isChecked.value
-  emit('update:modelValue', newValue)
-}
-
 // 将Switch注册到表单上下文
 export const setupFormItemContext = (
   formItemContext: Partial<FormItemContext> | null,

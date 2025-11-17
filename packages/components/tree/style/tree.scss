@@ -1,0 +1,7 @@
+.my-tree {
+  background-color: var(--tree-bg-color, #fff);
+  color: var(--tree-text-color, #606266);
+  border-radius: 4px;
+  padding: 8px;
+  overflow: auto;
+}

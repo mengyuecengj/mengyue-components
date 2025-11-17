@@ -43,10 +43,10 @@ const dropdownRef = ref<HTMLElement | null>(null)
 const showScrollbar = ref(false)
 
 const dropdownVisible = ref(false)
-const selectedLabel = ref('')
 const isFocused = ref(false)
+const selectedLabel = ref('') // 只在这里定义一次
 
-// 在 select.vue 的 script 部分
+// 检查滚动条可见性
 const checkScrollbarVisibility = () => {
     nextTick(() => {
         if (!props.autoScrollbar) {
@@ -62,6 +62,7 @@ const checkScrollbarVisibility = () => {
     })
 }
 
+// 选择选项
 const selectOption = (value: string | number, label: string) => {
     if (!props.disabled) {
         emit('update:modelValue', value)
@@ -70,25 +71,31 @@ const selectOption = (value: string | number, label: string) => {
     }
 }
 
+// 焦点处理
 const handleFocus = () => {
     if (!props.disabled) {
         isFocused.value = true
     }
 }
 
+// 失去焦点处理
 const handleBlur = () => {
     isFocused.value = false
     dropdownVisible.value = false
 }
 
+// 切换下拉框
 const toggleDropdown = () => {
     if (props.disabled) return
     dropdownVisible.value = !dropdownVisible.value
     if (dropdownVisible.value) {
         checkScrollbarVisibility()
+        // 当下拉框打开时，重新计算选中标签
+        updateSelectedLabel()
     }
 }
 
+// 样式计算
 const selectStyle = useStyleComputed(props, {
     propToStyleMap: {
         width: 'width',
@@ -98,26 +105,39 @@ const selectStyle = useStyleComputed(props, {
     }
 })
 
+// 更新选中标签的函数
+const updateSelectedLabel = () => {
+    const value = props.modelValue
+    if (value == null || value === '') {
+        selectedLabel.value = ''  // 显示 placeholder
+        return
+    }
+    
+    // 查找匹配的选项
+    if (dropdownRef.value) {
+        const options = dropdownRef.value.querySelectorAll('[data-value]') as NodeListOf<HTMLElement>
+        const match = Array.from(options).find(opt => opt.dataset.value === String(value))
+        selectedLabel.value = match?.dataset.label || ''  // 找不到匹配项时显示 placeholder
+    }
+}
+
+// 监听 modelValue 变化
 watch(
     () => props.modelValue,
     (newVal) => {
-        if (newVal == null || newVal === '') {
-            selectedLabel.value = ''
-        } else {
-            const options = (dropdownRef.value?.querySelectorAll?.('[data-value]') || []) as NodeListOf<HTMLElement>
-            const match = Array.from(options).find(opt => opt.dataset.value == String(newVal))
-            selectedLabel.value = match?.dataset.label || String(newVal)
-        }
+        updateSelectedLabel()
     },
     { immediate: true }
 )
 
+// 监听下拉框可见性变化
 watch(dropdownVisible, (val) => {
     if (val) {
         checkScrollbarVisibility()
     }
 })
 
+// 提供上下文给子组件
 provide('select', {
     selectOption,
     currentValue: computed(() => props.modelValue),

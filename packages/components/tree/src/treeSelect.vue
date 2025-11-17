@@ -26,9 +26,9 @@
         @input="handleFilter(($event.target as HTMLInputElement).value)" />
       <div class="tree-container">
         <TreeNode v-for="node in filteredData" :key="getNodeKey(node)" :node="node" :treeProps="internalProps"
-          :default-expanded="defaultExpanded" :default-expanded-keys="defaultExpandedKeys" :selectedKeys="selectedKeys"
-          :checked-keys="checkedKeys" :showCheckbox="showCheckbox" :checkStrictly="checkStrictly" :disabled="disabled"
-          @node-click="handleNodeClick" @check-change="handleCheckChange" />
+          :defaultExpanded="defaultExpanded" :selectedKeys="selectedKeys" :checkedKeys="checkedKeys"
+          :showCheckbox="showCheckbox" :checkStrictly="checkStrictly" :disabled="disabled" @node-click="handleNodeClick"
+          @check-change="handleCheckChange" />
       </div>
     </div>
   </div>

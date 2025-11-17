@@ -1,7 +1,10 @@
 <template>
   <div class="my-collapse-item">
     <div class="my-collapse-item__header" :aria-expanded="isActive" @click="toggle">
-      {{ title }}
+      <!-- 支持插槽标题，如果没有插槽则使用 title prop -->
+      <slot name="title">
+        {{ title }}
+      </slot>
     </div>
     <div v-show="isActive" class="my-collapse-item__content">
       <slot></slot>
@@ -19,7 +22,7 @@ defineOptions({
 
 const props = defineProps<{
   name: string // Unique identifier for the panel
-  title: string // Header text
+  title?: string // Header text (改为可选)
 }>()
 
 const collapse = inject('collapse') as {

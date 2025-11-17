@@ -1,21 +1,54 @@
 <template>
   <div class="my-tree-node">
     <div class="my-tree-node__content" :class="{ expanded, leaf: isLeaf, selected: isSelected }"
-      @click="handleContentClick($event)">
-      <MYCheckbox v-if="showCheckbox" :modelValue="isChecked" :value="node[nodeValueKey] as string | number"
-        :disabled="isDisabled" :indeterminate="isIndeterminate" @update:modelValue="handleCheck"
-        class="tree-checkbox" />
-      <!-- 箭头独立处理，阻止冒泡 -->
-      <span v-if="!isLeaf && !showCheckbox" class="arrow" @click.stop="toggle">{{ expanded ? '▼' : '▶' }}</span>
-      <!-- 标签独立处理，阻止冒泡用于只选择不触发展开逻辑 -->
-      <span class="label" @click.stop="handleLabelClick">{{ node[treeProps.label] }}</span>
+      @click="handleContentClick">
+      <!-- 展开箭头 - 根据 showArrow 控制显示 -->
+      <span 
+        v-if="showArrow && !isLeaf" 
+        class="arrow" 
+        :class="{ expanded }" 
+        @click.stop="toggle"
+      >
+        {{ expanded ? '▼' : '▶' }}
+      </span>
+      
+      <!-- 占位符 - 当不显示箭头时用于保持对齐 -->
+      <span 
+        v-else-if="showCheckbox || !isLeaf" 
+        class="arrow-placeholder"
+      ></span>
+      
+      <!-- 复选框 - 当 showCheckbox 为 true 时显示 -->
+      <MYCheckbox 
+        v-if="showCheckbox" 
+        :modelValue="isChecked" 
+        :indeterminate="isIndeterminate"
+        :disabled="isDisabled" 
+        value="nodeKey"
+        @update:modelValue="handleCheck"
+        class="tree-checkbox"
+      />
+      
+      <!-- 节点标签 -->
+      <span class="label" @click.stop="handleLabelClick">
+        {{ node[treeProps.label] }}
+      </span>
     </div>
 
+    <!-- 子节点 -->
     <div v-if="expanded && !isLeaf" class="my-tree-node__children">
-      <TreeNode v-for="child in (node[treeProps.children] as TreeNodesArray)" :key="getNodeKey(child)" :node="child"
-        :treeProps="treeProps" :defaultExpanded="defaultExpanded" :selectedKeys="selectedKeys"
-        :checkedKeys="checkedKeys" :showCheckbox="showCheckbox" :checkStrictly="checkStrictly" :disabled="disabled"
-        @node-click="emitNodeClick" @check-change="handleChildCheckChange" />
+      <TreeNode 
+        v-for="child in children" 
+        :key="getNodeKey(child)" 
+        :node="child"
+        :treeProps="treeProps" 
+        :showCheckbox="showCheckbox"
+        :showArrow="showArrow"
+        :checkedKeys="checkedKeys"
+        :checkStrictly="checkStrictly"
+        @node-click="$emit('node-click', $event)"
+        @check-change="$emit('check-change', $event)"
+      />
     </div>
   </div>
 </template>
@@ -24,6 +57,7 @@
 import { ref, computed } from 'vue'
 import { MYCheckbox } from '../../checkbox'
 import type { TreeProps, TreeNodes, TreeNodesArray } from './type'
+import '../style/treeNode.scss'
 
 const props = defineProps<{
   node: TreeNodes
@@ -32,6 +66,7 @@ const props = defineProps<{
   selectedKeys?: (string | number)[]
   checkedKeys?: (string | number)[]
   showCheckbox?: boolean
+  showArrow?: boolean
   checkStrictly?: boolean
   disabled?: boolean
 }>()
@@ -43,49 +78,13 @@ const emit = defineEmits<{
 
 const expanded = ref(props.defaultExpanded || false)
 
-const handleContentClick = (e: MouseEvent) => {
-  // 如果点在 checkbox 上，什么也不做（checkbox 自己会处理）
-  const target = e.target as HTMLElement
-  if (target.closest('.tree-checkbox') || target.closest('.my-checkbox__input')) {
-    return
-  }
-
-  // 如果点在箭头或标签上（这些节点有 .stop），handleContentClick 一般不会触发，
-  // 但做个保险判断：如果是箭头或标签则直接返回
-  if (target.closest('.arrow') || target.closest('.label')) {
-    return
-  }
-
-  // 点击内容其它部分：如果不是叶子，则切换展开状态
-  if (!isLeaf.value) toggle()
-
-  // 如果不是复选框模式，点击内容也视为选中（label 的点击已被 label 单独处理）
-  if (!props.showCheckbox) {
-    emitNodeClick(props.node)
-  }
-}
-
-const handleLabelClick = () => {
-  // 仅当不是复选框模式才触发 node-click
-  if (!props.showCheckbox) {
-    emitNodeClick(props.node)
-  }
-}
-
-const toggle = () => {
-  if (!isLeaf.value) expanded.value = !expanded.value
-}
-
-const emitNodeClick = (node: TreeNodes) => {
-  emit('node-click', node)
-}
-
-// checkbox 逻辑
+// 计算属性
 const nodeValueKey = computed(() => props.treeProps.value || 'id')
-const isLeaf = computed(() => {
-  const children = props.node[props.treeProps.children]
-  return !children || (Array.isArray(children) && (children as TreeNodesArray).length === 0)
+const nodeKey = computed(() => props.node[nodeValueKey.value] as string | number)
+const children = computed(() => {
+  return (props.node[props.treeProps.children] as TreeNodesArray) || []
 })
+const isLeaf = computed(() => children.value.length === 0)
 
 const isSelected = computed(() => {
   const nodeKey = props.node[nodeValueKey.value]
@@ -95,26 +94,54 @@ const isSelected = computed(() => {
 const isDisabled = computed(() => props.disabled || false)
 
 const isChecked = computed(() => {
-  const nodeKey = props.node[nodeValueKey.value]
-  return props.checkedKeys?.includes(nodeKey as string | number) || false
+  return props.checkedKeys?.includes(nodeKey.value) || false
 })
 
 const isIndeterminate = computed(() => {
   if (props.checkStrictly || isLeaf.value) return false
 
-  const children = props.node[props.treeProps.children] as TreeNodesArray || []
-  if (children.length === 0) return false
-
-  const checkedChildren = children.filter(child =>
+  const checkedChildren = children.value.filter(child =>
     props.checkedKeys?.includes(child[nodeValueKey.value] as string | number)
   )
 
   // 如果所有子节点都被选中，则父节点应该是全选状态，而不是部分选中
-  if (checkedChildren.length === children.length) return false
+  if (checkedChildren.length === children.value.length) return false
 
   // 如果有部分子节点被选中，则父节点是部分选中状态
   return checkedChildren.length > 0
 })
+
+// 方法
+const handleContentClick = () => {
+  // 在复选框模式下，点击内容区域不做任何事
+  if (props.showCheckbox) {
+    return
+  }
+  
+  // 在非复选框模式下，点击内容区域切换展开状态（如果是非叶子节点）
+  if (!isLeaf.value) {
+    toggle()
+  }
+}
+
+const handleLabelClick = (event: Event) => {
+  // 阻止事件冒泡，避免触发 handleContentClick
+  event.stopPropagation()
+  
+  // 在纯复选框模式下（没有箭头），点击标签应该能够展开/折叠节点
+  if (props.showCheckbox && !props.showArrow && !isLeaf.value) {
+    toggle()
+  } else {
+    // 其他情况下触发节点点击事件
+    emit('node-click', props.node)
+  }
+}
+
+const toggle = () => {
+  if (!isLeaf.value) {
+    expanded.value = !expanded.value
+  }
+}
 
 const handleCheck = (checked: boolean) => {
   const nodeKey = props.node[nodeValueKey.value] as string | number
@@ -122,7 +149,9 @@ const handleCheck = (checked: boolean) => {
 
   if (checked) {
     // 添加当前节点
-    if (!newCheckedKeys.includes(nodeKey)) newCheckedKeys.push(nodeKey)
+    if (!newCheckedKeys.includes(nodeKey)) {
+      newCheckedKeys.push(nodeKey)
+    }
 
     // 如果不是严格模式且不是叶子节点，需要级联选择子节点
     if (!props.checkStrictly && !isLeaf.value) {
@@ -138,9 +167,7 @@ const handleCheck = (checked: boolean) => {
           }
         })
       }
-
-      const children = props.node[props.treeProps.children] as TreeNodesArray || []
-      addChildKeys(children)
+      addChildKeys(children.value)
     }
   } else {
     // 取消选中当前节点
@@ -158,9 +185,7 @@ const handleCheck = (checked: boolean) => {
           }
         })
       }
-
-      const children = props.node[props.treeProps.children] as TreeNodesArray || []
-      removeChildKeys(children)
+      removeChildKeys(children.value)
     }
   }
 
@@ -168,85 +193,9 @@ const handleCheck = (checked: boolean) => {
   emit('check-change', newCheckedKeys)
 }
 
-const handleChildCheckChange = (newKeys: (string | number)[]) => {
-  emit('check-change', newKeys)
-}
-
-// 级联辅助函数
-// function cascadeCheck(
-//   nodes: TreeNodesArray,
-//   checked: boolean,
-//   keys: (string | number)[],
-//   valueKey: string
-// ): (string | number)[] {
-//   return nodes.reduce((acc, node) => {
-//     const key = node[valueKey] as string | number
-//     if (checked) {
-//       if (!acc.includes(key)) acc.push(key)
-//     } else {
-//       acc = acc.filter(k => k !== key)
-//     }
-//     const children = node[props.treeProps.children] as TreeNodesArray || []
-//     return cascadeCheck(children, checked, acc, valueKey)
-//   }, keys)
-// }
-
 const getNodeKey = (child: TreeNodes): string => {
-  return (child[props.treeProps.label] as string | number)?.toString() || child.id?.toString() || Math.random().toString()
+  return (child[props.treeProps.label] as string | number)?.toString() || 
+         (child.id as string)?.toString() || 
+         Math.random().toString()
 }
 </script>
-
-<style lang="scss" scoped>
-.my-tree-node {
-  margin-left: 14px;
-
-  &__content {
-    display: flex;
-    align-items: center;
-    padding: 4px 8px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background 0.2s;
-
-    &:hover {
-      background-color: #2c2c2c;
-    }
-
-    &.leaf:hover {
-      background-color: #333;
-    }
-
-    &.selected {
-      background-color: #409eff !important;
-      color: white;
-    }
-  }
-
-  .arrow {
-    margin-right: 6px;
-    color: #bbb;
-    font-size: 8px;
-    width: 16px;
-    display: inline-block;
-    text-align: center;
-  }
-
-  .label {
-    color: #eaeaea;
-  }
-
-  &__children {
-    margin-left: 12px;
-    border-left: 1px dashed #555;
-    padding-left: 8px;
-  }
-
-  .tree-checkbox {
-    margin-right: 8px;
-  }
-
-  .my-checkbox__input {
-    margin-right: 6px;
-  }
-}
-</style>

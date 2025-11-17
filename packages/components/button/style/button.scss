@@ -262,17 +262,17 @@
 }
 
 /* ========== 禁用状态 ========== */
-.my-btn.my-btn--disabled,
-.my-btn.my-btn--disabled:hover,
-.my-btn.my-btn--disabled:active {
-  cursor: not-allowed;
-  
-  // 强制覆盖内联样式，保持原有背景色但降低饱和度
-  background: inherit;
-  opacity: 0.7;
-  
-  // 使用滤镜让颜色变浅
-  filter: saturate(0.6) brightness(1.1);
+/* 修复：同时支持类选择器和属性选择器 */
+.my-btn.my-btn--disabled[disabled],
+.my-btn.my-btn--disabled[disabled]:hover,
+.my-btn.my-btn--disabled[disabled]:active {
+  opacity: 0.6 !important;
+  filter: saturate(0.6) brightness(1.1) !important;
+}
+/* 确保没有 disabled 属性时按钮正常 */
+.my-btn:not([disabled]) {
+  opacity: 1 !important;
+  filter: none !important;
 }
 
 // 针对不同类型的按钮设置更精确的禁用效果

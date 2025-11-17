@@ -74,6 +74,10 @@ export const treeSelectProps = {
     type: Boolean,
     default: false
   },
+  showArrow: {
+    type: Boolean,
+    default: true  // 默认显示箭头
+  },
   defaultCheckedKeys: {
     type: Array as PropType<(string | number)[]>,
     default: () => []
