@@ -1,23 +1,23 @@
 export const paginationProps = {
     total: {
-        type: Number,
+        type: [Number, String],
         default: 0
     },
     pageSize: {
-        type: Number,
+        type: [Number, String],
         default: 10
     },
     currentPage: {
-        type: Number,
+        type: [Number, String],
         default: 1
     },
     maxPagerCount: {
-        type: Number,
+        type: [Number, String],
         default: 7
     },
     layout: {
         type: String,
-        deefault: 'prev, pager, next'
+        default: 'prev, pager, next'  // 修正拼写错误: deefault -> default
     },
     pageSizes: {
         type: Array as () => (number[]),
@@ -40,7 +40,7 @@ export const paginationProps = {
         default: false
     },
     prneColor: {
-        'type': String,
+        type: String,
         default: ''
     },
     prneTextColor: {
@@ -64,5 +64,3 @@ export const paginationProps = {
         default: ''
     }
 }
-
-export type PaginationProps = Partial<typeof paginationProps>

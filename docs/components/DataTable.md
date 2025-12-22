@@ -6,11 +6,11 @@ Table 表格组件，用于展示结构化数据，支持树形数据、选择�
 ## 基础表格
 <ShowCode
   title="基础表格"
-  description="使用 columns 和 data 属性定义表格结构和数据"
+  description="使用 columns 和 data 属性定义表格结构和数据。"
   :code="`<template>
   <MYTable 
     :columns='columns' 
-    :data='tableData' 
+    :data='tableData'
   />
 </template>
 <script setup>
@@ -40,7 +40,7 @@ const tableData = ref([
 ## 使用插槽定义列
 <ShowCode
   title="使用插槽定义列"
-  description="使用 MYTableColumn 组件和插槽自定义列内容"
+  description="使用 MYTableColumn 组件和插槽自定义列内容。"
   :code="`<template>
   <MYTable :data='tableData2'>
     <MYTableColumn prop='name' label='姓名' width='120' />
@@ -217,85 +217,6 @@ const tableData5 = ref([
         :columns="columns5" 
         :data="tableData5" 
         stripe="#fafafa" 
-      />
-    </div>
-  </template>
-</ShowCode>
-
-## 自定义样式
-### 表头样式
-<ShowCode
-  title="自定义表头样式"
-  description="使用 headerBackgroundColor 和 headerTextColor 自定义表头样式"
-  :code="`<template>
-  <MYTable 
-    :columns='columns6' 
-    :data='tableData6' 
-    header-background-color='#409EFF' 
-    header-text-color='#FFFFFF' 
-  />
-</template>
-<script setup>
-import { ref } from 'vue';
-const columns6 = ref([
-  { prop: 'name', label: '姓名', width: '100px' },
-  { prop: 'age', label: '年龄', width: '80px' },
-  { prop: 'city', label: '城市', width: '120px' }
-]);
-const tableData6 = ref([
-  { id: 1, name: '张三', age: 25, city: '北京' },
-  { id: 2, name: '李四', age: 30, city: '上海' },
-  { id: 3, name: '王五', age: 28, city: '广州' }
-]);
-</script>`"
->
-  <template #demo>
-    <div style="margin: 20px 0;">
-      <MYTable 
-        :columns="columns6" 
-        :data="tableData6" 
-        header-background-color="#409EFF" 
-        header-text-color="#FFFFFF" 
-      />
-    </div>
-  </template>
-</ShowCode>
-
-### 表格体样式
-<ShowCode
-  title="自定义表格体样式"
-  description="使用 bodyBackgroundColor 和 bodyTextColor 自定义表格体样式"
-  :code="`<template>
-  <MYTable 
-    :columns='columns7' 
-    :data='tableData7' 
-    body-background-color='#f0f9ff' 
-    body-text-color='#333' 
-    border-color='#409EFF' 
-  />
-</template>
-<script setup>
-import { ref } from 'vue';
-const columns7 = ref([
-  { prop: 'name', label: '姓名', width: '100px' },
-  { prop: 'age', label: '年龄', width: '80px' },
-  { prop: 'city', label: '城市', width: '120px' }
-]);
-const tableData7 = ref([
-  { id: 1, name: '张三', age: 25, city: '北京' },
-  { id: 2, name: '李四', age: 30, city: '上海' },
-  { id: 3, name: '王五', age: 28, city: '广州' }
-]);
-</script>`"
->
-  <template #demo>
-    <div style="margin: 20px 0;">
-      <MYTable 
-        :columns="columns7" 
-        :data="tableData7" 
-        body-background-color="#f0f9ff" 
-        body-text-color="#333" 
-        border-color="#409EFF" 
       />
     </div>
   </template>

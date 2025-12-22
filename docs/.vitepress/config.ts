@@ -50,11 +50,11 @@ export default defineConfig({
     nav: [
       // { text: '首页', link: '/' },
       { text: '组件', link: '/components/FastStart', activeMatch: '/components/' },
-      { text: '参考', link: '/guide/overView', activeMatch: '/guide/' },
+      // { text: '参考', link: '/guide/overView', activeMatch: '/guide/' },
       { text: '设计', link: '/design/FastRead', activeMatch: '/design/' },
-      { text: '研发', link: '/development/preface', activeMatch: '/development/' },
+      // { text: '研发', link: '/development/preface', activeMatch: '/development/' },
       { text: '关于', link: '/about/index', activeMatch: '/about/' },
-      { text: '版本', link: '/version/0.0.10', activeMatch: '/version/' },
+      { text: '版本', link: '/version/0.0.1', activeMatch: '/version/' },
     ],
 
     sidebar: {

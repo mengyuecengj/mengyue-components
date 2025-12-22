@@ -68,7 +68,6 @@ const {
   isFocused,
   subMenuPosition,
   thirdMenuPosition,
-  selectDropdown,
   dropdownPosition,
   activeSubMenuItems,
   activeThirdMenuItems,

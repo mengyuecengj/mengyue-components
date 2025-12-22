@@ -8,7 +8,7 @@ export type ProgressFormat = (percentage: number) => string
 
 /** 组件 props 类型 */
 export interface ProgressProps {
-  percentage: number
+  percentage: number | string
   status: ProgressStatus | ''
   format: ProgressFormat
 }
@@ -16,7 +16,7 @@ export interface ProgressProps {
 /** 组件 props 选项定义 */
 export const progressProps = {
   percentage: {
-    type: Number,
+    type: [Number, String],
     default: 50,
   },
   status: {

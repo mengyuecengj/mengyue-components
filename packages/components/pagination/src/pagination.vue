@@ -3,7 +3,7 @@
     <template v-for="item in (layout || '').split(',').map(s => s.trim())" :key="item">
       <!-- 上一页 -->
       <button v-if="item === 'prev'" class="btn-prev" :class="{ 'has-background': background }"
-        :disabled="currentPage === 1 || disabled" @click="handlePageChange(currentPage - 1)" :style="stylePage">
+        :disabled="currentPageNumber  === 1 || disabled" @click="handlePageChange(currentPageNumber  - 1)" :style="stylePage">
         Prev
       </button>
 
@@ -19,7 +19,7 @@
 
       <!-- 下一页 -->
       <button v-if="item === 'next'" class="btn-next" :class="{ 'has-background': background }"
-        :disabled="currentPage === totalPages || disabled" @click="handlePageChange(currentPage + 1)"
+        :disabled="currentPage === totalPages || disabled" @click="handlePageChange(currentPageNumber + 1)"
         :style="stylePage">
         Next
       </button>
@@ -48,6 +48,7 @@
 <script setup lang="ts">
 import { paginationProps } from './pagination'
 import { usePaginationComputed } from './paginationComputed';
+import { computed } from 'vue';
 import '../style/pagination.scss'
 
 defineOptions({
@@ -55,14 +56,14 @@ defineOptions({
 })
 
 const props = defineProps(paginationProps)
-// Emits
 const emit = defineEmits(['update:current-page', 'update:page-size', 'change']);
+const currentPageNumber = computed(() => Number(props.currentPage));
 
 const { pagerList, totalPages, stylePage, itemPageStyle, activeItemStyle } = usePaginationComputed(props, emit)
 
 // 页码变更
 const handlePageChange = (page: number) => {
-  if (page >= 1 && page <= totalPages.value && page !== props.currentPage) {
+  if (page >= 1 && page <= totalPages.value && page !== currentPageNumber.value) {
     emit('update:current-page', page);
     emit('change', page, props.pageSize);
   }

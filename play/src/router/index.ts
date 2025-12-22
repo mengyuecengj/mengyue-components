@@ -183,10 +183,6 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../views/card.vue')
   },
   {
-    path: '/test/inputNumber',
-    component: () => import('../views/inputNumber.vue')
-  },
-    {
     path: '/test/upload',
     component: () => import('../views/upload.vue')
   },

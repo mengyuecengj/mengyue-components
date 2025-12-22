@@ -8,7 +8,7 @@ import type { ComputedRef, CSSProperties } from 'vue'
 import { useClassComputed } from './useClassComputed'
 import { useStyleComputed } from './useStyleComputed'
 import type { ContainerProps } from '../components/container/src/container'
-import { LayoutProps, ColProps } from '../components/layout/src/type';
+import type { LayoutProps, ColProps } from '../components/layout/src/type';
 
 // container components computed about
 export function useContainerOverAllComputed(props: ContainerProps): {

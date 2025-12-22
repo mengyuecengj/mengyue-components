@@ -126,9 +126,6 @@
         <MYButton type="success" @click="navigateTo('/test/card')">
             card components
         </MYButton>
-        <MYButton type="success" @click="navigateTo('/test/inputNumber')">
-            inputNumber components
-        </MYButton>
         <MYButton type="success" @click="navigateTo('/test/upload')">
             upload components
         </MYButton>

@@ -178,4 +178,19 @@
       border-color: #e4e7ed;
     }
   }
+
+  .arrow-css {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--tree-arrow-color, #999);
+    transition: transform 0.3s ease;
+    margin-left: 8px;
+
+    &.rotated {
+      transform: rotate(180deg);
+    }
+  }
 }

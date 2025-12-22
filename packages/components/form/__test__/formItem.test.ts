@@ -1,11 +1,10 @@
 import { describe, it, expect } from 'vitest'
-import { FormItemProps } from '../src/type'
 import { formItemProps } from '../src/formItem'
 
 // 测试类型定义
 describe('Type Definitions', () => {
   it('should export FormItemProps type', () => {
-    const props: FormItemProps = {
+    const props = {
       label: 'test',
       prop: 'field',
       validateTrigger: 'blur',

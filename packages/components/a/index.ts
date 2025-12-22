@@ -1,4 +1,4 @@
-import { Plugin, App } from 'vue'
+import type { Plugin, App } from 'vue'
 import a from './src/a.vue'
 import type { aProps } from './src/a'
 import { withInstall } from '../../theme-chalk/utils/withInstall'

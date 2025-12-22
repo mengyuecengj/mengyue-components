@@ -13,7 +13,15 @@
       <span v-else class="placeholder" :class="{ selected: !!selectedValue }">
         {{ selectedLabels.length ? selectedLabels.join(', ') : placeholder }}
       </span>
-      <span class="arrow" :class="{ rotated: dropdownVisible }">▼</span>
+      
+      <!-- 支持多种箭头类型 -->
+      <template v-if="arrowType === 'css'" class="arrow-css">
+        <span class="arrow-css" :class="{ rotated: dropdownVisible }"></span>
+      </template>
+      <template v-else>
+        <span class="arrow" :class="{ rotated: dropdownVisible }">▼</span>
+      </template>
+      
       <span v-if="clearable && selectedValue && !multiple" class="clear-btn" @click.stop="clearAll">×</span>
       <div v-if="loading" class="loading-spinner"></div>
     </div>
@@ -42,10 +50,19 @@ import '../style/treeSelect.scss'
 import { treeSelectProps } from './treeSelect'
 import { useStyleComputed } from '../../../hooks/useStyleComputed'
 
+// const extendedTreeSelectProps = {
+//   ...treeSelectProps,
+//   arrowType: {
+//     type: String,
+//     default: 'unicode',
+//     validator: (value: string) => ['unicode', 'css'].includes(value)
+//   }
+// }
+
 const props = defineProps(treeSelectProps)
 const emit = defineEmits<{
-  'update:modelValue': [value: typeof props.modelValue]
-  change: [value: typeof props.modelValue]
+  'update:modelValue': [value: any]
+  change: [value: any]
   clear: []
   'check-change': [data: { checkedKeys: (string | number)[]; checkedNodes: TreeNodes[] }]
 }>()
@@ -57,7 +74,7 @@ const dropdownVisible = ref(false)
 const filterText = ref('')
 const inputWidth = ref(200)
 const selectedKeys = ref<(string | number)[]>([])
-const checkedKeys = ref<(string | number)[]>(props.defaultCheckedKeys)
+const checkedKeys = ref<(string | number)[]>(Array.isArray(props.defaultCheckedKeys) ? props.defaultCheckedKeys : [])
 
 // 计算
 const internalProps = computed(() => props.props)
@@ -72,14 +89,9 @@ const selectStyle = useStyleComputed(props, {
     textColor: '--tree-text-color',
     backgroundColor: '--tree-bg-color',
     activeColor: '--tree-active-color',
-    inputHeight: '--tree-input-height'
-  },
-  // getValue: (prop, val) => {
-  //   if (prop === 'height' || prop === 'inputHeight') {
-  //     if (typeof val === 'number') return val + 'px'
-  //   }
-  //   return val
-  // }
+    inputHeight: '--tree-input-height',
+    arrowColor: '--tree-arrow-color'
+  }
 })
 
 const selectedValue = computed({

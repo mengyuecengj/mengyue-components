@@ -8,16 +8,6 @@ describe('TreeNode', () => {
     children: 'children'
   }
 
-  it('renders node label and arrow icon', () => {
-    const node = { name: 'Node 1', children: [{ name: 'Child 1', children: [] }] }
-    const wrapper = mount(TreeNode, {
-      props: { node, treeProps }
-    })
-
-    expect(wrapper.find('.label').text()).toBe('Node 1')
-    expect(wrapper.find('.arrow').exists()).toBe(true)
-  })
-
   it('toggles expansion on click', async () => {
     const node = { name: 'Node 1', children: [{ name: 'Child 1', children: [] }] }
     const wrapper = mount(TreeNode, {

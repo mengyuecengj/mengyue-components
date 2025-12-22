@@ -1,24 +1,27 @@
 // import { PaginationProps } from "./pagination";
 import { computed } from 'vue'
 export interface PaginationProps {
-    total: number
-    pageSize: number
-    maxPagerCount: number
-    currentPage: number
+    total: number | string
+    pageSize: number | string
+    maxPagerCount: number | string  // 修改此处以匹配 props 定义
+    currentPage: number | string    // 修改此处以匹配 props 定义
     prneColor: string
     prneTextColor: string
     itemColor: string
     itemTextColor: string
-    activeItemColor?: string     // 添加选中项背景色
-    activeItemTextColor?: string // 添加选中项文字颜色
+    activeItemColor?: string
+    activeItemTextColor?: string
 }
 
 export function usePaginationComputed(props: PaginationProps, emit: (event: "update:current-page" | "update:page-size" | "change", ...args: any[]) => void) {
-    const totalPages = computed(() => Math.ceil(props.total / props.pageSize));
+    const totalPages = computed(() => Math.ceil(Number(props.total) / Number(props.pageSize)));
     const pagerList = computed(() => {
         const pages = [];
-        const maxPagerCount = props.maxPagerCount;
+        // 将 maxPagerCount 转换为数字类型
+        const maxPagerCount = Number(props.maxPagerCount);
         const half = Math.floor(maxPagerCount / 2);
+        // 将 currentPage 转换为数字类型
+        const currentPage = Number(props.currentPage);
         let start, end;
 
         if (totalPages.value <= maxPagerCount) {
@@ -27,15 +30,15 @@ export function usePaginationComputed(props: PaginationProps, emit: (event: "upd
             end = totalPages.value;
         } else {
             // 显示部分页码 + 省略号
-            if (props.currentPage <= half) {
+            if (currentPage <= half) {
                 start = 1;
                 end = maxPagerCount - 2;
-            } else if (props.currentPage >= totalPages.value - half) {
+            } else if (currentPage >= totalPages.value - half) {
                 start = totalPages.value - maxPagerCount + 3;
                 end = totalPages.value;
             } else {
-                start = props.currentPage - half + 1;
-                end = props.currentPage + half - 1;
+                start = currentPage - half + 1;
+                end = currentPage + half - 1;
             }
         }
 
@@ -65,7 +68,7 @@ export function usePaginationComputed(props: PaginationProps, emit: (event: "upd
     // backgroundColor
     const itemPageStyle = computed(() => {
         return {
-            backgroundColor: props.itemColor,  // 未选中项也使用 itemColor
+            backgroundColor: props.itemColor,
             color: props.itemTextColor,
         }
     })
@@ -73,7 +76,7 @@ export function usePaginationComputed(props: PaginationProps, emit: (event: "upd
     // 选中项样式（可以和未选中项相同或不同）
     const activeItemStyle = computed(() => {
         return {
-            backgroundColor: props.activeItemColor || props.itemColor,  // 优先使用选中项颜色
+            backgroundColor: props.activeItemColor || props.itemColor,
             color: props.activeItemTextColor || props.itemTextColor,
         }
     })

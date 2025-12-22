@@ -17,9 +17,9 @@ export const indexDesign = [
             { text: 'useCheckComputed', link: '/design/hooks/useCheck' },
             { text: 'useColorComputed', link: '/design/hooks/useColor' },
             { text: 'useOverallComputed', link: '/design/hooks/useOverall' },
-            { text: 'useSelectComputed', link: '/design/hooks/useScroll' },
+            { text: 'useSelectComputed', link: '/design/hooks/useSelect' },
             { text: 'useColorUitls', link: '/design/hooks/useColorUtils' },
-            { text: 'useScrollCommon', link: '/design/hooks/useScrollCommon' },
+            { text: 'useScroll', link: '/design/hooks/useScroll' },
         ],
     },
     {
@@ -55,8 +55,8 @@ export const indexDesign = [
                 items: [
                     { text: 'scroll滚动条(全局)', link: '/design/components/distribution/scroll' },
                     { text: 'scrollbar滚动条(局部)', link: '/design/components/distribution/scrollbar' },
-                    { text: 'container布局', link: '/design/components/roll/container' },
-                    { text: 'layout布局', link: '/design/components/roll/layout' },
+                    { text: 'container布局', link: '/design/components/distribution/container' },
+                    { text: 'layout布局', link: '/design/components/distribution/layout' },
                 ],
             },
             {
@@ -64,18 +64,18 @@ export const indexDesign = [
                 collapsible: true, // 允许折叠
                 collapsed: false,  // 默认展开
                 items: [
-                    { text: 'input输入框', link: '/desgin/components/form/input' },
-                    { text: 'radio单选框', link: '/desgin/components/form/radio' },
-                    { text: 'checkbox复选框', link: '/desgin/components/form/checkbox' },
-                    { text: 'switch开关', link: '/desgin/components/form/switch' },
-                    { text: 'rate评分', link: '/desgin/components/form/rate' },
-                    { text: 'pickColor颜色选择', link: '/desgin/components/form/pickColor' },
-                    { text: 'select选择器', link: '/desgin/components/form/select' },
-                    { text: 'select日期选择器', link: '/desgin/components/form/selectDate' },
-                    { text: 'select时间选择器', link: '/desgin/components/form/selectTime' },
-                    { text: 'selectCascader级联', link: '/desgin/components/form/selectCascader' },
-                    { text: 'slidebar滑块', link: '/desgin/components/form/sidebar' },
-                    { text: 'form表单', link: '/desgin/components/form/form' },
+                    { text: 'input输入框', link: '/design/components/form/input' },
+                    { text: 'radio单选框', link: '/design/components/form/radio' },
+                    { text: 'checkbox复选框', link: '/design/components/form/checkbox' },
+                    { text: 'switch开关', link: '/design/components/form/switch' },
+                    { text: 'rate评分', link: '/design/components/form/rate' },
+                    { text: 'pickColor颜色选择', link: '/design/components/form/pickColor' },
+                    { text: 'select选择器', link: '/design/components/form/select' },
+                    { text: 'select日期选择器', link: '/design/components/form/selectDate' },
+                    { text: 'select时间选择器', link: '/design/components/form/selectTime' },
+                    { text: 'selectCascader级联', link: '/design/components/form/selectCascader' },
+                    { text: 'slidebar滑块', link: '/design/components/form/sidebar' },
+                    { text: 'form表单', link: '/design/components/form/form' },
                 ],
             },
             {
@@ -83,13 +83,13 @@ export const indexDesign = [
                 collapsible: true, // 允许折叠
                 collapsed: false,  // 默认展开
                 items: [
-                    { text: 'badge勋章', link: '/desgin/components/feedback/badge' },
-                    { text: 'collapse折叠面板', link: '/desgin/components/feedback/collapse' },
-                    { text: 'progress进度条', link: '/desgin/components/feedback/progress' },
-                    { text: 'result结果', link: '/desgin/components/feedback/result' },
-                    { text: 'skeleton骨架屏', link: '/desgin/components/feedback/skeleton' },
-                    { text: 'dialog对话框', link: '/desgin/components/feedback/dialog' },
-                    { text: 'message消息', link: '/desgin/components/feedback/message' }
+                    { text: 'badge勋章', link: '/design/components/feedback/badge' },
+                    { text: 'collapse折叠面板', link: '/design/components/feedback/collapse' },
+                    { text: 'progress进度条', link: '/design/components/feedback/progress' },
+                    { text: 'result结果', link: '/design/components/feedback/result' },
+                    { text: 'skeleton骨架屏', link: '/design/components/feedback/skeleton' },
+                    { text: 'dialog对话框', link: '/design/components/feedback/dialog' },
+                    { text: 'message消息', link: '/design/components/feedback/message' }
                 ],
             },
             {
@@ -97,22 +97,22 @@ export const indexDesign = [
                 collapsible: true, // 允许折叠
                 collapsed: false,  // 默认展开
                 items: [
-                    { text: 'pagination分页器', link: '/desgin/components/data/pagination' },
-                    { text: 'table表格', link: '/desgin/components/data/table' },
-                    { text: 'timeline时间轴', link: '/desgin/components/data/timeline' },
-                    { text: 'tree树形菜单', link: '/desgin/components/data/tree' },
+                    { text: 'pagination分页器', link: '/design/components/data/pagination' },
+                    { text: 'table表格', link: '/design/components/data/table' },
+                    { text: 'timeline时间轴', link: '/design/components/data/timeline' },
+                    { text: 'tree树形菜单', link: '/design/components/data/tree' },
                 ],
-            },
+            },  
             {
                 text: '导航组件',
                 collapsible: true, // 允许折叠
                 collapsed: false,  // 默认展开
                 items: [
-                    { text: 'backtop回到顶部', link: '/desgin/components/navigation/backtop' },
-                    { text: 'breadcrumb导航', link: '/desgin/components/navigation/breadcrumb' },
-                    { text: 'dropdown下拉框', link: '/desgin/components/navigation/dropdown' },
-                    { text: 'menu菜单', link: '/desgin/components/navigation/menu' },
-                    { text: 'step步骤条', link: '/desgin/components/navigation/step' },
+                    { text: 'backtop回到顶部', link: '/design/components/navigation/backtop' },
+                    { text: 'breadcrumb导航', link: '/design/components/navigation/breadcrumb' },
+                    { text: 'dropdown下拉框', link: '/design/components/navigation/dropdown' },
+                    { text: 'menu菜单', link: '/design/components/navigation/menu' },
+                    { text: 'step步骤条', link: '/design/components/navigation/step' },
                 ],
             },
             {
@@ -120,10 +120,10 @@ export const indexDesign = [
                 collapsible: true, // 允许折叠
                 collapsed: false,  // 默认展开
                 items: [
-                    { text: 'transfer穿梭框', link: '/desgin/components/other/transfer' },
-                    { text: 'upload上传', link: '/desgin/components/other/upload' },
-                    { text: 'drawer抽屉', link: '/desgin/components/other/drawer' },
-                    { text: 'card卡片', link: '/desgin/components/other/card' }
+                    { text: 'transfer穿梭框', link: '/design/components/other/transfer' },
+                    { text: 'upload上传', link: '/design/components/other/upload' },
+                    { text: 'drawer抽屉', link: '/design/components/other/drawer' },
+                    { text: 'card卡片', link: '/design/components/other/card' }
                 ],
             },
         ],

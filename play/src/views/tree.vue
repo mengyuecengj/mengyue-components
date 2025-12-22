@@ -45,13 +45,8 @@
           <button @click="toggleCheckStrictly">切换严格模式: {{ checkStrictly ? '严格' : '联动' }}</button>
         </div>
         <div class="test-component">
-          <MYTree 
-            :data="basicData"
-            :props="{ label: 'name', children: 'children', value: 'id' }"
-            :showCheckbox="true"
-            :checkedKeys="checkedNodes"
-            :checkStrictly="checkStrictly"
-            @check-change="handleCheckChange"
+          <MYTree :data="basicData" :props="{ label: 'name', children: 'children', value: 'id' }" :showCheckbox="true"
+            :checkedKeys="checkedNodes" :checkStrictly="checkStrictly" @check-change="handleCheckChange"
             style="max-width: 600px; border: 1px solid #e1e1e1; padding: 10px;" />
         </div>
       </div>

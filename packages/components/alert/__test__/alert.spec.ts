@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import MYAlert from './alert.vue';
+import MYAlert from '../src/alert.vue';
 import { describe, expect, it } from 'vitest';
 
 describe('MYAlert', () => {

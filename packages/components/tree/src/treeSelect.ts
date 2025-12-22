@@ -105,5 +105,13 @@ export const treeSelectProps = {
   inputHeight: {
     type: [String, Number] as PropType<string | number>,
     default: '32px'
+  },
+  arrowType: {
+    type: String as PropType<'unicode' | 'css'>,
+    default: 'unicode'
+  },
+  arrowColor: {
+    type: String,
+    default: ''
   }
 }

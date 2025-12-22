@@ -20,16 +20,16 @@ interface ClassConfig<T extends Record<string, unknown>> {
 export function useClassComputed<T extends Record<string, unknown>>(
   config: ClassConfig<T>
 ): ComputedRef<string[]> {
-  return computed(() => {
-    const classes = [config.baseClass]; // 确保基类始终包含
+  return computed<string[]>(() => {
+    const classes = [config.baseClass];
 
     // based on attributes class name
     if (config.propClasses) {
       Object.entries(config.propClasses).forEach(([key, value]) => {
-        if (value) {
+        if (value !== undefined && value !== null && value !== '') {
           const className = config.classNameFormatter
             ? config.classNameFormatter(config.baseClass, key, value)
-            : `${config.baseClass}--${value}`;
+            : `${config.baseClass}--${String(value)}`;
           classes.push(className);
         }
       });

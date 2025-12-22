@@ -22,7 +22,7 @@ const props = defineProps(progressProps)
 
 // 验证 percentage 在 0-100 之间
 const normalizedPercentage = computed(() =>
-  Math.min(100, Math.max(0, props.percentage))
+  Math.min(100, Math.max(0, Number(props.percentage)))
 )
 
 // 根据 status 动态设置类名

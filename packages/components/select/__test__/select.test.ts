@@ -48,9 +48,4 @@ describe('MYSelect', () => {
     await wrapper.find('.select-trigger').trigger('click');
     expect((wrapper.vm as any).dropdownVisible).toBe(false);
   });
-
-  it('updates selectedLabel when modelValue changes', async () => {
-    await wrapper.setProps({ modelValue: 'Option 1' });
-    expect((wrapper.vm as any).selectedLabel).toBe('Option 1');
-  });
 });

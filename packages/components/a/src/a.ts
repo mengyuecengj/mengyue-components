@@ -1,4 +1,4 @@
-import { PropType, ExtractPropTypes } from "vue";
+import type { PropType, ExtractPropTypes } from "vue";
 
 // 合并相关属性
 const appearanceProps = {

@@ -18,7 +18,7 @@ export interface ColorComputedProps {
 }
 
 export function useColorComputed(props: ColorComputedProps) {
-  const { toRGBA } = useColorUtils() // 只使用 SSR 安全的 toRGBA
+  const { toRGBA } = useColorUtils()
   
   return computed<CSSProperties>(() => {
     const { colorBg, colorText, colorBorder, plain, isHovered, isActive, disabled, type } = props;
