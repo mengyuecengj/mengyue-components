@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./chunks/framework.PAn8Jj8p.js";const u=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"guide/useDialog.md","filePath":"guide/useDialog.md"}'),o={name:"guide/useDialog.md"};function s(r,i,c,n,d,l){return a(),t("div")}const _=e(o,[["render",s]]);export{u as __pageData,_ as default};
