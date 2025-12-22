@@ -29,7 +29,6 @@ export const indexComponents = [
         text: '表单组件',
         items: [
             { text: 'input输入框', link: '/components/FormInput' },
-            // { text: 'inputNumber数字输入框', link: '/components/FormInputNumber'},
             { text: 'radio单选框', link: '/components/FormRadio' },
             { text: 'checkbox复选框', link: '/components/FormCheckbox' },
             { text: 'switch开关', link: '/components/FormSwitch' },

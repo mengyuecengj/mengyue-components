@@ -1,8 +1,8 @@
 export const indexVersion = [
     {
         text: '早期测试版本',
-        collapsible: true, // 允许折叠
-        collapsed: false,  // 默认展开
+        collapsible: true,
+        collapsed: false,
         items: [
             { text: '0.0.1', link: '/version/0.0.1' },
             { text: '0.0.15', link: '/version/0.0.15' },
@@ -13,8 +13,8 @@ export const indexVersion = [
     },
     {
         text: '测试版本演进',
-        collapsible: true, // 允许折叠
-        collapsed: true,  // 默认展开
+        collapsible: true,
+        collapsed: false,
         items: [
             { text: '0.0.56', link: '/version/0.0.56' },
             { text: '0.0.59', link: '/version/0.0.59' },

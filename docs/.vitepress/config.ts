@@ -1,8 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { indexComponents } from '../components/Aindex'
-import { indexGuide } from '../guide/Aindex'
 import { indexDesign } from '../design/Aindex'
-import { indexDevelopment } from '../development/Aindex'
 import { indexVersion } from '../version/Aindex'
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 import { componentPreview, containerPreview } from '@vitepress-demo-preview/plugin';
@@ -59,9 +57,7 @@ export default defineConfig({
 
     sidebar: {
       '/components/': indexComponents,
-      '/guide/': indexGuide,
       '/design/': indexDesign,
-      '/development/': indexDevelopment,
       '/about/': [
         {
           items: [
@@ -76,7 +72,7 @@ export default defineConfig({
       copyright: 'Copyright © 2024-present Your Name & Contributors'
     },
     socialLinks: [
-      { 
+      {
         icon: 'github', link: 'https://github.com/mengyuecengj/mengyue-components',
       },
       {
