@@ -47,6 +47,3 @@ useCheckComputed 将原本分散在 Radio 和 Checkbox 中的复杂状态管理�
 代码极简（组件逻辑不到 30 行）
 易于维护与扩展（新增功能只需在此文件增强）
 与组件库其他系统（如 Form、Class/Style Hooks）完美协同
-
-这正是我们追求的逻辑集中、组件纯粹的体现：让 Radio 与 Checkbox 不再是“堆砌逻辑的容器”，而是优雅的结构声明。
-用最专注的 Hooks，构建最可靠的选择交互。

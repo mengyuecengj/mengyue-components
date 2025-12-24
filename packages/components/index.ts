@@ -41,10 +41,7 @@ import { MYMessage, message, MessagePlugin } from './message'
 import Icons from '../icons/src'
 import { MYDrawer } from './drawer'
 import { MYCard } from './card'
-import { MYInputNumber } from './inputNumber'
 import { MYUpload } from './upload'
-// export { default as ViewHide } from '../icons/src/components/viewHide.vue'
-// export { default as Aim } from '../icons/src/components/Aim.vue'
 
 // 组件映射，显式定义 name
 const components = {
@@ -113,7 +110,6 @@ const components = {
   MYMessage: { component: MYMessage, name: 'MYMessage' },
   MYDrawer: { component: MYDrawer, name: 'MYDrawer' },
   MYCard: { component: MYCard, name: 'MYCard' },
-  MYInputNumber: { component: MYInputNumber, name: 'MYInputNumber' },
   MYUpload: { component: MYUpload, name: 'MYUpload' }
 };
 
@@ -216,6 +212,5 @@ export {
   MessagePlugin,
   MYDrawer,
   MYCard,
-  MYInputNumber,
   MYUpload
 };

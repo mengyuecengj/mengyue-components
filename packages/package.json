@@ -1,6 +1,6 @@
 {
   "name": "mengyue-plus",
-  "version": "0.0.66",
+  "version": "0.0.67",
   "type": "module",
   "files": [
     "dist"
@@ -27,7 +27,7 @@
   "devDependencies": {
     "@microsoft/api-extractor": "^7.52.9",
     "@vitejs/plugin-vue": "^5.1.4",
-    "cross-env": "^10.0.0",
+    "cross-env": "^10.1.0",
     "rollup-plugin-visualizer": "^6.0.5",
     "sass": "^1.89.2",
     "sass-loader": "^13.0.0",

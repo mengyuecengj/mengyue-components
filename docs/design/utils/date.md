@@ -73,6 +73,3 @@ const { h, m } = parseTimeStr('14:30'); // { h: 14, m: 30 }
 为后续国际化（i18n）预留切换空间（只需替换 render 系列函数）
 与 DatePicker、TimePicker、Timeline、Form 等组件无缝协作，无需额外适配
 极大提升代码可读性：renderDate(iso) + ' ' + toTimeStr(h, m) 比手动拼接更具语义
-
-它们体现了我们对“细节统一”的极致追求：即使是最常见的时间展示与解析，也值得用最专注的工具去规范与守护。
-用最统一的时间处理，呈现最清晰的日期与时刻表达。
