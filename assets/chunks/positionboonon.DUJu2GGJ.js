@@ -1,0 +1,3 @@
+import{_ as e}from"./IconBase.vue_vue_type_script_setup_true_lang.DoIAwF94.js";import{d as t,o as s,b as a,w as n,j as c}from"./framework.BzrxsKI0.js";const i=["fill"],f=`
+M256 0c-111 0-201 90-201 201 0 68 35 128 87 165 47 34 58 42 74 73 13 25 35 69 35 69 1 2 3 3 5 3 2 0 4-1 5-3 0 0 21-44 35-69 17-32 27-40 74-73 52-37 87-97 87-165C457 90 367 0 256 0zm0 335c-74 0-135-60-135-135 0-74 60-135 135-135 74 0 135 60 135 135 0 74-60 135-135 135z
+`,u=t({name:"MYPositionBoonon",__name:"positionboonon",props:{size:{default:24},color:{default:"#fff"},offsetX:{},offsetY:{}},setup(o){return(l,r)=>(s(),a(e,{size:o.size,color:o.color,viewBox:"0 0 512 512"},{default:n(()=>[c("path",{fill:o.color,d:f},null,8,i)]),_:1},8,["size","color"]))}});export{u as default};
