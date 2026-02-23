@@ -8,6 +8,8 @@ Hey！👋
 
 github: https://github.com/mengyuecengj/mengyue-components
 <br />
+gitee: https://gitee.com/q62/mengyue-components
+<br />
 文档: https://mengyuecengj.github.io/mengyue-components/
 
 ## 他可以做到
@@ -74,6 +76,8 @@ Tired of reinventing the wheel in every project? Does coding buttons, layouts, a
 Say hello to **`mengyue-plus`**! 
 
 github: https://github.com/mengyuecengj/mengyue-components
+<br />
+gitee: https://gitee.com/q62/mengyue-components
 <br />
 docs: https://mengyuecengj.github.io/mengyue-components/
 
