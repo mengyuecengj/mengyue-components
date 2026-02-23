@@ -1,68 +1,3 @@
-# [mengyue-plus]: Your Handy Helper for Smoother Frontend Development 🛠️✨
-
-Hey there! 👋
-
-Tired of reinventing the wheel in every project? Does coding buttons, layouts, and forms feel like déjà vu? Starting from scratch each time?
-
-Say hello to **`mengyue-plus`**! 
-
-github: https://github.com/mengyuecengj/mengyue-components
-<br />
-docs: https://mengyuecengj.github.io/mengyue-components/
-
-## What It Does
-*   **Save Time & Effort:** Common components? Just grab 'em! Whether it's basic buttons/inputs or complex tables/date pickers - we've got you covered. Write less code, build faster.
-*   **Consistent & Reliable:** Tame inconsistent coding styles and rainbow-colored UIs. Achieve visual harmony across projects.
-*   **Focus on What Matters:** Spend time crafting awesome business logic - not fighting with dropdown styles.
-*   **Thoughtfully Crafted:** We don't just pile up components! We focus on making them:
-    *   **Speedy 🚀:** Performance-optimized? Absolutely!
-    *   **Flexible 🧩:** Highly customizable for your unique needs.
-    *   **Clear Docs 📖:** Coming soon! (Human-readable, we promise - feedback welcome!)
-    *   **Good-Looking 🎨:** Sleek out-of-the-box design, fully themeable.
-
-## What's Inside?
-
-Imagine your daily dev needs - we probably have it! For example:
-
-*   **Essentials:** `Button`, `Input`, `Checkbox`, `Radio`, `Select`, `Switch`...
-*   **Layout Helpers:** `Layout`, `Container`...
-*   **Data Display:** `Pagination`, `Collapse`, `Badge`, `Tooltip`...
-*   **...And Growing!** `More components in development...`
-
-## Perfect For
-
-*   🧑‍💻 You - if you want to prototype fast without boilerplate code
-*   👨‍👩‍👧‍👦 Teams - tired of fragmented UIs and craving consistency
-*   ⚡ Efficiency Seekers - who want to focus on innovation, not rebuilding basics
-*   🛠️ Modern Vue 3 stacks (Vite + Vue 3 + TypeScript)
-
-## Why Choose Us?
-
-*   **Clean & Practical:** Simple code, sensible design, docs that speak human.
-*   **Always Evolving:** Continuously refined based on community insights (contact coming soon!).
-*   **Future-Proof:** Keeping up with frontend trends and expanding components.
-
-We are currently optimizing the volume of each component and have completed most of the optimizations
-
-## Get Started
-
-```bash
-# Install with your favorite package manager
-pnpm install mengyue-plus
-# or
-npm install mengyue-plus
-```
-```js
-// In your main entry file
-import MengyuePlus from 'mengyue-plus'
-import 'mengyue-plus/style.css'
-
-const app = createApp(App)
-app.use(MengyuePlus)
-app.mount('#app')
-```
-
-
 # [mengyue-plus]：让前端开发更「方便」的小帮手 🛠️✨
 
 Hey！👋
@@ -126,4 +61,69 @@ import 'mengyue-plus/style.css'
 const app = createApp(App);
 app.use(MengyuePlus)
 app.mount('#app');
+```
+
+
+# [mengyue-plus]: Your Handy Helper for Smoother Frontend Development 🛠️✨
+
+Hey there! 👋
+
+Tired of reinventing the wheel in every project? Does coding buttons, layouts, and forms feel like déjà vu? Starting from scratch each time?
+
+Say hello to **`mengyue-plus`**! 
+
+github: https://github.com/mengyuecengj/mengyue-components
+<br />
+docs: https://mengyuecengj.github.io/mengyue-components/
+
+## What It Does
+*   **Save Time & Effort:** Common components? Just grab 'em! Whether it's basic buttons/inputs or complex tables/date pickers - we've got you covered. Write less code, build faster.
+*   **Consistent & Reliable:** Tame inconsistent coding styles and rainbow-colored UIs. Achieve visual harmony across projects.
+*   **Focus on What Matters:** Spend time crafting awesome business logic - not fighting with dropdown styles.
+*   **Thoughtfully Crafted:** We don't just pile up components! We focus on making them:
+    *   **Speedy 🚀:** Performance-optimized? Absolutely!
+    *   **Flexible 🧩:** Highly customizable for your unique needs.
+    *   **Clear Docs 📖:** Coming soon! (Human-readable, we promise - feedback welcome!)
+    *   **Good-Looking 🎨:** Sleek out-of-the-box design, fully themeable.
+
+## What's Inside?
+
+Imagine your daily dev needs - we probably have it! For example:
+
+*   **Essentials:** `Button`, `Input`, `Checkbox`, `Radio`, `Select`, `Switch`...
+*   **Layout Helpers:** `Layout`, `Container`...
+*   **Data Display:** `Pagination`, `Collapse`, `Badge`, `Tooltip`...
+*   **...And Growing!** `More components in development...`
+
+## Perfect For
+
+*   🧑‍💻 You - if you want to prototype fast without boilerplate code
+*   👨‍👩‍👧‍👦 Teams - tired of fragmented UIs and craving consistency
+*   ⚡ Efficiency Seekers - who want to focus on innovation, not rebuilding basics
+*   🛠️ Modern Vue 3 stacks (Vite + Vue 3 + TypeScript)
+
+## Why Choose Us?
+
+*   **Clean & Practical:** Simple code, sensible design, docs that speak human.
+*   **Always Evolving:** Continuously refined based on community insights (contact coming soon!).
+*   **Future-Proof:** Keeping up with frontend trends and expanding components.
+
+We are currently optimizing the volume of each component and have completed most of the optimizations
+
+## Get Started
+
+```bash
+# Install with your favorite package manager
+pnpm install mengyue-plus
+# or
+npm install mengyue-plus
+```
+```js
+// In your main entry file
+import MengyuePlus from 'mengyue-plus'
+import 'mengyue-plus/style.css'
+
+const app = createApp(App)
+app.use(MengyuePlus)
+app.mount('#app')
 ```
