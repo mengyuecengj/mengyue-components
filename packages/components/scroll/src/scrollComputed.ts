@@ -1,7 +1,7 @@
-import { ComputedRef, CSSProperties } from 'vue';
+import type { ComputedRef, CSSProperties } from 'vue';
 import { useClassComputed } from '../../../hooks/useClassComputed';
 import { useScrollStyles } from '../../../hooks/useScrollCommon'
-import { ScrollProps } from './type'
+import type { ScrollProps } from './type'
 
 export function useScrollComputed(props: ScrollProps): {
   scrollClass: ComputedRef<string[]>;

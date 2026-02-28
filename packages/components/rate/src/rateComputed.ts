@@ -5,9 +5,15 @@ import { rateProps } from './rate'
 
 type RateProps = ExtractPropTypes<typeof rateProps>
 
+// 定义 emit 的类型
+type RateEmits = {
+  (e: 'update:modelValue', value: number): void
+  (e: 'change', value: number): void
+}
+
 export function useRateLogic(
   props: RateProps,
-  emit: (...args: any[]) => void // 宽泛类型，避免类型冲突
+  emit: RateEmits
 ) {
   const hoverValue = ref(0)
   const currentValue = ref(props.modelValue)

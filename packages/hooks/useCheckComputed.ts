@@ -132,7 +132,7 @@ export function useInputClasses(isChecked: Ref<boolean>, isDisabled: Ref<boolean
  */
 export function useInputChange<T extends string | number | boolean>(
   props: { disabled?: boolean; value?: T; modelValue?: T | T[] },
-  emit: (event: 'update:modelValue' | 'change', ...args: any[]) => void,
+  emit: (event: 'update:modelValue' | 'change', ...args: unknown[]) => void,
   groupContext: GroupContext<T> | GroupContext<T[]> | null,
   isArray: boolean = false
 ) {

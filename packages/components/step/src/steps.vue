@@ -25,17 +25,6 @@ const props = defineProps({
 })
 
 const stepCount = ref(0)
-// 计算子步骤数量
-// const slots = useSlots()
-// const stepCount = computed(() => {
-//   const children = slots.default?.() || []
-//   return children.filter((child: VNode) => {
-//     if (typeof child.type === 'object' && child.type !== null) {
-//       return 'name' in child.type && child.type.name === 'MYStep'
-//     }
-//     return false
-//   }).length
-// })
 
 const stepsContext = reactive({
   active: props.active,

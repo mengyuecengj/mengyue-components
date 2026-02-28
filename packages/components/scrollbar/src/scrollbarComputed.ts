@@ -25,14 +25,14 @@ export function useScrollbarComputed(props: ScrollbarProps): {
     propToStyleMap: {
       height: 'height',
       Maxheight: 'maxHeight',
-      ScrollWidth: 'scrollWidth',
+      scrollWidth: 'scrollWidth',
     },
     cssVariables: useScrollVariables({
       thumbColor: props.thumbColor,
       thumbHoverColor: props.thumbHoverColor,
       trackColor: props.trackColor,
-      scrollWidth: props.ScrollWidth,
-      scrollHeight: props.ScrollWidth,
+      scrollWidth: props.scrollWidth,
+      scrollHeight: props.scrollWidth,
     }),
   });
 

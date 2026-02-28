@@ -1,3 +1,5 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .color-picker {
-  padding: 6px;
+  padding: var(--space-2_5);
 }

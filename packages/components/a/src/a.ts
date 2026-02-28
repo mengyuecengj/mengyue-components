@@ -17,7 +17,7 @@ const behaviorProps = {
         type: Boolean,
         default: false
     },
-    underline: {
+    underLine: {
         type: Boolean,
         default: false
     }

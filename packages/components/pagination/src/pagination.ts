@@ -1,13 +1,16 @@
+// pagination.ts
+
 export const paginationProps = {
     total: {
         type: [Number, String],
         default: 0
     },
+    
     pageSize: {
         type: [Number, String],
         default: 10
     },
-    currentPage: {
+    modelValue: {
         type: [Number, String],
         default: 1
     },
@@ -39,11 +42,11 @@ export const paginationProps = {
         type: Boolean,
         default: false
     },
-    prneColor: {
+    prevColor: {
         type: String,
         default: ''
     },
-    prneTextColor: {
+    prevTextColor: {
         type: String,
         default: ''
     },

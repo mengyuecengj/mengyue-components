@@ -1,21 +1,23 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--color-overlay-bg); /* rgba(0,0,0,0.5) → Token */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000;
+  z-index: 2000; /* 保留：高于 fixed (1000) */
 
   .my-dialog {
-    background: #fff;
-    border-radius: 4px;
+    background: var(--color-white); /* #fff → Token */
+    border-radius: var(--radius-sm); /* 4px → Token */
     overflow: auto;
-    min-width: 320px;
+    min-width: 320px; /* 保留：布局宽度 */
 
     .my-dialog__header {
-      padding: 12px;
-      font-weight: bold;
+      padding: 12px; /* 保留：布局内边距 */
+      font-weight: bold; /* 保留：字重（Token 无 700） */
       display: flex;
       justify-content: space-between;
     }
@@ -23,16 +25,16 @@
     .my-dialog__close {
       background: none;
       border: none;
-      font-size: 20px;
+      font-size: var(--font-size-dialog-close); /* 20px → Token */
       cursor: pointer;
     }
 
     .my-dialog__body {
-      padding: 16px;
+      padding: 16px; /* 保留：布局内边距 */
     }
 
     .my-dialog__footer {
-      padding: 12px;
+      padding: 12px; /* 保留：布局内边距 */
       text-align: right;
     }
   }
@@ -44,7 +46,7 @@
 
 .dialog-fade-enter-active,
 .dialog-fade-leave-active {
-  transition: opacity 0.2s ease;
+  transition: opacity var(--motion-fast) ease; /* 0.2s → Token */
 }
 
 .dialog-fade-enter-from,

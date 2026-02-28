@@ -113,16 +113,6 @@ const components = {
   MYUpload: { component: MYUpload, name: 'MYUpload' }
 };
 
-// interface ComponentWithName {
-//   name?: string;
-//   __name?: string;
-// }
-
-// interface ComponentEntry {
-//   component: any; // 可以根据具体类型调整
-//   name: string;
-// }
-
 // 安装方法
 const install: Plugin['install'] = (app: App) => {
   Object.values(components).forEach(({ component, name }) => {
@@ -133,8 +123,8 @@ const install: Plugin['install'] = (app: App) => {
   // 安装 message 插件
   app.use(MessagePlugin)
 
-  if (Icons && typeof (Icons as any).install === 'function') {
-    app.use(Icons)
+  if (Icons && typeof (Icons as Plugin).install === 'function') {
+    app.use(Icons);
   }
 }
 

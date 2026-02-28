@@ -20,7 +20,7 @@ export function useTextComputed(props: TextProps): {
 
   const textStyle = useStyleComputed<TextProps>(props, {
     propToStyleMap: {
-      Tecolor: 'color',
+      textColor: 'color',
       size: 'fontSize',
     },
     fontSizeProp: 'size',

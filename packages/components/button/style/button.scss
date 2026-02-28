@@ -1,209 +1,209 @@
-@use 'sass:map';
-@use 'sass:string';
-@use '../../../theme-chalk/src/common/var.scss' as *;
+@use '../../../theme-chalk/src/common/index.scss' as *;
 
-/* 基础变量（你原来的） */
-:root {
-  --btn-color-default: #ffffff;
-  --btn-color-default-hover: #f0f0f0;
-  --btn-color-primary: #409eff;
-  --btn-color-primary-hover: #66b1ff;
-  --btn-color-success: #67c23a;
-  --btn-color-success-hover: #85ce61;
-  --btn-color-warning: #e6a23c;
-  --btn-color-warning-hover: #ebb563;
-  --btn-color-danger: #f56c6c;
-  --btn-color-danger-hover: #f78989;
-  --btn-color-info: #909399;
-  --btn-color-info-hover: #a6a9ad;
-}
-
-/* ========== 基础样式 ========== */
+/* 基础样式 */
 .my-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;
-  border-radius: var(--btn-radius);
+  border-radius: var(--radius-btn);
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color var(--btn-transition), filter var(--btn-transition);
+  transition: background-color var(--motion-base), filter var(--motion-base);
 }
 
-/* ========== 普通模式 base/hover/active ========== */
-@each $type, $map in $btn-colors {
-  $key: string.unquote("#{$type}");
-  $base-color: map.get($map, base);
+/* 普通模式 - 使用语义色 */
+.my-btn--primary:not(.my-btn--plain) {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
 
-  .my-btn--#{$key}:not(.my-btn--plain) {
-    background-color: map.get($map, base);
-    color: if($key =='default', inherit, #fff);
-    border: if($key =='default', 2px solid var(--btn-color-primary), none);
+  &:hover {
+    background-color: var(--color-primary-hover);
+  }
 
-    &:hover {
-      background-color: map.get($map, hover);
-    }
-
-    &:active {
-      background-color: map.get($map, active);
-    }
+  &:active {
+    background-color: var(--color-primary-active);
   }
 }
 
-/* default 非 plain 的白边白字交互（保留你原有设计） */
-.my-btn--default:not(.my-btn--plain) {
-  background-color: transparent;
-  color: #fff;
-  border: 1px solid #fff;
+.my-btn--success:not(.my-btn--plain) {
+  background-color: var(--color-success);
+  color: var(--color-white);
+  border: none;
 
   &:hover,
   &:active {
-    color: #409EFF;
-    border-color: #409EFF;
-    background-color: rgba(18, 96, 232, 0.2);
-    /* #12888C 0.2透明度 */
+    background-color: var(--color-success);
   }
 }
 
-// plain
+.my-btn--warning:not(.my-btn--plain) {
+  background-color: var(--color-warning);
+  color: var(--color-white);
+  border: none;
+
+  &:hover,
+  &:active {
+    background-color: var(--color-warning);
+  }
+}
+
+.my-btn--danger:not(.my-btn--plain) {
+  background-color: var(--color-danger);
+  color: var(--color-white);
+  border: none;
+
+  &:hover,
+  &:active {
+    background-color: var(--color-danger);
+  }
+}
+
+.my-btn--info:not(.my-btn--plain) {
+  background-color: var(--color-info);
+  color: var(--color-white);
+  border: none;
+
+  &:hover,
+  &:active {
+    background-color: var(--color-info);
+  }
+}
+
+/* default 非 plain 的白边白字交互 */
+.my-btn--default:not(.my-btn--plain) {
+  background-color: transparent;
+  color: var(--color-white);
+  border: 1px solid var(--color-white);
+
+  &:hover,
+  &:active {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    background-color: var(--color-primary-a20);
+  }
+}
+
+/* plain 镂空样式 */
 .my-btn--plain {
   background-color: transparent !important;
 }
 
+/* default plain */
 .my-btn--plain:not(.my-btn--primary):not(.my-btn--success):not(.my-btn--warning):not(.my-btn--danger):not(.my-btn--info) {
-  background-color: var(--btn-color-default);
-  color: var(--btn-color-default);
-  border: 1px solid var(--btn-color-default) !important;
+  background-color: var(--color-white);
+  color: var(--color-white);
+  border: 1px solid var(--color-white) !important;
 
-  &:hover {
-    color: var(--btn-color-primary);
-    border-color: var(--btn-color-primary) !important;
-  }
-
+  &:hover,
   &:active {
-    color: var(--btn-color-primary);
-    border-color: var(--btn-color-primary) !important;
+    color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
   }
 }
 
+/* primary plain */
 .my-btn--primary.my-btn--plain {
-  color: var(--btn-color-primary);
-  border: 1px solid var(--btn-color-primary);
+  color: var(--color-primary) !important;
+  border: 1px solid var(--color-primary);
 
-  &:hover {
-    background-color: var(--btn-color-primary) !important;
-    /* #3375B9 */
-    color: var(--btn-color-default);
-  }
-
+  &:hover,
   &:active {
-    /* #337ECC */
-    color: var(--btn-color-default);
-    background-color: var(--btn-color-primary) !important;
+    background-color: var(--color-primary) !important;
+    color: var(--color-white) !important;
   }
 }
 
+/* success plain */
 .my-btn--success.my-btn--plain {
-  color: var(--btn-color-success);
-  border: 1px solid var(--btn-color-success);
+  color: var(--color-success) !important;
+  border: 1px solid var(--color-success);
 
-  &:hover {
-    background-color: var(--btn-color-success) !important;
-    color: var(--btn-color-default);
-  }
-
+  &:hover,
   &:active {
-    background-color: var(--btn-color-success) !important;
-    color: var(--btn-color-default);
+    background-color: var(--color-success) !important;
+    color: var(--color-white) !important;
   }
 }
 
+/* warning plain */
 .my-btn--warning.my-btn--plain {
-  color: var(--btn-color-warning);
-  border: 1px solid var(--btn-color-warning);
+  color: var(--color-warning) !important;
+  border: 1px solid var(--color-warning);
 
-  &:hover {
-    background-color: var(--btn-color-warning) !important;
-    color: var(--btn-color-default);
-  }
-
+  &:hover,
   &:active {
-    background-color: var(--btn-color-warning) !important;
-    color: var(--btn-color-default);
+    background-color: var(--color-warning) !important;
+    color: var(--color-white) !important;
   }
 }
 
+/* danger plain */
 .my-btn--danger.my-btn--plain {
-  color: var(--btn-color-danger);
-  border: 1px solid var(--btn-color-danger);
+  color: var(--color-danger) !important;
+  border: 1px solid var(--color-danger);
 
-  &:hover {
-    background-color: var(--btn-color-danger) !important;
-    color: var(--btn-color-default);
-  }
-
+  &:hover,
   &:active {
-    background-color: var(--btn-color-danger) !important;
-    color: var(--btn-color-default);
+    background-color: var(--color-danger) !important;
+    color: var(--color-white) !important;
   }
 }
 
+/* info plain */
 .my-btn--info.my-btn--plain {
-  color: var(--btn-color-info);
-  border: 1px solid var(--btn-color-info);
+  color: var(--color-info) !important;
+  border: 1px solid var(--color-info);
 
-  &:hover {
-    background-color: var(--btn-color-info) !important;
-    color: var(--btn-color-default);
-  }
-
+  &:hover,
   &:active {
-    background-color: var(--btn-color-info) !important;
-    color: var(--btn-color-default);
+    background-color: var(--color-info) !important;
+    color: var(--color-white) !important;
   }
 }
 
-/* ========== 尺寸 ========== */
+/* 尺寸 */
 .my-btn--supersmall {
-  padding: var(--btn-padding-supersmall);
-  font-size: var(--btn-font-supersmall);
+  padding: var(--size-btn-supersmall-padding);
+  font-size: var(--size-btn-supersmall-font);
 }
 
 .my-btn--small {
-  padding: var(--btn-padding-small);
-  font-size: var(--btn-font-small);
+  padding: var(--size-btn-small-padding);
+  font-size: var(--size-btn-small-font);
 }
 
 .my-btn--medium {
-  padding: var(--btn-padding-medium);
-  font-size: var(--btn-font-medium);
+  padding: var(--size-btn-medium-padding);
+  font-size: var(--size-btn-medium-font);
 }
 
 .my-btn--large {
-  padding: var(--btn-padding-large);
-  font-size: var(--btn-font-large);
+  padding: var(--size-btn-large-padding);
+  font-size: var(--size-btn-large-font);
 }
 
 .my-btn--superbig {
-  padding: var(--btn-padding-superbig);
-  font-size: var(--btn-font-superbig);
+  padding: var(--size-btn-superbig-padding);
+  font-size: var(--size-btn-superbig-font);
 }
 
-/* ========== 形状 ========== */
-.my-btn--round {
-  border-radius: 9999px;
+/* 形状 */
+.my-btn--rounded {
+  border-radius: var(--radius-round);
 }
 
-.my-btn--circle {
+.my-btn--circular {
   width: auto;
   height: auto;
   min-width: 40px;
   min-height: 40px;
-  border-radius: 50%;
+  border-radius: var(--radius-circle);
   padding: 0;
 }
 
-/* ========== 图标 ========== */
+/* 图标 */
 .my-btn-icon {
   display: inline-block;
   margin-right: 8px;
@@ -217,26 +217,26 @@
 }
 
 .my-btn--supersmall .my-btn-icon {
-  font-size: calc(var(--btn-font-supersmall) * 1.2);
+  font-size: calc(var(--size-btn-supersmall-font) * 1.2);
 }
 
 .my-btn--small .my-btn-icon {
-  font-size: calc(var(--btn-font-small) * 1.2);
+  font-size: calc(var(--size-btn-small-font) * 1.2);
 }
 
 .my-btn--medium .my-btn-icon {
-  font-size: calc(var(--btn-font-medium) * 1.2);
+  font-size: calc(var(--size-btn-medium-font) * 1.2);
 }
 
 .my-btn--large .my-btn-icon {
-  font-size: calc(var(--btn-font-large) * 1.2);
+  font-size: calc(var(--size-btn-large-font) * 1.2);
 }
 
 .my-btn--superbig .my-btn-icon {
-  font-size: calc(var(--btn-font-superbig) * 1.2);
+  font-size: calc(var(--size-btn-superbig-font) * 1.2);
 }
 
-/* ========== icon-only ========== */
+/* icon-only */
 .my-btn--icon-only {
   background-color: transparent !important;
   border: none !important;
@@ -261,55 +261,77 @@
   min-height: auto;
 }
 
-/* ========== 禁用状态 ========== */
-/* 修复：同时支持类选择器和属性选择器 */
+/* loading */
+.my-btn__loading {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 6px;
+  border: 2px solid var(--color-white-a60);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: btn-spin 0.8s linear infinite;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 禁用状态（修复版） */
 .my-btn.my-btn--disabled[disabled],
 .my-btn.my-btn--disabled[disabled]:hover,
 .my-btn.my-btn--disabled[disabled]:active {
   opacity: 0.6 !important;
   filter: saturate(0.6) brightness(1.1) !important;
 }
-/* 确保没有 disabled 属性时按钮正常 */
+
 .my-btn:not([disabled]) {
   opacity: 1 !important;
   filter: none !important;
 }
 
-// 针对不同类型的按钮设置更精确的禁用效果
+.my-btn.my-btn--disabled,
+.my-btn.my-btn--disabled[disabled] {
+  cursor: not-allowed !important;
+}
+
+/* 针对不同类型的按钮设置更精确的禁用效果 */
 .my-btn--primary.my-btn--disabled:not(.my-btn--plain) {
-  background-color: var(--btn-color-primary) !important;
+  background-color: var(--color-primary) !important;
   filter: saturate(0.5) brightness(1.2);
 }
 
 .my-btn--success.my-btn--disabled:not(.my-btn--plain) {
-  background-color: var(--btn-color-success) !important;
+  background-color: var(--color-success) !important;
   filter: saturate(0.5) brightness(1.2);
 }
 
 .my-btn--warning.my-btn--disabled:not(.my-btn--plain) {
-  background-color: var(--btn-color-warning) !important;
+  background-color: var(--color-warning) !important;
   filter: saturate(0.5) brightness(1.2);
 }
 
 .my-btn--danger.my-btn--disabled:not(.my-btn--plain) {
-  background-color: var(--btn-color-danger) !important;
+  background-color: var(--color-danger) !important;
   filter: saturate(0.5) brightness(1.2);
 }
 
 .my-btn--info.my-btn--disabled:not(.my-btn--plain) {
-  background-color: var(--btn-color-info) !important;
+  background-color: var(--color-info) !important;
   filter: saturate(0.5) brightness(1.2);
 }
 
-// 对于default按钮的特殊处理
+/* 对于 default 按钮的特殊处理 */
 .my-btn--default.my-btn--disabled:not(.my-btn--plain) {
   background-color: transparent !important;
-  border-color: rgba(64, 158, 255, 0.5) !important;
-  color: rgba(64, 158, 255, 0.7) !important;
+  border-color: var(--color-primary-a50) !important;
+  color: var(--color-primary-a70) !important;
   filter: none;
 }
 
-// 对于镂空按钮
+/* 对于镂空按钮 */
 .my-btn--plain.my-btn--disabled {
   opacity: 0.5;
   filter: none;

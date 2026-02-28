@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, ref } from 'vue'
+import { computed, inject, ref, unref } from 'vue'
 import { radioProps } from './radio'
 import type { RadioGroupContext } from './type'
 import type { PropType } from 'vue'
@@ -62,14 +62,13 @@ const isGroup = computed(() => !!radioGroup)
 const name = computed(() => {
   if (props.name) return props.name
   if (!radioGroup?.name) return undefined
-  return typeof radioGroup.name === 'object' ? radioGroup.name.value : radioGroup.name
+  return unref(radioGroup.name)
 })
 
 // isDisabled
 const isDisabled = computed(() => {
   if (isGroup.value) {
-    const disabled = radioGroup!.disabled
-    const groupDisabled = typeof disabled === 'boolean' ? disabled : (disabled?.value ?? false)
+    const groupDisabled = unref(radioGroup!.disabled) ?? false
     return groupDisabled || props.disabled
   }
   return props.disabled
@@ -78,11 +77,8 @@ const isDisabled = computed(() => {
 // isChecked
 const isChecked = computed(() => {
   if (isGroup.value) {
-    const modelValue = radioGroup!.modelValue
-    const groupValue = (modelValue && typeof modelValue === 'object' && 'value' in modelValue)
-      ? (modelValue as any).value
-      : modelValue
-    return groupValue === props.value
+    // 使用 unref 安全获取值
+    return unref(radioGroup!.modelValue) === props.value
   }
   return props.modelValue === props.value
 })

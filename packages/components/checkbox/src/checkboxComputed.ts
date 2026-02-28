@@ -1,4 +1,4 @@
-import { inject, useAttrs } from 'vue';
+import { inject, useAttrs, type SetupContext } from 'vue';
 import {
   useFormField,
   useInputState,
@@ -14,7 +14,11 @@ interface Props {
   modelValue?: string[];
 }
 
-export function useCheckboxLogic(props: Props, emit: any) {
+type CheckboxEmits = {
+  (e: 'update:modelValue', value: string[]): void;
+};
+
+export function useCheckboxLogic(props: Props, emit: CheckboxEmits) {
   const attrs = useAttrs();
   const checkboxGroup = inject<GroupContext<string[]> | null>('checkboxGroup', null);
   const formItemContext = inject<FormItemContext | null>('myFormItemContext', null);

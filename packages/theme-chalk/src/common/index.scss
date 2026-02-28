@@ -1,0 +1,12 @@
+@use './border.scss';
+@use './color.scss';
+@use './font.scss';
+@use './motion.scss';
+@use './radius.scss';
+@use './size.scss';
+
+:root {
+  /* scroll alias（过渡用） */
+  --global-scroll-width: var(--size-scrollbar);
+  --global-scroll-track-color: var(--color-scroll-track);
+}

@@ -1,10 +1,11 @@
+// constants.ts
 import type { InjectionKey, Ref } from 'vue'
 
 export interface RadioGroupContext {
-  modelValue: Ref<any>
+  modelValue: Ref<unknown>
   disabled: Ref<boolean>
   direction: Ref<string>
-  changeEvent: (val: any) => void
+  changeEvent: (val: unknown) => void
 }
 
 export const radioGroupKey: InjectionKey<RadioGroupContext> = Symbol('MYRadioGroup')

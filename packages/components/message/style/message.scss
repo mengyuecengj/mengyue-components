@@ -1,135 +1,112 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-message {
-    pointer-events: auto;
-    padding: 0;
-    border-radius: 6px;
-    display: inline-flex;
-    align-items: center;
-    border: 1px solid transparent;
-    position: relative;
+  pointer-events: auto;
+  padding: 0;
+  border-radius: var(--radius-input); /* 6px → Token */
+  display: inline-flex;
+  align-items: center;
+  border: var(--border-width-sm) solid transparent; /* 1px → Token */
+  position: relative;
 }
-
-// 非 plain 样式 (filled)
-// .my-message--success {
-//     background: #67c23a;
-//     color: #fff;
-// }
-
-// .my-message--info {
-//     background: #909399;
-//     color: #fff;
-// }
-
-// .my-message--warning {
-//     background: #e6a23c;
-//     color: #fff;
-// }
-
-// .my-message--error {
-//     background: #f56c6c;
-//     color: #fff;
-// }
-
-// .my-message--default {
-//     background: #409eff;
-//     color: #fff;
-// }
 
 // plain 样式
 .my-message--success.is-plain {
-    background: #f0f9eb;
-    color: #67c23a;
-    border-color: #67c23a;
+  background: var(--color-message-success-bg); /* #f0f9eb → Token */
+  color: var(--color-success); /* #67c23a → Token */
+  border-color: var(--color-success);
 }
 
 .my-message--info.is-plain {
-    background: #f4f4f5;
-    color: #909399;
-    border-color: #909399;
+  background: var(--color-message-info-bg); /* #f4f4f5 → Token */
+  color: var(--color-info); /* #909399 → Token */
+  border-color: var(--color-info);
 }
 
 .my-message--warning.is-plain {
-    background: #fdf6ec;
-    color: #e6a23c;
-    border-color: #e6a23c;
+  background: var(--color-message-warning-bg); /* #fdf6ec → Token */
+  color: var(--color-warning); /* #e6a23c → Token */
+  border-color: var(--color-warning);
 }
 
 .my-message--error.is-plain {
-    background: #fef0f0;
-    color: #f56c6c;
-    border-color: #f56c6c;
+  background: var(--color-message-error-bg); /* #fef0f0 → Token */
+  color: var(--color-danger); /* #f56c6c → Token */
+  border-color: var(--color-danger);
 }
 
 .my-message--default.is-plain {
-    background: #ecf5ff;
-    color: #409eff;
-    border-color: #409eff;
+  background: var(--color-message-default-bg); /* #ecf5ff → Token */
+  color: var(--color-primary); /* #409eff → Token */
+  border-color: var(--color-primary);
 }
 
 .my-message--content {
-    margin-right: 8px;
-    max-width: 300px;
-    word-wrap: break-word;
-    white-space: normal;
-    overflow-wrap: break-word;
+  margin-right: 8px; /* 保留：布局外边距 */
+  max-width: 300px; /* 保留：布局宽度 */
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
+/* 容器位置变体（保留所有定位值） */
 .my-message-container {
-    position: fixed;
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
+  position: fixed;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .my-message-container.top-right {
-    top: 0px;
-    right: 16px;
-    align-items: flex-end;
+  top: 0px;
+  right: 16px;
+  align-items: flex-end;
 }
 
 .my-message-container.top-left {
-    top: 8px;
-    left: 16px;
-    align-items: flex-start;
+  top: 8px;
+  left: 16px;
+  align-items: flex-start;
 }
 
 .my-message-container.top-center {
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    align-items: center;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
 }
 
 .my-message-container.bottom-right {
-    bottom: 8px;
-    right: 16px;
-    flex-direction: column-reverse;
-    align-items: flex-end;
+  bottom: 8px;
+  right: 16px;
+  flex-direction: column-reverse;
+  align-items: flex-end;
 }
 
 .my-message-container.bottom-left {
-    bottom: 8px;
-    left: 16px;
-    flex-direction: column-reverse;
-    align-items: flex-start;
+  bottom: 8px;
+  left: 16px;
+  flex-direction: column-reverse;
+  align-items: flex-start;
 }
 
 .my-message-container.bottom-center {
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    flex-direction: column-reverse;
-    align-items: center;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: column-reverse;
+  align-items: center;
 }
 
 .my-message--close {
-    background: transparent;
-    border: none;
-    color: inherit;
-    cursor: pointer;
-    padding: 0 8px;
-    font-size: 18px;
-    position: absolute;
-    right: 4px;
-    top: 50%;
-    transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0 8px; /* 保留：布局内边距 */
+  font-size: var(--font-size-xl); /* 18px → Token */
+  position: absolute;
+  right: 4px; /* 保留：布局定位 */
+  top: 50%;
+  transform: translateY(-50%);
 }

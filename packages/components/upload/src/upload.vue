@@ -38,8 +38,8 @@ const props = withDefaults(defineProps<UploadProps>(), {
 
 /** emits（推荐） */
 const emit = defineEmits<{
-    (e: 'success', res: any, file: File): void
-    (e: 'error', err: any, file: File): void
+    (e: 'success', res: unknown, file: File): void
+    (e: 'error', err: unknown, file: File): void
     (e: 'progress', percent: number, file: File): void
 }>()
 
@@ -49,7 +49,7 @@ const previewUrl = ref<string>('')
 
 const triggerUpload = () => fileInput.value?.click()
 
-const safeCall = (fn: unknown, ...args: any[]) => {
+const safeCall = (fn: unknown, ...args: unknown[]) => {
     // 防止父组件传错（例如传了 handle() 的返回值）
     if (typeof fn === 'function') {
         ; (fn as Function)(...args)
@@ -100,7 +100,7 @@ const uploadFile = (file: File) => {
     }
 
     xhr.onload = () => {
-        let parsed: any = null
+        let parsed: unknown = null
         try { parsed = JSON.parse(xhr.responseText || '{}') } catch (e) { parsed = xhr.responseText }
         if (xhr.status >= 200 && xhr.status < 300) {
             safeCall(props.onSuccess, parsed, file)

@@ -1,9 +1,11 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-message-container {
-    position: fixed;
-    top: 16px;
-    right: 16px;
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+  position: fixed;
+  top: 16px; /* 保留：布局定位 */
+  right: 16px; /* 保留：布局定位 */
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }

@@ -1,79 +1,68 @@
 import { computed, ref } from 'vue'
 import mitt from 'mitt'
-import type { FormRule, FormItemProps, FormEmits } from './type'
+import type { FormRule, ValidateTrigger, FormEmits, FormProps } from './type'
 
-export function useFormComputed(props: FormItemProps, emit: FormEmits) {
-  const formRef = ref<HTMLElement>()
+export function useFormComputed(props: FormProps, emit: FormEmits) {
+  const formRef = ref<HTMLFormElement>()
+  const emitter = mitt()
 
-  const labelWidth = computed(() => {
-    return props.labelWidth === 'auto' ? 'auto' : (props.labelWidth?.toString() || 'auto')
-  })
+  const labelWidth = computed(() =>
+    props.labelWidth === 'auto' ? 'auto' : `${props.labelWidth}`
+  )
 
-  // Validation logic
-  async function validateField(prop: string) {
-    if (!props.rules || !props.rules[prop]) return true
+  async function runRule(rule: FormRule, value: unknown, prop: string) {
+    if (rule.required && (value === '' || value === undefined || value === null)) {
+      throw new Error(rule.message || `${prop} is required`)
+    }
 
-    const rules = props.rules[prop] as FormRule[]
-    const model = props.modelValue as Record<string, any>
-    const value = model[prop]
+    if (rule.len !== undefined && (typeof value === 'string' || Array.isArray(value)) && value.length !== rule.len) {
+      throw new Error(rule.message || `${prop} length must be ${rule.len}`)
+    }
+
+    if (rule.validator) {
+      const res = await rule.validator(rule, value)
+      if (!res) throw new Error(rule.message || `${prop} validate failed`)
+    }
+  }
+
+  async function validateField(prop: string, trigger: ValidateTrigger = 'submit') {
+    const rules = props.rules?.[prop]
+    if (!rules) return true
+
+    const value = props.modelValue[prop]
 
     for (const rule of rules) {
-      if (typeof rule === 'object') {
-        const { required, message, validator, len } = rule
+      const ruleTrigger = rule.trigger
+        ? Array.isArray(rule.trigger) ? rule.trigger : [rule.trigger]
+        : ['blur', 'change', 'submit']
 
-        // 必填验证
-        if (required && (value === undefined || value === null || value === '')) {
-          throw new Error(message || `${prop} is required`)
-        }
-
-        // 长度验证
-        if (len !== undefined && value !== undefined && value !== null) {
-          if (typeof value === 'string' && value.length !== len) {
-            throw new Error(message || `${prop} length must be ${len}`)
-          }
-        }
-
-        // 自定义验证器
-        if (validator) {
-          const result = await validator(rule, value)
-          if (!result) throw new Error(message || `${prop} validation failed`)
-        }
-      }
+      if (!ruleTrigger.includes(trigger)) continue
+      await runRule(rule, value, prop)
     }
+
     return true
   }
 
-  // Validate entire form
   async function validate() {
-    const tasks = Object.keys(props.rules || {}).map(key => validateField(key))
-    await Promise.all(tasks)
+    const keys = Object.keys(props.rules || {})
+    for (const key of keys) {
+      await validateField(key, 'submit')
+    }
     emit('validate', true)
     return true
   }
 
-  // Reset fields to initial state
   function resetFields() {
-    const model = props.modelValue as unknown as Record<string, string>
-    const newModel = { ...model } // 浅拷贝即可，如果字段是基本类型
-    Object.keys(newModel).forEach(key => {
-      newModel[key] = ''
-    })
+    const newModel: Record<string, unknown> = {}
+    Object.keys(props.modelValue).forEach(k => (newModel[k] = ''))
     emit('update:modelValue', newModel)
     clearValidate()
     emit('reset-fields')
   }
 
-  const emitter = mitt();
-
   function clearValidate(field?: string) {
     emitter.emit('clear-validate', field)
     emit('clear-validate', field)
-  }
-
-  const formContext = {
-    validate,
-    resetFields,
-    clearValidate,
   }
 
   return {
@@ -83,7 +72,6 @@ export function useFormComputed(props: FormItemProps, emit: FormEmits) {
     validate,
     resetFields,
     clearValidate,
-    formContext,
-    emitter,
+    emitter
   }
 }

@@ -1,14 +1,4 @@
-$bg: #2a2a2e;
-$bg-light: #3a3a3e;
-$border: #4a4a4e;
-$border-light: #5a5a5e;
-$text: #ffffff;
-$text-secondary: #b0b0b0;
-$hover: #3a3a3e;
-$sel: #5e81ac;
-$sel-light: #7a9cc6;
-$today: #8fbcbb;
-$disabled: #4a4a4e;
+@use '../../../theme-chalk/src/common/index.scss' as *;
 
 .date-picker-container {
   position: relative;
@@ -20,29 +10,29 @@ $disabled: #4a4a4e;
     position: relative;
 
     .my-selectDate {
-      padding: 8px 32px 8px 12px;
-      border: 1px solid $border;
-      border-radius: 6px;
-      background: $bg;
-      color: $text;
-      font-size: 14px;
-      width: 350px;
+      padding: 8px 32px 8px 12px; // 8px 8px 8px 12px
+      border: var(--border-width-sm) solid var(--color-date-picker-border);
+      border-radius: var(--radius-input);
+      background: var(--color-date-picker-bg);
+      color: var(--color-white);
+      font-size: var(--font-size-md);
+      width: var(--size-date-picker-width);
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all var(--motion-fast) ease;
 
       &:hover {
-        background: $hover;
-        border-color: $border-light;
+        background: var(--color-date-picker-bg-light);
+        border-color: var(--color-date-picker-border-light);
       }
 
       &:focus {
         outline: none;
-        border-color: $today;
-        box-shadow: 0 0 0 2px rgba($today, 0.2);
+        border-color: var(--color-date-picker-today);
+        box-shadow: 0 0 0 var(--size-2) rgba(143, 188, 187, 0.2);
       }
 
       &::placeholder {
-        color: $text-secondary;
+        color: var(--color-date-picker-text-secondary);
       }
     }
 
@@ -51,13 +41,13 @@ $disabled: #4a4a4e;
       right: 8px;
       top: 50%;
       transform: translateY(-50%);
-      color: $text-secondary;
-      width: 20px;
-      height: 20px;
-      transition: color 0.2s;
+      color: var(--color-date-picker-text-secondary);
+      width: calc(var(--size-10) * 2); // 20px
+      height: calc(var(--size-10) * 2);
+      transition: color var(--motion-fast);
 
       &:hover {
-        color: $text;
+        color: var(--color-white);
       }
     }
   }
@@ -66,22 +56,21 @@ $disabled: #4a4a4e;
     position: absolute;
     top: 100%;
     left: 0;
-    margin-top: 8px;
-    padding: 12px;
-    background: $bg;
-    border: 1px solid $border;
-    border-radius: 8px;
+    margin-top: var(--space-3);
+    padding: var(--space-3_5); // 12px
+    background: var(--color-date-picker-bg);
+    border: var(--border-width-sm) solid var(--color-date-picker-border);
+    border-radius: var(--radius-md);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    z-index: 2000;
-    width: 420px;
-    animation: fadeIn 0.2s ease-out;
+    z-index: var(--z-index-fixed);
+    width: var(--size-date-picker-dropdown-width);
+    animation: fadeIn var(--motion-fast) ease-out;
 
     @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(calc(-1 * var(--size-10))); // -10px
       }
-
       to {
         opacity: 1;
         transform: translateY(0);
@@ -89,65 +78,65 @@ $disabled: #4a4a4e;
     }
 
     .time-picker-container {
-      margin-bottom: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid $border;
+      margin-bottom: var(--space-3_5);
+      padding-bottom: var(--space-3_5);
+      border-bottom: var(--border-width-sm) solid var(--color-date-picker-border);
 
       .time-input-group {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: var(--space-3_5); // 12px
 
         label {
-          font-size: 14px;
-          color: $text;
-          font-weight: 500;
+          font-size: var(--font-size-md);
+          color: var(--color-white);
+          font-weight: var(--font-weight-medium);
         }
 
         .custom-time-picker {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: var(--space-3); // 8px
           flex: 1;
         }
 
         .time-select {
-          padding: 8px 12px;
-          border: 1px solid $border;
-          border-radius: 6px;
-          background: $bg-light;
-          color: $text;
-          font-size: 14px;
+          padding: var(--space-3) var(--space-3);
+          border: var(--border-width-sm) solid var(--color-date-picker-border);
+          border-radius: var(--radius-input);
+          background: var(--color-date-picker-bg-light);
+          color: var(--color-white);
+          font-size: var(--font-size-md);
           cursor: pointer;
           appearance: none;
           background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b0b0b0'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
           background-repeat: no-repeat;
-          background-position: right 8px center;
-          background-size: 16px;
-          padding-right: 32px;
-          transition: all 0.2s;
+          background-position: right var(--space-3) center;
+          background-size: var(--font-size-lg);
+          padding-right: var(--size-date-picker-select-padding-right);
+          transition: all var(--motion-fast);
           
           &:hover {
-            border-color: $border-light;
+            border-color: var(--color-date-picker-border-light);
           }
           
           &:focus {
             outline: none;
-            border-color: $today;
-            box-shadow: 0 0 0 2px rgba($today, 0.2);
+            border-color: var(--color-date-picker-today);
+            box-shadow: 0 0 0 var(--size-2) rgba(143, 188, 187, 0.2);
           }
         }
 
         .time-separator {
-          color: $text;
+          color: var(--color-white);
           font-weight: bold;
         }
       }
 
       .selected-time-display {
-        margin-top: 8px;
-        font-size: 13px;
-        color: $text-secondary;
+        margin-top: var(--space-3);
+        font-size: var(--font-size-sm);
+        color: var(--color-date-picker-text-secondary);
         text-align: center;
       }
     }
@@ -156,28 +145,28 @@ $disabled: #4a4a4e;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 4px;
-      margin-bottom: 12px;
+      padding: var(--space-3) var(--space-2); // 8px 4px → --space-3=8px, --space-2=4px
+      margin-bottom: var(--space-3_5);
 
       span {
-        font-size: 15px;
-        font-weight: 500;
-        color: $text;
+        font-size: var(--font-size-date-header);
+        font-weight: var(--font-weight-medium);
+        color: var(--color-white);
       }
 
       .nav-button {
         background: none;
         border: none;
         cursor: pointer;
-        font-size: 16px;
-        color: $text;
-        padding: 4px 8px;
-        border-radius: 4px;
-        transition: all 0.2s;
+        font-size: var(--font-size-lg);
+        color: var(--color-white);
+        padding: var(--space-2) var(--space-3); // 4px 8px
+        border-radius: var(--radius-xs);
+        transition: all var(--motion-fast);
 
         &:hover {
-          color: $today;
-          background: rgba($today, 0.1);
+          color: var(--color-date-picker-today);
+          background: rgba(143, 188, 187, 0.1);
         }
 
         &:active {
@@ -191,7 +180,7 @@ $disabled: #4a4a4e;
     .month-grid,
     .date-grid {
       display: grid;
-      gap: 6px;
+      gap: var(--space-2_5); // 6px
 
       &.grid-date {
         grid-template-columns: repeat(7, 1fr);
@@ -207,12 +196,12 @@ $disabled: #4a4a4e;
     }
 
     .day-header {
-      font-size: 13px;
-      color: $text-secondary;
+      font-size: var(--font-size-date-cell);
+      color: var(--color-date-picker-text-secondary);
       text-align: center;
-      height: 32px;
-      line-height: 32px;
-      font-weight: 500;
+      height: var(--size-xl);
+      line-height: var(--size-xl);
+      font-weight: var(--font-weight-medium);
     }
 
     .day-cell,
@@ -222,67 +211,67 @@ $disabled: #4a4a4e;
 
       button {
         width: 100%;
-        height: 32px;
-        line-height: 32px;
+        height: var(--size-xl);
+        line-height: var(--size-xl);
         border: none;
         background: none;
         cursor: pointer;
-        font-size: 13px;
-        color: $text;
-        border-radius: 6px;
+        font-size: var(--font-size-date-cell);
+        color: var(--color-white);
+        border-radius: var(--radius-input);
         position: relative;
-        transition: all 0.2s;
+        transition: all var(--motion-fast);
 
         &:hover {
-          background: $hover;
+          background: var(--color-date-picker-bg-light);
         }
 
         &.selected {
-          color: $text;
-          background: $sel;
-          font-weight: 500;
+          color: var(--color-white);
+          background: var(--color-date-picker-selected);
+          font-weight: var(--font-weight-medium);
 
           &:hover {
-            background: $sel-light;
+            background: var(--color-date-picker-selected-hover);
           }
         }
 
         &.in-range {
-          background: rgba($today, 0.3);
-          color: $text;
+          background: rgba(143, 188, 187, 0.3);
+          color: var(--color-white);
 
           &:hover {
-            background: rgba($today, 0.4);
+            background: rgba(143, 188, 187, 0.4);
           }
         }
 
         &.disabled {
-          color: $disabled;
+          color: var(--color-date-picker-border);
           cursor: not-allowed;
           opacity: 0.5;
         }
 
         &.today {
-          color: $today;
+          color: var(--color-date-picker-today);
           font-weight: bold;
 
           .today-badge {
             position: absolute;
-            top: -4px;
-            right: -4px;
-            font-size: 10px;
-            background: $today;
-            color: $bg;
-            border-radius: 50%;
-            width: 16px;
-            height: 16px;
-            line-height: 16px;
+            top: calc(-1 * var(--space-2)); // -4px
+            right: calc(-1 * var(--space-2));
+            font-size: var(--font-size-xs);
+            background: var(--color-date-picker-today);
+            color: var(--color-date-picker-bg);
+            border-radius: var(--radius-circle);
+            width: var(--size-10);
+            height: var(--size-10);
+            line-height: var(--size-10);
             font-weight: bold;
           }
         }
 
         &.current {
-          color: $today;
+          color: var(--color-date-picker-today);
           font-weight: bold;
         }
       }

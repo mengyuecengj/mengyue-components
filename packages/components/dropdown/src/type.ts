@@ -11,6 +11,6 @@ export interface UseDropdownOptions {
   persistent?: boolean;
   triggerKeys?: string[]; // keyboard keys to open
   hideOnClick?: boolean;
-  popperOptions?: Record<string, any>;
-  backGroundColor?: string;
+  popperOptions?: Record<string, unknown>;
+  backgroundColor?: string;
 }

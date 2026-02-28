@@ -1,3 +1,4 @@
+// table.ts
 import type { PropType } from 'vue';
 import type { TableColumnProps } from './type';
 
@@ -11,9 +12,16 @@ export const tableProps = {
     default: () => []
   },
   modelValue: {
-    type: [Array, String] as PropType<string[] | number[] | string>, // 使用 PropType 明确指定类型
+    type: [Array, String] as PropType<string[] | number[] | string>,
     default: () => []
   },
+
+  /* --- 新增 loading prop --- */
+  loading: {
+    type: Boolean,
+    default: false
+  },
+
   width: {
     type: String,
     default: ''

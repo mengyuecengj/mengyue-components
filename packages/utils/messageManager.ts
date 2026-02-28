@@ -1,15 +1,21 @@
-// messageManager.ts
-import { createApp, h, reactive, nextTick, ref } from 'vue'
+import { createApp, h, reactive, nextTick, ref, type App, type Ref } from 'vue'
 import MessageContainer from '../components/message/src/messageContainer.vue'
 import type { MessageOption, MessageHandle, MessageGlobalConfig, Position, MessageType } from '../components/message/src/type'
 
-const containers = new Map<string, { app: any; el: HTMLElement; list: MessageOption[]; containerRef?: any }>()
+interface MessageContainerInfo {
+  app: App
+  el: HTMLElement
+  list: MessageOption[]
+  containerRef: Ref<unknown>
+}
+
+const containers = new Map<string, MessageContainerInfo>()
 let seed = 0
 let globalConfig: MessageGlobalConfig = { duration: 3000, position: 'top-right', zIndex: 9999 }
 
 const AVG_MESSAGE_HEIGHT = 48;
 
-function ensureContainer(position: Position) {
+function ensureContainer(position: Position): MessageContainerInfo {
   const key = String(position)
   if (containers.has(key)) return containers.get(key)!
 
@@ -17,7 +23,7 @@ function ensureContainer(position: Position) {
   document.body.appendChild(el)
   const list: MessageOption[] = reactive([])
 
-  const containerRef = ref(null)
+  const containerRef = ref<unknown>(null)
 
   const app = createApp({
     render() {
@@ -31,7 +37,7 @@ function ensureContainer(position: Position) {
   })
   app.mount(el)
 
-  const info = { app, el, list, containerRef }
+  const info: MessageContainerInfo = { app, el, list, containerRef }
   containers.set(key, info)
 
   const handleResize = () => checkAndTrimList(info, position)
@@ -40,7 +46,7 @@ function ensureContainer(position: Position) {
   return info
 }
 
-function checkAndTrimList(info: any, position: Position) {
+function checkAndTrimList(info: MessageContainerInfo, position: Position) {
   const screenHeight = window.innerHeight
   let totalHeight = 0
   const isTop = position.includes('top')
@@ -64,7 +70,7 @@ export function configureGlobal(cfg: MessageGlobalConfig) {
 export function showMessage(opt: string | MessageOption, type?: MessageType): MessageHandle {
   // 支持 showMessage('message content') 这样的调用方式
   if (typeof opt === 'string') {
-    opt = { content: opt, type, plain: false } as MessageOption;
+    opt = { content: opt, type, plain: false }
   }
 
   if (typeof window === 'undefined') return { id: 'ssr', close() { } }

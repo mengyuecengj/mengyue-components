@@ -8,112 +8,97 @@
 .my-input {
   box-sizing: border-box;
   margin: 0;
-  padding: 4px 11px;
-  /* padding-right 将被Vue style覆盖 */
-  color: rgba(0, 0, 0, 0.88);
-  font-size: 14px;
-  line-height: 1.5714285714285714;
-  /* 保持，但height:100%优先 */
+  padding: var(--size-4) var(--size-input-padding-x); // 4px 11px
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+  line-height: 1.5714285714285714; // 无 token，保留（属排版常量）
   list-style: none;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   position: relative;
   display: inline-block;
   width: 100%;
   height: 100%;
-  /* 确保跟随wrapper */
   min-width: 0;
   background-color: transparent !important;
   background-image: none;
-  border-width: 1px;
+  border-width: var(--border-width-sm);
   border-style: solid;
-  border-radius: 6px;
+  border-radius: var(--radius-input); // 6px
   transition: all 0.2s;
 
   &:focus {
-    border-color: #4096ff;
-    box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 var(--size-2) var(--color-primary-a20); // 2px glow
     outline: 0;
   }
 
   &::placeholder {
-    color: var(--my-input-placeholder, rgba(0, 0, 0, 0.25));
+    color: var(--color-text-placeholder);
     user-select: none;
   }
 
   &:hover {
-    border-color: #4096ff;
+    border-color: var(--color-primary);
   }
 }
 
+// 统一后缀样式（避免重复）
 .my-input__suffix {
   position: absolute;
-  right: 8px;
   top: 50%;
+  right: var(--size-10); // 使用 --size-10 (10px)，原有两个值取较大者
   transform: translateY(-50%);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--size-input-suffix-gap); // 8px
+  line-height: 1;
+  justify-content: flex-end;
 }
 
 .my-input--disabled {
-  color: rgba(0, 0, 0, 0.25);
-  background-color: rgba(0, 0, 0, 0.04);
-  border-color: #d9d9d9;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-disabled);
+  border-color: var(--color-border-disabled);
   box-shadow: none;
   cursor: not-allowed !important;
   opacity: 1;
 
   &:hover {
-    border-color: #d9d9d9;
+    border-color: var(--color-border-disabled);
   }
 }
 
-.my-input__suffix {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  display: flex;
+// 通用后缀图标/文字样式
+%input-suffix-item {
+  cursor: pointer;
+  color: var(--color-info);
+  font-size: var(--font-size-xs);
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  line-height: 1;
-  justify-content: flex-end;
 }
 
 .my-input__clear {
-  cursor: pointer;
-  color: #999;
-  font-size: 12px;
-  display: inline-flex;
-  align-items: center;
+  @extend %input-suffix-item;
 }
 
 .my-input__password {
-  cursor: pointer;
-  color: #999;
-  font-size: 12px;
-  display: inline-flex;
-  align-items: center;
+  @extend %input-suffix-item;
 }
 
 .my-input__word-limit {
-  cursor: pointer;
-  color: #999;
-  font-size: 12px;
-  display: inline-flex;
-  align-items: center;
+  @extend %input-suffix-item;
   margin-left: auto;
 }
 
-
 .my-input__password svg {
-  width: 20px;
-  height: 20px;
+  width: var(--size-lg); // 24px（原20px，取最近标准尺寸）
+  height: var(--size-lg);
   vertical-align: middle;
 }
 
+// word-limit 在 wrapper 中的绝对定位
 .my-input-wrapper .my-input__word-limit {
   position: absolute;
-  right: 50px;
-  top: 5%;
+  right: var(--size-input-word-limit-right); // 50px
+  top: 5%; // 百分比布局，合理保留
 }

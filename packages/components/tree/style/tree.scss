@@ -1,7 +1,9 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-tree {
-  background-color: var(--tree-bg-color, #fff);
-  color: var(--tree-text-color, #606266);
-  border-radius: 4px;
+  background-color: var(--color-white);
+  color: var(--color-text-regular);
+  border-radius: var(--radius-xs);
   padding: 8px;
   overflow: auto;
 }

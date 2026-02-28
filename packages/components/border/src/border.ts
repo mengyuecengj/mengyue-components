@@ -46,11 +46,11 @@ const otherStyleProps = {
         type: String,
         default: ''
     },
-    round: {
+    rounded: {
         type: Boolean,
         default: false
     },
-    circle: {
+    circular: {
         type: Boolean,
         default: false
     },
@@ -62,7 +62,7 @@ const otherStyleProps = {
         type: Boolean,
         default: false
     },
-    colorBg: {
+    colorBackground: {
         type: String,
         default: ''
     },

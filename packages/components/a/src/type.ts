@@ -3,6 +3,6 @@ export interface AProps {
     size?: string | number;
     disabled?: boolean;
     color?: string;
-    underline?: boolean;
+    underLine?: boolean;
     [key: string]: unknown;
 }

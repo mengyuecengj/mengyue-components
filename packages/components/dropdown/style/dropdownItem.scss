@@ -1,43 +1,25 @@
-// .my-dropdown-item {
-//   padding: 8px 20px;
-//   cursor: pointer;
-//   white-space: nowrap;
-//   transition: background-color 0.2s;
-//   user-select: none;
-// }
+@use '../../../theme-chalk/src/common/index.scss' as *;
 
-// .my-dropdown-item:hover {
-//   background-color: #f5f7fa;
-// }
-
-// .my-dropdown-item.disabled {
-//   color: #c0c4cc;
-//   cursor: not-allowed;
-// }
-
-// .my-dropdown-item.divided {
-//   border-top: 1px solid #ebeef5;
-// }
-
-/* dropdownItem.scss */
 .my-dropdown-item {
   list-style: none;
+  padding: var(--space-2) var(--space-5);
   padding: 8px 20px;
+  padding: var(--space-3) var(--space-form-item-gap);
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color 0.2s;
+  transition: background-color var(--motion-fast);
   user-select: none;
 }
 
 .my-dropdown-item:hover {
-  background-color: #252525;
+  background-color: var(--color-default-hover); 
 }
 
 .my-dropdown-item.disabled {
-  color: #a0a0a0;
+  color: var(--color-text-disabled);
   cursor: not-allowed;
 }
 
 .my-dropdown-item.divided {
-  border-top: 1px solid #303030;
+  border-top: var(--border-width-sm) solid var(--color-border-base);
 }

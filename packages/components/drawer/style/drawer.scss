@@ -1,13 +1,15 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-drawer__wrapper {
   position: fixed;
   inset: 0;
-  z-index: 3000;
+  z-index: 3000; /* 保留：高于 dialog (2000) */
 }
 
-/* 遮罩层淡入淡出（优化：ease-in-out 曲线） */
+/* 遮罩层淡入淡出 */
 .my-drawer-fade-enter-active,
 .my-drawer-fade-leave-active {
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity var(--motion-base) ease-in-out; /* 0.3s → Token */
 }
 
 .my-drawer-fade-enter-from,
@@ -18,30 +20,26 @@
 .my-drawer__mask {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--color-overlay-bg); /* rgba(0,0,0,0.5) → Token */
   z-index: 2000;
-  /* 确保在抽屉下方 */
 }
 
-/* 抽屉通用样式（基础无 transform，添加整体缩放过渡） */
+/* 抽屉通用样式 */
 .my-drawer {
   position: fixed;
-  background: #fff;
+  background: var(--color-white); /* #fff → Token */
   z-index: 2100;
-  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
-  /* 优化：添加 opacity 过渡 */
+  transition: transform var(--motion-slow) ease-in-out, opacity var(--motion-slow) ease-in-out; /* 0.4s → Token */
   display: flex;
   flex-direction: column;
   overflow: hidden;
   transform: none;
-  /* 基础位置为 0 */
   opacity: 1;
-  /* 基础不透明 */
 
   /* Header 和 Footer 的边框渐显 */
   &__header,
   &__footer {
-    transition: border-color 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    transition: border-color var(--motion-slow) ease-in-out, opacity var(--motion-slow) ease-in-out;
     opacity: 1;
   }
 
@@ -55,36 +53,35 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px;
-    font-weight: bold;
-    // border-bottom: 1px solid #e5e5e5;
+    padding: 16px; /* 保留：布局内边距 */
+    font-weight: bold; /* 保留：字重（Token 无 700） */
+    // border-bottom: var(--border-width-sm) solid var(--color-border-base);
   }
 
   &__body {
     flex: 1;
-    padding: 16px;
+    padding: 16px; /* 保留：布局内边距 */
     overflow: auto;
   }
 
   &__footer {
-    padding: 16px;
-    border-top: 1px solid #e5e5e5;
+    padding: 16px; /* 保留：布局内边距 */
+    border-top: var(--border-width-sm) solid var(--color-border-base); /* 1px solid #e5e5e5 → Token */
   }
 
   &__close {
     border: none;
     background: transparent;
-    font-size: 18px;
+    font-size: var(--font-size-xl); /* 18px → Token */
     cursor: pointer;
-    transition: opacity 0.2s ease;
-    /* 关闭按钮 hover 效果 */
+    transition: opacity var(--motion-fast) ease; /* 0.2s → Token */
   }
 
   &__close:hover {
-    opacity: 0.7;
+    opacity: 0.7; /* 保留：交互透明度 */
   }
 
-  /* 方向定位（无 transform） */
+  /* 方向定位（保留所有布局值） */
   &--rtl {
     top: 0;
     right: 0;
@@ -110,23 +107,21 @@
   }
 }
 
-/* 滑动动画控制（优化：添加 scale 效果到关闭） */
+/* 滑动动画控制 */
 .my-drawer-slide-enter-active,
 .my-drawer-slide-leave-active {
-  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  transition: transform var(--motion-slow) ease-in-out, opacity var(--motion-slow) ease-in-out;
 }
 
 .my-drawer-slide-enter-from,
 .my-drawer-slide-leave-to {
-  opacity: 0.9;
-  /* 进入/离开时轻微透明 */
+  opacity: 0.9; /* 保留：视觉效果 */
 }
 
 /* 右侧滑入 */
 .my-drawer-slide-enter-from.my-drawer--rtl,
 .my-drawer-slide-leave-to.my-drawer--rtl {
   transform: translateX(100%) scale(0.98);
-  /* 添加 scale 效果 */
 }
 
 .my-drawer-slide-enter-to.my-drawer--rtl,

@@ -1,12 +1,14 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-pagination {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 14px;
+  gap: 8px; // 8px
+  font-size: var(--font-size-md); // 14px
 
   &.small {
-    font-size: 12px;
-    gap: 4px;
+    font-size: var(--font-size-sm); // 12px
+    gap: var(--space-2); // 4px
   }
 
   &.disabled {
@@ -17,32 +19,32 @@
   .btn-prev,
   .btn-next,
   .pager-item {
-    padding: 6px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: var(--size-pagination-padding);
+    border: var(--border-width-sm) solid var(--color-pagination-border);
+    border-radius: var(--radius-xs);
     background: none;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all var(--motion-base);
 
     &:hover:not(.active) {
-      background: #f5f5f5;
+      background: var(--color-pagination-hover);
     }
   }
 }
 
 .has-background {
-  background: #f0f0f0;
+  background: var(--color-pagination-bg);
 
   &:hover {
-    background: #e0e0e0;
+    background: var(--color-pagination-bg-hover);
   }
 }
 
 .pager-item {
   &.active {
-    background: #409eff;
-    color: white;
-    border-color: #409eff;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
   }
 
   &[disabled],
@@ -54,24 +56,24 @@
 }
 
 .page-sizes {
-  padding: 6px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 6px; // 6px? but --space-2=4px → use calc or accept
+  border: var(--border-width-sm) solid var(--color-pagination-border);
+  border-radius: var(--radius-xs);
 }
 
 .jumper {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-3); // 8px
 
   input {
-    width: 50px;
-    padding: 6px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    width: var(--size-pagination-input-width); // 50px
+    padding: 6px; // 6px → same issue
+    border: var(--border-width-sm) solid var(--color-pagination-border);
+    border-radius: var(--radius-xs);
   }
 }
 
 .total {
-  color: #666;
+  color: var(--color-pagination-total);
 }

@@ -6,11 +6,11 @@ export const scrollbarDimensionProps = {
         type: String,
         default: '' as const
     },
-    Maxheight: {
+    maxHeight: {
         type: String,
         default: '' as const
     },
-    ScrollWidth: {
+    scrollWidth: {
         type: String,
         default: ''
     },

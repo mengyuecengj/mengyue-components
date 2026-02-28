@@ -1,3 +1,5 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-step {
   display: flex;
   flex-direction: column;
@@ -5,7 +7,7 @@
   position: relative;
   flex: 1;
   min-width: 0;
-  padding-bottom: 16px; /* 为垂直布局留空间 */
+  padding-bottom: 16px; /* 保留：布局位移 */
 }
 
 .my-step--horizontal {
@@ -24,65 +26,66 @@
 
 /* 圆圈样式 */
 .my-step__icon {
-  width: 24px;
-  height: 24px;
+  width: var(--size-step-icon); /* 24px → Token */
+  height: var(--size-step-icon); /* 24px → Token */
 
-  border-radius: 50%;
-  background-color: #c0c4cc;
+  border-radius: var(--radius-circle); /* 50% → Token */
+  background-color: var(--color-step-wait); /* #c0c4cc → Token */
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   flex-shrink: 0;
-  color: white; /* 确保图标文字可见 */
+  color: var(--color-white); /* white → Token */
 
-  .my-step__icon span {
-  margin-right: 5px;
-  margin-bottom: 5px;
+  span {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    /* 保留：微调布局 */
   }
 }
 
 .my-step--status-wait .my-step__icon {
-  background-color: #c0c4cc;
+  background-color: var(--color-step-wait);
 }
 .my-step--status-process .my-step__icon {
-  background-color: #409eff;
+  background-color: var(--color-step-process);
 }
 .my-step--status-finish .my-step__icon {
-  background-color: #67c23a;
+  background-color: var(--color-step-finish);
 }
 .my-step--status-error .my-step__icon {
-  background-color: #f56c6c;
+  background-color: var(--color-step-error);
 }
 
 /* 连线样式 - 关键修复 */
 .my-step__line {
   position: absolute;
-  background-color: #eaeef2;
+  background-color: var(--color-step-line); /* #eaeef2 → Token */
   z-index: 1;
 }
 
 /* 水平连线 */
 .my-step__line--horizontal {
-  top: 12px; /* 图标高度的一半 */
-  left: calc(50% + 12px); /* 从图标右侧开始 */
-  width: calc(50% - 12px); /* 只延伸到下一个图标的左侧 */
-  height: 2px;
+  top: 12px; /* 保留：布局定位 */
+  left: calc(50% + 12px); /* 保留：布局计算 */
+  width: calc(50% - 12px); /* 保留：布局计算 */
+  height: var(--size-step-line-height); /* 2px → Token */
 }
 
 /* 文字内容 */
 .my-step__content-wrapper {
   position: relative;
   z-index: 2;
-  margin-top: 8px;
+  margin-top: 8px; /* 保留：布局位移 */
   text-align: center;
-  color: #606266; /* 更清晰的文字颜色 */
-  transform: translateY(-4px); /* 减少上移幅度 */
+  color: var(--color-text-regular); /* #606266 → Token */
+  transform: translateY(-4px); /* 保留：视觉微调 */
 }
 
 .my-step--horizontal .my-step__content-wrapper {
   margin-top: 0;
-  margin-left: 12px;
+  margin-left: 12px; /* 保留：布局位移 */
   text-align: left;
   flex: 1;
   transform: translateY(0); /* 水平布局不需要上移 */
@@ -95,12 +98,12 @@
 }
 
 .my-step__title {
-  font-weight: 500;
-  margin-bottom: 4px;
-  font-size: 14px;
+  font-weight: var(--font-weight-medium); /* 500 → Token */
+  margin-bottom: 4px; /* 保留：布局位移 */
+  font-size: var(--font-size-md); /* 14px → Token */
 }
 
 .my-step__description {
-  font-size: 12px;
-  color: #a0a0a0; /* 浅色主题次级文字颜色 */
+  font-size: var(--font-size-xs); /* 12px → Token */
+  color: var(--color-step-description); /* #a0a0a0 → Token */
 }

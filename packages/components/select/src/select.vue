@@ -1,148 +1,182 @@
 <template>
-    <div class="select-e" :class="{
-        'is-disabled': disabled,
-        'is-focused': isFocused
-    }" tabindex="0" :style="selectStyle" @focus="handleFocus" @blur="handleBlur">
-        <div class="select-trigger" @click="toggleDropdown">
-            <span class="selected-value">{{ selectedLabel || placeholder }}</span>
-            <span class="arrow-icon" :class="{ 'is-open': dropdownVisible }">
-                <svg viewBox="0 0 24 24" width="16" height="16">
-                    <path d="M7 10l5 5 5-5z" />
-                </svg>
-            </span>
-        </div>
-        <Transition name="slide-fade">
-            <div v-if="dropdownVisible" ref="dropdownRef" class="select-dropdown">
-                <MYScrollbar v-if="showScrollbar" height="200px" thumbColor="#4C4D4F" thumbHoverColor="#2a2a2e"
-                    trackColor="#2a2a2e">
-                    <slot></slot>
-                </MYScrollbar>
-                <div v-else class="select-dropdown-content">
-                    <slot></slot>
-                </div>
-            </div>
-        </Transition>
+  <div
+    ref="selectRef"
+    class="select-e"
+    :class="{ 'is-disabled': disabled, 'is-focused': isFocused }"
+    tabindex="0"
+    :style="selectStyle"
+    @focus="handleFocus"
+    @blur="handleBlur"
+    @keydown="handleKeydown"
+  >
+    <div class="select-trigger" @click="toggleDropdown">
+      <span class="selected-value">{{ selectedLabel || placeholder }}</span>
+      <span class="arrow-icon" :class="{ 'is-open': dropdownVisible }">
+        <svg viewBox="0 0 24 24" width="16" height="16">
+          <path d="M7 10l5 5 5-5z" />
+        </svg>
+      </span>
     </div>
+
+    <Transition name="slide-fade">
+      <div v-if="dropdownVisible" class="select-dropdown">
+        <div ref="optionsContainer" class="select-dropdown-content">
+          <slot />
+        </div>
+      </div>
+    </Transition>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref, provide, computed, watch, nextTick } from 'vue'
-import { MYScrollbar } from '../../scrollbar'
+import { ref, computed, provide, watch, nextTick } from 'vue'
 import { useStyleComputed } from '../../../hooks/useStyleComputed'
 import { selectProps } from './select'
 import '../style/select.scss'
 
-defineOptions({
-    name: 'MYSelect'
-})
+defineOptions({ name: 'MYSelect' })
 
 const props = defineProps(selectProps)
 const emit = defineEmits(['update:modelValue'])
 
-const dropdownRef = ref<HTMLElement | null>(null)
-const showScrollbar = ref(false)
+const selectRef = ref<HTMLElement | null>(null)
+const optionsContainer = ref<HTMLElement | null>(null)
 
 const dropdownVisible = ref(false)
 const isFocused = ref(false)
-const selectedLabel = ref('') // 只在这里定义一次
+const selectedLabel = ref('')
+const focusedIndex = ref(-1)
 
-// 检查滚动条可见性
-const checkScrollbarVisibility = () => {
-    nextTick(() => {
-        if (!props.autoScrollbar) {
-            showScrollbar.value = false
-            return
-        }
+// 键盘
+const handleKeydown = (e: KeyboardEvent) => {
+  if (!dropdownVisible.value && (e.key === 'Enter' || e.key === ' ')) {
+    e.preventDefault()
+    toggleDropdown()
+    return
+  }
 
-        if (dropdownRef.value) {
-            const content = dropdownRef.value.querySelector('.select-dropdown-content') || dropdownRef.value
-            const contentHeight = (content as HTMLElement).scrollHeight
-            showScrollbar.value = contentHeight > 190
-        }
-    })
+  if (!dropdownVisible.value) return
+
+  switch (e.key) {
+    case 'ArrowDown':
+      e.preventDefault()
+      moveFocus(1)
+      break
+    case 'ArrowUp':
+      e.preventDefault()
+      moveFocus(-1)
+      break
+    case 'Enter':
+      e.preventDefault()
+      handleEnter()
+      break
+    case 'Escape':
+      closeDropdown()
+      break
+  }
 }
 
-// 选择选项
-const selectOption = (value: string | number, label: string) => {
-    if (!props.disabled) {
-        emit('update:modelValue', value)
-        selectedLabel.value = label || String(value)
-        dropdownVisible.value = false
-    }
+const getOptions = () =>
+  optionsContainer.value
+    ? Array.from(
+        optionsContainer.value.querySelectorAll('.select-option:not(.is-disabled)')
+      ) as HTMLElement[]
+    : []
+
+const moveFocus = (step: number) => {
+  const options = getOptions()
+  if (!options.length) return
+
+  focusedIndex.value =
+    focusedIndex.value === -1
+      ? 0
+      : (focusedIndex.value + step + options.length) % options.length
+
+  focusCurrent()
 }
 
-// 焦点处理
-const handleFocus = () => {
-    if (!props.disabled) {
-        isFocused.value = true
-    }
+const focusCurrent = () => {
+  nextTick(() => {
+    const options = getOptions()
+    const el = options[focusedIndex.value]
+    if (!el) return
+
+    options.forEach(o => o.classList.remove('is-focused'))
+    el.classList.add('is-focused')
+    el.focus()
+  })
 }
 
-// 失去焦点处理
-const handleBlur = () => {
-    isFocused.value = false
-    dropdownVisible.value = false
+const handleEnter = () => {
+  const el = document.activeElement as HTMLElement
+  if (el?.classList.contains('select-option')) {
+    const value = el.dataset.value
+    const label = el.dataset.label
+    if (value) selectOption(value, label || value)
+  }
 }
 
-// 切换下拉框
+// 状态
 const toggleDropdown = () => {
-    if (props.disabled) return
-    dropdownVisible.value = !dropdownVisible.value
-    if (dropdownVisible.value) {
-        checkScrollbarVisibility()
-        // 当下拉框打开时，重新计算选中标签
-        updateSelectedLabel()
-    }
+  if (props.disabled) return
+  dropdownVisible.value = !dropdownVisible.value
 }
 
-// 样式计算
-const selectStyle = useStyleComputed(props, {
-    propToStyleMap: {
-        width: 'width',
-        height: 'height',
-        backgroundColor: 'backgroundColor',
-        hoverbackgroundColor: '--hover-bg-color'
-    }
+const closeDropdown = () => {
+  dropdownVisible.value = false
+  focusedIndex.value = -1
+}
+
+// 焦点
+const handleFocus = () => {
+  if (!props.disabled) isFocused.value = true
+}
+
+const handleBlur = (e: FocusEvent) => {
+  const related = e.relatedTarget as HTMLElement | null
+
+  // 焦点还在 select 内部，不算 blur
+  if (related && selectRef.value?.contains(related)) return
+
+  isFocused.value = false
+  closeDropdown()
+}
+
+// 选择
+const selectOption = (value: string | number, label: string) => {
+  emit('update:modelValue', value)
+  selectedLabel.value = label
+  closeDropdown()
+
+  // 把焦点拉回 Select
+  nextTick(() => {
+    selectRef.value?.focus()
+  })
+}
+
+// provide
+provide('select', {
+  selectOption,
+  setFocusedIndex: (i: number) => (focusedIndex.value = i),
+  currentValue: computed(() => props.modelValue),
+  disabled: computed(() => props.disabled)
 })
 
-// 更新选中标签的函数
-const updateSelectedLabel = () => {
-    const value = props.modelValue
-    if (value == null || value === '') {
-        selectedLabel.value = ''  // 显示 placeholder
-        return
-    }
-    
-    // 查找匹配的选项
-    if (dropdownRef.value) {
-        const options = dropdownRef.value.querySelectorAll('[data-value]') as NodeListOf<HTMLElement>
-        const match = Array.from(options).find(opt => opt.dataset.value === String(value))
-        selectedLabel.value = match?.dataset.label || ''  // 找不到匹配项时显示 placeholder
-    }
-}
-
-// 监听 modelValue 变化
+// label
 watch(
-    () => props.modelValue,
-    (newVal) => {
-        updateSelectedLabel()
-    },
-    { immediate: true }
+  () => props.modelValue,
+  (v) => {
+    const options = getOptions()
+    const match = options.find(o => o.dataset.value === String(v))
+    selectedLabel.value = match?.dataset.label || ''
+  },
+  { immediate: true }
 )
 
-// 监听下拉框可见性变化
-watch(dropdownVisible, (val) => {
-    if (val) {
-        checkScrollbarVisibility()
-    }
+const selectStyle = useStyleComputed(props, {
+  propToStyleMap: {
+    width: 'width',
+    height: 'height'
+  }
 })
-
-// 提供上下文给子组件
-provide('select', {
-    selectOption,
-    currentValue: computed(() => props.modelValue),
-    disabled: computed(() => props.disabled),
-    width: computed(() => props.width),
-    height: computed(() => props.height)
-})
-</script>
+</script> 

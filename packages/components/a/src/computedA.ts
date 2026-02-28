@@ -15,7 +15,7 @@ export function useAComputed(props: AProps): {
         },
         flagClasses: {
             disabled: props.disabled,
-            underline: props.underline
+            underLine: props.underLine
         }
     });
 

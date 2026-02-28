@@ -1,4 +1,6 @@
+import type { PropType } from 'vue';
 import type { UseDropdownOptions } from './type';
+
 export const dropdownProps = {
     type: {
         type: String,
@@ -29,10 +31,11 @@ export const dropdownProps = {
         default: 'bottom'
     },
     trigger: {
-        type: String as () => UseDropdownOptions['trigger'], default: 'hover'
+        type: String as () => UseDropdownOptions['trigger'],
+        default: 'hover'
     },
     triggerKeys: {
-        type: Array as any,
+        type: Array as PropType<string[]>,
         default: () => ['Enter', ' ', 'ArrowDown', 'NumpadEnter']
     },
     hideOnClick: {
@@ -60,9 +63,9 @@ export const dropdownProps = {
         default: ''
     },
     popperOptions: {
-        type: Object as any,
+        type: Object as PropType<Record<string, unknown>>,
         default: () => ({})
-    }, // reserved
+    },
     teleported: {
         type: Boolean,
         default: true
@@ -71,7 +74,7 @@ export const dropdownProps = {
         type: Boolean,
         default: true
     },
-    backGroundColor: {
+    backgroundColor: {
         type: String,
         default: ''
     },

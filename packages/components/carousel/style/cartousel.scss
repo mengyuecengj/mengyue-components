@@ -1,3 +1,5 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-carousel {
   position: relative;
   overflow: hidden;
@@ -7,58 +9,58 @@
 .my-carousel__container {
   display: flex;
   width: 100%;
-  background-color: #99A9BF;
+  background-color: var(--color-carousel-bg); /* #99A9BF → Token */
 }
 
 .my-carousel__indicators {
   position: absolute;
-  bottom: 20px;
+  bottom: 20px; /* 保留：布局位移 */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 8px;
+  gap: var(--space-carousel-indicator-gap); /* 8px → Token */
 }
 
 .dot {
   display: inline-block;
-  width: 12px;
-  height: 12px;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
+  width: var(--size-carousel-dot); /* 12px → Token */
+  height: var(--size-carousel-dot); /* 12px → Token */
+  background: var(--color-white-a50); /* rgba(255,255,255,0.5) → Token */
+  border-radius: var(--radius-circle); /* 50% → Token */
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background var(--motion-base) ease; /* 0.3s → Token */
 }
 
 .dot.active {
-  background: #409eff;
+  background: var(--color-primary); /* #409eff → Token */
 }
 
 .nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
+  background: var(--color-carousel-nav-bg); /* rgba(0,0,0,0.5) → Token */
+  color: var(--color-white); /* white → Token */
   border: none;
-  font-size: 24px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  font-size: var(--font-size-carousel-nav); /* 24px → Token */
+  width: var(--size-btn-circle-min); /* 40px → 复用按钮圆尺寸 */
+  height: var(--size-btn-circle-min); /* 40px */
+  border-radius: var(--radius-circle); /* 50% → Token */
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s ease;
+  transition: background var(--motion-base) ease; /* 0.3s → Token */
 }
 
 .nav:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--color-carousel-nav-bg-hover); /* rgba(0,0,0,0.8) → Token */
 }
 
 .nav.prev {
-  left: 20px;
+  left: 20px; /* 保留：布局位移 */
 }
 
 .nav.next {
-  right: 20px;
+  right: 20px; /* 保留：布局位移 */
 }

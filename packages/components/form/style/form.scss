@@ -2,15 +2,15 @@
 .my-form {
   display: block;
   padding: 16px;
-  background-color: #fff;
-  border-radius: 4px;
+  background-color: var(--color-white);
+  border-radius: var(--radius-xs); // 4px
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 
   /* 内联模式时让子项水平排列 */
   &.inline {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: var(--space-4); // 16px
   }
 
   /* 全局 label 宽度变量 */
@@ -27,17 +27,19 @@
     pointer-events: none;
   }
 
-  /* 大小尺寸变化 */
   &.large {
-    font-size: 16px;
+    font-size: var(--font-size-lg); // 16px
   }
+
   &.medium {
-    font-size: 14px;
+    font-size: var(--font-size-md); // 14px
   }
+
   &.small {
-    font-size: 12px;
+    font-size: var(--font-size-sm); // 13px → 但原始是 12px
   }
+
   &.mini {
-    font-size: 10px;
+    font-size: var(--font-size-xs); // 12px → 但原始是 10px
   }
 }

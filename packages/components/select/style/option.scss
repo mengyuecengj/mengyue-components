@@ -1,34 +1,34 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .select-option {
-    padding: 8px 16px;
-    cursor: pointer;
-    background-color: var(--option-bg-color, transparent);
-    color: var(--option-text-color, inherit);
+  padding: var(--space-3) var(--space-4); // 8px 16px
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--color-white);
 
-    &:hover {
-        background-color: var(--option-hover-bg-color, #1D1E1F);
-        color: var(--option-hover-text-color, inherit);
+  &:hover {
+    background-color: var(--color-select-option-bg-hover);
+    color: var(--color-white);
+  }
+
+  &.is-selected {
+    color: var(--color-primary);
+    background-color: var(--color-select-option-bg-hover);
+  }
+
+  &.is-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    color: var(--color-select-option-disabled-text) !important;
+    background-color: inherit !important;
+
+    .select-trigger {
+      cursor: not-allowed;
+
+      &:hover {
+        border: none;
+        background: inherit;
+      }
     }
-
-    &.is-selected {
-        color: var(--option-selected-text-color, #409eff);
-        background-color: var(--option-selected-bg-color, #1D1E1F);
-    }
-
-    &.is-disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-        color: var(--option-disabled-text-color, #999) !important;
-        background-color: var(--option-disabled-bg-color, inherit) !important;
-
-        /* 禁用状态下的触发器 */
-        .select-trigger {
-            cursor: not-allowed;
-
-            /* 禁用悬停效果 */
-            &:hover {
-                border: none;
-                background: inherit;
-            }
-        }
-    }
+  }
 }

@@ -3,23 +3,23 @@
     <template v-for="item in (layout || '').split(',').map(s => s.trim())" :key="item">
       <!-- 上一页 -->
       <button v-if="item === 'prev'" class="btn-prev" :class="{ 'has-background': background }"
-        :disabled="currentPageNumber  === 1 || disabled" @click="handlePageChange(currentPageNumber  - 1)" :style="stylePage">
+        :disabled="currentPageNumber === 1 || disabled" @click="handlePageChange(currentPageNumber - 1)" :style="stylePage">
         Prev
       </button>
 
       <!-- 页码 -->
       <div v-if="item === 'pager'" class="pager">
         <button v-for="page in pagerList" :key="page"
-          :class="['pager-item', { active: currentPage === page, 'has-background': background }]" :disabled="disabled"
+          :class="['pager-item', { active: currentPageNumber === page, 'has-background': background }]" :disabled="disabled"
           @click="page !== '...' && handlePageChange(Number(page))"
-          :style="currentPage === page ? activeItemStyle : itemPageStyle">
+          :style="currentPageNumber === page ? activeItemStyle : itemPageStyle">
           {{ page }}
         </button>
       </div>
 
       <!-- 下一页 -->
       <button v-if="item === 'next'" class="btn-next" :class="{ 'has-background': background }"
-        :disabled="currentPage === totalPages || disabled" @click="handlePageChange(currentPageNumber + 1)"
+        :disabled="currentPageNumber === totalPages || disabled" @click="handlePageChange(currentPageNumber + 1)"
         :style="stylePage">
         Next
       </button>
@@ -35,7 +35,7 @@
       <!-- 跳转 -->
       <div v-if="item === 'jumper'" class="jumper">
         Go to
-        <input type="number" :value="currentPage" :disabled="disabled"
+        <input type="number" :value="currentPageNumber" :disabled="disabled"
           @change="handleJumperChange(($event.target as HTMLInputElement).value)" />
       </div>
 
@@ -56,15 +56,15 @@ defineOptions({
 })
 
 const props = defineProps(paginationProps)
-const emit = defineEmits(['update:current-page', 'update:page-size', 'change']);
-const currentPageNumber = computed(() => Number(props.currentPage));
+const emit = defineEmits(['update:modelValue', 'update:page-size', 'change']);
+const currentPageNumber = computed(() => Number(props.modelValue));
 
 const { pagerList, totalPages, stylePage, itemPageStyle, activeItemStyle } = usePaginationComputed(props, emit)
 
 // 页码变更
 const handlePageChange = (page: number) => {
   if (page >= 1 && page <= totalPages.value && page !== currentPageNumber.value) {
-    emit('update:current-page', page);
+    emit('update:modelValue', page);
     emit('change', page, props.pageSize);
   }
 };
@@ -73,7 +73,7 @@ const handlePageChange = (page: number) => {
 const handleSizeChange = (size: string) => {
   const newSize = Number(size);
   emit('update:page-size', newSize);
-  emit('update:current-page', 1); // 重置到第一页
+  emit('update:modelValue', 1); // 重置到第一页
   emit('change', 1, newSize);
 };
 

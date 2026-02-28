@@ -1,100 +1,105 @@
-@use '../../../theme-chalk/src/common/var.scss';
+@use '../../../theme-chalk/src/common/index.scss';
 
+/* ===== 基础 ===== */
 .my-a {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+  color: var(--color-black);
+  text-decoration: none;
+  cursor: pointer;
 
-    &:hover {
-        color: #000;
-        text-decoration: underline;
-        text-underline-offset: 4px;
-    }
+  &:hover {
+    color: var(--color-black);
+    text-decoration: underline;
+    text-underline-offset: var(--space-1);
+  }
 }
 
+/* ===== 颜色 ===== */
 .my-a--default {
-    color: #fff;
-    
-    &:hover {
-        color: #fff;
-        text-decoration-color: #fff;
-    }
+  color: var(--color-white);
+
+  &:hover {
+    color: var(--color-white);
+    text-decoration-color: var(--color-white);
+  }
 }
 
 .my-a--primary {
-    color: var(--btn-color-primary);
+  color: var(--color-primary);
 
-    &:hover {
-        color: var(--btn-color-primary);
-        text-decoration-color: var(--btn-color-primary);
-    }
+  &:hover {
+    color: var(--color-primary);
+    text-decoration-color: var(--color-primary);
+  }
 }
 
 .my-a--success {
-    color: var(--btn-color-success);
-    
-    &:hover {
-        color: var(--btn-color-success);
-        text-decoration-color: var(--btn-color-success);
-    }
+  color: var(--color-success);
+
+  &:hover {
+    color: var(--color-success);
+    text-decoration-color: var(--color-success);
+  }
 }
 
 .my-a--warning {
-    color: var(--btn-color-warning);
-    
-    &:hover {
-        color: var(--btn-color-warning);
-        text-decoration-color: var(--btn-color-warning);
-    }
+  color: var(--color-warning);
+
+  &:hover {
+    color: var(--color-warning);
+    text-decoration-color: var(--color-warning);
+  }
 }
 
 .my-a--danger {
-    color: var(--btn-color-danger);
-    
-    &:hover {
-        color: var(--btn-color-danger);
-        text-decoration-color: var(--btn-color-danger);
-    }
+  color: var(--color-danger);
+
+  &:hover {
+    color: var(--color-danger);
+    text-decoration-color: var(--color-danger);
+  }
 }
 
 .my-a--info {
-    color: var(--btn-color-info);
-    
-    &:hover {
-        color: var(--btn-color-info);
-        text-decoration-color: var(--btn-color-info);
-    }
+  color: var(--color-info);
+
+  &:hover {
+    color: var(--color-info);
+    text-decoration-color: var(--color-info);
+  }
 }
 
+/* ===== 尺寸 ===== */
 .my-a--large {
-    font-size: 20px;
+  font-size: var(--font-size-xl);
 }
 
 .my-a--medium {
-    font-size: 18px;
+  font-size: var(--font-size-lg);
 }
 
-.my-a-small {
-    font-size: 16px;
+.my-a--small {
+  font-size: var(--font-size-md);
 }
 
 .my-a--mini {
-    font-size: 14px;
+  font-size: var(--font-size-sm);
 }
 
+/* ===== 禁用 ===== */
 .my-a--disabled {
-  opacity: 0.6 !important;
-  cursor: not-allowed !important;
-  
+  opacity: 0.6;
+  cursor: not-allowed;
+
   &:hover {
     text-decoration: none;
   }
 }
 
-.my-a--underline {
-    text-decoration: none;
+/* ===== 无下划线 ===== */
+.my-a--underLine {
+  text-decoration: none;
 
-    &:hover {
-        text-decoration: none !important;
-    }
+  &:hover {
+    text-decoration: none;
+  }
 }

@@ -1,4 +1,4 @@
-import { App, Plugin } from 'vue'
+import type { App, Plugin } from 'vue'
 import carousel from './src/carousel.vue'
 import carouselItem from './src/carouselItem.vue'
 import { withInstall } from '../../theme-chalk/utils/withInstall'

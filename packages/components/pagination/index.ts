@@ -1,4 +1,4 @@
-import { App, Plugin } from 'vue'
+import type { App, Plugin } from 'vue'
 import pagination from './src/pagination.vue'
 import { withInstall } from '../../theme-chalk/utils/withInstall'
 

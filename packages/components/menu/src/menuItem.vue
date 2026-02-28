@@ -16,13 +16,15 @@ import '../style/menuItem.scss'
 
 defineOptions({ name: 'MYMenuItem' })
 
-const props = defineProps(menuItemProps)
-// const props = defineProps({
-//   index: { type: String, required: true },
-//   disabled: { type: Boolean, default: false }
-// })
+interface MenuContext {
+  activeIndex: { value: string | undefined }
+  collapse?: { value: boolean }
+  handleSelect: (index: string, indexPath: string[]) => void
+}
 
-const menu = inject<any>('menuContext')
+const props = defineProps(menuItemProps)
+
+const menu = inject<MenuContext>('menuContext')
 const parentPath = inject<string[]>('indexPath', [])
 const subLevel = inject<number>('subLevel', 0)
 
@@ -32,6 +34,13 @@ const showLabel = computed(() => subLevel > 0 || !collapsed.value)
 
 function handleClick() {
   if (props.disabled) return
+
+  // 关键：确保 index 存在
+  if (props.index == null) {
+    console.warn('[MYMenuItem] Missing required prop "index"')
+    return
+  }
+
   const indexPath = [...(parentPath || []), props.index]
   menu?.handleSelect(props.index, indexPath)
 }

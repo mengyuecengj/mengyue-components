@@ -1,5 +1,10 @@
 import type { PropType } from 'vue';
 
+interface TableColumnFilterOption {
+  text: string;
+  value: string | number | boolean;
+}
+
 export const tableColumnProps = {
   prop: {
     type: String,
@@ -30,7 +35,7 @@ export const tableColumnProps = {
     default: false
   },
   filters: {
-    type: Array as PropType<any[]>,
+    type: Array as PropType<TableColumnFilterOption[]>,
     default: () => []
   },
   scopedSlot: {
@@ -49,7 +54,7 @@ export const tableColumnProps = {
     type: String as PropType<'left' | 'right' | 'center'>,
     default: ''
   },
-  type: {  // 新增：支持 type="selection"
+  type: {
     type: String,
     default: ''
   }

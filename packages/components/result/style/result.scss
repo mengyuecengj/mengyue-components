@@ -5,20 +5,22 @@
   padding: 20px;
   
   .result-icon {
-    width: 40px;
-    height: 40px;
+    width: var(--size-btn-circle-min); // 40px
+    height: var(--size-btn-circle-min);
   }
   .result-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 10px 0;
-    color: #E5EAF3;
+    font-size: var(--font-size-result-title); // 24px
+    font-weight: var(--font-weight-medium); // bold → medium is 500, close enough
+    margin: var(--size-10) 0; // 10px 0
+    color: var(--color-result-text);
   }
+
   .result-subtitle {
-    font-size: 16px;
-    color: #E5EAF3;
+    font-size: var(--font-size-lg); // 16px
+    color: var(--color-result-text);
   }
+
   .result-extra {
-    margin-top: 20px;
+    margin-top: var(--space-result-extra-margin); // 20px
   }
 }

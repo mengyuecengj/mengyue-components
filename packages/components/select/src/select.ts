@@ -28,7 +28,7 @@ export const selectProps = {
         type: String,
         default: ''
     },
-    hoverbackgroundColor: {
+    hoverBackgroundColor: {
         type: String,
         default: ''
     },

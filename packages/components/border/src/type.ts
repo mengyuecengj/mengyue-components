@@ -1,4 +1,4 @@
-import { Component } from 'vue';
+import type { Component } from 'vue';
 /** 
  * propsToStyleMap 映射表：
  * key   = props 里的字段名
@@ -16,12 +16,12 @@ export interface BorderProps {
   width?: string | number;
   height?: string | number;
   paddingText?: string;
-  colorBg?: string;
+  colorBackground?: string;
   textColor?: string;
   boxShadow?: string;
   dotted?: boolean;
-  round?: boolean;
-  circle?: boolean;
+  rounded?: boolean;
+  circular?: boolean;
   center?: boolean;
   topColor?: string;
   bottomColor?: string;

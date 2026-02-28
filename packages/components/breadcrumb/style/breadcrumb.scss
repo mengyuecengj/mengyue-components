@@ -1,6 +1,8 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-breadcrumb {
   display: flex;
   align-items: center;
-  font-size: 14px;
-  color: var(--el-text-color-regular, #606266);
+  font-size: var(--font-size-md);
+  color: var(--color-text-regular);
 }

@@ -1,84 +1,80 @@
-// import { PaginationProps } from "./pagination";
+// paginationComputed.ts
+
 import { computed } from 'vue'
+
 export interface PaginationProps {
-    total: number | string
-    pageSize: number | string
-    maxPagerCount: number | string  // 修改此处以匹配 props 定义
-    currentPage: number | string    // 修改此处以匹配 props 定义
-    prneColor: string
-    prneTextColor: string
-    itemColor: string
-    itemTextColor: string
-    activeItemColor?: string
-    activeItemTextColor?: string
+  total: number | string
+  pageSize: number | string
+  maxPagerCount: number | string
+  modelValue: number | string
+  prevColor: string
+  prevTextColor: string
+  itemColor: string
+  itemTextColor: string
+  activeItemColor?: string
+  activeItemTextColor?: string
 }
 
-export function usePaginationComputed(props: PaginationProps, emit: (event: "update:current-page" | "update:page-size" | "change", ...args: any[]) => void) {
-    const totalPages = computed(() => Math.ceil(Number(props.total) / Number(props.pageSize)));
-    const pagerList = computed(() => {
-        const pages = [];
-        // 将 maxPagerCount 转换为数字类型
-        const maxPagerCount = Number(props.maxPagerCount);
-        const half = Math.floor(maxPagerCount / 2);
-        // 将 currentPage 转换为数字类型
-        const currentPage = Number(props.currentPage);
-        let start, end;
+// 👇 定义 emit 的精确类型
+interface PaginationEmits {
+  (event: 'update:modelValue', value: number): void
+  (event: 'update:page-size', size: number): void
+  (event: 'change', page: number, size: number): void
+}
 
-        if (totalPages.value <= maxPagerCount) {
-            // 显示所有页码
-            start = 1;
-            end = totalPages.value;
-        } else {
-            // 显示部分页码 + 省略号
-            if (currentPage <= half) {
-                start = 1;
-                end = maxPagerCount - 2;
-            } else if (currentPage >= totalPages.value - half) {
-                start = totalPages.value - maxPagerCount + 3;
-                end = totalPages.value;
-            } else {
-                start = currentPage - half + 1;
-                end = currentPage + half - 1;
-            }
-        }
+export function usePaginationComputed(props: PaginationProps, emit: PaginationEmits) {
+  const totalPages = computed(() => Math.ceil(Number(props.total) / Number(props.pageSize)))
 
-        // 添加首页
-        pages.push(1);
-        if (start > 2) pages.push('...');
+  const pagerList = computed(() => {
+    const pages = []
+    const maxPagerCount = Number(props.maxPagerCount)
+    const half = Math.floor(maxPagerCount / 2)
+    const currentPage = Number(props.modelValue)
+    let start, end
 
-        // 添加中间页码
-        for (let i = Math.max(2, start); i <= Math.min(totalPages.value - 1, end); i++) {
-            pages.push(i);
-        }
+    if (totalPages.value <= maxPagerCount) {
+      start = 1
+      end = totalPages.value
+    } else {
+      if (currentPage <= half) {
+        start = 1
+        end = maxPagerCount - 2
+      } else if (currentPage >= totalPages.value - half) {
+        start = totalPages.value - maxPagerCount + 3
+        end = totalPages.value
+      } else {
+        start = currentPage - half + 1
+        end = currentPage + half - 1
+      }
+    }
 
-        // 添加末页
-        if (end < totalPages.value - 1) pages.push('...');
-        if (totalPages.value > 1) pages.push(totalPages.value);
+    pages.push(1)
+    if (start > 2) pages.push('...')
 
-        return pages;
-    });
+    for (let i = Math.max(2, start); i <= Math.min(totalPages.value - 1, end); i++) {
+      pages.push(i)
+    }
 
-    const stylePage = computed(() => {
-        return {
-            backgroundColor: props.prneColor,
-            color: props.prneTextColor,
-        }
-    })
+    if (end < totalPages.value - 1) pages.push('...')
+    if (totalPages.value > 1) pages.push(totalPages.value)
 
-    // backgroundColor
-    const itemPageStyle = computed(() => {
-        return {
-            backgroundColor: props.itemColor,
-            color: props.itemTextColor,
-        }
-    })
+    return pages
+  })
 
-    // 选中项样式（可以和未选中项相同或不同）
-    const activeItemStyle = computed(() => {
-        return {
-            backgroundColor: props.activeItemColor || props.itemColor,
-            color: props.activeItemTextColor || props.itemTextColor,
-        }
-    })
-    return { totalPages, pagerList, stylePage, itemPageStyle, activeItemStyle }
+  const stylePage = computed(() => ({
+    backgroundColor: props.prevColor,
+    color: props.prevTextColor,
+  }))
+
+  const itemPageStyle = computed(() => ({
+    backgroundColor: props.itemColor,
+    color: props.itemTextColor,
+  }))
+
+  const activeItemStyle = computed(() => ({
+    backgroundColor: props.activeItemColor || props.itemColor,
+    color: props.activeItemTextColor || props.itemTextColor,
+  }))
+
+  return { totalPages, pagerList, stylePage, itemPageStyle, activeItemStyle }
 }

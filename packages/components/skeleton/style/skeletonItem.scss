@@ -1,15 +1,18 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-skeleton-item {
-  background: var(--skeleton-bg);
+  background: var(--color-skeleton-bg);
 }
+
 .my-skeleton-item--text {
-  margin: 4px 0;
+  margin: var(--space-2) 0; // 4px 0
 }
 
 .my-skeleton-item--rect,
 .my-skeleton-item--image {
-  border-radius: 4px;
+  border-radius: var(--radius-sm); // 4px
 }
 
 .my-skeleton-item--circle {
-  border-radius: 50%;
+  border-radius: var(--radius-circle); // 50%
 }

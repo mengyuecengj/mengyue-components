@@ -1,15 +1,17 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-menu {
   list-style: none;
   margin: 0;
   padding: 0;
-  width: 220px;
+  width: var(--size-menu-width);
   height: 100vh;
   overflow: auto;
-  background: var(--menu-bg, #2f3b46);
-  color: var(--menu-text, #bfcbd9);
-  transition: width .25s ease;
+  background: var(--color-menu-bg);
+  color: var(--color-menu-text);
+  transition: width var(--motion-base) ease;
 }
 
 .my-menu.is-collapse {
-  width: 64px;
+  width: var(--size-menu-collapse-width);
 }

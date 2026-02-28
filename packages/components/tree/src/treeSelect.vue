@@ -50,19 +50,12 @@ import '../style/treeSelect.scss'
 import { treeSelectProps } from './treeSelect'
 import { useStyleComputed } from '../../../hooks/useStyleComputed'
 
-// const extendedTreeSelectProps = {
-//   ...treeSelectProps,
-//   arrowType: {
-//     type: String,
-//     default: 'unicode',
-//     validator: (value: string) => ['unicode', 'css'].includes(value)
-//   }
-// }
-
 const props = defineProps(treeSelectProps)
+type ModelValueType = string | number | (string | number)[] | null
+
 const emit = defineEmits<{
-  'update:modelValue': [value: any]
-  change: [value: any]
+  'update:modelValue': [value: ModelValueType]
+  change: [value: ModelValueType]
   clear: []
   'check-change': [data: { checkedKeys: (string | number)[]; checkedNodes: TreeNodes[] }]
 }>()

@@ -40,7 +40,7 @@
             <Transition name="slide-fade">
                 <div v-if="activeThirdMenu" class="third-menu" :style="thirdMenuPosition">
                     <div v-for="third in activeThirdMenuItems" :key="third.value" class="select-option"
-                        :class="{ 'is-disabled': (third as any).disabled || disabled }" @click.stop="handleClick(third)">
+                        :class="{ 'is-disabled': third.disabled || disabled }" @click.stop="handleClick(third)">
                         <div class="label">{{ third.label }}</div>
                     </div>
                 </div>

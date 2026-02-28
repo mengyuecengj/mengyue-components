@@ -8,14 +8,14 @@
     @click="handleClick"
   >
     <span class="my-radio__input">
-      <input
-        class="my-radio__original"
-        type="radio"
-        :value="value"
-        :checked="isChecked"
-        :disabled="isDisabled"
-        @change.stop
-      />
+    <input
+      class="my-radio__original"
+      type="radio"
+      :value="props.value"
+      :checked="isChecked"
+      :disabled="isDisabled"
+      @change.stop
+    />
       <span class="my-radio__inner"></span>
     </span>
     <span class="my-radio__label">
@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject } from 'vue'
+import { computed, inject, unref } from 'vue'
 import { radioProps } from './radio'
 import '../style/radio.scss'
 import type { RadioGroupContext } from './type'
@@ -51,13 +51,10 @@ const isDisabled = computed(() => {
 })
 
 // 计算是否选中，兼容 modelValue 是 Ref 还是普通值
+
 const isChecked = computed(() => {
   if (isGroup.value) {
-    const modelValue = radioGroup!.modelValue
-    const groupValue = (modelValue && typeof modelValue === 'object' && 'value' in modelValue)
-      ? (modelValue as any).value
-      : modelValue
-    return groupValue === props.value
+    return unref(radioGroup!.modelValue) === props.value
   }
   return props.modelValue === props.value
 })

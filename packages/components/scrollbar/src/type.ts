@@ -1,6 +1,6 @@
 export interface ScrollbarProps {
   tag?: string;
-  Maxheight?: string;
+  maxHeight?: string;
   widthX?: boolean;
   disabledHeight?: boolean;
   disabledWidth?: boolean;
@@ -9,7 +9,7 @@ export interface ScrollbarProps {
   corner?: boolean;
   thumbHoverColor?: string;
   trackColor?: string;
-  ScrollWidth?: string | number;
+  scrollWidth?: string | number;
   height?: string | number;
   [Key: string]: string | number | boolean | undefined
 }

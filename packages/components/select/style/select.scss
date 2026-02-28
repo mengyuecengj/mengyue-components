@@ -1,53 +1,48 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .select-e {
   position: relative;
-  width: 260px;
-  height: 40px;
-  font-size: 14px;
-  color: var(--text-color, #fff);
-  border: 1px solid #4C4D4F;
-  border-radius: 4px;
-  background: var(--dropdown-bg-color, #1f1f21);
-  transition: border-color 0.2s ease;
+  width: var(--size-select-width);
+  height: var(--size-select-height);
+  font-size: var(--font-size-md);
+  color: var(--color-white);
+  border: var(--border-width-sm) solid var(--color-select-border);
+  border-radius: var(--radius-xs);
+  background: var(--color-select-bg);
+  transition: border-color var(--motion-fast) ease;
   user-select: none;
   outline: none;
-  /* 移除默认的focus轮廓 */
 
-  /* 悬停效果 */
   &:hover:not(.is-disabled) {
-    border: 1px solid #303333;
-    background-color: var(--hover-bg-color, #2a2a2e);
-    color: var(--hover-text-color, var(--text-color, #fff));
+    border: var(--border-width-sm) solid var(--color-select-border-hover);
+    background-color: var(--color-select-bg-hover);
+    color: var(--color-white);
   }
 
-  /* 聚焦/点击保持效果 */
   &.is-focused,
   &:focus:not(.is-disabled) {
-    border: 1px solid var(--active-color, #409Eff);
+    border: var(--border-width-sm) solid var(--color-primary);
   }
 
   &.is-disabled {
     opacity: 0.6;
     cursor: not-allowed;
-    border: 1px solid #4C4D4F !important;
-    /* 强制保持原边框 */
+    border: var(--border-width-sm) solid var(--color-select-border) !important;
 
-    /* 禁用状态下的触发器 */
     .select-trigger {
       cursor: not-allowed;
 
-      /* 禁用悬停效果 */
       &:hover {
-        background-color: var(--hover-bg-color, #1f1f21);
+        background-color: var(--color-select-bg);
         border: none;
         background: inherit;
       }
     }
 
-    /* 禁用状态下阻止所有伪类效果 */
     &:hover,
     &:active,
     &:focus {
-      border: 1px solid #4C4D4F !important;
+      border: var(--border-width-sm) solid var(--color-select-border) !important;
     }
   }
 }
@@ -56,14 +51,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 12px;
-  /* 修改为上下0，保持原有高度 */
+  padding: 0 var(--space-3); // 0 12px → 但 --space-3=8px, --space-3_5=12px
   height: 100%;
-  /* 确保高度填充父容器 */
   cursor: pointer;
 
   &:hover {
-    background-color: var(--hover-bg-color, #2a2a2e);
+    background-color: var(--color-select-bg-hover);
   }
 
   .selected-value {
@@ -71,23 +64,20 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: var(--text-color, #E0E0E0);
+    color: var(--color-white);
     line-height: inherit;
-    /* 继承父元素的行高 */
     height: 100%;
-    /* 高度填充 */
     display: flex;
     align-items: center;
-    /* 垂直居中 */
 
     &:empty::before {
       content: attr(placeholder);
-      color: #606266;
+      color: var(--color-text-regular);
     }
   }
 
   .arrow-icon {
-    transition: transform 0.3s ease;
+    transition: transform var(--motion-base) ease;
     display: flex;
     align-items: center;
 
@@ -96,8 +86,8 @@
     }
 
     svg {
-      fill: var(--text-color, #909399);
-      transition: fill 0.2s ease;
+      fill: var(--color-info);
+      transition: fill var(--motion-fast) ease;
     }
   }
 }
@@ -105,15 +95,14 @@
 .select-dropdown {
   position: absolute;
   width: 100%;
-  margin-top: 4px;
-  background: var(--dropdown-bg-color, #2a2a2e);
-  border: 1px solid #4C4D4F;
-  border-radius: 4px;
+  margin-top: var(--space-select-dropdown-gap); // 7px
+  background: var(--color-select-bg-hover);
+  border: var(--border-width-sm) solid var(--color-select-border);
+  border-radius: var(--radius-xs);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  max-height: 200px;
+  z-index: var(--z-index-fixed);
+  max-height: var(--size-select-dropdown-max-height);
   overflow: hidden;
-  margin-top: 7px;
 
   &.with-scrollbar {
     overflow: visible;
@@ -121,15 +110,15 @@
 }
 
 .slide-fade-enter-active {
-  transition: all 0.2s ease-out;
+  transition: all var(--motion-fast) ease-out;
 }
 
 .slide-fade-leave-active {
-  transition: all 0.2s ease-in;
+  transition: all var(--motion-fast) ease-in;
 }
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateY(-10px);
+  transform: translateY(calc(-1 * var(--size-10))); // -10px
   opacity: 0;
 }

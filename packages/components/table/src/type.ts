@@ -31,5 +31,6 @@ export interface TableProps {
   bodyBackgroundColor?: string;
   hoverBackgroundColor?: string;
   bodyTextColor?: string;
+  loading?: boolean;
   [key: string]: unknown;
 }

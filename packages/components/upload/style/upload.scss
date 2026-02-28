@@ -1,44 +1,46 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-upload {
-    display: inline-block;
+  display: inline-block;
 }
 
 .upload-btn {
-    padding: 8px 14px;
-    background: #409eff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  padding: 8px 14px;
+  background: var(--color-primary); /* #409eff → Token */
+  color: var(--color-white); /* #fff → Token */
+  border: none;
+  border-radius: var(--radius-sm); /* 4px → Token */
+  cursor: pointer;
 }
 
 .avatar-wrapper {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f5f7fa;
-    border: 1px dashed #dcdfe6;
+  width: 100px; /* 保留：布局尺寸 */
+  height: 100px;
+  border-radius: var(--radius-circle); /* 50% → Token */
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-disabled-light); /* #f5f7fa → Token */
+  border: var(--border-width-sm) dashed var(--color-border-base); /* 1px dashed #dcdfe6 → Token */
 }
 
 .avatar {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .avatar-placeholder {
-    color: #909399;
-    font-size: 13px;
+  color: var(--color-info); /* #909399 → Token */
+  font-size: var(--font-size-sm); /* 13px → Token */
 }
 
 ul {
-    margin-top: 8px;
-    padding: 0;
-    list-style: none;
-    font-size: 13px;
-    color: #606266;
+  margin-top: 8px; /* 保留：布局外边距 */
+  padding: 0;
+  list-style: none;
+  font-size: var(--font-size-sm); /* 13px → Token */
+  color: var(--color-text-regular); /* #606266 → Token */
 }

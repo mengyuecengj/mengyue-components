@@ -72,7 +72,7 @@ const isDisabled = computed(() => {
 })
 
 const checkboxClass = computed(() => ({
-  'my-checkbox--checked': isChecked.value,  // 从 'is-checked' 改为 'my-checkbox--checked'
-  'my-checkbox--disabled': isDisabled.value  // 从 'is-disabled' 改为 'my-checkbox--disabled'
+  'my-checkbox--checked': isChecked.value,
+  'my-checkbox--disabled': isDisabled.value
 }))
 </script>

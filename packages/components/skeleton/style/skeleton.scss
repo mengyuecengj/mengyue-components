@@ -1,3 +1,5 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-skeleton {
   width: 100%;
   box-sizing: border-box;
@@ -5,13 +7,12 @@
   .my-skeleton__wrapper {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--space-3); // 8px
   }
 }
 
-
 .my-skeleton--animated .my-skeleton-item {
-  background: var(--skeleton-bg);
+  background: var(--color-skeleton-bg);
   position: relative;
   overflow: hidden;
   
@@ -30,10 +31,10 @@
   background: linear-gradient(
     90deg,
     transparent,
-    var(--skeleton-animation-bg),
+    var(--color-skeleton-animation),
     transparent
   );
-  animation: shimmer var(--skeleton-animation-speed) infinite;
+  animation: shimmer var(--motion-skeleton) infinite;
 }
 
 @keyframes shimmer {

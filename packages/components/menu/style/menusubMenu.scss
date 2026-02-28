@@ -1,8 +1,10 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-submenu {
   .submenu-title {
     display: flex;
     align-items: center;
-    height: 56px;
+    height: var(--size-menu-item-height);
     padding: 0 16px;
     cursor: pointer;
   }
@@ -16,7 +18,7 @@
 
   .submenu-arrow {
     margin-left: auto;
-    transition: transform 0.22s ease;
+    transition: transform var(--motion-base) ease;
   }
 
   &.is-open .submenu-arrow {
@@ -26,7 +28,7 @@
   .submenu-list {
     list-style: none;
     margin: 0;
-    padding-left: 40px;
+    padding-left: var(--space-submenu-padding-left);
   }
 
   .teleported-list {
@@ -38,7 +40,7 @@
 /* slide 动画 */
 .slide-enter-active,
 .slide-leave-active {
-  transition: height 0.18s ease, opacity 0.18s ease;
+  transition: height var(--motion-fast) ease, opacity var(--motion-fast) ease;
 }
 
 .slide-enter-from,

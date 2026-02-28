@@ -26,8 +26,9 @@ export function useButtonStyle(props: ButtonProps): {
       size: props.size ?? 'medium'
     },
     flagClasses: {
-      round: props.round,
-      circle: props.circle,
+      // round: props.round,
+      rounded: props.rounded,
+      circular: props.circular,
       disabled: props.disabled,
       plain: props.plain,
       iconOnly: props.iconOnly,
@@ -35,7 +36,7 @@ export function useButtonStyle(props: ButtonProps): {
   })
 
   const customStyle = useColorComputed({
-    colorBg: props.colorBg,
+    colorBackground: props.colorBackground,
     colorText: props.colorText,
     colorBorder: props.colorBorder,
     plain: props.plain,

@@ -1,17 +1,10 @@
-$primary-color: #3b82f6;
-$secondary-color: #9333ea;
-$border-color: #e5e7eb;
-$disabled-color: #d1d5db;
-$selected-color: #dbeafe;
-$text-color: #1e293b;
-$gradient: linear-gradient(135deg, #3b82f6, #9333ea);
+@use '../../../theme-chalk/src/common/index.scss' as *;
 
 .my-transfer {
   display: flex;
   align-items: flex-start;
   gap: 2rem;
   padding: 1.5rem;
-  // width: 50%;
 
   &__buttons {
     display: flex;
@@ -23,14 +16,14 @@ $gradient: linear-gradient(135deg, #3b82f6, #9333ea);
     button {
       width: 2.5rem;
       height: 2.5rem;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: white;
-      background: $gradient;
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-white);
+      background: var(--gradient-transfer-btn);
       border: none;
-      border-radius: 50%;
+      border-radius: var(--radius-circle);
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform var(--motion-base) ease, box-shadow var(--motion-base) ease;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       display: flex;
       align-items: center;
@@ -42,7 +35,6 @@ $gradient: linear-gradient(135deg, #3b82f6, #9333ea);
       }
 
       &:disabled {
-        // background: $disabled-color;
         cursor: not-allowed;
         opacity: 0.6;
       }
@@ -56,15 +48,16 @@ $gradient: linear-gradient(135deg, #3b82f6, #9333ea);
 
 .transfer-panel {
   width: 300px;
-  border: 1px solid $border-color;
-  border-radius: 0.5rem;
+  border: var(--border-width-sm) solid var(--color-border-base);
+  border-radius: var(--radius-md);
   padding: 1.25rem;
 
   &__title {
-    font-size: 1.25rem;
+    font-size: var(--font-size-xxl);
+    font-weight: var(--font-weight-medium);
     font-weight: 700;
     padding-bottom: 0.75rem;
-    border-bottom: 2px solid $primary-color;
+    border-bottom: var(--border-width-md) solid var(--color-primary);
     margin-bottom: 1rem;
     text-align: center;
   }
@@ -77,15 +70,15 @@ $gradient: linear-gradient(135deg, #3b82f6, #9333ea);
     padding: 0;
     margin: 0;
     scrollbar-width: thin;
-    scrollbar-color: $border-color transparent;
+    scrollbar-color: var(--color-border-base) transparent;
 
     &::-webkit-scrollbar {
       width: 8px;
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: $primary-color;
-      border-radius: 4px;
+      background-color: var(--color-primary);
+      border-radius: var(--radius-sm);
       opacity: 0.5;
     }
 
@@ -99,29 +92,27 @@ $gradient: linear-gradient(135deg, #3b82f6, #9333ea);
     align-items: center;
     gap: 0.75rem;
     padding: 0.75rem 1rem;
-    font-size: 1rem;
-    // color: $text-color;
-    border-radius: 0.375rem;
-    transition: all 0.3s ease;
+    font-size: var(--font-size-md);
+    border-radius: var(--radius-transfer-item);
+    transition: all var(--motion-base) ease;
     cursor: pointer;
 
     &:hover {
-      background-color: var(--hover-bg, transparent);
+      background-color: transparent;
     }
 
     input[type="checkbox"] {
       background-color: transparent;
       border-color: #9c9393;
-      /* 选中时边框颜色加深 */
     }
 
     &:hover:not(.is-disabled) {
-      background-color: var(--hover-background, $selected-color) !important;
+      background-color: var(--color-transfer-selected) !important;
       transform: translateX(5px);
     }
 
     &.is-disabled {
-      color: $disabled-color;
+      color: var(--color-text-disabled);
       cursor: not-allowed;
 
       input[type="checkbox"] {
@@ -131,8 +122,8 @@ $gradient: linear-gradient(135deg, #3b82f6, #9333ea);
     }
 
     &.is-selected {
-      background-color: var(--hover-background, $selected-color) !important;
-      font-weight: 500;
+      background-color: var(--color-transfer-selected) !important;
+      font-weight: var(--font-weight-medium);
 
       input[type="checkbox"] {
         transform: scale(1.1);
@@ -146,8 +137,7 @@ $gradient: linear-gradient(135deg, #3b82f6, #9333ea);
     width: 1.25rem;
     height: 1.25rem;
     background-color: transparent;
-    border: 1px solid #ccc;
-    /* 保留边框 */
+    border: var(--border-width-sm) solid #ccc;
     position: relative;
     cursor: pointer;
   }
@@ -159,7 +149,6 @@ $gradient: linear-gradient(135deg, #3b82f6, #9333ea);
     left: 50%;
     transform: translate(-50%, -50%);
     color: #333;
-    /* 选中标记颜色 */
-    font-size: 0.8rem;
+    font-size: var(--font-size-xs);
   }
 }

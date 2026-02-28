@@ -2,36 +2,36 @@
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
-  border: 1px solid var(--table-border-color, #dcdfe6);
-  border-radius: 4px;
-  font-size: 14px;
-  color: #606266;
-  background-color: #fff;
+  border: var(--border-width-sm) solid var(--color-border-base);
+  border-radius: var(--radius-xs);
+  font-size: var(--font-size-md);
+  color: var(--color-text-regular);
+  background-color: var(--color-white);
 
   table {
     width: 100%;
-    border-collapse: collapse;  // 修改：从 separate 改为 collapse，消除微间距
+    border-collapse: collapse;
     border-spacing: 0;
     table-layout: auto;
   }
 
   thead {
-    color: #909399;
-    font-weight: 500;
-    background-color: #f5f7fa;
+    color: var(--color-info);
+    font-weight: var(--font-weight-medium);
+    background-color: var(--color-bg-disabled-light);
   }
 
   th,
   td {
+    position: relative;
     padding: 8px 0px;
     text-align: left;
     box-sizing: border-box;
-    border-bottom: 1px solid #ebeef5;
+    border-bottom: var(--border-width-sm) solid var(--color-table-row-border);
     vertical-align: middle;
 
-    // 新增：selection 列专用 padding:0，避免 padding 干扰 absolute
     &[data-column="selection"] {
-      padding: 0;  // 窄列无需 padding
+      padding: 0;
     }
   }
 
@@ -43,12 +43,6 @@
     background-color: var(--hover-bg-color);
   }
 
-  .my-table-header {
-    background-color: inherit;
-    color: inherit;
-  }
-
-  // 修改：直接针对 selection 列的 input（无 wrapper）
   th[data-column="selection"] .selection-checkbox,
   td[data-column="selection"] .selection-checkbox {
     position: absolute;
@@ -56,30 +50,66 @@
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0;
-    width: 16px;
-    height: 16px;
+    width: var(--size-md); // 16px
+    height: var(--size-md);
     cursor: pointer;
-    box-sizing: border-box;
-    // 新增：覆盖浏览器默认样式，确保一致
-    appearance: auto;  // 或 none + custom，如果需要自定义外观
+    appearance: auto;
   }
 
   .my-table__expand-icon {
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    margin-right: 8px;
-    transition: transform 0.3s ease-in-out;
-    vertical-align: middle;
-    
+    margin-right: var(--space-3); // 8px
+    transition: transform var(--motion-base) ease-in-out;
+
     &--expanded {
       transform: rotate(90deg);
     }
-    
+
     svg {
-      transition: transform 0.3s;
-      width: 12px;
-      height: 12px;
+      width: var(--font-size-xs); // 12px
+      height: var(--font-size-xs);
+    }
+  }
+
+  /* ================= loading ================= */
+
+  &.is-loading {
+    pointer-events: none;
+  }
+
+  .my-table__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: var(--z-index-fixed);
+    background-color: var(--color-table-overlay);
+    backdrop-filter: blur(2px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+  }
+
+  .my-table__spinner {
+    width: var(--size-table-spinner); // 36px
+    height: var(--size-table-spinner);
+    border-radius: var(--radius-circle);
+    border: var(--border-width-md) solid var(--color-table-spinner-border);
+    border-top-color: var(--color-table-spinner-top);
+    animation: table-spin var(--motion-table-spinner) linear infinite;
+    margin-bottom: var(--space-3); // 8px
+  }
+
+  .my-table__loading-text {
+    font-size: 13px;
+    color: #606266;
+  }
+
+  @keyframes table-spin {
+    to {
+      transform: rotate(360deg);
     }
   }
 }

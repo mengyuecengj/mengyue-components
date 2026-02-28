@@ -1,14 +1,8 @@
-// style/_variables.scss
-$track-height: 6px;
-$thumb-size: 18px;
-$primary-color: #2c3e50;
-$thumb-bg: #ffffff;
-
-// style/slidebar.scss
-@use "sass:math";
+@use '../../../theme-chalk/src/common/index.scss' as *;
+@use 'sass:math';
 
 .slider-container {
-  padding: 24px 8px;
+  padding: var(--space-5) var(--space-3); // 24px 8px
   user-select: none;
   margin: 0 auto;
   position: relative;
@@ -27,31 +21,31 @@ $thumb-bg: #ffffff;
 
 .slider-track {
   position: relative;
-  height: $track-height;
-  border-radius: math.div($track-height, 2);
+  height: var(--size-slider-track-height);
+  border-radius: calc(var(--size-slider-track-height) / 2);
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: var(--space-3); // 8px
 }
 
 .slider-progress {
   position: absolute;
   height: 100%;
-  border-radius: math.div($track-height, 2);
-  transition: width 0.2s ease-out;
+  border-radius: calc(var(--size-slider-track-height) / 2);
+  transition: width var(--motion-fast) ease-out;
 }
 
 .slider-thumb {
   position: absolute;
-  width: $thumb-size;
-  height: $thumb-size;
-  background: $thumb-bg;
-  border: 2px solid transparent;
-  border-radius: 50%;
+  width: var(--size-slider-thumb-size);
+  height: var(--size-slider-thumb-size);
+  background: var(--color-white);
+  border: var(--border-width-md) solid transparent;
+  border-radius: var(--radius-circle);
   top: 50%;
   transform: translate(-50%, -50%);
   cursor: grab;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease;
+  transition: transform var(--motion-fast) ease;
 
   &:active:not(.disabled) {
     cursor: grabbing;
@@ -65,15 +59,15 @@ $thumb-bg: #ffffff;
 
 .slider-value {
   position: absolute;
-  top: -28px;
+  top: calc(-1 * var(--size-slider-value-top)); // -28px
   left: 50%;
   transform: translateX(-50%);
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: $primary-color;
-  background: $thumb-bg;
-  padding: 2px 6px;
-  border-radius: 4px;
+  font-size: var(--font-size-md); // 14px ≈ 0.875rem
+  font-weight: var(--font-weight-medium);
+  color: var(--color-slider-text);
+  background: var(--color-white);
+  padding: var(--space-1) calc(var(--space-2) + var(--space-1)); // 2px 6px
+  border-radius: var(--radius-xs);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   white-space: nowrap;
 }

@@ -2,6 +2,6 @@ export interface TextProps {
   [key: string]: unknown;
   type?: '' | 'primary' | 'success' | 'warning' | 'danger' | 'info';
   size?: string | number;
-  Tecolor?: string;
+  textColor?: string;
   disabled?: boolean;
 }

@@ -1,39 +1,40 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-progress {
   display: flex;
   align-items: center;
-  max-width: 600px;
-  margin-bottom: 15px;
+  max-width: var(--size-progress-max-width); // 600px
+  margin-bottom: var(--space-progress-margin); // 15px
 
   .my-progress__bar {
     flex: 1;
-    height: 10px;
-    background-color: #e5e5e5;
-    border-radius: 5px;
+    height: var(--size-10); // 10px
+    background-color: var(--color-progress-bg);
+    border-radius: var(--radius-progress); // 5px
     overflow: hidden;
   }
 
   .my-progress__text {
-    margin-left: 10px;
-    font-size: 14px;
-    color: #606266;
+    margin-left: var(--size-10); // 10px
+    font-size: var(--font-size-md); // 14px
+    color: var(--color-text-regular);
   }
 }
 
 .my-progress__bar-inner {
   height: 100%;
-  background-color: #409eff;
-  /* 默认颜色 */
-  transition: width 0.3s ease;
+  background-color: var(--color-primary);
+  transition: width var(--motion-base) ease;
 }
 
 .my-progress__bar-inner--success {
-  background-color: #67c23a;
+  background-color: var(--color-success);
 }
 
 .my-progress__bar-inner--warning {
-  background-color: #e6a23c;
+  background-color: var(--color-warning);
 }
 
 .my-progress__bar-inner--exception {
-  background-color: #f56c6c;
+  background-color: var(--color-danger);
 }

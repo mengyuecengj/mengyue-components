@@ -7,7 +7,8 @@ import type { CSSProperties } from 'vue';
 import { useColorUtils } from './useColorUtils';
 
 export interface ColorComputedProps {
-  colorBg?: string;
+  // colorBg?: string;
+  colorBackground?: string;
   colorText?: string;
   colorBorder?: string;
   plain?: boolean;
@@ -21,9 +22,11 @@ export function useColorComputed(props: ColorComputedProps) {
   const { toRGBA } = useColorUtils()
   
   return computed<CSSProperties>(() => {
-    const { colorBg, colorText, colorBorder, plain, isHovered, isActive, disabled, type } = props;
+    // 2026-02-24 edit - test
+    const { colorBackground, colorText, colorBorder, plain, isHovered, isActive, disabled, type } = props;
     const style: CSSProperties = {};
-    const baseColor = colorBorder || colorBg || '';
+    // 2026-02-24 edit - test
+    const baseColor = colorBorder || colorBackground || '';
     const isDefaultType = type === 'default' || !type;
 
     // 处理 Ref 类型
@@ -56,8 +59,9 @@ export function useColorComputed(props: ColorComputedProps) {
     }
 
     // 非 plain 模式
-    if (colorBg) {
-      style.background = colorBg;
+    // 2026-02-24 edit - test
+    if (colorBackground) {
+      style.background = colorBackground;
       style.color = colorText || '#fff';
       style.borderColor = baseColor;
       return style;

@@ -2,45 +2,56 @@
   position: relative;
   display: inline-block;
   box-sizing: border-box;
-  height: 36px;
-  line-height: 36px;
-  font-size: 14px;
-  font-weight: 500;
-  border: 1px solid #dcdfe6;
-  background: #fff;
-  color: #606266;
+  height: var(--size-radio-button-height);
+  line-height: var(--size-radio-button-height);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  border: var(--border-width-sm) solid var(--color-border-base);
+  background: var(--color-white);
+  color: var(--color-text-regular);
   cursor: pointer;
   transition: all 0.2s;
   margin: 0;
-  padding: 0 16px;
+  padding: 0 var(--size-radio-button-padding-x);
   border-radius: 0;
   outline: none;
 
   // Size
-  &.my-radio-button--large { height: 40px; line-height: 40px; padding: 0 20px; font-size: 14px; }
-  &.my-radio-button--small { height: 32px; line-height: 32px; padding: 0 12px; font-size: 13px; }
+  &.my-radio-button--large {
+    height: var(--size-radio-button-height-lg);
+    line-height: var(--size-radio-button-height-lg);
+    padding: 0 var(--size-radio-button-padding-x-lg);
+    font-size: var(--font-size-md);
+  }
+
+  &.my-radio-button--small {
+    height: var(--size-radio-button-height-sm);
+    line-height: var(--size-radio-button-height-sm);
+    padding: 0 var(--size-radio-button-padding-x-sm);
+    font-size: var(--font-size-sm);
+  }
 
   // Hover
   &:hover:not(.is-disabled) {
-    color: #409eff;
-    border-color: #409eff;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
   }
 
   &.is-active {
-    color: #fff;
-    background-color: #409eff;
-    border-color: #409eff;
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
   }
 
   &.is-disabled {
-    color: #c0c4cc;
-    background-color: #f5f7fa;
-    border-color: #e4e7ed;
+    color: var(--color-text-disabled);
+    background-color: var(--color-default-hover); // = #f5f7fa
+    border-color: var(--color-border-disabled);   // = #e4e7ed
     cursor: not-allowed;
   }
 
   &.is-focus:not(.is-disabled) {
-    box-shadow: 0 0 0 1px rgba(64, 158, 255, 0.5);
+    box-shadow: 0 0 0 var(--border-width-sm) var(--color-primary-a50);
   }
 
   .my-radio-button__inner {
@@ -48,12 +59,12 @@
     padding: 0;
     line-height: inherit;
     transition: inherit;
-    border-radius: 0; // 无圆角，由 label 控制
+    border-radius: 0;
   }
 
   // 非组内独立使用
   &:not(.my-radio-group *) {
-    border-left: 1px solid #dcdfe6;
-    border-radius: 4px;
+    border-left: var(--border-width-sm) solid var(--color-border-base);
+    border-radius: var(--radius-sm);
   }
 }

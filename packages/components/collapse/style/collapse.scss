@@ -1,24 +1,24 @@
 .my-collapse {
-  border: 1px solid #ebeef5;
-  border-radius: 4px;
+  border: var(--border-width-sm) solid var(--color-border-base);
+  border-radius: var(--radius-xs);
 }
 
 // collapse-item
 .my-collapse-item {
-  border-bottom: 1px solid #ebeef5;
-  
+  border-bottom: var(--border-width-sm) solid var(--color-border-base);
+
   .my-collapse-item__header {
     padding: 10px 15px;
     cursor: pointer;
-    font-weight: 500;
-    
+    font-weight: var(--font-weight-medium);
+
     .my-collapse-item__header:hover {
-      background-color: #f5f7fa;
+      background-color: var(--color-bg-disabled-light);
     }
   }
-  
+
   .my-collapse-item__content {
     padding: 0 15px 10px;
-    transition: height 0.3s ease;
+    transition: height var(--motion-base) ease;
   }
 }

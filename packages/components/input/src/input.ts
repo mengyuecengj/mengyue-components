@@ -63,11 +63,11 @@ const valueProps = {
 
 // 输入限制相关
 const inputLimitProps = {
-  minlength: {
+  minLength: {
     type: Number,
     default: undefined
   },
-  maxlength: {
+  maxLength: {
     type: [Number, String] as PropType<number | string>,
     default: undefined
   },

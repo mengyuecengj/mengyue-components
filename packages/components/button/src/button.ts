@@ -1,10 +1,9 @@
 import type { Component, ExtractPropTypes, PropType } from 'vue'
 
-
 const buttonTypeProps = {
   type: {
     type: String as PropType<'' | 'primary' | 'success' | 'warning' | 'danger' | 'info'>,
-    default: 'default' as const,
+    default: 'default',
   },
   size: {
     type: String as PropType<'supersmall' | 'small' | 'medium' | 'large' | 'superbig'>,
@@ -13,48 +12,32 @@ const buttonTypeProps = {
 } as const
 
 const buttonStyleProps = {
-  round: {
-    type: Boolean,
-    default: false,
-  },
-  circle: {
-    type: Boolean,
-    default: false
-  },
-  plain: {
-    type: Boolean,
-    default: false,
-  },
+  rounded: { type: Boolean, default: false },
+  circular: { type: Boolean, default: false },
+  plain: { type: Boolean, default: false },
 } as const
 
 const buttonColorProps = {
-  colorBg: {
-    type: String,
-    default: ''
-  },
-  colorText: {
-    type: String,
-    default: ''
-  },
-  colorBorder: {
-    type: String,
-    default: ''
-  },
+  colorBackground: { type: String, default: '' },
+  colorText: { type: String, default: '' },
+  colorBorder: { type: String, default: '' },
 } as const
 
 const buttonBehaviorProps = {
-  disabled: {
-    type: Boolean,
-    default: false,
+  disabled: { type: Boolean, default: false },
+
+  loading: { type: Boolean, default: false },
+
+  debounce: {
+    type: Number,
+    default: 300,
   },
+
   nativeType: {
     type: String as PropType<'button' | 'submit' | 'reset'>,
     default: 'button',
   },
-  icon: {
-    type: String,
-    default: '',
-  },
+  icon: { type: String, default: '' },
   tag: {
     type: [String, Object] as PropType<string | Component>,
     default: 'button',
@@ -62,10 +45,7 @@ const buttonBehaviorProps = {
 } as const
 
 const buttonIconProps = {
-  iconOnly: {
-    type: Boolean,
-    default: false
-  }
+  iconOnly: { type: Boolean, default: false }
 }
 
 export const buttonProps = {
@@ -76,7 +56,4 @@ export const buttonProps = {
   ...buttonIconProps
 } as const
 
-type ButtonPropsWithDynamic = ExtractPropTypes<typeof buttonProps> & {
-  [key: string]: string | number | boolean | undefined
-}
-export type ButtonProps = ButtonPropsWithDynamic
+export type ButtonProps = ExtractPropTypes<typeof buttonProps>

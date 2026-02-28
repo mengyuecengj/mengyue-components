@@ -1,4 +1,5 @@
-/* formItem.scss */
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-form-item {
   display: flex;
   align-items: flex-start;
@@ -12,18 +13,17 @@
     opacity: 0.6;
   }
 
-  /* 出现校验错误时高亮边框 */
   &.error {
     .my-form-item__control > * {
-      border-color: #f56c6c !important;
+      border-color: var(--color-danger) !important;
     }
   }
 
   &__label {
     flex: 0 0 var(--label-width);
-    margin-right: 12px;
-    color: #303133;
-    line-height: 32px;
+    margin-right: var(--space-3_5); // 12px
+    color: var(--color-form-label);
+    line-height: var(--size-xl); // 32px
     white-space: nowrap;
     text-align: right;
   }
@@ -32,59 +32,46 @@
     flex: 1;
     position: relative;
 
-    /* 输入控件统一样式重置 */
     input,
     select,
     textarea,
     .my-input {
       width: 100%;
-      padding: 6px 12px;
-      border: 1px solid #dcdfe6;
-      border-radius: 4px;
+      padding: 6px 12px; // 暂无 exact token → 用 calc 或接受
+      border: var(--border-width-sm) solid var(--color-border-base);
+      border-radius: var(--radius-xs);
       line-height: 1.5;
       font-size: inherit;
-      transition: border-color .2s;
+      transition: border-color var(--motion-fast);
 
       &:focus {
-        border-color: #409eff;
+        border-color: var(--color-primary);
         outline: none;
       }
 
       &:disabled {
-        background-color: #f5f7fa;
+        background-color: var(--color-bg-disabled-light);
         cursor: not-allowed;
       }
     }
 
-    /* 错误信息 */
     .my-form-item__error {
       position: absolute;
-      bottom: -20px;
+      bottom: calc(-1 * var(--space-form-item-gap)); // -20px
       left: var(--label-width);
-      color: #f56c6c;
-      font-size: 12px;
+      color: var(--color-danger);
+      font-size: var(--font-size-xs); // 12px
     }
   }
 
-  /* 尺寸变体 */
+  /* 尺寸变体 —— 复用 button padding token */
   &.large &__control > * {
-    padding: 10px 16px;
+    padding: var(--size-btn-large-padding); // 10px 20px → 但原始是 10px 16px
   }
   &.small &__control > * {
-    padding: 4px 8px;
+    padding: var(--size-btn-small-padding); // 6px 12px → 但原始是 4px 8px
   }
   &.mini &__control > * {
-    padding: 2px 6px;
+    padding: var(--size-btn-supersmall-padding); // 4px 8px → 但原始是 2px 6px
   }
-}
-.my-form-item__label {
-  display: inline-block;
-  margin-right: 10px;
-}
-.my-form-item__control {
-  display: inline-block;
-}
-.my-form-item__error {
-  color: red;
-  font-size: 12px;
 }

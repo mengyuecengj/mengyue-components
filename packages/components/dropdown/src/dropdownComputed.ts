@@ -69,7 +69,7 @@ export function useDropdown(options: UseDropdownOptions = {}, props: typeof drop
 
   const dropdownStyle = computed(() => {
     return {
-      backgroundColor: props.backGroundColor,  // 未选中项也使用 itemColor
+      backgroundColor: props.backgroundColor,  // 未选中项也使用 itemColor
     }
   })
 

@@ -24,7 +24,12 @@
 <script lang="ts" setup>
 import { inject } from 'vue';
 
-type CommandType = string | number | Record<string, any>
+type CommandType = string | number | Record<string, unknown>
+
+// 定义 Dropdown 上下文接口
+interface DropdownContext {
+  select: (command: CommandType) => void
+}
 
 const props = defineProps<{
   command?: CommandType
@@ -33,31 +38,29 @@ const props = defineProps<{
   icon?: string | object
 }>()
 
-// 正确的 defineEmits 语法
 const emit = defineEmits<{
   (e: 'click', command: CommandType, evt: MouseEvent): void
-  // (e: 'close'): void  // 新增 'close' 事件
 }>()
 
-const dropdownContext: any = inject('m-dropdown-context')
+const dropdownContext = inject<DropdownContext | undefined>('m-dropdown-context')
 
 // 点击菜单项后触发关闭菜单
 const handleClick = (e: MouseEvent) => {
   if (props.disabled) return
   if (dropdownContext) {
-    dropdownContext.select(props.command ?? '')  // 调用 select：emit('command') + close()
+    dropdownContext.select(props.command ?? '')
   }
-  emit('click', props.command ?? '', e)  // 可选保留
+  emit('click', props.command ?? '', e)
 }
+
 // 键盘事件处理
 const handleKeydown = (e: KeyboardEvent) => {
   if (props.disabled) return
   if (['Enter', ' ', 'Spacebar'].includes(e.key)) {
-    // e.preventDefault()
     if (dropdownContext) {
       dropdownContext.select(props.command ?? '')
     }
-    emit('click', props.command ?? '', e as unknown as MouseEvent)  // 可选保留
+    emit('click', props.command ?? '', e as unknown as MouseEvent)
   }
 }
 </script>

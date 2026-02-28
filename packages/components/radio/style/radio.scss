@@ -18,20 +18,20 @@
   }
 
   &__inner {
-    width: 14px;
-    height: 14px;
-    border: 1px solid #dcdfe6;
-    border-radius: 50%;
-    background: #fff;
+    width: var(--font-size-md); // 14px
+    height: var(--font-size-md);
+    border: var(--border-width-sm) solid var(--color-border-base);
+    border-radius: var(--radius-circle);
+    background: var(--color-white);
     position: relative;
 
     &:after {
       content: "";
       position: absolute;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #fff;
+      width: calc(var(--font-size-md) / 2.33); // ~6px
+      height: calc(var(--font-size-md) / 2.33);
+      border-radius: var(--radius-circle);
+      background: var(--color-white);
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%) scale(0);
@@ -40,15 +40,15 @@
   }
 
   &__label {
-    margin-left: 8px;
-    font-size: 14px;
+    margin-left: var(--size-radio-label-gap); // 8px
+    font-size: var(--font-size-md);
     user-select: none;
   }
 
   &--checked {
     .my-radio__inner {
-      border-color: #409eff;
-      background-color: #409eff;
+      border-color: var(--color-primary);
+      background-color: var(--color-primary);
 
       &:after {
         transform: translate(-50%, -50%) scale(1);

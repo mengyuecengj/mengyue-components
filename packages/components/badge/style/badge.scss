@@ -1,24 +1,27 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-badge-wrapper {
   position: relative;
   
   .my-badge {
     position: absolute;
-    min-width: 16px;
-    height: 16px;
-    line-height: 16px;
-    border-radius: 8px;
-    font-size: 12px;
-    color: #fff;
+    min-width: var(--size-md); // 16px
+    height: var(--size-md);
+    line-height: var(--size-md);
+    border-radius: var(--radius-md); // 8px
+    font-size: var(--font-size-xs); // 12px
+    color: var(--color-white);
     text-align: center;
-    padding: 0 4px;
+    padding: 0 var(--space-2); // 0 4px
     box-sizing: border-box;
-    transition: all 0.3s ease;
+    transition: all var(--motion-base) ease;
   }
+
   .my-badge.dot {
-    min-width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    padding: 2px;
-    margin-left: 5px;
+    min-width: var(--size-xs); // 12px
+    height: var(--size-xs);
+    border-radius: var(--radius-circle); // 50%
+    padding: var(--space-1); // 2px
+    margin-left: var(--space-badge-dot-margin); // 5px
   }
 }

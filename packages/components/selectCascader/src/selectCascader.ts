@@ -22,7 +22,7 @@ export const selectCascaderProps = {
         type: [String, Number] as PropType<string | number>,
         default: '40px'
     },
-    options: {  // 添加 options 属性
+    options: {
         type: Array as PropType<Option[]> | undefined,
         required: true
     }

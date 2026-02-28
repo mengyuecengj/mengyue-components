@@ -1,34 +1,46 @@
 <template>
-  <component v-if="!props.iconOnly" :is="props.tag" :class="btnClass" :style="customStyle" :disabled="props.disabled"
-    :type="props.nativeType || 'button'" @click="handleClick" @mouseover="onMouseOver" @mouseleave="onMouseOut"
+  <component v-if="!props.iconOnly" :is="props.tag" :class="btnClass" :style="customStyle" :disabled="isDisabled"
+    :type="props.nativeType || 'button'" @click="onClick" @mouseover="onMouseOver" @mouseleave="onMouseOut"
     @mousedown="onMouseDown" @mouseup="onMouseUp">
-    <component v-if="props.icon" :is="props.icon" class="my-btn-icon" />
+    <!-- loading 优先显示 -->
+    <span v-if="props.loading" class="my-btn__loading"></span>
+
+    <component v-else-if="props.icon" :is="props.icon" class="my-btn-icon" />
+
     <slot />
   </component>
-  <component v-else :is="props.icon" class="my-btn-icon" @click="handleClick" :class="[btnClass, 'my-btn--icon-only-icon']" :style="customStyle" />
+
+  <component v-else :is="props.icon" :class="[btnClass, 'my-btn--icon-only-icon']" :style="customStyle"
+    @click="onClick" />
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { buttonProps } from './button'
-import '../style/button.scss'
 import { useButtonStyle } from './computedStyle'
+import { useDebounce } from '../../../utils/useDebounce'
+import '../style/button.scss'
 
-defineSlots<{
-  default?: (props: {}) => string
-  icon?: (props: {}) => string
-}>()
-
-defineOptions({
-  name: 'MYButton'
-})
+defineOptions({ name: 'MYButton' })
 
 const props = defineProps(buttonProps)
 const emit = defineEmits<{ (e: 'click', ev: MouseEvent): void }>()
 
-function handleClick(e: MouseEvent) {
-  if (props.disabled) return
+const isDisabled = computed(() => props.disabled || props.loading)
+
+function emitClick(e: MouseEvent) {
   emit('click', e)
 }
+
+const onClick = props.debounce > 0
+  ? useDebounce((e) => {
+    if (isDisabled.value) return
+    emitClick(e as MouseEvent)
+  }, props.debounce)
+  : (e: MouseEvent) => {
+    if (isDisabled.value) return
+    emitClick(e)
+  }
 
 const {
   btnClass,
@@ -37,5 +49,8 @@ const {
   onMouseOut,
   onMouseDown,
   onMouseUp
-} = useButtonStyle(props)
+} = useButtonStyle({
+  ...props,
+  disabled: isDisabled.value
+})
 </script>

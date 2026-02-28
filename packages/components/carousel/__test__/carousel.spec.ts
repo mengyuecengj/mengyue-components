@@ -6,7 +6,7 @@ import MYCarouselItem from '../src/carouselItem.vue'
 
 vi.useFakeTimers({ toFake: ['setInterval', 'clearInterval'] })
 
-const mountCarousel = (props: Record<string, any> = {}) =>
+const mountCarousel = (props: Record<string, unknown> = {}) =>
   mount(defineComponent({
     components: { MYCarousel, MYCarouselItem },
     template: `

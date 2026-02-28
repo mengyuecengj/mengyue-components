@@ -1,6 +1,6 @@
 import { useClassComputed } from "../../../hooks/useClassComputed"
 import { useStyleComputed } from "../../../hooks/useStyleComputed"
-import { BorderProps } from "./border";
+import type { BorderProps } from "./border";
 
 const propToStyleMap: Partial<Record<keyof BorderProps, string>> = {
     borderStyle: 'borderStyle',
@@ -9,7 +9,7 @@ const propToStyleMap: Partial<Record<keyof BorderProps, string>> = {
     width: 'width',
     height: 'height',
     paddingText: 'padding',
-    colorBg: 'background',
+    colorBackground: 'background',
     textColor: 'color',
     boxShadow: 'boxShadow',
 }
@@ -19,8 +19,8 @@ export function useBorderComputed(props: BorderProps) {
     const borderClass = useClassComputed<BorderProps>({
         baseClass: 'my-border',
         flagClasses: {
-            round: props.round,
-            circle: props.circle,
+            rounded: props.rounded,
+            circular: props.circular,
             center: props.center,
         },
     });

@@ -1,7 +1,11 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { mount } from '@vue/test-utils';
+import type { ComponentPublicInstance } from 'vue';
 import MYSelect from '../src/select.vue';
 import MYScrollbar from '../../scrollbar/src/scrollbar.vue';
+
+// 获取组件实例的类型
+type MYSelectInstance = ComponentPublicInstance<{}, { dropdownVisible: boolean }>;
 
 describe('MYSelect', () => {
   let wrapper: ReturnType<typeof mount>;
@@ -37,15 +41,15 @@ describe('MYSelect', () => {
 
   it('closes dropdown on blur', async () => {
     await wrapper.find('.select-trigger').trigger('click');
-    expect((wrapper.vm as any).dropdownVisible).toBe(true);
+    expect((wrapper.vm as MYSelectInstance).dropdownVisible).toBe(true);
 
     await wrapper.find('.select-e').trigger('blur');
-    expect((wrapper.vm as any).dropdownVisible).toBe(false);
+    expect((wrapper.vm as MYSelectInstance).dropdownVisible).toBe(false);
   });
 
   it('does not open dropdown when disabled', async () => {
     wrapper = createWrapper({ disabled: true });
     await wrapper.find('.select-trigger').trigger('click');
-    expect((wrapper.vm as any).dropdownVisible).toBe(false);
+    expect((wrapper.vm as MYSelectInstance).dropdownVisible).toBe(false);
   });
 });

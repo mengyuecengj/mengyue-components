@@ -1,0 +1,190 @@
+:root {
+  /* border / divider */
+  --size-1: 1px;
+  --size-2: 2px;
+  --size-4: 4px;
+  --size-10: 10px;
+
+  /* icon / loading / control */
+  --size-xs: 12px;
+  --size-sm: 14px;
+  --size-md: 16px;
+  --size-lg: 24px;
+  --size-xl: 32px;
+
+  /* scrollbar */
+  --size-scrollbar: 12px;
+  --size-scrollbar-padding: 3px;
+
+  /* layout size */
+  --size-header-height: 60px;
+  --size-aside-width: 200px;
+  --size-footer-height: 200px;
+
+  /* input specific */
+  --size-input-padding-x: 11px;
+  --size-input-suffix-gap: 8px;
+  --size-input-word-limit-right: 50px;
+
+  /* z-index */
+  --z-index-fixed: 1000;
+
+  /* radio button */
+  --size-radio-button-height: 36px;
+  --size-radio-button-height-lg: 40px;
+  --size-radio-button-height-sm: 32px;
+
+  --size-radio-button-padding-x: 16px;
+  --size-radio-button-padding-x-lg: 20px;
+  --size-radio-button-padding-x-sm: 12px;
+
+  --size-radio-label-gap: 8px; // radio label 间距
+
+  /* button padding */
+  --size-btn-supersmall-padding: 4px 8px;
+  --size-btn-small-padding: 6px 12px;
+  --size-btn-medium-padding: 8px 16px;
+  --size-btn-large-padding: 10px 20px;
+  --size-btn-superbig-padding: 12px 24px;
+
+  /* button font size */
+  --size-btn-supersmall-font: 12px;
+  --size-btn-small-font: 13px;
+  --size-btn-medium-font: 14px;
+  --size-btn-large-font: 16px;
+  --size-btn-superbig-font: 18px;
+
+  /* button icon & circle */
+  --size-btn-circle-min: 40px;
+  --size-btn-icon-margin: 8px;
+  --size-btn-icon-base: 24px;
+
+
+  // checkbox
+  --size-checkbox: 14px;
+  --size-checkbox-check-width: 3px;
+  --size-checkbox-check-height: 7px;
+  --size-checkbox-check-left: 4px;
+  --size-checkbox-check-top: 1px;
+
+  /* switch */
+  // default (large)
+  --size-switch-width: 60px;
+  --size-switch-height: 34px;
+  --size-switch-handle: 26px;
+  --size-switch-handle-offset: 4px;
+  --size-switch-translate-x: 26px;
+  --size-switch-text-left-on: 46px;
+
+  // mini
+  --size-switch-mini-width: 28px;
+  --size-switch-mini-height: 19px;
+  --size-switch-mini-handle: 12px;
+  --size-switch-mini-translate-x: 8px;
+  --size-switch-mini-text-left-on: 16px;
+
+  // supersmall
+  --size-switch-supersmall-width: 36px;
+  --size-switch-supersmall-height: 23px;
+  --size-switch-supersmall-handle: 16px;
+  --size-switch-supersmall-translate-x: 12px;
+  --size-switch-supersmall-text-left-on: 22px;
+
+  // small
+  --size-switch-small-width: 44px;
+  --size-switch-small-height: 28px;
+  --size-switch-small-handle: 20px;
+  --size-switch-small-translate-x: 16px;
+  --size-switch-small-text-left-on: 28px;
+
+  // medium
+  --size-switch-medium-width: 52px;
+  --size-switch-medium-height: 32px;
+  --size-switch-medium-handle: 24px;
+  --size-switch-medium-translate-x: 20px;
+  --size-switch-medium-text-left-on: 34px;
+
+  // large (same as default)
+  --size-switch-large-width: 60px;
+  --size-switch-large-height: 35px;
+  --size-switch-large-handle: 28px;
+  --size-switch-large-translate-x: 24px;
+  --size-switch-large-text-left-on: 41px;
+
+  // biglarge
+  --size-switch-biglarge-width: 72px;
+  --size-switch-biglarge-height: 43px;
+  --size-switch-biglarge-handle: 36px;
+  --size-switch-biglarge-translate-x: 28px;
+  --size-switch-biglarge-text-left-on: 50px;
+
+  // superlarge
+  --size-switch-superlarge-width: 88px;
+  --size-switch-superlarge-height: 51px;
+  --size-switch-superlarge-handle: 44px;
+  --size-switch-superlarge-translate-x: 35px;
+  --size-switch-superlarge-text-left-on: 60px;
+
+  --size-switch-text-margin-left: 70px;
+  --size-switch-mini-text-margin-left: 30px;
+  --size-switch-supersmall-text-margin-left: 40px;
+  --size-switch-small-text-margin-left: 50px;
+  --size-switch-medium-text-margin-left: 60px;
+  --size-switch-large-text-margin-left: 0;
+  /* 原代码无 margin-left */
+  --size-switch-biglarge-text-margin-left: 80px;
+  --size-switch-superlarge-text-margin-left: 100px;
+
+  --size-date-picker-width: 350px;
+  --size-date-picker-dropdown-width: 420px;
+  --size-date-picker-select-padding-right: 32px;
+
+  /* time-picker */
+  --size-time-picker-height: 30px;
+  --size-time-select-height: 25px;
+  --size-time-select-min-width: 60px;
+  --size-time-select-padding-right: 28px;
+
+  /* select */
+  --size-select-width: 260px;
+  --size-select-height: 40px;
+  --size-select-dropdown-max-height: 200px;
+
+  /* cascader */
+  --size-cascader-width: 260px;
+  --size-cascader-submenu-height: 90px;
+
+  /* slider */
+  --size-slider-track-height: 6px;
+  --size-slider-thumb-size: 18px;
+  --size-slider-value-top: 28px;
+
+  /* progress */
+  --size-progress-max-width: 600px;
+
+  /* pagination */
+  --size-pagination-input-width: 50px;
+
+  --size-pagination-padding: 6px 12px;
+  --size-pagination-padding-small: 4px 8px;
+
+  /* table */
+  --size-table-spinner: 36px;
+
+  /* timeline */
+  --size-timeline-timestamp-width: 120px;
+
+  --size-timeline-dot-shadow: 3px;
+
+  /* menu */
+  --size-menu-item-height: 56px;
+  --size-menu-width: 220px;
+  --size-menu-collapse-width: 64px;
+
+  /* step */
+  --size-step-icon: 24px;
+  --size-step-line-height: 2px;
+
+  /* carousel */
+  --size-carousel-dot: 12px;
+}

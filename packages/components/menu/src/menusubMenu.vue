@@ -44,24 +44,39 @@ import { inject, computed, ref, watch, nextTick, provide } from 'vue'
 import { subMenuProps } from './menusubMenu'
 import '../style/menusubMenu.scss'
 
+interface MenuContext {
+  activeIndex: { value: string | undefined }
+  collapse?: { value: boolean }
+  trigger?: { value: 'hover' | 'click' }
+  openedMenus?: { value: string[] }
+
+  handleSelect: (index: string, indexPath: string[]) => void
+  toggleMenu: (index: string, indexPath: string[]) => void
+  openMenu: (index: string, indexPath: string[]) => void
+  closeMenu: (index: string) => void
+
+  backgroundColor?: string
+  textColor?: string
+}
+
 defineOptions({ name: 'MYSubMenu' })
 
 const props = defineProps(subMenuProps)
-// const props = defineProps({
-//   index: { type: String, required: true },
-//   trigger: { type: String as PropType<'click' | 'hover'>, default: undefined },
-//   teleported: { type: Boolean, default: false }
-// })
 
-const menu = inject<any>('menuContext')
+const menu = inject<MenuContext>('menuContext')
 const parentPath = inject<string[]>('indexPath', [])
 const subLevel = inject<number>('subLevel', 0)
 
-// 提供下一级 subLevel
 provide('subLevel', subLevel + 1)
 
-// 构造 indexPath 并向下提供
-const myPath = [...(parentPath || []), props.index]
+// ⚠️ 关键：确保 index 存在，否则无法正常工作
+if (props.index == null) {
+  console.error('[MYSubMenu] Missing required prop "index". SubMenu will not function correctly.')
+}
+
+// 使用非空断言或默认值保证 myPath 和后续调用安全
+const safeIndex = props.index ?? '__invalid_index__'
+const myPath = [...(parentPath || []), safeIndex]
 provide('indexPath', myPath)
 
 const collapsed = computed(() => !!menu?.collapse?.value)
@@ -70,16 +85,19 @@ const effectiveTrigger = computed(() => {
   if (collapsed.value) return 'hover'
   return props.trigger ?? menu?.trigger?.value ?? 'click'
 })
-const isOpen = computed(() => (menu?.openedMenus?.value ?? []).includes(props.index))
+
+// 🔧 修复点 1: 过滤掉 undefined，只比较有效字符串
+const isOpen = computed(() => {
+  if (props.index == null) return false
+  return (menu?.openedMenus?.value ?? []).includes(props.index)
+})
 
 const titleRef = ref<HTMLElement | null>(null)
 const listRef = ref<HTMLElement | null>(null)
 let closeTimer: ReturnType<typeof setTimeout> | null = null
 
-// 折叠态浮层显示控制
 const showPopup = ref(false)
 
-// 浮层样式
 const popupStyle = ref<Record<string, string>>({
   position: 'absolute',
   top: '0px',
@@ -94,7 +112,6 @@ const popupStyle = ref<Record<string, string>>({
   padding: '8px 0',
 })
 
-// 监听 showPopup，更新浮层位置
 watch(showPopup, async val => {
   if (val && titleRef.value && listRef.value) {
     await nextTick()
@@ -105,6 +122,7 @@ watch(showPopup, async val => {
 })
 
 function onTitleClick() {
+  if (props.index == null) return // 🔒 安全防护
   if (collapsed.value) {
     showPopup.value = !showPopup.value
   } else {
@@ -113,22 +131,27 @@ function onTitleClick() {
 }
 
 function onMouseEnter() {
+  if (props.index == null) return
   if (effectiveTrigger.value === 'hover') {
+    if (closeTimer) clearTimeout(closeTimer)
     if (collapsed.value) {
-      if (closeTimer) clearTimeout(closeTimer)
       showPopup.value = true
     } else {
-      if (closeTimer) clearTimeout(closeTimer)
       menu?.openMenu(props.index, myPath)
     }
   }
 }
 
 function onMouseLeave() {
+  const index = props.index
+  if (index == null) return
   if (effectiveTrigger.value === 'hover') {
     closeTimer = setTimeout(() => {
-      if (collapsed.value) showPopup.value = false
-      else menu?.closeMenu(props.index)
+      if (collapsed.value) {
+        showPopup.value = false
+      } else {
+        menu?.closeMenu(index)
+      }
       closeTimer = null
     }, 150)
   }
@@ -139,10 +162,15 @@ function onPopupEnter() {
 }
 
 function onPopupLeave() {
+  const index = props.index
+  if (index == null) return
   if (effectiveTrigger.value === 'hover') {
     closeTimer = setTimeout(() => {
-      if (collapsed.value) showPopup.value = false
-      else menu?.closeMenu(props.index)
+      if (collapsed.value) {
+        showPopup.value = false
+      } else {
+        menu?.closeMenu(index)
+      }
       closeTimer = null
     }, 150)
   }

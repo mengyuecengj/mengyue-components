@@ -1,31 +1,27 @@
-$scrollbar-track-color: #2C2C2C !default;
-$scrollbar-thumb-color: #9F9F9F !default;
-$scrollbar-thumb-hover-color: #D1D1D1 !default;
-$scrollbar-default-size: 12px !default;
-$container-max-width: 100% !default;
+@use '../../../theme-chalk/src/common/index.scss';
+
 
 .scrollbar-container {
   // 变量定义
-  --scrollbar-container-track-color: #{$scrollbar-track-color};
-  --scrollbar-container-thumb-color: #{$scrollbar-thumb-color};
-  --scrollbar-container-thumb-hover-color: #{$scrollbar-thumb-hover-color};
+  --scrollbar-container-track-color:var(--color-scroll-track);
+  --scrollbar-container-thumb-color: var(--color-scroll-thumb);
+  --scrollbar-container-thumb-hover-color: var(--color-scroll-thumb-hover);
   
   // 布局属性
   overflow: hidden;
-  max-width: $container-max-width;
-  // margin: 0 auto;
+  max-width: var(--radius-general);
   
   // 高度管理
-  height: 50vh;
-  max-height: 100%;
+  height: var(--size-vh-xs);
+  max-height: var(--radius-general);
   
   // 滚动行为
   overflow-y: auto;
   
   // 滚动条基础样式
   &::-webkit-scrollbar {
-    width: var(--scrollbar-container-scrollbar-width, $scrollbar-default-size);
-    height: var(--scrollbar-container-scrollbar-height, $scrollbar-default-size);
+    width: var(--scrollbar-container-scrollbar-width, --font-size-xs);
+    height: var(--scrollbar-container-scrollbar-height, --font-size-xs);
   }
   
   &::-webkit-scrollbar-track {
@@ -34,7 +30,7 @@ $container-max-width: 100% !default;
   
   &::-webkit-scrollbar-thumb {
     background-color: var(--scrollbar-container-thumb-color);
-    border-radius: 10px;
+    border-radius: var(--radius-lg);
     
     &:hover {
       background-color: var(--scrollbar-container-thumb-hover-color);

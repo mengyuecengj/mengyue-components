@@ -1,10 +1,21 @@
-import { computed, inject, useAttrs } from 'vue'
+import { computed, inject, useAttrs, unref } from 'vue'
 import type { RadioProps, RadioGroupContext } from './type'
-import { useFormField, useInputState, useInputClasses, type FormItemContext } from '../../../hooks/useCheckComputed'
+import {
+  useFormField,
+  useInputState,
+  useInputClasses,
+  type FormItemContext,
+  type GroupContext
+} from '../../../hooks/useCheckComputed'
+
+type RadioEmit = {
+  (event: 'update:modelValue', value: RadioProps['modelValue']): void
+  (event: 'change', value: RadioProps['modelValue']): void
+}
 
 export function useRadio(
   props: RadioProps,
-  emit: (event: 'update:modelValue' | 'change', ...args: any[]) => void
+  emit: RadioEmit
 ) {
   const attrs = useAttrs()
   const radioGroup = inject<RadioGroupContext | null>('radioGroup', null)
@@ -13,9 +24,9 @@ export function useRadio(
   const effectiveName = computed<string | undefined>(() => {
     if (props.name) return props.name
     if (!radioGroup?.name) return undefined
-
-    // 判断 name 是否是 Ref，是则取 value，否则直接返回字符串
-    return typeof radioGroup.name === 'string' ? radioGroup.name : radioGroup.name.value
+    return typeof radioGroup.name === 'string'
+      ? radioGroup.name
+      : radioGroup.name.value
   })
 
   const { initialValue } = useFormField(
@@ -31,14 +42,29 @@ export function useRadio(
     }
   )
 
-  // 注意这里传入 radioGroup 之前，可能需要类型断言或转换
-  // 如果 useInputState 需要特定类型，你可以使用断言或改写 radioGroup 类型
+  /** ✅ 关键：永远提供 Ref<T> 给 GroupContext */
+  const modelValueRef = computed<RadioProps['modelValue']>(() => {
+    if (radioGroup?.modelValue !== undefined) {
+      return unref(radioGroup.modelValue)
+    }
+    return props.modelValue
+  })
+
+  const adaptedGroupContext = computed<GroupContext<RadioProps['modelValue']> | null>(() => {
+    if (!radioGroup) return null
+
+    return {
+      modelValue: modelValueRef,                 // ✅ Ref<T>
+      change: radioGroup.change,
+      disabled: unref(radioGroup.disabled) ?? false
+    }
+  })
+
   const { isDisabled, isChecked } = useInputState(
     props,
-    radioGroup as any // 如果类型冲突严重，可以先用 any 断言，后面建议修正类型
+    adaptedGroupContext.value
   )
 
-  // useInputClasses 的参数改为布尔类型，去掉 `.value`
   const radioClass = useInputClasses(isChecked, isDisabled, 'my-radio')
 
   const radioStyle = computed(() => {

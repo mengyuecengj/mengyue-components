@@ -2,11 +2,11 @@ import type { Ref } from 'vue'
 export interface ButtonProps {
   type?: string;
   size?: string;
-  round?: boolean;
-  circle?: boolean;
+  rounded?: boolean;
+  circular?: boolean;
   disabled?: boolean;
   plain?: boolean;
-  colorBg?: string;
+  colorBackground?: string;
   colorText?: string;
   colorBorder?: string;
   nativeType?: 'button' | 'submit' | 'reset';

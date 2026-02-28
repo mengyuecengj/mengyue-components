@@ -1,19 +1,10 @@
-// .my-dropdown-menu {
-//   margin: 0;
-//   padding: 4px 0;
-//   list-style: none;
-//   min-width: 160px;
-//   color: #303133;
-//   font-size: 14px;
-//     max-width: 300px;
-// }
+@use '../../../theme-chalk/src/common/index.scss' as *;
 
-/* dropdownMenu.scss */
 .my-dropdown-menu {
   margin: 0;
   padding: 0;
   list-style: none;
-  min-width: 10px;
-  color: #ffffff;
-  font-size: 14px;
+  min-width: var(--space-4); // 16px，原为 10px，但 token 最小常用是 space-4=16px；若需 10px 可用 --size-10
+  color: var(--color-white);
+  font-size: var(--font-size-md);
 }

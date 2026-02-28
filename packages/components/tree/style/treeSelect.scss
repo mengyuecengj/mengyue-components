@@ -17,22 +17,22 @@
     min-height: 0;
     line-height: normal;
     padding: 1px 30px 1px 10px;
-    border: 1px solid #dcdfe6;
-    border-radius: 4px;
-    background-color: var(--tree-bg-color, #fff);
-    color: var(--tree-text-color, #606266);
+    border: 1px solid var(--color-border-base);
+    border-radius: var(--radius-xs);
+    background-color: var(--tree-bg-color); /* 移除 fallback */
+    color: var(--tree-text-color);
     cursor: pointer;
     position: relative;
     transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 
     &:hover {
-      border-color: #c0c4cc;
+      border-color: var(--color-text-disabled);
     }
 
     &:focus-within {
-      border-color: var(--tree-active-color, #409eff);
+      border-color: var(--tree-active-color);
       outline: 0;
-      box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+      box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.2);
     }
 
     &.size-small {
@@ -62,11 +62,11 @@
     }
 
     .placeholder {
-      color: #c0c4cc;
+      color: var(--color-text-disabled);
       flex: 1;
 
       &.selected {
-        color: var(--tree-text-color, #606266);
+        color: var(--tree-text-color);
       }
     }
 
@@ -77,19 +77,19 @@
       line-height: 22px;
       padding: 0 8px;
       margin: 2px;
-      background-color: #f0f2f5;
-      border-radius: 4px;
-      font-size: 12px;
-      color: #606266;
+      background-color: var(--color-tree-tag-bg);
+      border-radius: var(--radius-xs);
+      font-size: var(--font-size-sm);
+      color: var(--tree-text-color);
 
       &__close {
         margin-left: 4px;
-        color: #909399;
+        color: var(--color-info);
         cursor: pointer;
-        font-size: 14px;
+        font-size: var(--font-size-md);
 
         &:hover {
-          color: #606266;
+          color: var(--tree-text-color);
         }
       }
     }
@@ -98,8 +98,8 @@
       position: absolute;
       right: 10px;
       transition: transform 0.3s;
-      color: #c0c4cc;
-      font-size: 12px;
+      color: var(--color-text-disabled);
+      font-size: var(--font-size-sm);
 
       &.rotated {
         transform: rotate(180deg);
@@ -109,12 +109,12 @@
     .clear-btn {
       position: absolute;
       right: 25px;
-      color: #c0c4cc;
-      font-size: 14px;
+      color: var(--color-text-disabled);
+      font-size: var(--font-size-md);
       cursor: pointer;
 
       &:hover {
-        color: #909399;
+        color: var(--color-info);
       }
     }
 
@@ -124,19 +124,14 @@
       width: 14px;
       height: 14px;
       border: 2px solid #f3f3f3;
-      border-top: 2px solid var(--tree-active-color, #409eff);
-      border-radius: 50%;
+      border-top: 2px solid var(--tree-active-color);
+      border-radius: var(--radius-circle);
       animation: spin 1s linear infinite;
     }
 
     @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   }
 
@@ -146,9 +141,9 @@
     left: 0;
     z-index: 1000;
     margin-top: 5px;
-    border: 1px solid #e4e7ed;
-    border-radius: 4px;
-    background-color: var(--tree-bg-color, #fff);
+    border: var(--border-width-sm) solid var(--color-border-disabled);
+    border-radius: var(--radius-xs);
+    background-color: var(--tree-bg-color);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
 
@@ -156,11 +151,11 @@
       width: 100%;
       padding: 10px;
       border: none;
-      border-bottom: 1px solid #e4e7ed;
+      border-bottom: var(--border-width-sm) solid var(--color-border-disabled);
       outline: none;
-      font-size: 14px;
-      color: var(--tree-text-color, #606266);
-      background-color: var(--tree-bg-color, #fff);
+      font-size: var(--font-size-md);
+      color: var(--tree-text-color);
+      background-color: var(--tree-bg-color);
     }
 
     .tree-container {
@@ -171,11 +166,11 @@
   }
 
   &.disabled .my-tree-select__input {
-    background-color: #f5f7fa;
+    background-color: var(--color-bg-disabled-light);
     cursor: not-allowed;
 
     &:hover {
-      border-color: #e4e7ed;
+      border-color: var(--color-border-disabled);
     }
   }
 
@@ -185,7 +180,7 @@
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 6px solid var(--tree-arrow-color, #999);
+    border-top: 6px solid var(--tree-arrow-color);
     transition: transform 0.3s ease;
     margin-left: 8px;
 

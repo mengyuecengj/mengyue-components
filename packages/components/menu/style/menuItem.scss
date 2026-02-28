@@ -1,13 +1,15 @@
+@use '../../../theme-chalk/src/common/index.scss' as *;
+
 .my-menu-item {
   display: flex;
   align-items: center;
-  height: 56px;
+  height: var(--size-menu-item-height);
   padding: 0 16px;
   cursor: pointer;
 }
 
 .my-menu-item.is-active {
-  color: var(--menu-active, #409EFF);
+  color: var(--color-menu-active);
 }
 
 .menu-label {

@@ -8,7 +8,7 @@ export const textProps = {
         type: [String, Number] as PropType<'small' | 'medium' | 'large' | string | number>,
         default: '' as const
     },
-    Tecolor: {
+    textColor: {
         type: String,
         default: ''
     },

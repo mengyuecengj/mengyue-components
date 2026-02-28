@@ -1,47 +1,12 @@
-// .my-dropdown {
-//   display: inline-block;
-//   position: relative;
-//   user-select: none;
-// }
-
-// .el-dropdown-link {
-//   background-color: #141414;
-// }
-
-// .my-dropdown-menu-wrapper {
-//   width: 300px;
-//   background: white;
-//   border: 1px solid #ebeef5;
-//   border-radius: 4px;
-//   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-//   padding: 4px 0;
-//   z-index: 9999;
-// }
-
-// .fade-enter-active,
-// .fade-leave-active {
-//   transition: opacity 0.2s;
-// }
-// .fade-enter-from,
-// .fade-leave-to {
-//   opacity: 0;
-// }
+@use '../../../theme-chalk/src/common/index.scss' as *;
 
 /* src/components/dropdown/_dropdown.scss */
-:root {
-  --m-primary: #2f6bfe;
-  --m-primary-600: #2358e6;
-  --m-text: #1f2937;
-  --m-muted: #6b7280;
-  --m-bg: #ffffff;
-  --m-border: #e6edf8;
-}
 
 .m-dropdown {
   display: inline-block;
   position: relative;
   font-family: Inter, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  color: var(--m-text);
+  color: var(--color-form-label); /* 替换 --m-text (#303133) */
   user-select: none;
 
   &.is-disabled {
@@ -51,35 +16,31 @@
 
   &__trigger {
     display: inline-flex;
-    gap: 8px;
+    gap: var(--space-2_5); /* 6px */
     align-items: center;
   }
 
   .m-btn {
-    --btn-padding-y: 8px;
-    --btn-padding-x: 12px;
-    border-radius: 8px;
-    padding: var(--btn-padding-y) var(--btn-padding-x);
+    border-radius: var(--radius-md); /* 8px */
+    padding: 8px 12px; /* 暂无 exact token，但可组合 */
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    border: 1px solid transparent;
+    gap: var(--space-2_5); /* 6px */
+    border: var(--border-width-sm) solid transparent;
     cursor: pointer;
-    transition: all .14s ease;
-    font-weight: 500;
-    // background: linear-gradient(180deg, #fff, #f5f8ff);
+    transition: all var(--motion-fast) ease;
+    font-weight: var(--font-weight-medium);
   }
 
   .m-btn--primary {
-    background: linear-gradient(180deg, var(--m-primary), var(--m-primary-600));
-    color: #fff;
-    box-shadow: 0 6px 18px rgba(47, 107, 254, 0.12);
+    background: linear-gradient(180deg, var(--color-primary), var(--color-primary-hover));
+    color: var(--color-white);
+    box-shadow: 0 6px 18px var(--color-primary-a20);
   }
 
   .m-btn--default {
-    // background: linear-gradient(180deg, #fff, #f7f9fc);
-    color: var(--m-text);
-    border: 1px solid var(--m-border);
+    color: var(--color-form-label);
+    border: var(--border-width-sm) solid var(--color-border-base);
   }
 
   .m-btn:hover {
@@ -87,58 +48,61 @@
   }
 
   .m-btn--sm {
-    font-size: 13px;
+    font-size: var(--font-size-xs); /* 12px → 但原为 13px，Token 中 --font-size-sm=13px */
+    font-size: var(--font-size-sm);
     padding: 6px 9px;
-    border-radius: 6px;
+    border-radius: var(--radius-sm); /* 4px → 但原为 6px，Token 无 6px，用 --radius-input=6px */
+    border-radius: var(--radius-input);
   }
 
   .m-btn--md {
-    font-size: 14px;
+    font-size: var(--font-size-md); /* 14px */
     padding: 8px 12px;
   }
 
   .m-btn--lg {
-    font-size: 16px;
+    font-size: var(--font-size-lg); /* 16px */
     padding: 10px 14px;
   }
 
   .m-split {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: var(--space-1); /* 2px → 原为 4px，但 --space-2=4px */
+    gap: var(--space-2);
 
     .m-split__main {
-      border-top-right-radius: 6px;
-      border-bottom-right-radius: 6px;
+      border-top-right-radius: var(--radius-input); /* 6px */
+      border-bottom-right-radius: var(--radius-input);
     }
 
     .m-split__caret {
-      border-top-left-radius: 6px;
-      border-bottom-left-radius: 6px;
+      border-top-left-radius: var(--radius-input);
+      border-bottom-left-radius: var(--radius-input);
       padding: 8px 10px;
-      background: linear-gradient(180deg, #fbfdff, #f3f7ff);
-      border: 1px solid var(--m-border);
+      background: linear-gradient(180deg, var(--color-default-bg), var(--color-default-hover));
+      border: var(--border-width-sm) solid var(--color-border-base);
       cursor: pointer;
     }
   }
 
   &__menu {
-    min-width: 10px !important;
-    background: var(--m-bg);
-    border-radius: 10px;
-    border: 1px solid var(--m-border);
-    box-shadow: 0 12px 40px rgba(13, 34, 64, 0.12);
-    padding: 6px 4px;
+    min-width: var(--size-10) !important; /* 10px */
+    background: var(--color-default-bg);
+    border-radius: var(--radius-lg); /* 10px */
+    border: var(--border-width-sm) solid var(--color-border-base);
+    box-shadow: 0 12px 40px rgba(13, 34, 64, 0.12); /* 无对应 token，保留数值 */
+    padding: 6px 4px; /* 无 exact token，保留 */
     position: absolute;
-    z-index: 1100;
-    transition: opacity .16s ease, transform .16s ease;
+    z-index: 1100; /* 高于 fixed (1000) */
+    transition: opacity var(--motion-fast) ease, transform var(--motion-fast) ease;
   }
 }
 
 /* visibility helpers applied via classes */
 .m-hidden {
   opacity: 0;
-  transform: translateY(-6px);
+  transform: translateY(-6px); /* 无 token，保留 */
   pointer-events: none;
 }
 
@@ -150,35 +114,37 @@
 
 /* menu item */
 .m-dropdown-item {
-  padding: 8px 14px;
+  padding: 8px 14px; /* 无 exact token，保留 */
   display: flex;
   align-items: center;
-  gap: 8px;
-  border-radius: 8px;
+  gap: var(--space-2_5); /* 6px */
+  border-radius: var(--radius-md); /* 8px */
   cursor: pointer;
-  color: var(--m-text);
-  font-size: 14px;
-  transition: background .12s ease;
+  color: var(--color-form-label);
+  font-size: var(--font-size-md); /* 14px */
+  transition: background var(--motion-fast) ease;
 }
 
 .m-dropdown-item:hover {
-  background: #f5f7fb;
+  background: var(--color-default-hover); /* #f5f7fb → 接近 --color-default-hover: #f5f7fa */
 }
 
 .m-dropdown-item.is-disabled {
-  color: #9aa4b2;
+  color: var(--color-text-disabled); /* #9aa4b2 → Token 中 --color-text-disabled: #c0c4cc，不完全匹配，但语义一致 */
   cursor: not-allowed;
   background: transparent;
 }
 
 .m-dropdown-item.is-divided {
-  border-top: 1px solid #eef3fb;
-  padding-top: 10px;
-  margin-top: 6px;
+  border-top: var(--border-width-sm) solid var(--color-border-base); /* #eef3fb → 接近 --color-border-base: #dcdfe6 */
+  padding-top: var(--space-2_5); /* 6px → 原为 10px，但 Token 无 10px，用 --space-3_5=12px 太大，暂用 --space-2_5=6px */
+  margin-top: var(--space-2); /* 4px → 原为 6px，用 --space-2_5=6px */
+  margin-top: var(--space-2_5);
 }
 
 .m-item-icon {
-  width: 18px;
+  width: var(--size-xl); /* 32px → 但原为 18px，Token 中 --size-slider-thumb-size=18px */
+  width: var(--size-slider-thumb-size);
   display: inline-flex;
   justify-content: center;
 }
