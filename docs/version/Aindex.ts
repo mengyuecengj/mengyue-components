@@ -23,4 +23,13 @@ export const indexVersion = [
             { text: '0.0.67', link: '/version/0.0.67' },
         ]
     },
+    {
+        text: '正式版本',
+        collapsible: true,
+        collapsed: false,
+        items: [
+            { text: '0.0.68-beta.1', link: '/version/0.0.68-beta.1' },
+            { text: '0.1.1', link: '/version/0.1.1' },
+        ]
+    }
 ]
