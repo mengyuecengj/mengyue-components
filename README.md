@@ -107,7 +107,11 @@ Imagine your daily dev needs - we probably have it! For example:
 *   ⚡ Efficiency Seekers - who want to focus on innovation, not rebuilding basics
 *   🛠️ Modern Vue 3 stacks (Vite + Vue 3 + TypeScript)
 
+<<<<<<< HEAD
 ## Why Choose Us?
+=======
+## Why Choose Use?
+>>>>>>> c4ac3e59df5fc4fe20fb438ae24a5d87c50592c4
 
 *   **Clean & Practical:** Simple code, sensible design, docs that speak human.
 *   **Always Evolving:** Continuously refined based on community insights (contact coming soon!).
@@ -131,4 +135,8 @@ import 'mengyue-plus/style.css'
 const app = createApp(App)
 app.use(MengyuePlus)
 app.mount('#app')
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> c4ac3e59df5fc4fe20fb438ae24a5d87c50592c4
