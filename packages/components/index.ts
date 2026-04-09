@@ -128,11 +128,9 @@ const install: Plugin['install'] = (app: App) => {
   }
 }
 
-const MengyuePlus: Plugin = { install }
+const MengyueComponents: Plugin = { install }
 
-// 默认导出插件
-export default MengyuePlus
-
+export default MengyueComponents
 // ───── 导出 ─────
 export {
   MYButton,

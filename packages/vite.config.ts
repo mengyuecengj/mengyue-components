@@ -1,12 +1,11 @@
-// vite.config.ts
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import dts from 'vite-plugin-dts';
-import path from 'path';
-import svgLoader from 'vite-svg-loader';
-import { visualizer } from 'rollup-plugin-visualizer';
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import dts from 'vite-plugin-dts'
+import path from 'path'
+import svgLoader from 'vite-svg-loader'
+import { visualizer } from 'rollup-plugin-visualizer'
 
-const isAnalyze = process.env.ANALYZE === 'true';
+const isAnalyze = process.env.ANALYZE === 'true'
 
 export default defineConfig({
   plugins: [
@@ -34,22 +33,32 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'components/index.ts'),
-      name: 'MengyuePlusButton',
-      fileName: (format) => `mengyue-plus.${format}.js`,
+      name: 'MengyueComponents',
+      fileName: (format) => `mengyue-components.${format}.js`,
+      formats: ['es', 'cjs'], // ✅ 只输出 es + cjs
     },
+
     rollupOptions: {
       external: ['vue'],
       output: {
-        globals: { vue: 'Vue' },
+        globals: {
+          vue: 'Vue',
+        },
         exports: 'named',
+
+        // ✅ 禁止拆包（关键）
+        inlineDynamicImports: true,
+
+        // ✅ css 文件名固定
         assetFileNames: (assetInfo) => {
           if (assetInfo.name?.endsWith('.css')) {
-            return 'mengyue-plus.css';
+            return 'mengyue-components.css'
           }
-          return assetInfo.name || 'assets/[name].[ext]';
+          return assetInfo.name || 'assets/[name].[ext]'
         },
       },
     },
+
     minify: 'esbuild',
     cssMinify: 'esbuild',
   },
@@ -61,4 +70,4 @@ export default defineConfig({
       },
     },
   },
-});
+})
