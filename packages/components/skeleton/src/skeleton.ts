@@ -1,6 +1,5 @@
 import type { PropType } from 'vue'
 
-// 定义 theme 可选值枚举
 export type SkeletonTheme = 'light' | 'dark' | string
 
 export const skeletonProps = {

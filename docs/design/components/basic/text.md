@@ -33,7 +33,7 @@ export const textProps = {
         type: [String, Number] as PropType<'small' | 'medium' | 'large' | string | number>,
         default: '' as const
     },
-    Tecolor: {
+    textColor: {
         type: String,
         default: ''
     },
@@ -68,7 +68,7 @@ Text 组件使用 useStyleComputed Hook 来处理动态样式生成：
 ```typescript
 const textStyle = useStyleComputed<TextProps>(props, {
     propToStyleMap: {
-        Tecolor: 'color',
+        textColor: 'color',
         size: 'fontSize',
     },
     fontSizeProp: 'size',
@@ -88,7 +88,7 @@ Text 组件支持多种文本样式控制：
 
 1. 文本类型：default、primary、success、warning、danger、info
 2. 文本尺寸：small、medium、large 或自定义数值
-3. 文本颜色：通过 Tecolor 属性自定义颜色
+3. 文本颜色：通过 textColor 属性自定义颜色
 4. 禁用状态：通过 disabled 属性控制
 
 ## 响应式设计

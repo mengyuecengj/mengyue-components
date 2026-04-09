@@ -1,6 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue'
 
-// 输入类型与标签
 const typeAndTagProps = {
   type: {
     type: String as PropType<string>,
@@ -16,7 +15,6 @@ const typeAndTagProps = {
   }
 }
 
-// 尺寸相关
 const sizeProps = {
   width: {
     type: [String, Number] as PropType<string | number>,
@@ -28,7 +26,6 @@ const sizeProps = {
   }
 }
 
-// 状态控制
 const stateProps = {
   disabled: {
     type: Boolean,
@@ -44,7 +41,6 @@ const stateProps = {
   }
 }
 
-// 占位与绑定值
 const valueProps = {
   // 在 typeAndTagProps 或 valueProps 中添加
   placeholderColor: {
@@ -61,7 +57,6 @@ const valueProps = {
   }
 }
 
-// 输入限制相关
 const inputLimitProps = {
   minLength: {
     type: Number,
@@ -77,7 +72,6 @@ const inputLimitProps = {
   }
 }
 
-// 合并所有属性
 export const inputProps = {
   ...typeAndTagProps,
   ...sizeProps,

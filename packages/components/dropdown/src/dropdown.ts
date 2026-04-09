@@ -5,7 +5,7 @@ export const dropdownProps = {
     type: {
         type: String,
         default: 'default'
-    }, // default, primary
+    }, 
     size: {
         type: String,
         default: 'md'

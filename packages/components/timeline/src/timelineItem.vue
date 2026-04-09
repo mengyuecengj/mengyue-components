@@ -1,4 +1,3 @@
-<!-- MYTimelineItem.vue -->
 <template>
   <div class="my-timeline-item">
     <div class="timeline-timestamp">

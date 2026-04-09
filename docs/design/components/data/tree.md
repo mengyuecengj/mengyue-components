@@ -96,7 +96,6 @@ export const treeSelectProps = {
     type: Boolean,
     default: false
   },
-  // ...其他属性
 }
 ```
 

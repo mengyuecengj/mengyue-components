@@ -1,6 +1,5 @@
 import type { ExtractPropTypes } from "vue";
 
-// 滚动条颜色配置
 const scrollColorProps = {
     thumbColor: {
         type: String,
@@ -16,7 +15,6 @@ const scrollColorProps = {
     }
 };
 
-// 滚动条尺寸配置
 const scrollSizeProps = {
     width: {
         type: String,
@@ -24,7 +22,6 @@ const scrollSizeProps = {
     }
 };
 
-// 容器标签配置
 const scrollTagProps = {
     tag: {
         type: String,

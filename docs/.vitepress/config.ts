@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { indexPlus } from '../plus/Aindex'
 import { indexComponents } from '../components/Aindex'
 import { indexDesign } from '../design/Aindex'
 import { indexVersion } from '../version/Aindex'
@@ -32,7 +33,6 @@ export default defineConfig({
       jsxFragment: 'Fragment',
       jsxInject: `import { h } from 'vue'`
     },
-    // 将 SSR 配置统一放在这里
     ssr: {
       noExternal: ['@vitepress-demo-preview/component']
     },
@@ -46,16 +46,21 @@ export default defineConfig({
     outlineTitle: '引导目录',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      // { text: '首页', link: '/' },
-      { text: '组件', link: '/components/FastStart', activeMatch: '/components/' },
-      // { text: '参考', link: '/guide/overView', activeMatch: '/guide/' },
+      // { text: '组件', link: '/plus/FastStart', activeMatch: '/plus/' },
       { text: '设计', link: '/design/FastRead', activeMatch: '/design/' },
-      // { text: '研发', link: '/development/preface', activeMatch: '/development/' },
       { text: '关于', link: '/about/index', activeMatch: '/about/' },
-      { text: '版本', link: '/version/0.0.1', activeMatch: '/version/' },
+      {
+        text: '版本',
+        items: [
+          { text: 'mengyue-plus', link: '/plus/FastStart' },
+          { text: 'mengyue-components', link: '/components/FastStart' }
+        ]
+      },
+      { text: '说明', link: '/version/0.0.1', activeMatch: '/version/' },
     ],
 
     sidebar: {
+      '/plus/': indexPlus,
       '/components/': indexComponents,
       '/design/': indexDesign,
       '/about/': [
@@ -76,7 +81,10 @@ export default defineConfig({
         icon: 'github', link: 'https://github.com/mengyuecengj/mengyue-components',
       },
       {
-        icon: 'npm', link: 'https://www.npmjs.com/package/mengyue-plus'
+        icon: 'gitee', link: 'https://gitee.com/q62/mengyue-components'
+      },
+      {
+        icon: 'npm', link: 'https://www.npmjs.com/~cengj'
       }
     ],
   }

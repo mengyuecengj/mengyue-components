@@ -12,7 +12,7 @@ export interface TableColumnProps {
   children?: TableColumnProps[];
   colspan?: number;
   rowspan?: number;
-  type?: string;  // 新增：支持 type="selection"
+  type?: string;
   align?: 'left' | 'center' | 'right';
   headerAlign?: 'left' | 'center' | 'right';
   bodyAlign?: 'left' | 'center' | 'right';

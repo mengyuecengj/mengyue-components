@@ -349,6 +349,7 @@ const handlePageChange = (page, size) => {
 | align  | 表格内容对齐方式      | string  | `left`/`center`/`right` | `'left'`  |
 | headerAlign  | 表头对齐方式      | string  | `left`/`center`/`right` | `''`  |
 | bodyAlign  | 表格体对齐方式      | string  | `left`/`center`/`right` | `''`  |
+| loading  | 是否显示加载中状态      | boolean  | — | `false`  |
 
 ### TableColumn Props
 | 参数          | 说明         | 类型     | 可选值                              | 默认值  |

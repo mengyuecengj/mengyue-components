@@ -132,6 +132,7 @@ checkbox 复选框，用于用户从多个选项中选择一个或多个。mengy
 | direction    | 布局方向     | string  | `horizontal`/`vertical`           | `horizontal` |
 | disabled     | 是否禁用     | boolean | —                                 | `false` |
 | gap          | 间距         | string  | 支持 CSS 单位                     | `12px` |
+| checkStrictly | 是否父子联动 | boolean | —                                 | `false` |
 
 ### MYCheckbox Props
 | 参数          | 说明         | 类型     | 可选值                              | 默认值  |

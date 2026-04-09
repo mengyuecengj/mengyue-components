@@ -58,8 +58,8 @@ text 文本组件，用于显示文本内容，支持多种样式和尺寸。可
 >
   <template #demo>
     <div style="display: flex; gap: 20px;">
-      <MYText Tecolor="#ff0000">自定义红色文本</MYText>
-      <MYText Tecolor="pink">自定义粉色文本</MYText>
+      <MYText textColor="#ff0000">自定义红色文本</MYText>
+      <MYText textColor="pink">自定义粉色文本</MYText>
     </div>
   </template>
 </ShowCode>
@@ -122,7 +122,7 @@ text 文本组件，用于显示文本内容，支持多种样式和尺寸。可
   `.trim()"
 >
   <template #demo>
-    <MYText size="5em" Tecolor="blue">组合使用medium和blue</MYText>
+    <MYText size="5em" textColor="blue">组合使用medium和blue</MYText>
   </template>
 </ShowCode>
 
@@ -134,7 +134,7 @@ text 文本组件，用于显示文本内容，支持多种样式和尺寸。可
 |--------|-------------|---------|-----------------------------------|--------|
 | type   | 文本类型      | string  | `primary`/`success`/`warning`/`danger`/`info` | —      |
 | size   | 文本尺寸      | string  | `small`/`medium`/`large`/number/自定义    | `medium` |
-| Tecolor  | 文本颜色      | string  | 支持16进制颜色或单词颜色            | —      |
+| textColor  | 文本颜色      | string  | 支持16进制颜色或单词颜色            | —      |
 | tag    | 渲染标签      | string  | 支持所有 HTML 标签                 | `span` |
 
 ### 类型定义
@@ -143,7 +143,7 @@ text 文本组件，用于显示文本内容，支持多种样式和尺寸。可
 interface TextProps {
   type?: string;
   size?: string | number;
-  Tecolor?: string;
+  textColor?: string;
   tag?: string;
 }
 ```

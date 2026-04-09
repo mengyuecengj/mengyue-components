@@ -1,4 +1,3 @@
-// table.ts
 import type { PropType } from 'vue';
 import type { TableColumnProps } from './type';
 
@@ -16,7 +15,6 @@ export const tableProps = {
     default: () => []
   },
 
-  /* --- 新增 loading prop --- */
   loading: {
     type: Boolean,
     default: false

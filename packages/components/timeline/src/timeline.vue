@@ -1,4 +1,3 @@
-<!-- MYTimeline.vue -->
 <template>
   <div class="my-timeline" :class="[direction]" :style="style">
     <slot />

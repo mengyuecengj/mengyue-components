@@ -474,6 +474,10 @@ const treeData = [
 | width | 宽度 | string / number | — | 100% |
 | height | 高度 | string / number | — | auto |
 | inputHeight | 输入框高度 | string / number | — | 32px |
+| validateEvent | 是否触发表单验证 | boolean | — | true |
+| showArrow | 是否显示箭头 | boolean | — | true |
+| arrowType | 箭头类型 | string | — | arrow |
+| arrowColor | 箭头颜色 | string | — | #909399 |
 
 ### TreeSelect Events
 

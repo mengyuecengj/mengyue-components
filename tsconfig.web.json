@@ -10,7 +10,7 @@
         "./packages/*"
       ]
     },
-    "ignoreDeprecations": "5.0", // 新增
+    "ignoreDeprecations": "6.0",
     "verbatimModuleSyntax": true,
   },
   "include": [

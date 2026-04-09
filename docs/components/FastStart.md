@@ -73,7 +73,7 @@
 </ul>
 
 ## 🚀 开始使用
-使用 <code>mengyue-components</code>，你可以快速构建美观、现代化的用户界面，同时保证代码的优雅与高效。  
+使用 <code>mengyue-components</code>，您可以快速构建美观、现代化的用户界面，同时保证代码的优雅与高效。  
 <MYa href="./FastUse" color="#3a5c40" hoverColor="#6b8e23">👉 开始探索</MYa> 解锁更多开发可能！
 
 

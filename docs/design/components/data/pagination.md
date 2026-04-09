@@ -88,12 +88,12 @@ export const paginationProps = {
     default: false
   },
   /** 上下页按钮背景色 */
-  prneColor: {
+  prevColor: {
     type: String,
     default: ''
   },
   /** 上下页按钮文本颜色 */
-  prneTextColor: {
+  prevTextColor: {
     type: String,
     default: ''
   },

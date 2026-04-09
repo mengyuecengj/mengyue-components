@@ -1,4 +1,4 @@
-import { PropType } from "vue";
+import type { PropType } from "vue";
 export const selectTimeProps = {
   modelValue: {
     type: [String, Array] as PropType<string | string[]>,

@@ -1,9 +1,6 @@
 import type { PropType } from "vue";
 import type { BadgeProps } from './type'
 
-/**
- * Badge 组件的 Props 配置
- */
 export const badgeProps = {
     content: {
         type: [String, Number] as PropType<string | number>,

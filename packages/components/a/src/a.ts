@@ -1,6 +1,5 @@
 import type { PropType, ExtractPropTypes } from "vue";
 
-// 合并相关属性
 const appearanceProps = {
     type: {
         type: String as PropType<'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'>,

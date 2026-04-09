@@ -42,20 +42,19 @@ export function useRadio(
     }
   )
 
-  /** ✅ 关键：永远提供 Ref<T> 给 GroupContext */
-  const modelValueRef = computed<RadioProps['modelValue']>(() => {
+  const modelValueRef = computed<NonNullable<RadioProps['modelValue']>>(() => {
     if (radioGroup?.modelValue !== undefined) {
-      return unref(radioGroup.modelValue)
+      return unref(radioGroup.modelValue) as NonNullable<RadioProps['modelValue']>
     }
-    return props.modelValue
+    return (props.modelValue ?? '') as NonNullable<RadioProps['modelValue']>
   })
 
-  const adaptedGroupContext = computed<GroupContext<RadioProps['modelValue']> | null>(() => {
+  const adaptedGroupContext = computed<GroupContext<NonNullable<RadioProps['modelValue']>> | null>(() => {
     if (!radioGroup) return null
 
     return {
-      modelValue: modelValueRef,                 // ✅ Ref<T>
-      change: radioGroup.change,
+      modelValue: modelValueRef,
+      change: radioGroup.change ?? (() => { }),
       disabled: unref(radioGroup.disabled) ?? false
     }
   })

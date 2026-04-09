@@ -1,19 +1,15 @@
 import type { PropType } from 'vue'
 
-/** 进度条状态类型 */
 export type ProgressStatus = 'success' | 'warning' | 'exception'
 
-/** 百分比格式化函数 */
 export type ProgressFormat = (percentage: number) => string
 
-/** 组件 props 类型 */
 export interface ProgressProps {
   percentage: number | string
   status: ProgressStatus | ''
   format: ProgressFormat
 }
 
-/** 组件 props 选项定义 */
 export const progressProps = {
   percentage: {
     type: [Number, String],

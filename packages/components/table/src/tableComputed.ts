@@ -1,10 +1,7 @@
 import type { CSSProperties, ComputedRef } from 'vue';
 import { useStyleComputed } from '../../../hooks/useStyleComputed';
-// import { useClassComputed } from '../../../hooks/useClassComputed';
-// import { useClassComputed } from '../../../hooks/useClassComputed';
 import type { TableProps } from './type';
 
-// packages/components/table/src/tableComputed.ts
 export function useTableComputed(props: TableProps): {
   tableStyle: ComputedRef<CSSProperties>;
   headerStyle: ComputedRef<CSSProperties>;

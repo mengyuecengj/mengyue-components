@@ -8,21 +8,20 @@
 ## 如何安装
 :::code-group
 ```bash [npm]
-$ npm install mengyue-plus
+$ npm install mengyue-components
 ```
 ```bash [pnpm]
-$ pnpm install mengyue-plus
+$ pnpm install mengyue-components
 ```
 ```bash [yarn]
-$ yarn add mengyue-plus
+$ yarn add mengyue-components
 ```
 :::
 
 ### 安装过程
-以pnpm为例
 :::code-group
 ```bash[npm]
-$ npm install mengyue-plus
+$ npm install mengyue-components
 
 added 28 packages in 18s
 
@@ -30,18 +29,18 @@ added 28 packages in 18s
   run `npm fund` for details
 ```
 ```bash[pnpm]
-$ pnpm install mengyue-plus
+$ pnpm install mengyue-components
 Packages: +24
 ++++++++++++++++++++++++
 Progress: resolved 24, reused 23, downloaded 1, added 24, done
 
 dependencies:
-+ mengyue-plus 0.0.62
++ mengyue-components 0.1.1
 
 Done in 10.8s using pnpm v10.12.1
 ```
 ```bash[yarn]
-$ yarn add mengyue-plus
+$ yarn add mengyue-components
 yarn add v1.22.22
 [1/28] Resolving packages...
 [2/28] Fetching packages...
@@ -51,9 +50,9 @@ info "fsevents@2.3.2" is an optional dependency and failed compatibility check. 
 success Saved lockfile.
 success Saved 13 new dependencies.
 info Direct dependencies
-└─ mengyue-plus@0.0.62
+└─ mengyue-components@0.1.1
 info All dependencies
-├─ mengyue-plus@0.0.62
+├─ mengyue-components@0.1.1
 ├─ [other dependencies...]
 └─ [other dependencies...]
 Done in 8.2s.
@@ -61,15 +60,15 @@ Done in 8.2s.
 :::
 
 ## 如何使用
-### 全局注册mengyue-plus
+### 全局注册mengyue-components
 :::code-group
 ```bash[vue]
 // vue项目中main.js/ts文件
-import MengyuePlus from 'mengyue-plus'
-import 'mengyue-plus/style.css'
+import MengyueComponents from 'mengyue-components'
+import 'mengyue-components/style.css'
 
 const app = createApp(App)
-app.use(MengyuePlus)
+app.use(MengyueComponents)
 app.mount('#app')
 ```
 :::
@@ -85,15 +84,15 @@ app.mount('#app')
 </DemoClient>
 
 ### 局部注册
-当然，在一些项目中组件库占用面积过大会带来一些负面效果，所以mengyue-plus也支持组件按需加载，这样可以减少代码的冗余。
+当然，在一些项目中组件库占用面积过大会带来一些负面效果，所以`mengyue-components`也支持组件按需加载，这样可以减少代码的冗余。
 :::code-group
 ```vue[vue]
 <template>
     <MYButton type="primary">主要按钮</MYButton>
 </template>
 <script>
-import { MYButton } from 'mengyue-plus'
-import 'mengyue-plus/index.css'
+import { MYButton } from 'mengyue-components'
+import 'mengyue-components/index.css'
 </script>
 ```
 :::
@@ -105,7 +104,7 @@ import 'mengyue-plus/index.css'
 ## 了解更多
 <ul>
     <li>node官网: <MYa href="https://nodejs.org/" target="_blank">https://nodejs.org</MYa></li>
-    <li>mengyue-plus的npm地址: <MYa href="https://www.npmjs.com/package/mengyue-plus" target="_blank">https://www.npmjs.com/package/mengyue-plus</MYa></li>
+    <li>mengyue-plus的npm地址: <MYa href="https://www.npmjs.com/package/mengyue-components" target="_blank">https://www.npmjs.com/package/mengyue-components</MYa></li>
     <li>mengyue-plus的Github地址: <MYa href="https://github.com/mengyuecengj/mengyue-components" target="_blank">https://github.com/mengyuecengj/mengyue-components</MYa></li>
     <li>想要了解更多组件, 请继续阅读该指南</li>
 </ul>

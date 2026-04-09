@@ -1,9 +1,8 @@
 import type { PropType } from 'vue'
 import { radioProps } from './radio'
 
-// 单独封装 radio-group 的 props
 export const radioGroupProps = {
-  ...radioProps, // 如果 radioProps 中包含 name/label 等通用字段
+  ...radioProps,
 
   modelValue: {
     type: [String, Number, Boolean] as PropType<string | number | boolean>,

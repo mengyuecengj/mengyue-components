@@ -1,5 +1,3 @@
-// pagination.ts
-
 export const paginationProps = {
     total: {
         type: [Number, String],
@@ -20,7 +18,7 @@ export const paginationProps = {
     },
     layout: {
         type: String,
-        default: 'prev, pager, next'  // 修正拼写错误: deefault -> default
+        default: 'prev, pager, next'
     },
     pageSizes: {
         type: Array as () => (number[]),

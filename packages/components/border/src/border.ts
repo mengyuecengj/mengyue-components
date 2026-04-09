@@ -1,6 +1,5 @@
 import type { ExtractPropTypes, PropType } from "vue";
 
-// 边框基础属性
 const baseBorderProps = {
     borderStyle: {
         type: String as PropType<'solid' | 'dashed' | 'dotted' | 'double'>,
@@ -16,7 +15,6 @@ const baseBorderProps = {
     },
 } as const;
 
-// 边框方向属性
 const directionBorderProps = {
     topColor: {
         type: String,
@@ -36,7 +34,6 @@ const directionBorderProps = {
     }
 } as const;
 
-// 其他样式属性
 const otherStyleProps = {
     width: {
         type: String,
@@ -76,7 +73,6 @@ const otherStyleProps = {
     }
 } as const;
 
-// 标签属性
 const tagProps = {
     tag: {
         type: String as PropType<string>,

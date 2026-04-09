@@ -89,7 +89,7 @@ features:
       <h2>准备好开始了吗？</h2>
       <p>立即加入数千开发者的行列，体验下一代构建工具</p>
       <div class="cta-actions">
-        <MYa color="#fff" underline href="/mengyue-components/components/FastStart" class="btn btn-large btn-primary">开始使用</MYa>
+        <MYa color="#fff" underline href="/mengyue-components/plus/FastStart" class="btn btn-large btn-primary">开始使用</MYa>
         <MYa target="__blank" rel="noopener noreferrer" underline href="https://github.com/mengyuecengj/mengyue-components" class="btn btn-large btn-secondary">查看源码</MYa>
       </div>
     </div>

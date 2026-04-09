@@ -45,12 +45,12 @@ const pageSize = ref(10);
     v-model:page-size='pageSize9'
     :total='200'
     layout='prev, pager, next, jumper'
-    prne-color='#6A5ACD'
-    prne-text-color='#FFFFFF'
-    item-color='#F8F9FA'
-    item-text-color='#495057'
-    active-item-color='#6A5ACD'
-    active-item-text-color='#FFFFFF'
+    prevColor='#6A5ACD'
+    prevTextColor='#FFFFFF'
+    itemColor='#F8F9FA'
+    itemTextColor='#495057'
+    activeItemColor='#6A5ACD'
+    activeItemTextColor='#FFFFFF'
     background
   />
 </template>
@@ -68,8 +68,8 @@ const pageSize9 = ref(10);
         v-model:page-size="pageSize9" 
         :total="200" 
         layout="prev, pager, next, jumper"
-        prne-color="#6A5ACD"
-        prne-text-color="#FFFFFF"
+        prevColor="#6A5ACD"
+        prevTextColor="#FFFFFF"
         item-color="#F8F9FA"
         item-text-color="#495057"
         active-item-color="#6A5ACD"
@@ -94,8 +94,8 @@ const pageSize9 = ref(10);
 | small  | 是否使用小型分页样式      | boolean  | — | `false`  |
 | hideOnSinglePage  | 是否在只有一页时隐藏分页组件      | boolean  | — | `false`  |
 | disabled  | 是否禁用分页组件      | boolean  | — | `false`  |
-| prneColor | 上一页/下一页按钮背景色 | string | 支持16进制颜色或单词颜色 | `''` |
-| prneTextColor | 上一页/下一页按钮文字颜色 | string | 支持16进制颜色或单词颜色 | `''` |
+| prevColor | 上一页/下一页按钮背景色 | string | 支持16进制颜色或单词颜色 | `''` |
+| prevTextColor | 上一页/下一页按钮文字颜色 | string | 支持16进制颜色或单词颜色 | `''` |
 | itemColor | 页码按钮背景色 | string | 支持16进制颜色或单词颜色 | `''` |
 | itemTextColor | 页码按钮文字颜色 | string | 支持16进制颜色或单词颜色 | `''` |
 | activeItemColor | 当前选中页码按钮背景色 | string | 支持16进制颜色或单词颜色 | `''` |
@@ -114,8 +114,8 @@ interface PaginationProps {
   small?: boolean;
   hideOnSinglePage?: boolean;
   disabled?: boolean;
-  prneColor?: string;
-  prneTextColor?: string;
+  prevColor?: string;
+  prevTextColor?: string;
   itemColor?: string;
   itemTextColor?: string;
   activeItemColor?: string;

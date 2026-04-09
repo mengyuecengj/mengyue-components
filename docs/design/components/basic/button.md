@@ -41,14 +41,14 @@ const buttonTypeProps = {
 
 // 样式相关 props
 const buttonStyleProps = {
-  round: { type: Boolean, default: false },
-  circle: { type: Boolean, default: false },
+  rounded: { type: Boolean, default: false },
+  circular: { type: Boolean, default: false },
   plain: { type: Boolean, default: false },
 }
 
 // 颜色相关 props
 const buttonColorProps = {
-  colorBg: { type: String, default: '' },
+  colorBackground: { type: String, default: '' },
   colorText: { type: String, default: '' },
   colorBorder: { type: String, default: '' },
 }
@@ -74,8 +74,8 @@ const btnClass = useClassComputed<ButtonProps>({
     size: props.size ?? 'medium'
   },
   flagClasses: {
-    round: props.round,
-    circle: props.circle,
+    rounded: props.round,
+    circular: props.circle,
     disabled: props.disabled,
     plain: props.plain,
     iconOnly: props.iconOnly,
@@ -93,7 +93,7 @@ const btnClass = useClassComputed<ButtonProps>({
 Button 组件使用 useColorComputed Hook 来处理自定义颜色的计算：
 ```typescript
 const customStyle = useColorComputed({
-  colorBg: props.colorBg,
+  colorBackground: props.colorBg,
   colorText: props.colorText,
   colorBorder: props.colorBorder,
   plain: props.plain,

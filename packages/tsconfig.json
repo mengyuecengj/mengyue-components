@@ -14,7 +14,7 @@
     "esModuleInterop": true,
     "removeComments": false,
     "rootDir": ".",
-    "types": ["vite/client", "node"], // 添加 Vite 和 Node 类型
+    "types": ["vite/client", "node"],
     "paths": {
       "@mengyue-plus/components": ["packages/components"],
       "@mengyue-plus/components/*": ["packages/components/*"],
@@ -27,12 +27,13 @@
       "@mengyue-plus/locale/*": ["packages/locale/*"],
       "mengyue-plus": ["packages/mengyue-plus"]
     },
-    "preserveSymlinks": true
+    "preserveSymlinks": true,
+    "ignoreDeprecations": "6.0"
   },
   "include": [
-    "icons/src/**/*", // 包含 icons/src 下的所有文件
-    "packages/**/*",  // 包含 packages 下的所有文件
-    "vite.config.ts", // 包含 Vite 配置文件
-    "vite-env.d.ts"   // 包含 Vite 类型声明
+    "icons/src/**/*",
+    "packages/**/*",
+    "vite.config.ts",
+    "vite-env.d.ts"
   ]
 }

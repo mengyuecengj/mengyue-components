@@ -1,10 +1,7 @@
-// rateTypes.ts
 import type { PropType, ExtractPropTypes } from 'vue'
 
-// 颜色元组类型定义
 export type RateColors = [string, string, string]
 
-// 事件类型定义
 export interface RateEmits {
   (event: 'update:modelValue', value: number): void
   (event: 'change', value: number): void
@@ -42,5 +39,4 @@ export const rateProps = {
   }
 }
 
-// 从 props 生成类型，方便其他地方引用
 export type RateProps = Readonly<ExtractPropTypes<typeof rateProps>>

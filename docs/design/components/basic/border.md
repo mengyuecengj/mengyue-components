@@ -53,11 +53,11 @@ const directionBorderProps = {
 const otherStyleProps = {
   width: { type: String, default: '' },
   height: { type: String, default: '' },
-  round: { type: Boolean, default: false },
-  circle: { type: Boolean, default: false },
+  rounded: { type: Boolean, default: false },
+  circular: { type: Boolean, default: false },
   paddingText: { type: String, default: '' },
   center: { type: Boolean, default: false },
-  colorBg: { type: String, default: '' },
+  colorBackground: { type: String, default: '' },
   textColor: { type: String, default: '' },
   boxShadow: { type: String, default: '' }
 }
@@ -71,8 +71,8 @@ Border 组件利用 useClassComputed Hook 来处理动态类名的生成：
 const borderClass = useClassComputed<BorderProps>({
   baseClass: 'my-border',
   flagClasses: {
-    round: props.round,
-    circle: props.circle,
+    rounded: props.round,
+    circular: props.circle,
     center: props.center,
   },
 });

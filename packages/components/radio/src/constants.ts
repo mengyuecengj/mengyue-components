@@ -1,4 +1,3 @@
-// constants.ts
 import type { InjectionKey, Ref } from 'vue'
 
 export interface RadioGroupContext {

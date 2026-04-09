@@ -1,4 +1,3 @@
-// slidebarComputed.ts
 import { ref, computed } from 'vue';
 import type { SlidebarProps } from './slidebar';
 

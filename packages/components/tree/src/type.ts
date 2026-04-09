@@ -2,7 +2,7 @@ export interface TreeProps {
   children: string
   label: string
   value?: string
-  check?: string  // checkbox 相关：checked 键
+  check?: string
 }
 
 export interface TreeNodes {

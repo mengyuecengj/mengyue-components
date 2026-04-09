@@ -36,7 +36,6 @@ const props = withDefaults(defineProps<UploadProps>(), {
     showFileList: true
 })
 
-/** emits（推荐） */
 const emit = defineEmits<{
     (e: 'success', res: unknown, file: File): void
     (e: 'error', err: unknown, file: File): void
