@@ -1,0 +1,13 @@
+import{_ as h}from"./chunks/scroll.vue_vue_type_script_setup_true_lang.BV-O1fnO.js";import{I as l,o,c as p,a8 as r,J as n,w as s,j as a,a as e}from"./chunks/framework.DvHWw5tv.js";import"./chunks/useClassComputed.B59PvPGn.js";import"./chunks/useScrollCommon.BuCZSVsl.js";const f=JSON.parse('{"title":"Scroll","description":"","frontmatter":{},"headers":[],"relativePath":"plus/DistributionScroll.md","filePath":"plus/DistributionScroll.md"}'),g={name:"plus/DistributionScroll.md"},z=Object.assign(g,{setup(y){return(u,i)=>{const t=l("ClientOnly"),d=l("ShowCode");return o(),p("div",{"data-pagefind-body":!0,"data-pagefind-meta":"date:1775839268000"},[i[3]||(i[3]=r("",7)),n(d,{title:"代码演示",code:`
+<template>
+  <MYScroll thumbColor='#ff0000'>自定义红色滑块滚动条</MYScroll>
+</template>
+  `.trim()},{demo:s(()=>[n(t,null,{default:s(()=>[n(h,{thumbColor:"#ff0000",style:{height:"100px","overflow-y":"auto"}},{default:s(()=>[...i[0]||(i[0]=[a("div",{style:{height:"500px"}},"滚动内容",-1)])]),_:1})]),_:1})]),_:1},8,["code"]),i[4]||(i[4]=a("h3",{id:"thumbhovercolor",tabindex:"-1"},[e("thumbHoverColor "),a("a",{class:"header-anchor",href:"#thumbhovercolor","aria-label":"Permalink to “thumbHoverColor”"},"​")],-1)),i[5]||(i[5]=a("p",null,[e("使用 "),a("code",null,"thumbHoverColor"),e(" 可以定义滑块在悬停时的颜色。"),a("span",{class:"pagefind-pinyin","aria-hidden":"true"},"shiyong keyidingyihuakuaizaixuantingshideyanse。 shi yong ke yi ding yi hua kuai zai xuan ting shi de yan se 。 sy kydyhkzxtsdys。")],-1)),n(d,{title:"代码演示",code:`
+<template>
+  <MYScroll thumbHoverColor='#00ff00'>悬停时绿色滑块滚动条</MYScroll>
+</template>
+  `.trim()},{demo:s(()=>[n(t,null,{default:s(()=>[n(h,{thumbHoverColor:"#00ff00",style:{height:"100px","overflow-y":"auto"}},{default:s(()=>[...i[1]||(i[1]=[a("div",{style:{height:"500px"}},"滚动内容",-1)])]),_:1})]),_:1})]),_:1},8,["code"]),i[6]||(i[6]=a("h3",{id:"trackcolor",tabindex:"-1"},[e("trackColor "),a("a",{class:"header-anchor",href:"#trackcolor","aria-label":"Permalink to “trackColor”"},"​")],-1)),i[7]||(i[7]=a("p",null,[e("使用 "),a("code",null,"trackColor"),e(" 可以定义滚动条轨道的颜色。"),a("span",{class:"pagefind-pinyin","aria-hidden":"true"},"shiyong keyidingyigundongtiaoguidaodeyanse。 shi yong ke yi ding yi gun dong tiao gui dao de yan se 。 sy kydygdtgddys。")],-1)),n(d,{title:"代码演示",code:`
+<template>
+  <MYScroll trackColor='#0000ff'>蓝色轨道滚动条</MYScroll>
+</template>
+  `.trim()},{demo:s(()=>[n(t,null,{default:s(()=>[n(h,{trackColor:"#0000ff",style:{height:"100px","overflow-y":"auto"}},{default:s(()=>[...i[2]||(i[2]=[a("div",{style:{height:"500px"}},"滚动内容",-1)])]),_:1})]),_:1})]),_:1},8,["code"]),i[8]||(i[8]=r("",5))])}}});export{f as __pageData,z as default};
