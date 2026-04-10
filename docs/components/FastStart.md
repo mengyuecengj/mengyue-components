@@ -13,7 +13,7 @@
 
   <MYBorder paddingText="24px" round colorBg="#3a5c40" borderColor="#6b8e23" style="margin-top: 20px;">
     <MYText Tecolor="#fff" fontSize="16px">🚀 跳到如何使用，</MYText>
-    <MYa href="./use" color="#ffffff" fontSize="16px" hoverColor="#a0ffa0">立即尝试！</MYa> ✨
+    <MYa href="./FastUse" color="#ffffff" fontSize="16px" hoverColor="#a0ffa0">立即尝试！</MYa> ✨
   </MYBorder>
 </div>
 

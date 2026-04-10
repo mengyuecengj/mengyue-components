@@ -3,6 +3,8 @@ import { indexPlus } from '../plus/Aindex'
 import { indexComponents } from '../components/Aindex'
 import { indexDesign } from '../design/Aindex'
 import { indexVersion } from '../version/Aindex'
+import { indexPlugin } from '../plugin/index'
+import { indexQuestion } from '../question/index'
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 import { componentPreview, containerPreview } from '@vitepress-demo-preview/plugin';
 import { fileURLToPath } from 'url'
@@ -47,16 +49,18 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       // { text: '组件', link: '/plus/FastStart', activeMatch: '/plus/' },
-      { text: '设计', link: '/design/FastRead', activeMatch: '/design/' },
-      { text: '关于', link: '/about/index', activeMatch: '/about/' },
+      { text: '组件设计', link: '/design/FastRead', activeMatch: '/design/' },
       {
-        text: '版本',
+        text: '文档',
         items: [
           { text: 'mengyue-plus', link: '/plus/FastStart' },
           { text: 'mengyue-components', link: '/components/FastStart' }
         ]
       },
-      { text: '说明', link: '/version/0.0.1', activeMatch: '/version/' },
+      { text: '常见问题', link: '/question/migration', activeMatch: '/question/' },
+      { text: '插件概述', link: '/plugin/mengyuePlus', activeMatch: '/plugin/' },
+      { text: '版本说明', link: '/version/0.0.1', activeMatch: '/version/' },
+      { text: '关于', link: '/about/index', activeMatch: '/about/' },
     ],
 
     sidebar: {
@@ -70,11 +74,13 @@ export default defineConfig({
           ]
         }
       ],
+      '/question/': indexQuestion,
+      '/plugin/': indexPlugin,
       '/version/': indexVersion
     },
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2024-present Your Name & Contributors'
+      copyright: 'Copyright © 2026-present mengyue & Contributors'
     },
     socialLinks: [
       {

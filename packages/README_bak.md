@@ -1,4 +1,4 @@
-# [mengyue-compponen]: Your Handy Helper for Smoother Frontend Development 🛠️✨
+# [mengyue-plus]: Your Handy Helper for Smoother Frontend Development 🛠️✨
 
 Hey there! 👋
 
@@ -7,8 +7,6 @@ Tired of reinventing the wheel in every project? Does coding buttons, layouts, a
 Say hello to **`mengyue-plus`**! 
 
 github: https://github.com/mengyuecengj/mengyue-components
-<br />
-gitee: https://gitee.com/q62/mengyue-components
 <br />
 docs: https://mengyuecengj.github.io/mengyue-components/
 
@@ -50,33 +48,30 @@ We are currently optimizing the volume of each component and have completed most
 
 ```bash
 # Install with your favorite package manager
-pnpm install mengyue-compponents
+pnpm install mengyue-plus
 # or
-npm install mengyue-compponents
+npm install mengyue-plus
 ```
 ```js
 // In your main entry file
-import MengyueCompponents from 'mengyue-compponents'
-import 'mengyue-compponents/style.css'
+import MengyuePlus from 'mengyue-plus'
+import 'mengyue-plus/style.css'
 
 const app = createApp(App)
-app.use(MengyueCompponents)
+app.use(MengyuePlus)
 app.mount('#app')
 ```
 
 
-# [mengyue-components]：让前端开发更「方便」的小帮手 🛠️✨
+# [mengyue-plus]：让前端开发更「方便」的小帮手 🛠️✨
 
 Hey！👋
 
 是不是厌倦了在项目中反复造轮子？每次写按钮、 布局、表单都觉得“似曾相识”？下次项目还得重头再来？
 
-认识一下 **`[mengyue-components]`** 吧！
+认识一下 **`[mengyue-plus]`** 吧！
 
 github: https://github.com/mengyuecengj/mengyue-components
-<br />
-gitee: https://gitee.com/q62/mengyue-components
-<br />
 文档: https://mengyuecengj.github.io/mengyue-components/
 
 ## 他可以做到
@@ -116,18 +111,19 @@ gitee: https://gitee.com/q62/mengyue-components
 ## 上手
 *   **动手试试：** 安装超简单！复制粘贴走起：
 
-```bash
-# Install with your favorite package manager
-pnpm install mengyue-compponents
-# or
-npm install mengyue-compponents
+```pnpm
+pnpm install mengyue-plus
 ```
-```js
-// In your main entry file
-import MengyueCompponents from 'mengyue-compponents'
-import 'mengyue-compponents/style.css'
+``` npm
+npm install mengyue-plus
+```
 
-const app = createApp(App)
-app.use(MengyueCompponents)
-app.mount('#app')
+```js
+// 在项目的main导入
+import MengyuePlus from 'mengyue-plus'
+import 'mengyue-plus/style.css'
+
+const app = createApp(App);
+app.use(MengyuePlus)
+app.mount('#app');
 ```
