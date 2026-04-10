@@ -22,7 +22,7 @@
 
 ::: warning 迁移建议
 当前项目若仍在使用 `mengyue-plus`，**强烈推荐迁移至正式版 `mengyue-components`**。  
-迁移路径与变更点请参考独立的 [迁移指南](./migration) 章节。
+迁移路径与变更点请参考独立的 [迁移指南](../question/migration.md) 章节。
 :::
 
 ## 注意事项

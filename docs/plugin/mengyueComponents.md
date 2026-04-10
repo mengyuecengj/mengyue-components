@@ -26,4 +26,4 @@
 ## 快速开始
 
 安装与引入方式请查阅 [快速开始](../components/FastStart.md) 章节。  
-若你之前使用过 `mengyue-plus`，可参考 [迁移指南](./migration) 完成平滑升级。[点击此处](../plus/FastStart.md)查看文档。
+若你之前使用过 `mengyue-plus`，可参考 [迁移指南](../question/migration.md) 完成操作。[点击此处](../plus/FastStart.md)查看文档。
