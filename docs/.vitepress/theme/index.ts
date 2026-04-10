@@ -8,6 +8,7 @@ import DemoClient from './components/demoClient.vue'
 import ShowCode from './components/showCode.vue'
 import Particles from './components/Particles.vue'
 import InteractiveSection from './components/InteractiveSection.vue'
+import pageFindSearch from './components/pageFindSearch.vue'
 import '@vitepress-demo-preview/component/dist/style.css';
 import { h } from 'vue'
 
@@ -19,6 +20,7 @@ export default {
     app.component('DemoClient', DemoClient)
     app.component('ShowCode', ShowCode)
     // app.directive('scroll-fade', ScrollFade)
+    app.component('pageFindSearch', pageFindSearch)
     app.component('Particles', Particles)
     app.component('InteractiveSection', InteractiveSection)
   },

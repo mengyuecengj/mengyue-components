@@ -10,14 +10,16 @@
   "dependencies": {
     "@docsearch/js": "^3.1.0",
     "@element-plus/icons-vue": "^2.3.1",
+    "@pagefind/default-ui": "^1.5.0",
     "@vue/shared": "^3.2.37",
     "@vueuse/core": "^9.1.0",
     "clipboard-copy": "^4.0.1",
     "element-plus": "npm:element-plus@latest",
-    "mengyue-plus": "file:..\\packages\\mengyue-plus",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
-    "prismjs": "^1.30.0"
+    "pinyin": "^4.0.0",
+    "prismjs": "^1.30.0",
+    "vitepress-plugin-pagefind": "^0.4.19"
   },
   "devDependencies": {
     "@crowdin/cli": "^4.5.0",
