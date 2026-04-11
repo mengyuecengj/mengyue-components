@@ -1,0 +1,33 @@
+import{_ as r}from"./chunks/backtop.vue_vue_type_script_setup_true_lang.CILG5wfP.js";import{I as d,o,c as p,a8 as h,J as i,w as s,j as a,a as e}from"./chunks/framework.DvHWw5tv.js";const y=JSON.parse('{"title":"BackTop","description":"","frontmatter":{},"headers":[],"relativePath":"plus/NavigationBacktop.md","filePath":"plus/NavigationBacktop.md"}'),k={name:"plus/NavigationBacktop.md"},u=Object.assign(k,{setup(c){return(g,t)=>{const l=d("ClientOnly"),n=d("ShowCode");return o(),p("div",{"data-pagefind-body":!0,"data-pagefind-meta":"date:1775893163000"},[t[1]||(t[1]=h('<h1 id="backtop" tabindex="-1">BackTop <a class="header-anchor" href="#backtop" aria-label="Permalink to “BackTop”">​</a></h1><h2 id="简易介绍" tabindex="-1">简易介绍 <a class="header-anchor" href="#简易介绍" aria-label="Permalink to “简易介绍”">​</a></h2><p>BackTop 返回顶部组件，用于快速返回页面顶部。mengyue-components 进行了封装并进行了 vitest 测试。 可以使用 <code>&lt;MYBackTop&gt;&lt;/MYBackTop&gt;</code> 或者 <code>&lt;MYBackTop /&gt;</code> 来实现一个返回顶部组件。</p><h2 id="基本用法" tabindex="-1">基本用法 <a class="header-anchor" href="#基本用法" aria-label="Permalink to “基本用法”">​</a></h2><h3 id="visibilityheight" tabindex="-1">visibilityHeight <a class="header-anchor" href="#visibilityheight" aria-label="Permalink to “visibilityHeight”">​</a></h3><p>使用 <code>visibilityHeight</code> 属性设置滚动高度阈值，当页面滚动超过该值时显示返回顶部按钮。默认值为 <code>200</code>。</p>',6)),i(n,{title:"代码演示",code:`
+<template>
+  <MYBacktop :right='50' :bottom='80' />
+</template>
+  `.trim()},{demo:s(()=>[i(l,null,{default:s(()=>[i(r,{right:50,bottom:80})]),_:1})]),_:1},8,["code"]),t[2]||(t[2]=a("h3",{id:"自定义位置",tabindex:"-1"},[e("自定义位置 "),a("a",{class:"header-anchor",href:"#自定义位置","aria-label":"Permalink to “自定义位置”"},"​")],-1)),t[3]||(t[3]=a("p",null,[e("通过 "),a("code",null,"right"),e(" 和 "),a("code",null,"bottom"),e(" 属性可以自定义组件在页面中的位置。")],-1)),i(n,{title:"代码演示",code:`
+<template>
+  <MYBacktop :right='100' :bottom='100' />
+</template>
+  `.trim()},{demo:s(()=>[i(l,null,{default:s(()=>[i(r,{right:100,bottom:100})]),_:1})]),_:1},8,["code"]),t[4]||(t[4]=a("h3",{id:"自定义插槽用法",tabindex:"-1"},[e("自定义插槽用法 "),a("a",{class:"header-anchor",href:"#自定义插槽用法","aria-label":"Permalink to “自定义插槽用法”"},"​")],-1)),t[5]||(t[5]=a("p",null,"使用插槽可以完全自定义返回顶部按钮的内容和样式。",-1)),i(n,{title:"代码演示",code:`
+<template>
+  <MYBacktop :bottom='140' :right='110'>
+    <div
+      style='
+        height: 100%;
+        width: 100%;
+        background-color: var(--el-bg-color-overlay);
+        box-shadow: var(--el-box-shadow-lighter);
+        text-align: center;
+        line-height: 40px;
+        color: #1989fa;
+        font-weight: bold;
+      '
+    >
+      UP
+    </div>
+  </MYBacktop>
+</template>
+  `.trim()},{demo:s(()=>[i(l,null,{default:s(()=>[i(r,{bottom:140,right:110},{default:s(()=>[...t[0]||(t[0]=[a("div",{style:{height:"100%",width:"100%","background-color":"var(--el-bg-color-overlay)","box-shadow":"var(--el-box-shadow-lighter)","text-align":"center","line-height":"40px",color:"#1989fa","font-weight":"bold"}}," UP ",-1)])]),_:1})]),_:1})]),_:1},8,["code"]),t[6]||(t[6]=h(`<h2 id="api-参考" tabindex="-1">API 参考 <a class="header-anchor" href="#api-参考" aria-label="Permalink to “API 参考”">​</a></h2><h3 id="props" tabindex="-1">Props <a class="header-anchor" href="#props" aria-label="Permalink to “Props”">​</a></h3><table tabindex="0"><thead><tr><th>参数</th><th>说明</th><th>类型</th><th>可选值</th><th>默认值</th></tr></thead><tbody><tr><td>visibilityHeight</td><td>滚动高度阈值，超过该值显示按钮</td><td>number</td><td>—</td><td><code>200</code></td></tr><tr><td>right</td><td>距离右侧的距离</td><td>number | string</td><td>—</td><td><code>40</code></td></tr><tr><td>bottom</td><td>距离底部的距离</td><td>number | string</td><td>—</td><td><code>40</code></td></tr><tr><td>target</td><td>监听滚动的目标元素</td><td>string</td><td>—</td><td><code>&#39;&#39;</code></td></tr></tbody></table><h3 id="类型定义" tabindex="-1">类型定义 <a class="header-anchor" href="#类型定义" aria-label="Permalink to “类型定义”">​</a></h3><div class="language-typescript line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">typescript</span><pre class="shiki shiki-themes vitesse-light vitesse-dark" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">interface</span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;"> BackTopProps</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> {</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">  visibilityHeight</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">?</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">: </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">number</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">;</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">  right</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">?</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">: </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">string</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> | </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">number</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">;</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">  bottom</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">?</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">: </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">string</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> | </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">number</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">;</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">  target</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">?</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">: </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">string</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">;</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666;">}</span></span></code></pre><div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div>`,5))])}}});export{y as __pageData,u as default};
