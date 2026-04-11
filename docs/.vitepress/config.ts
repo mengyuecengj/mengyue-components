@@ -28,39 +28,38 @@ export default defineConfig({
       md.use(componentPreview)
       md.use(containerPreview)
 
-      md.core.ruler.push('pinyin-enhance', (state) => {
+      md.core.ruler.push('pinyin-title-only', (state) => {
         const Token = (state as any).Token
 
-        state.tokens.forEach((token: any) => {
-          if (token.type !== 'inline' || !Array.isArray(token.children) || token.children.length === 0) {
-            return
+        state.tokens.forEach((token: any, index: number) => {
+          if (token.type === 'heading_open') {
+            const inlineToken = state.tokens[index + 1]
+
+            if (!inlineToken || inlineToken.type !== 'inline' || !inlineToken.children) return
+
+            // 防重复
+            if (inlineToken.children.some((c: any) => c.type === 'html_inline')) return
+
+            const text = inlineToken.content
+            if (!/[\u4e00-\u9fa5]/.test(text)) return
+
+            const pyArr = pinyinFn(text, {
+              style: pinyinFn.STYLE_NORMAL
+            }).flat()
+
+            const full = pyArr.join('')
+            const spaced = pyArr.join(' ')
+            const first = pyArr.map((i: string) => i[0]).join('')
+
+            const pinyinToken = new Token('html_inline', '', 0)
+            pinyinToken.content = `
+        <span class="pagefind-pinyin">
+          ${full} ${spaced} ${first}
+        </span>
+      `
+
+            inlineToken.children.push(pinyinToken)
           }
-
-          const plainText = token.children
-            .filter((child: any) => child.type === 'text')
-            .map((child: any) => child.content)
-            .join('')
-
-          if (!/[\u4e00-\u9fff]/.test(plainText)) {
-            return
-          }
-
-          const pyArr = pinyinFn(plainText, {
-            style: pinyinFn.STYLE_NORMAL
-          }).flat()
-
-          if (!pyArr.length) {
-            return
-          }
-
-          const full = pyArr.join('')
-          const spaced = pyArr.join(' ')
-          const first = pyArr.map((i: string) => i[0]).join('')
-
-          const pinyinToken = new Token('html_inline', '', 0)
-          pinyinToken.content = `<span class="pagefind-pinyin" aria-hidden="true">${full} ${spaced} ${first}</span>`
-
-          token.children.push(pinyinToken)
         })
       })
     },
