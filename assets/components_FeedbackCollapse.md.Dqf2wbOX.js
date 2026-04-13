@@ -1,0 +1,40 @@
+import{_ as r,a as l}from"./chunks/collapseItem.vue_vue_type_script_setup_true_lang.BE9Y7qWp.js";import{I as m,o as c,c as b,a8 as h,J as e,w as t,j as s,a as n,A as k}from"./chunks/framework.DvHWw5tv.js";const f=JSON.parse('{"title":"Collapse","description":"","frontmatter":{},"headers":[],"relativePath":"components/FeedbackCollapse.md","filePath":"components/FeedbackCollapse.md"}'),g={name:"components/FeedbackCollapse.md"},_=Object.assign(g,{setup(u){const d=k(["1"]),p=k("a");return(C,a)=>{const o=m("ShowCode");return c(),b("div",{"data-pagefind-body":!0,"data-pagefind-meta":"date:1776104037000"},[a[8]||(a[8]=h('<h1 id="collapse" tabindex="-1">Collapse <a class="header-anchor" href="#collapse" aria-label="Permalink to “Collapse”">​</a></h1><h2 id="简易介绍" tabindex="-1">简易介绍 <a class="header-anchor" href="#简易介绍" aria-label="Permalink to “简易介绍”">​</a></h2><p>collapse折叠面板组件，用于展示可折叠的内容区域。<br> 可以使用<code>&lt;MYCollapse&gt;&lt;/MYCollapse&gt;</code>或者<code>&lt;MYCollapse /&gt;</code>和<code>&lt;MYCollapse-item&gt;&lt;/MYCollapse-item&gt;</code>或者<code>&lt;MYCollapse-item /&gt;</code>来实现折叠面板。</p><h2 id="基础用法" tabindex="-1">基础用法 <a class="header-anchor" href="#基础用法" aria-label="Permalink to “基础用法”">​</a></h2><p>使用<code>v-model</code>绑定当前激活的面板。</p>',5)),e(o,{title:"代码演示",code:`
+<template>
+    <MYCollapse v-model='activeNames'>
+        <MYCollapse-item title='功能特性' name='1'>
+            <div>支持多面板同时展开</div>
+            <div>通过 v-model 绑定展开的面板</div>
+        </MYCollapse-item>
+        <MYCollapse-item title='用户体验' name='2'>
+            <div>提供平滑的展开/收起动画</div>
+            <div>支持自定义内容</div>
+        </MYCollapse-item>
+        <MYCollapse-item title='可配置性' name='3'>
+            <div>可以通过 props 调整行为</div>
+            <div>支持手风琴模式和多面板模式</div>
+        </MYCollapse-item>
+    </MYCollapse>
+</template>
+  `.trim()},{demo:t(()=>[e(r,{modelValue:d.value,"onUpdate:modelValue":a[0]||(a[0]=i=>d.value=i)},{default:t(()=>[e(l,{title:"功能特性",name:"1"},{default:t(()=>[...a[2]||(a[2]=[s("div",null,"支持多面板同时展开",-1),s("div",null,"通过 v-model 绑定展开的面板",-1)])]),_:1}),e(l,{title:"用户体验",name:"2"},{default:t(()=>[...a[3]||(a[3]=[s("div",null,"提供平滑的展开/收起动画",-1),s("div",null,"支持自定义内容",-1)])]),_:1}),e(l,{title:"可配置性",name:"3"},{default:t(()=>[...a[4]||(a[4]=[s("div",null,"可以通过 props 调整行为",-1),s("div",null,"支持手风琴模式和多面板模式",-1)])]),_:1})]),_:1},8,["modelValue"])]),_:1},8,["code"]),a[9]||(a[9]=s("h2",{id:"手风琴模式",tabindex:"-1"},[n("手风琴模式 "),s("a",{class:"header-anchor",href:"#手风琴模式","aria-label":"Permalink to “手风琴模式”"},"​")],-1)),a[10]||(a[10]=s("p",null,[n("使用"),s("code",null,"accordion"),n("属性可以设置为手风琴模式，每次只能展开一个面板。")],-1)),e(o,{title:"代码演示",code:`
+<template>
+    <MYCollapse v-model='activeAccordionName' accordion>
+        <MYCollapse-item title='简介' name='a'>
+            <div>手风琴模式一次只能展开一个面板</div>
+        </MYCollapse-item>
+        <MYCollapse-item title='细节' name='b'>
+            <div>点击一个面板会收起其他面板</div>
+        </MYCollapse-item>
+        <MYCollapse-item title='备注' name='c'>
+            <div>适合需要聚焦单一内容的场景</div>
+        </MYCollapse-item>
+    </MYCollapse>
+</template>
+  `.trim()},{demo:t(()=>[e(r,{modelValue:p.value,"onUpdate:modelValue":a[1]||(a[1]=i=>p.value=i),accordion:""},{default:t(()=>[e(l,{title:"简介",name:"a"},{default:t(()=>[...a[5]||(a[5]=[s("div",null,"手风琴模式一次只能展开一个面板",-1)])]),_:1}),e(l,{title:"细节",name:"b"},{default:t(()=>[...a[6]||(a[6]=[s("div",null,"点击一个面板会收起其他面板",-1)])]),_:1}),e(l,{title:"备注",name:"c"},{default:t(()=>[...a[7]||(a[7]=[s("div",null,"适合需要聚焦单一内容的场景",-1)])]),_:1})]),_:1},8,["modelValue"])]),_:1},8,["code"]),a[11]||(a[11]=h(`<h2 id="api-参考" tabindex="-1">API 参考 <a class="header-anchor" href="#api-参考" aria-label="Permalink to “API 参考”">​</a></h2><h3 id="collapse-props" tabindex="-1">Collapse Props <a class="header-anchor" href="#collapse-props" aria-label="Permalink to “Collapse Props”">​</a></h3><table tabindex="0"><thead><tr><th>参数</th><th>说明</th><th>类型</th><th>可选值</th><th>默认值</th></tr></thead><tbody><tr><td>modelValue</td><td>激活的面板</td><td>string | array</td><td>—</td><td>—</td></tr><tr><td>accordion</td><td>是否为手风琴模式</td><td>boolean</td><td>—</td><td><code>false</code></td></tr></tbody></table><h3 id="collapseitem-props" tabindex="-1">CollapseItem Props <a class="header-anchor" href="#collapseitem-props" aria-label="Permalink to “CollapseItem Props”">​</a></h3><table tabindex="0"><thead><tr><th>参数</th><th>说明</th><th>类型</th><th>可选值</th><th>默认值</th></tr></thead><tbody><tr><td>name</td><td>唯一标识符</td><td>string</td><td>—</td><td>—</td></tr><tr><td>title</td><td>面板标题</td><td>string</td><td>—</td><td>—</td></tr></tbody></table><h3 id="collapseitem-slots" tabindex="-1">CollapseItem Slots <a class="header-anchor" href="#collapseitem-slots" aria-label="Permalink to “CollapseItem Slots”">​</a></h3><table tabindex="0"><thead><tr><th>名称</th><th>说明</th></tr></thead><tbody><tr><td>default</td><td>面板内容</td></tr></tbody></table><h3 id="类型定义" tabindex="-1">类型定义 <a class="header-anchor" href="#类型定义" aria-label="Permalink to “类型定义”">​</a></h3><div class="language-typescript line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">typescript</span><pre class="shiki shiki-themes vitesse-light vitesse-dark" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">interface</span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;"> CollapseProps</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> {</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">  modelValue</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">?</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">: </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">string</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> | </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">string</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">[];</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">  accordion</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">?</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">: </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">boolean</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">;</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666;">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">interface</span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;"> CollapseItemProps</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> {</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">  name</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">: </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">string</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">;</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">  disabled</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">?</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">: </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">boolean</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">;</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666;">}</span></span></code></pre><div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div>`,9))])}}});export{f as __pageData,_ as default};

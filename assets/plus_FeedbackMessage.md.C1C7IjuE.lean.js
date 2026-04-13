@@ -1,0 +1,61 @@
+import{_ as e}from"./chunks/button.vue_vue_type_script_setup_true_lang.DRTmpM5H.js";import{m as l}from"./chunks/messageManager.DFctwySm.js";import{I as F,o as P,c as H,a8 as k,J as n,w as t,j as a,a as i,A as S}from"./chunks/framework.DvHWw5tv.js";import"./chunks/useClassComputed.B59PvPGn.js";import"./chunks/useColorUtils.Cv3Q488p.js";const L={style:{display:"flex",gap:"10px","flex-wrap":"wrap"}},I={style:{display:"flex",gap:"10px","flex-wrap":"wrap"}},O={style:{display:"flex",gap:"10px","flex-wrap":"wrap"}},V={style:{display:"flex",gap:"10px","flex-wrap":"wrap"}},N={style:{display:"flex",gap:"10px","flex-wrap":"wrap"}},X=JSON.parse('{"title":"Message","description":"","frontmatter":{},"headers":[],"relativePath":"plus/FeedbackMessage.md","filePath":"plus/FeedbackMessage.md"}'),R={name:"plus/FeedbackMessage.md"},$=Object.assign(R,{setup(W){const h=S(null),r=()=>{l.info("这是一条信息提示"),console.log("显示信息提示")},d=()=>{l.success("操作成功！"),console.log("显示成功提示")},o=()=>{l.warning("请注意操作风险"),console.log("显示警告提示")},g=()=>{l.error("操作失败，请重试"),console.log("显示错误提示")},y=()=>{l({content:"这条消息可以手动关闭",type:"info",showClose:!0}),console.log("显示带关闭按钮的消息")},B=()=>{l({content:"这条消息只显示1秒",type:"success",duration:1e3}),console.log("显示短时间消息")},c=()=>{l({content:"这条消息显示10秒",type:"warning",duration:1e4}),console.log("显示长时间消息")},A=()=>{l({content:"这条消息不会自动关闭",type:"info",duration:0,showClose:!0}),console.log("显示永久消息")},u=()=>{l({content:"左上角消息",position:"top-left"}),console.log("显示左上角消息")},b=()=>{l({content:"右上角消息",position:"top-right"}),console.log("显示右上角消息")},D=()=>{l({content:"顶部居中消息",position:"top-center"}),console.log("显示顶部居中消息")},m=()=>{l({content:"左下角消息",position:"bottom-left"}),console.log("显示左下角消息")},f=()=>{l({content:"右下角消息",position:"bottom-right"}),console.log("显示右下角消息")},C=()=>{l({content:"底部居中消息",position:"bottom-center"}),console.log("显示底部居中消息")},M=()=>{l({content:'<strong>加粗文本</strong> 和 <span style="color: red;">红色文本</span>',dangerouslyUseHTMLString:!0}),console.log("显示HTML内容消息")},w=()=>{h.value=l({content:"这条消息需要通过按钮关闭",type:"info",duration:0}),console.log("显示手动关闭消息")},x=()=>{h.value&&(h.value.close(),h.value=null),console.log("手动关闭消息")},E=()=>{l({content:"关闭时会触发回调",type:"success",onClose:()=>{console.log("消息已关闭")}}),console.log("显示带回调的消息")},Y=()=>{l({content:"这条消息有自定义偏移量",type:"info",offset:100}),console.log("显示带偏移量的消息")},v=()=>{l({content:"消息1",offset:20}),l({content:"消息2",offset:80}),l({content:"消息3",offset:140}),console.log("显示多个偏移消息")},T=()=>{l({content:"组合使用示例消息",type:"success",duration:5e3,showClose:!0,position:"top-center",offset:50,zIndex:1e4,onClose:()=>{console.log("组合消息已关闭")}}),console.log("显示组合使用消息")};return(z,s)=>{const p=F("ShowCode");return P(),H("div",{"data-pagefind-body":!0,"data-pagefind-meta":"date:1776104037000"},[s[21]||(s[21]=k("",5)),n(p,{title:"代码演示",code:`
+<template>
+    <div style='display: flex; gap: 10px; flex-wrap: wrap;'>
+        <MYButton @click='showInfo'>信息提示</MYButton>
+        <MYButton @click='showSuccess'>成功提示</MYButton>
+        <MYButton @click='showWarning'>警告提示</MYButton>
+        <MYButton @click='showError'>错误提示</MYButton>
+    </div>
+</template>
+  `.trim()},{demo:t(()=>[a("div",L,[n(e,{onClick:r},{default:t(()=>[...s[0]||(s[0]=[i("信息提示",-1)])]),_:1}),n(e,{onClick:d},{default:t(()=>[...s[1]||(s[1]=[i("成功提示",-1)])]),_:1}),n(e,{onClick:o},{default:t(()=>[...s[2]||(s[2]=[i("警告提示",-1)])]),_:1}),n(e,{onClick:g},{default:t(()=>[...s[3]||(s[3]=[i("错误提示",-1)])]),_:1})])]),_:1},8,["code"]),s[22]||(s[22]=a("h2",{id:"显示关闭按钮",tabindex:"-1"},[i("显示关闭按钮 "),a("a",{class:"header-anchor",href:"#显示关闭按钮","aria-label":"Permalink to “显示关闭按钮”"},"​")],-1)),s[23]||(s[23]=a("p",null,[i("使用"),a("code",null,"showClose"),i("属性可以显示关闭按钮。")],-1)),n(p,{title:"代码演示",code:`
+<template>
+    <MYButton @click='showClosableMessage'>显示关闭按钮</MYButton>
+</template>
+  `.trim()},{demo:t(()=>[n(e,{onClick:y},{default:t(()=>[...s[4]||(s[4]=[i("显示关闭按钮",-1)])]),_:1})]),_:1},8,["code"]),s[24]||(s[24]=a("h2",{id:"自定义持续时间",tabindex:"-1"},[i("自定义持续时间 "),a("a",{class:"header-anchor",href:"#自定义持续时间","aria-label":"Permalink to “自定义持续时间”"},"​")],-1)),s[25]||(s[25]=a("p",null,[i("使用"),a("code",null,"duration"),i("属性可以自定义消息显示的持续时间。")],-1)),n(p,{title:"代码演示",code:`
+<template>
+    <div style='display: flex; gap: 10px; flex-wrap: wrap;'>
+        <MYButton @click='showShortMessage'>短时间 (1秒)</MYButton>
+        <MYButton @click='showLongMessage'>长时间 (10秒)</MYButton>
+        <MYButton @click='showPermanentMessage'>永久显示</MYButton>
+    </div>
+</template>
+  `.trim()},{demo:t(()=>[a("div",I,[n(e,{onClick:B},{default:t(()=>[...s[5]||(s[5]=[i("短时间 (1秒)",-1)])]),_:1}),n(e,{onClick:c},{default:t(()=>[...s[6]||(s[6]=[i("长时间 (10秒)",-1)])]),_:1}),n(e,{onClick:A},{default:t(()=>[...s[7]||(s[7]=[i("永久显示",-1)])]),_:1})])]),_:1},8,["code"]),s[26]||(s[26]=a("h2",{id:"自定义位置",tabindex:"-1"},[i("自定义位置 "),a("a",{class:"header-anchor",href:"#自定义位置","aria-label":"Permalink to “自定义位置”"},"​")],-1)),s[27]||(s[27]=a("p",null,[i("使用"),a("code",null,"position"),i("属性可以设置消息显示的位置。")],-1)),n(p,{title:"代码演示",code:`
+<template>
+    <div style='display: flex; gap: 10px; flex-wrap: wrap;'>
+        <MYButton @click='showTopLeft'>左上角</MYButton>
+        <MYButton @click='showTopRight'>右上角</MYButton>
+        <MYButton @click='showTopCenter'>顶部居中</MYButton>
+        <MYButton @click='showBottomLeft'>左下角</MYButton>
+        <MYButton @click='showBottomRight'>右下角</MYButton>
+        <MYButton @click='showBottomCenter'>底部居中</MYButton>
+    </div>
+</template>
+  `.trim()},{demo:t(()=>[a("div",O,[n(e,{onClick:u},{default:t(()=>[...s[8]||(s[8]=[i("左上角",-1)])]),_:1}),n(e,{onClick:b},{default:t(()=>[...s[9]||(s[9]=[i("右上角",-1)])]),_:1}),n(e,{onClick:D},{default:t(()=>[...s[10]||(s[10]=[i("顶部居中",-1)])]),_:1}),n(e,{onClick:m},{default:t(()=>[...s[11]||(s[11]=[i("左下角",-1)])]),_:1}),n(e,{onClick:f},{default:t(()=>[...s[12]||(s[12]=[i("右下角",-1)])]),_:1}),n(e,{onClick:C},{default:t(()=>[...s[13]||(s[13]=[i("底部居中",-1)])]),_:1})])]),_:1},8,["code"]),s[28]||(s[28]=a("h2",{id:"html内容支持",tabindex:"-1"},[i("HTML内容支持 "),a("a",{class:"header-anchor",href:"#html内容支持","aria-label":"Permalink to “HTML内容支持”"},"​")],-1)),s[29]||(s[29]=a("p",null,[i("使用"),a("code",null,"dangerouslyUseHTMLString"),i("属性可以支持HTML内容（注意XSS风险）。")],-1)),n(p,{title:"代码演示",code:`
+<template>
+    <MYButton @click='showHTMLMessage'>显示HTML内容</MYButton>
+</template>
+  `.trim()},{demo:t(()=>[n(e,{onClick:M},{default:t(()=>[...s[14]||(s[14]=[i("显示HTML内容",-1)])]),_:1})]),_:1},8,["code"]),s[30]||(s[30]=a("h2",{id:"手动关闭控制",tabindex:"-1"},[i("手动关闭控制 "),a("a",{class:"header-anchor",href:"#手动关闭控制","aria-label":"Permalink to “手动关闭控制”"},"​")],-1)),s[31]||(s[31]=a("p",null,"可以通过返回值手动控制消息的关闭。",-1)),n(p,{title:"代码演示",code:`
+<template>
+    <div style='display: flex; gap: 10px; flex-wrap: wrap;'>
+        <MYButton @click='showManualMessage'>显示可手动关闭的消息</MYButton>
+        <MYButton @click='closeManualMessage' :disabled='!manualMessageHandle'>
+            手动关闭
+        </MYButton>
+    </div>
+</template>
+  `.trim()},{demo:t(()=>[a("div",V,[n(e,{onClick:w},{default:t(()=>[...s[15]||(s[15]=[i("显示可手动关闭的消息",-1)])]),_:1}),n(e,{onClick:x,disabled:!h.value},{default:t(()=>[...s[16]||(s[16]=[i(" 手动关闭 ",-1)])]),_:1},8,["disabled"])])]),_:1},8,["code"]),s[32]||(s[32]=a("h2",{id:"关闭回调",tabindex:"-1"},[i("关闭回调 "),a("a",{class:"header-anchor",href:"#关闭回调","aria-label":"Permalink to “关闭回调”"},"​")],-1)),s[33]||(s[33]=a("p",null,[i("使用"),a("code",null,"onClose"),i("属性可以在消息关闭时执行回调函数。")],-1)),n(p,{title:"代码演示",code:`
+<template>
+    <MYButton @click='showMessageWithCallback'>显示带回调的消息</MYButton>
+</template>
+  `.trim()},{demo:t(()=>[n(e,{onClick:E},{default:t(()=>[...s[17]||(s[17]=[i("显示带回调的消息",-1)])]),_:1})]),_:1},8,["code"]),s[34]||(s[34]=a("h2",{id:"偏移量设置",tabindex:"-1"},[i("偏移量设置 "),a("a",{class:"header-anchor",href:"#偏移量设置","aria-label":"Permalink to “偏移量设置”"},"​")],-1)),s[35]||(s[35]=a("p",null,[i("使用"),a("code",null,"offset"),i("属性可以设置消息容器的偏移量。")],-1)),n(p,{title:"代码演示",code:`
+<template>
+    <div style='display: flex; gap: 10px; flex-wrap: wrap;'>
+        <MYButton @click='showMessageWithOffset'>带偏移量的消息</MYButton>
+        <MYButton @click='showMultipleOffsetMessages'>多个偏移消息</MYButton>
+    </div>
+</template>
+  `.trim()},{demo:t(()=>[a("div",N,[n(e,{onClick:Y},{default:t(()=>[...s[18]||(s[18]=[i("带偏移量的消息",-1)])]),_:1}),n(e,{onClick:v},{default:t(()=>[...s[19]||(s[19]=[i("多个偏移消息",-1)])]),_:1})])]),_:1},8,["code"]),s[36]||(s[36]=a("h2",{id:"组合使用",tabindex:"-1"},[i("组合使用 "),a("a",{class:"header-anchor",href:"#组合使用","aria-label":"Permalink to “组合使用”"},"​")],-1)),s[37]||(s[37]=a("p",null,"最后，实现个多种api组合使用实现个完整的消息提示：",-1)),n(p,{title:"代码演示",code:`
+<template>
+    <MYButton @click='showComplexMessage'>组合使用示例</MYButton>
+</template>
+  `.trim()},{demo:t(()=>[n(e,{onClick:T},{default:t(()=>[...s[20]||(s[20]=[i("组合使用示例",-1)])]),_:1})]),_:1},8,["code"]),s[38]||(s[38]=k("",11))])}}});export{X as __pageData,$ as default};
