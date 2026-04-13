@@ -55,13 +55,13 @@ export const MyButtonPro = withInstall(defineComponent({ ... }))
 
 ### 在主入口统一导出：
 ```TypeScript
-// index.ts
 export { default as MyButton } from './src/button'
 export { default as MyMessage } from './src/message'
 // 无需手动添加 install，所有组件已具备全局注册能力
 ```
-```typescript
+
 用户使用方式（保持行业标准）：
+```typescript
 TypeScriptimport { createApp } from 'vue'
 import MengyueComponents from 'mengyue-components'
 

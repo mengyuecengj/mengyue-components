@@ -4,7 +4,7 @@
 :::code-group
 ```bash[typescript]
 import 'mengyue-components/style.css'
-如果不生效尝试下面这种
+// 如果不生效尝试下面这种
 import 'mengyue-components/dist/style.css'
 ```
 
