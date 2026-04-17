@@ -112,29 +112,26 @@ hero:
             </a>
           </div>
         </div>
-        <!-- Icon 卡片 -->
+        <!-- Badge 消息 -->
         <div class="component-card">
           <div class="card-header">
             <div class="card-icon">🎨</div>
             <span class="badge badge-stable">稳定</span>
           </div>
-          <h3>Icon 图标</h3>
+          <h3>Badge 消息</h3>
           <div class="demo-preview">
             <ClientOnly>
-              <div class="icon-group">
-                <MYCircleCheck size="24px" />
-                <MYBellFilled size="24px" />
-                <MYChatdots size="24px" />
-                <MYWeathersunshine size="24px" />
-                <MYOdometer size="24px" />
-                <MYSearch size="24px" />
+              <div class="card-header">
+                <MYBadge :content='5'>
+                    <MYButton type='primary'>消息</MYButton>
+                </MYBadge>              
               </div>
             </ClientOnly>
           </div>
           <div class="card-footer">
             <span class="update-date"></span>
-            <a href="./components/BasicIcon" class="card-link">
-              <span>100+ 图标</span>
+            <a href="./components/FeedbackBadge" class="card-link">
+              <span>查看文档</span>
               <span class="arrow">→</span>
             </a>
           </div>
@@ -312,18 +309,13 @@ import MYSwitch from '../packages/components/switch/src/switch.vue'
 import MYResult from '../packages/components/result/src/result.vue'
 import MYProgress from '../packages/components/progress/src/progress.vue'
 import MYSelectTime from '../packages/components/selectTime/src/selectTime.vue'
-
-import MYCircleCheck from '../packages/icons/src/components/circleCheck.vue'
-import MYBellFilled from '../packages/icons/src/components/bell-filled.vue'
-import MYChatdots from '../packages/icons/src/components/chatdots.vue'
-import MYWeathersunshine from '../packages/icons/src/components/weathersunshine.vue'
-import MYOdometer from '../packages/icons/src/components/odometer.vue'
-import MYSearch from '../packages/icons/src/components/search.vue'
+import MYBadge from '../packages/components/badge/src/badge.vue'
 
 // 响应式数据
 const switchValue = ref(true)
 const progressValue = ref(88)
 const timePoint = ref('14:30')
+const slidebarValue = ref(50)
 </script>
 
 <style scoped>

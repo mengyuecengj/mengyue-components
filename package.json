@@ -23,7 +23,7 @@
     "typecheck:vite-config": "vue-tsc -p tsconfig.vite-config.json --composite false --noEmit",
     "typecheck:vitest": "vue-tsc -p tsconfig.vitest.json --composite false --noEmit",
     "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
+    "docs:build": "vitepress build docs && npx pagefind --source docs/.vitepress/dist",
     "docs:serve": "vitepress serve docs/ --base /mengyue-components/",
     "docs:preview": "vitepress preview docs",
     "prepare": "husky"

@@ -112,29 +112,26 @@ hero:
             </a>
           </div>
         </div>
-        <!-- Icon Card -->
+        <!-- Badge message -->
         <div class="component-card">
           <div class="card-header">
             <div class="card-icon">🎨</div>
             <span class="badge badge-stable">Stable</span>
           </div>
-          <h3>Icon</h3>
+          <h3>Badge message</h3>
           <div class="demo-preview">
             <ClientOnly>
-              <div class="icon-group">
-                <MYCircleCheck size="24px" />
-                <MYBellFilled size="24px" />
-                <MYChatdots size="24px" />
-                <MYWeathersunshine size="24px" />
-                <MYOdometer size="24px" />
-                <MYSearch size="24px" />
+              <div class="card-header">
+                <MYBadge :content='5'>
+                    <MYButton type='primary'>message</MYButton>
+                </MYBadge>              
               </div>
             </ClientOnly>
           </div>
           <div class="card-footer">
             <span class="update-date"></span>
-            <a href="./components/BasicIcon" class="card-link">
-              <span>100+ Icons</span>
+            <a href="./components/FeedbackBadge" class="card-link">
+              <span>View Documentation</span>
               <span class="arrow">→</span>
             </a>
           </div>
@@ -312,13 +309,8 @@ import MYSwitch from '../../packages/components/switch/src/switch.vue'
 import MYResult from '../../packages/components/result/src/result.vue'
 import MYProgress from '../../packages/components/progress/src/progress.vue'
 import MYSelectTime from '../../packages/components/selectTime/src/selectTime.vue'
+import MYBadge from '../../packages/components/badge/src/badge.vue'
 
-import MYCircleCheck from '@icons/circleCheck.vue'
-import MYBellFilled from '@icons/bell-filled.vue'
-import MYChatdots from '@icons/chatdots.vue'
-import MYWeathersunshine from '@icons/weathersunshine.vue'
-import MYOdometer from '@icons/odometer.vue'
-import MYSearch from '@icons/search.vue'
 // Reactive data
 const switchValue = ref(true)
 const progressValue = ref(88)
