@@ -1,0 +1,5 @@
+import{_ as p}from"./chunks/pickColor.vue_vue_type_script_setup_true_lang.DQldapfM.js";import{u as h}from"./chunks/useColorUtils.Cv3Q488p.js";import{p as c,I as l,o as k,c as m,a8 as i,J as t,w as o,A as _}from"./chunks/framework.DvHWw5tv.js";const P=JSON.parse('{"title":"PickColor","description":"","frontmatter":{},"headers":[],"relativePath":"plus/FormPickColor.md","filePath":"plus/FormPickColor.md"}'),b={name:"plus/FormPickColor.md"},y=Object.assign(b,{setup(u){const e=_("#409EFF");return c(()=>{const{applyGlobalColor:s}=h();s(e.value,"--global-primary-color")}),(s,a)=>{const r=l("ClientOnly"),n=l("ShowCode");return k(),m("div",{"data-pagefind-body":!0,"data-pagefind-meta":"date:1776410922000"},[a[1]||(a[1]=i("",5)),t(n,{title:"代码演示",code:`
+<template>
+    <MYSelect-color v-model='colorValue' />
+</template>
+  `.trim()},{demo:o(()=>[t(r,null,{default:o(()=>[t(p,{modelValue:e.value,"onUpdate:modelValue":a[0]||(a[0]=d=>e.value=d)},null,8,["modelValue"])]),_:1})]),_:1},8,["code"]),a[2]||(a[2]=i("",5))])}}});export{P as __pageData,y as default};
