@@ -313,12 +313,12 @@ import MYResult from '../../packages/components/result/src/result.vue'
 import MYProgress from '../../packages/components/progress/src/progress.vue'
 import MYSelectTime from '../../packages/components/selectTime/src/selectTime.vue'
 
-import MYCircleCheck from '../../packages/icons/src/components/circleCheck.vue'
-import MYBellFilled from '../../packages/icons/src/components/bell-filled.vue'
-import MYChatdots from '../../packages/icons/src/components/chatdots.vue'
-import MYWeathersunshine from '../../packages/icons/src/components/weathersunshine.vue'
-import MYOdometer from '../../packages/icons/src/components/odometer.vue'
-import MYSearch from '../../packages/icons/src/components/search.vue'
+import MYCircleCheck from '@icons/circleCheck.vue'
+import MYBellFilled from '@icons/bell-filled.vue'
+import MYChatdots from '@icons/chatdots.vue'
+import MYWeathersunshine from '@icons/weathersunshine.vue'
+import MYOdometer from '@icons/odometer.vue'
+import MYSearch from '@icons/search.vue'
 // Reactive data
 const switchValue = ref(true)
 const progressValue = ref(88)
