@@ -316,7 +316,7 @@ import MYSelectTime from '../packages/components/selectTime/src/selectTime.vue'
 import MYCircleCheck from '../packages/icons/src/components/circleCheck.vue'
 import MYBellFilled from '../packages/icons/src/components/bell-filled.vue'
 import MYChatdots from '../packages/icons/src/components/chatdots.vue'
-import MYWeathersunshine from '../packages/icons/src/components/circleCheck.vue'
+import MYWeathersunshine from '../packages/icons/src/components/weathersunshine.vue'
 import MYOdometer from '../packages/icons/src/components/odometer.vue'
 import MYSearch from '../packages/icons/src/components/search.vue'
 
