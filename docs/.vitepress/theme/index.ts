@@ -1,6 +1,5 @@
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-// import ScrollFade from './directives/v-scroll-fade'
 import 'virtual:group-icons.css'
 import './styles/var.css'
 import './styles/variables.module.css'

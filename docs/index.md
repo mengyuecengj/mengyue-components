@@ -1,8 +1,7 @@
 ---
 layout: home
-
-title: mengyue-docs
-description: 下一代前端构建工具
+title: mengyue-plus
+description: 专为前端搭建网页 简单、易用、稳定的组件库
 
 hero:
   name: mengyue-plus
@@ -15,87 +14,752 @@ hero:
     - theme: alt
       text: 组件设计
       link: /design/FastRead
-
-features:
-  - icon: 🚀
-    title: 极速热重载
-    details: 基于原生 ESM 的毫秒级热更新，开发体验前所未有的流畅
-  - icon: ⚡
-    title: 开箱即用
-    details: 使用TypeScript等完善的开发体验
-  - icon: 🔥
-    title: 智能构建
-    details: 预优化的 Rollup 配置，支持多页面和库模式
-  - icon: 🛠️
-    title: 丰富的组件
-    details: 强大的组件系统，轻松扩展构建能力
-  - icon: 📦
-    title: 优化输出
-    details: 智能代码分割和资源优化，生产环境极致性能
-  - icon: 🌐
-    title: 现代化标准
-    details: 全面支持 ES 模块、TypeScript 等现代 Web 标准
 ---
 
 <div class="custom-home">
-  <!-- 特性展示区域 -->
-  <section class="features-section">
+  <section class="menu-demo-section">
     <div class="container">
       <div class="section-header">
-        <h2>为什么选择 mengyue-docs？</h2>
-        <p>专为现代前端开发设计的构建工具</p>
+        <h2>立即体验专业多级菜单</h2>
+        <p>支持无限层级嵌套、unique-opened 智能折叠、折叠悬浮、状态持久化 —— 后台管理系统标配</p>
       </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3>组件体积</h3>
-          <p>包含图标。打包后KB级别，在非常短时间可以完成组件库的安装。</p>
+      <div class="vp-raw">
+        <MenuDemo />
+      </div>
+      <div class="menu-features">
+        <div class="menu-feature-item">
+          <div class="feature-icon">🌳</div>
+          <div class="feature-content">
+            <strong>无限层级嵌套</strong>
+            <span>支持四级、五级菜单</span>
+          </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🛠️</div>
-          <h3>上手容易</h3>
-          <p>支持全局与局部引入，非常简单的引入即可使用。</p>
+        <div class="menu-feature-item">
+          <div class="feature-icon">🔄</div>
+          <div class="feature-content">
+            <strong>Unique Opened</strong>
+            <span>点击其他菜单时自动收起之前展开的</span>
+          </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🎯</div>
-          <h3>使用简单</h3>
-          <p>完整讲述了每个组件的每个api与使用方式，文档全面，快速上手。</p>
+        <div class="menu-feature-item">
+          <div class="feature-icon">📱</div>
+          <div class="feature-content">
+            <strong>折叠悬浮模式</strong>
+            <span>窄屏下优雅的悬浮菜单</span>
+          </div>
+        </div>
+        <div class="menu-feature-item">
+          <div class="feature-icon">💾</div>
+          <div class="feature-content">
+            <strong>状态持久化</strong>
+            <span>刷新页面后自动恢复展开与激活状态</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- 代码示例区域 -->
-  <section class="demo-section">
+
+  <section class="components-showcase">
     <div class="container">
-      <div class="demo-content">
-        <div class="demo-text">
-          <h2>简洁的配置体验</h2>
-          <p>只需几行配置，即可开始你的项目</p>
+      <div class="section-header">
+        <h2>组件丰富，选用自如</h2>
+        <p>大量实用组件满足你的需求，灵活定制与拓展</p>
+      </div>
+      <div class="components-grid">
+        <!-- Button 卡片 -->
+        <div class="component-card">
+          <div class="card-header">
+            <div class="card-icon">🔘</div>
+            <span class="badge badge-stable">稳定</span>
+          </div>
+          <h3>Button 按钮</h3>
+          <div class="demo-preview">
+            <ClientOnly>
+              <div class="button-group">
+                <MYButton size="small" type="primary">Primary</MYButton>
+                <MYButton size="small" type="success">Success</MYButton>
+                <MYButton size="small" type="warning">Warning</MYButton>
+              </div>
+            </ClientOnly>
+          </div>
+          <div class="card-footer">
+            <span class="update-date"></span>
+            <a href="./components/BasicButton" class="card-link">
+              <span>查看文档</span>
+              <span class="arrow">→</span>
+            </a>
+          </div>
         </div>
-        <div class="code-preview">
-            <pre>
-              <code class="language-javascript">
-                编写标签即可完善大量的功能。
-                用最少的代码实现最丰富的功能。
-              </code>
-            </pre>
+        <!-- Switch 卡片 -->
+        <div class="component-card">
+          <div class="card-header">
+            <div class="card-icon">🔀</div>
+            <span class="badge badge-stable">稳定</span>
+          </div>
+          <h3>Switch 开关</h3>
+          <div class="demo-preview">
+            <ClientOnly>
+              <div class="switch-demo">
+                <MYSwitch v-model="switchValue" size="small" />
+              </div>
+            </ClientOnly>
+          </div>
+          <div class="card-footer">
+            <span class="update-date"></span>
+            <a href="./components/Formwitch" class="card-link">
+              <span>查看文档</span>
+              <span class="arrow">→</span>
+            </a>
+          </div>
+        </div>
+        <!-- Icon 卡片 -->
+        <div class="component-card">
+          <div class="card-header">
+            <div class="card-icon">🎨</div>
+            <span class="badge badge-stable">稳定</span>
+          </div>
+          <h3>Icon 图标</h3>
+          <div class="demo-preview">
+            <ClientOnly>
+              <div class="icon-group">
+                <MYCircleCheck size="24px" />
+                <MYBellFilled size="24px" />
+                <MYChatdots size="24px" />
+                <MYWeathersunshine size="24px" />
+                <MYOdometer size="24px" />
+                <MYSearch size="24px" />
+              </div>
+            </ClientOnly>
+          </div>
+          <div class="card-footer">
+            <span class="update-date"></span>
+            <a href="./components/BasicIcon" class="card-link">
+              <span>100+ 图标</span>
+              <span class="arrow">→</span>
+            </a>
+          </div>
+        </div>
+        <!-- Result 卡片 -->
+        <div class="component-card">
+          <div class="card-header">
+            <div class="card-icon">✅</div>
+            <span class="badge badge-stable">稳定</span>
+          </div>
+          <h3>Result 结果</h3>
+          <div class="demo-preview">
+            <ClientOnly>
+              <MYResult icon="success" title="操作成功" sub-title=" " style="transform: scale(0.8);" />
+            </ClientOnly>
+          </div>
+          <div class="card-footer">
+            <span class="update-date"></span>
+            <a href="./components/FeedbackResult" class="card-link">
+              <span>查看文档</span>
+              <span class="arrow">→</span>
+            </a>
+          </div>
+        </div>
+        <!-- Progress 卡片 -->
+        <div class="component-card">
+          <div class="card-header">
+            <div class="card-icon">📊</div>
+            <span class="badge badge-stable">稳定</span>
+          </div>
+          <h3>Progress 进度条</h3>
+          <div class="demo-preview">
+            <ClientOnly>
+              <div style="width: 100%; padding: 8px 0;">
+                <MYProgress :percentage="progressValue" status="success" />
+                <MYProgress :percentage="70" style="margin-top: 8px;" />
+              </div>
+            </ClientOnly>
+          </div>
+          <div class="card-footer">
+            <span class="update-date"></span>
+            <a href="./components/FeedbackProgress" class="card-link">
+              <span>查看文档</span>
+              <span class="arrow">→</span>
+            </a>
+          </div>
+        </div>
+        <!-- SelectTime 卡片 -->
+        <div class="component-card">
+          <div class="card-header">
+            <div class="card-icon">⏰</div>
+            <span class="badge badge-stable">稳定</span>
+          </div>
+          <h3>SelectTime 时间</h3>
+          <div class="demo-preview">
+            <ClientOnly>
+              <div style="position: relative; z-index: 10; width: 100%;">
+                <MYSelectTime v-model="timePoint" />
+              </div>
+            </ClientOnly>
+          </div>
+          <div class="card-footer">
+            <span class="update-date"></span>
+            <a href="./components/FormSelectTime" class="card-link">
+              <span>查看文档</span>
+              <span class="arrow">→</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- 底部 CTA -->
+
   <section class="cta-section">
     <div class="container">
-      <h2>准备好开始了吗？</h2>
-      <p>立即加入数千开发者的行列，体验下一代构建工具</p>
+      <h1>准备好开始了吗？</h1>
+      <p>立即加入数千开发者的行列，体验下一代组件库</p>
       <div class="cta-actions">
-        <MYa color="#fff" underline href="/mengyue-components/plus/FastStart" class="btn btn-large btn-primary">开始使用</MYa>
-        <MYa target="__blank" rel="noopener noreferrer" underline href="https://github.com/mengyuecengj/mengyue-components" class="btn btn-large btn-secondary">查看源码</MYa>
+        <MYa color="#fff" underline href="./components/FastStart" class="btn btn-large btn-primary">开始使用</MYa>
+        <MYa target="_blank" rel="noopener noreferrer" underline href="https://github.com/mengyuecengj/mengyue-components" class="btn btn-large btn-secondary">查看源码</MYa>
       </div>
     </div>
   </section>
+
+  <!-- 底部资源栏 -->
+  <section class="footer-resources">
+    <div class="container">
+      <div class="resources-grid">
+      <div class="resources-column">
+        <h4>更多产品</h4>
+        <ul>
+          <li>
+            <a href="#">
+              <i class="icon-medium"></i> mengyue 官网
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="icon-medium"></i> mengyue management system
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="resources-column">
+        <h4>相关资源</h4>
+        <ul>
+          <li>
+            <a href="./plus/FastStart">
+              <i class="icon-medium"></i> mengyue-plus
+            </a>
+          </li>
+          <li>
+            <a href="./components/FastStart">
+              <i class="icon-medium"></i> mengyue-components
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="resources-column">
+        <h4>相关地址</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/mengyuecengj/mengyue-components" target="_blank">
+              <i class="icon-github"></i> GitHub
+            </a>
+          </li>
+          <li>
+            <a href="https://gitee.com/q62/mengyue-components" target="_blank">
+              <i class="icon-gitee"></i> Gitee
+            </a>
+          </li>
+          <li>
+            <a href="https://www.npmjs.com/~cengj" target="_blank">
+              <i class="icon-npm"></i> npm
+            </a>
+          </li>
+          <li>
+            <a href="https://x.com/" target="_blank">
+              <i class="icon-x"></i> X
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="resources-column">
+        <h4>需要帮助</h4>
+        <ul>
+          <li>
+            <a href="./version/0.1.1">
+              <i class="icon-log"></i> 更新日志
+            </a>
+          </li>
+          <li>
+            <a href="./question/migration">
+              <i class="icon-question"></i> 常见问题
+            </a>
+          </li>
+          <li>
+            <a href="https://gitee.com/q62/mengyue-components/issues" target="_blank">
+              <i class="icon-bug"></i> 报告 Bug
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>  
+</section>
 </div>
 
 <script setup>
+import { ref } from 'vue'
+import MenuDemo from './.vitepress/theme/components/MenuDemo.vue'
 import MYa from '../packages/components/a/src/a.vue'
+import MYButton from '../packages/components/button/src/button.vue'
+import MYSwitch from '../packages/components/switch/src/switch.vue'
+import MYResult from '../packages/components/result/src/result.vue'
+import MYProgress from '../packages/components/progress/src/progress.vue'
+import MYSelectTime from '../packages/components/selectTime/src/selectTime.vue'
+
+import MYCircleCheck from '../packages/icons/src/components/circleCheck.vue'
+import MYBellFilled from '../packages/icons/src/components/bell-filled.vue'
+import MYChatdots from '../packages/icons/src/components/chatdots.vue'
+import MYWeathersunshine from '../packages/icons/src/components/circleCheck.vue'
+import MYOdometer from '../packages/icons/src/components/odometer.vue'
+import MYSearch from '../packages/icons/src/components/search.vue'
+
+// 响应式数据
+const switchValue = ref(true)
+const progressValue = ref(88)
+const timePoint = ref('14:30')
 </script>
+
+<style scoped>
+/* ==================== 新特性区样式 ==================== */
+.menu-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.menu-feature-item {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.menu-feature-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+  border-color: #3b82f6;
+}
+
+.feature-icon {
+  font-size: 42px;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f9ff;
+  border-radius: 20px;
+}
+
+.menu-feature-item strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.menu-feature-item span {
+  display: block;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #64748b;
+}
+
+/* ==================== 暗色主题自动适配 ==================== */
+.dark .menu-feature-item {
+  background: #1f2937;
+  border-color: #334155;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.dark .menu-feature-item:hover {
+  border-color: #60a5fa;
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+}
+
+.dark .feature-icon {
+  background: #334155;
+}
+
+.dark .menu-feature-item strong {
+  color: #f1f5f9;
+}
+
+.dark .menu-feature-item span {
+  color: #cbd5e1;
+}
+
+/* ==================== 组件展示区 ==================== */
+.components-showcase {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f9fafb 0%, #f2f5f8 100%);
+  transition: background 0.3s;
+}
+
+.dark .components-showcase {
+  background: #0a0a0a;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.section-header h2 {
+  font-size: 35px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.section-header p {
+  font-size: 18px;
+  color: #475569;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.dark .section-header h2 {
+  color: #f1f5f9;
+}
+
+.dark .section-header p {
+  color: #cbd5e1;
+}
+
+.components-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.component-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
+  padding: 24px;
+  transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+  box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+.dark .component-card {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.4);
+}
+
+.component-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 30px -10px rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.dark .component-card:hover {
+  box-shadow: 0 20px 30px -10px rgba(59, 130, 246, 0.4);
+  border-color: rgba(96, 165, 250, 0.3);
+  background: rgba(30, 41, 59, 0.85);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.card-icon {
+  font-size: 30px;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #eff6ff, #e0edfe);
+  border-radius: 16px;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.dark .card-icon {
+  background: linear-gradient(145deg, #1e3a8a, #1a2e6b);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1), 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 40px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.badge-new { background: #10b981; color: white; }
+.badge-update { background: #f59e0b; color: white; }
+.badge-stable { background: #3b82f6; color: white; }
+
+.dark .badge { background: #334155; color: #cbd5e1; }
+.dark .badge-new { background: #059669; }
+.dark .badge-update { background: #d97706; }
+.dark .badge-stable { background: #2563eb; }
+
+.component-card h3 {
+  font-size: 20px;
+  font-weight: 650;
+  color: #0f172a;
+  margin-bottom: 12px;
+  white-space: normal;
+  word-break: break-word;
+  overflow: visible;
+}
+
+.dark .component-card h3 {
+  color: #f8fafc;
+}
+
+.demo-preview {
+  flex: 1;
+  margin-bottom: 16px;
+  min-height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.switch-demo {
+  display: flex;
+  justify-content: center;
+}
+
+.icon-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  color: var(--vp-c-text-1);
+}
+
+.dark .icon-group {
+  color: var(--vp-c-text-1);
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  border-top: 1px dashed rgba(0, 0, 0, 0.06);
+  padding-top: 16px;
+}
+
+.dark .card-footer {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.update-date {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 450;
+}
+
+.dark .update-date {
+  color: #94a3b8;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+  color: #3b82f6;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s;
+  border-bottom: none !important;
+}
+
+.dark .card-link {
+  color: #60a5fa;
+}
+
+.card-link:hover {
+  gap: 8px;
+  color: #2563eb;
+}
+
+.dark .card-link:hover {
+  color: #93c5fd;
+}
+
+.card-link .arrow {
+  transition: transform 0.2s;
+  font-size: 16px;
+}
+
+.card-link:hover .arrow {
+  transform: translateX(4px);
+}
+
+.components-footer-note {
+  text-align: center;
+  margin-top: 48px;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.dark .components-footer-note {
+  color: #94a3b8;
+}
+
+.container h1 {
+  color: #747bff;
+}
+
+@media (max-width: 768px) {
+  .components-showcase {
+    padding: 50px 0;
+  }
+  .section-header h2 {
+    font-size: 32px;
+  }
+  .components-grid {
+    grid-template-columns: 1fr;
+    padding: 0 16px;
+  }
+}
+
+.footer-resources {
+  background: #f9fafb;
+  margin-top: 40px;
+}
+
+.dark .footer-resources {
+  background: #0A0A0A;
+}
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.resources-column h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+
+.dark .resources-column h4 {
+  color: #f1f5f9;
+}
+
+.resources-column ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  margin-top: 16px;
+}
+
+.resources-column ul li {
+  margin-bottom: 12px;
+}
+
+.resources-column ul li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  font-size: 15px;
+  min-height: 22px;
+}
+
+.resources-column h4 {
+  margin-bottom: 8px;
+}
+
+.icon-github,
+.icon-gitee,
+.icon-x,
+.icon-npm,
+.icon-log,
+.icon-question,
+.icon-bug {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.icon-github  { background-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/github.svg'); }
+.icon-gitee   { background-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/gitee.svg'); }
+.icon-x       { background-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/x.svg'); }
+.icon-npm     { background-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/npm.svg'); }
+
+.icon-github,
+.icon-gitee,
+.icon-x,
+.icon-npm {
+  filter: brightness(0) invert(1);
+}
+
+.icon-medium::before { content: 'M'; }
+.icon-log::before { content: '📝'; }
+.icon-question::before { content: '❓'; }
+.icon-bug::before { content: '🐞'; }
+
+@media (max-width: 768px) {
+  .resources-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 0 16px;
+  }
+
+  .resources-column h4 {
+    font-size: 15px;
+  }
+
+  .resources-column a {
+    font-size: 13px;
+  }
+}
+</style>
